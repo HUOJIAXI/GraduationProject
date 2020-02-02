@@ -1,4 +1,6 @@
-% 利用yalmip调用cplex求解器求解TSP问题
+%% Version: 02/02/2020
+% Author:HUO JIAXI
+% 已完成单机器人的IP模型，并且已实现较小规模的路径规划问题求解
 clear;clc;close all;
 D = load('tsp_map.txt')';
 mapdesigner(D);
@@ -21,14 +23,15 @@ if l == t
     distance = 0;
     return
 end
-
+%% 约束1 确保路径从起点出发并在终点结束
 C = [C, sum(x(l,:)) - x(l,l) - sum(x(:,t)) + x(t,t)== 0];
 
 C = [C, sum(x(l,:)) - x(l,l) == 1];
 
 C = [C, sum(x(:,l)) - x(l,l) - sum(x(t,:)) + x(t,t) == 0];
 
-C = [C, sum(x(:,l)) - x(l,l) == 0];     
+C = [C, sum(x(:,l)) - x(l,l) == 0]; 
+%% 约束2 确保出入边条件，每个顶点在路径中仅出现一次
 
 for i = 1:n
     if i ~= l && i~=t
@@ -38,6 +41,8 @@ for i = 1:n
     end
 end
 
+%% 避免出现子循环
+
 for i = 1:n
     for j = 1:n
         if i~=j && i ~=l && i ~=t && j ~=l && j ~=t
@@ -45,6 +50,7 @@ for i = 1:n
         end
     end
 end
+%% 求解IP模型
 
 % 参数设置
 
@@ -81,6 +87,8 @@ end
 % 
 % [Path,distance] = shortestpath(G,l,t,'Method','positive');
 %if l < t
+
+%% 邻接矩阵转换，路径绘制
 Path=solvermatrix(o,l,t);
 %end
 %if l > t
