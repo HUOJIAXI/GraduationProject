@@ -14,9 +14,17 @@ HUO JIAXI
 为多机器人系统搭建环境  
 
 引入按次序执行路径规划的多机器人IP模型，求解成功，并且不会发生冲突，但是空间时间效率低，需要引入同步模型。
+耗时为单个机器人运行时间的叠加，并且路径被单个机器人直接占用，未被释放，效率低，需改进。
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Map12*12.jpg)
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Result12*12.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Result12*12.jpg)  
+
+1-AS   
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/3-MAS_12*12.jpg)  
+
+3-MAS
+
 
 
 
