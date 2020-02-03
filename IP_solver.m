@@ -21,7 +21,7 @@ z = sum(sum(d.*x));
 C = [];
 %%后期作为参数在调用中赋值
 l=2;
-t=18;
+t=39;
 %%
 % 静止不动时返回0
 if l == t
@@ -61,7 +61,7 @@ end
 
 % 参数设置
 
-ops = sdpsettings('verbose',0,'solver','cplex');%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',0,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
 
 % 求解
 result  = optimize(C,z,ops);
@@ -101,7 +101,8 @@ Path=solvermatrix(o,l,t);
 %if l > t
 %    Path=solvermatrix(o,l,t,1);
 %end
-[X,Y]=spread(Path);
+m = size(D,1);
+[X,Y]=spread(Path,m);
 PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
 plot(X-1/2,Y-1/2,'-ks','MarkerFaceColor','r','MarkerSize',10)
 hold on;
@@ -119,7 +120,7 @@ if l>t
     A(:,size(A,1))=0;
 end
 
-G=digraph(A,'OmitSelfLoops')
+G=digraph(A,'OmitSelfLoops');
 figure(2);
 plot(G);
 
