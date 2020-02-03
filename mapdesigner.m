@@ -1,5 +1,6 @@
 function mapdesigner(G)
 MM = size(G,2);
+G = flipud(G);
     figure(3)
     axis([0,MM,0,MM])
     for i=1:MM
