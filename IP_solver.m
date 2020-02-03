@@ -1,8 +1,12 @@
 %% Version: 02/02/2020
 % Author:HUO JIAXI
 % 已完成单机器人的IP模型，并且已实现较小规模的路径规划问题求解
+% 后期返回temp matrix， PATH matrix
+% 输入机器人i的起点l和终点t
+%% 待修改
 clear;clc;close all;
-D = load('tsp_map.txt')';
+D = load('tsp_map.txt')'; % 后期用temp矩阵代替
+%%
 mapdesigner(D);
 hold on;
 d = transfer(D);
@@ -15,8 +19,11 @@ z = sum(sum(d.*x));
 
 % 约束添加
 C = [];
+%%后期作为参数在调用中赋值
 l=2;
 t=18;
+%%
+% 静止不动时返回0
 if l == t
     Path = [];
     Path(1) = l;
@@ -95,7 +102,7 @@ Path=solvermatrix(o,l,t);
 %    Path=solvermatrix(o,l,t,1);
 %end
 [X,Y]=spread(Path);
-PATH=cat(1,X,Y)';
+PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
 plot(X-1/2,Y-1/2,'-ks','MarkerFaceColor','r','MarkerSize',10)
 hold on;
 %h=annotation('arrow',[(X(2)-1/2)/10 (X(3)-1/2)/10],[(Y(2)-1/2)/10 (Y(3)-1/2)/10]) ;
