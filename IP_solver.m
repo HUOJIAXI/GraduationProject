@@ -2,14 +2,16 @@
 % Author:HUO JIAXI
 % 已完成单机器人的IP模型，并且已实现较小规模的路径规划问题求解
 % 后期返回temp matrix， PATH matrix
-% 输入机器人i的起点l和终点t
+% 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
-clear;clc;close all;
-D = load('tsp_map.txt')'; % 后期用temp矩阵代替
+function [PATH,temp]=IP_solver(temp,l,t)
+%D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
-mapdesigner(D);
+%mapdesigner(fliplr(D));
+%temp = D;
+mapdesigner(fliplr(temp));
 hold on;
-d = transfer(D);
+d = transfer(temp);
 n = size(d,1); 
 % 决策变量
 x = binvar(n,n,'full'); % n*n维的决策变量
@@ -20,8 +22,6 @@ z = sum(sum(d.*x));
 % 约束添加
 C = [];
 %%后期作为参数在调用中赋值
-l=2;
-t=39;
 %%
 % 静止不动时返回0
 if l == t
@@ -48,7 +48,7 @@ for i = 1:n
     end
 end
 
-%% 避免出现子循环
+%% 约束3 避免出现子循环
 
 for i = 1:n
     for j = 1:n
@@ -101,10 +101,10 @@ Path=solvermatrix(o,l,t);
 %if l > t
 %    Path=solvermatrix(o,l,t,1);
 %end
-m = size(D,1);
+m = size(temp,1);
 [X,Y]=spread(Path,m);
 PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
-plot(X-1/2,Y-1/2,'-ks','MarkerFaceColor','r','MarkerSize',10)
+plot((Y-1/2),(X-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10)
 hold on;
 %h=annotation('arrow',[(X(2)-1/2)/10 (X(3)-1/2)/10],[(Y(2)-1/2)/10 (Y(3)-1/2)/10]) ;
 %m=G.Edges;
@@ -119,6 +119,11 @@ end
 if l>t
     A(:,size(A,1))=0;
 end
+
+for i = 1:length(X)
+    temp(X(i),Y(i))=2;
+end
+
 
 G=digraph(A,'OmitSelfLoops');
 figure(2);
