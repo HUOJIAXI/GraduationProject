@@ -6,11 +6,13 @@ clear;
 clc;
 D = load('tsp_map.txt'); 
 temp = D;
-l = 2;
-t = 143;
+Start = 2;
+Goal = 143;
+RobotNum = 1;
 %% 求解
 tic
-[PATH,temp]=IP_solver(temp,l,t);
+PathStore=MASPP_IP(D,RobotNum,Start,Goal);
 toc
+save('PathStore.mat');
 
 
