@@ -7,7 +7,7 @@ clc;
 D = load('tsp_map.txt'); 
 temp = D;
 l = 2;
-t = 68;
+t = 143;
 %% 求解
 tic
 [PATH,temp]=IP_solver(temp,l,t);
