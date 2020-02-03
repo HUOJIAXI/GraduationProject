@@ -4,13 +4,13 @@
 % 后期返回temp matrix， PATH matrix
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
-function [PATH,temp]=IP_solver(temp,l,t)
+function [PATH,temp]=IP_solver(temp,l,t,h)
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));
 %temp = D;
-mapdesigner(fliplr(temp));
-hold on;
+%mapdesigner(fliplr(temp));
+%hold on;
 d = transfer(temp);
 n = size(d,1); 
 % 决策变量
@@ -104,8 +104,12 @@ Path=solvermatrix(o,l,t);
 m = size(temp,1);
 [X,Y]=spread(Path,m);
 PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
-plot((Y-1/2),(X-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10)
-hold on;
+
+%%
+%plot((Y-1/2),(X-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10);
+%hold on;
+%%
+
 %h=annotation('arrow',[(X(2)-1/2)/10 (X(3)-1/2)/10],[(Y(2)-1/2)/10 (Y(3)-1/2)/10]) ;
 %m=G.Edges;
 A=zeros(size(d,1),size(d,2));
@@ -121,13 +125,15 @@ if l>t
 end
 
 for i = 1:length(X)
-    temp(X(i),Y(i))=2;
+    temp(X(i),Y(i))=1;
 end
 
-
+str=['robot=',num2str(h)];
+figure(h)
 G=digraph(A,'OmitSelfLoops');
-figure(2);
 plot(G);
+title(str);
+
 
 
 
