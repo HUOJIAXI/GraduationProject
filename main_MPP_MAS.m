@@ -5,9 +5,10 @@
 clear;
 clc;
 D = load('tsp_map.txt'); 
-temp = D;
-Start = [2,8,49];
-Goal = [143,96,137];
+Start = [9,8,49];
+Goal = [143,96,131];
+%Start = 2;
+%Goal = 143;
 RobotNum = 3;
 %% 求解
 tic
