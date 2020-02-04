@@ -62,7 +62,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
             for j = 1:length(robot_coli) % 第j个机器人存在冲突
                 [PATH,path_num]=Modify_path(temp,Start(j),Goal(j));  % 第j个冲突机器人路径重新规划
                 PathStore{j}([res-1,max([size(PathStore{j},1),res-1+size(PATH,1)])],:) = PATH;  %更新第j个机器人的最优路径选择集合 res-1开始更新PathStore矩阵
-                Path_num{j}([res-1,max([size(Path_num{j}),res-1+size(path_num)])],:) = path_num;
+                Path_num{j}([res-1,max([size(Path_num{j}),res-1+size(path_num)],:)]) = path_num;
             end
         end
 
