@@ -21,16 +21,17 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Map12*12.jpg)
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Result12*12.jpg)  
 
-1-AS   
+1-AS ⬆️  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/3-MAS_12*12.jpg)  
 
-3-MAS 79.981009s
+3-MAS ⬆️
+求解MAS模型耗时 79.981009s
 
 ## 对于优化MAS路径规划的一点想法：  
 动态规划，暂时先不考虑启发式算法。
 1. 先对每个机器人执行不考虑其他机器人存在的单机器人路径规划，将各机器人的最短路径存储在PATH.mat中，作为优先路径选择集合。
-2. 正式开始启动系统，每个机器人按照优先路径行动，（for循环）每次行动存储实际所在位置在temp.mat中（暂定），并判断下一步节点是否与其他机器人优先路径集合中的下一节点重合（head-on-head collision），或是和已经达到目的地的机器人的实际节点重合，若重合，则重新调用一次IP_solver求解器，求出无撞撞的路径，并对所有的机器人执行，直到所有的机器人达到目的节点，得到一个最终的路径cell集合pathcellfinal.matrix。
+2. 正式开始启动系统，每个机器人按照优先路径行动，（for循环）每次行动存储实际所在位置在temp.mat中（暂定），并判断下一步节点是否与其他机器人优先路径集合中的下一节点重合（head-on-head collision），或是和已经达到目的地的机器人的实际节点重合，若重合，或是停止等待，或是重新调用一次IP_solver求解器，求出新的无撞撞的路径选择，并对所有的机器人执行，直到所有的机器人达到目的节点，得到一个最终的路径cell集合pathcellfinal.matrix。
 
 ## Version: 2.1 04/02/2020  
 Author: HUO JIAXI  
@@ -43,5 +44,7 @@ Author: HUO JIAXI
 
 最后的temp.matrix矩阵包含了所有机器人的最终目的地。  
 
-之后的任务则是优化现有的模型，想办法引入新的启发式算法，减小耗时。  
+之后的任务则是优化现有的模型，想办法引入新的启发式算法，减小耗时。    
+
+现有模型耗时 80.381949s
 
