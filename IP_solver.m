@@ -4,14 +4,14 @@
 % 后期返回temp matrix， PATH matrix
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
-function [PATH,temp]=IP_solver(temp,l,t,h)
+function [PATH,Path]=IP_solver(D,l,t,h)
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));
 %temp = D;
 %mapdesigner(fliplr(temp));
 %hold on;
-d = transfer(temp);
+d = transfer(D);
 n = size(d,1); 
 % 决策变量
 x = binvar(n,n,'full'); % n*n维的决策变量
@@ -101,9 +101,9 @@ Path=solvermatrix(o,l,t);
 %if l > t
 %    Path=solvermatrix(o,l,t,1);
 %end
-m = size(temp,1);
+m = size(D,1);
 [X,Y]=spread(Path,m);
-PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
+PATH=cat(1,X,Y)'; % 路径存入PATH matrix
 
 %%
 %plot((Y-1/2),(X-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10);
@@ -112,26 +112,36 @@ PATH=cat(1,X,Y)'; % 路径存入PATH matrix 并且实时修改tempmatrix
 
 %h=annotation('arrow',[(X(2)-1/2)/10 (X(3)-1/2)/10],[(Y(2)-1/2)/10 (Y(3)-1/2)/10]) ;
 %m=G.Edges;
-A=zeros(size(d,1),size(d,2));
-for i =2:length(Path)
-    A(Path(i-1),Path(i))=1;
-end
-if l<t
-    A(size(A,2),:)=0;
-end
 
-if l>t
-    A(:,size(A,1))=0;
-end
+% A=zeros(size(d,1),size(d,2));
+% for i =2:length(Path)
+%     A(Path(i-1),Path(i))=1;
+% end
+% if l<t
+%     A(size(A,2),:)=0;
+% end
+% 
+% if l>t
+%     A(:,size(A,1))=0;
+% end
 
-for i = 1:length(X)
-    temp(X(i),Y(i))=1;
+%% 对于静态规划，可以将单机器人走过的路径作为障碍物隔离，但是会造成很大的资源浪费，因此在动态规划中，需要释放经过的节点
+%for i = 1:length(X)
+%    temp(X(i),Y(i))=1;
+%end
+%%
+x_fig=zeros((length(Path)-1),1);
+y_fig=zeros((length(Path)-1),1);
+for i = 1:(length(Path)-1)
+    x_fig(i)=Path(i);
+    y_fig(i)=Path(i+1);
 end
 
 str=['robot=',num2str(h)];
 figure(h)
-G=digraph(A,'OmitSelfLoops');
-plot(G);
+%G=digraph(A,'OmitSelfLoops');
+G=digraph(x_fig,y_fig,'OmitSelfLoops');
+plot(G,'Layout','layered');
 title(str);
 
 
