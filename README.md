@@ -46,7 +46,7 @@ Author: HUO JIAXI
 
 之后的任务则是优化现有的模型，想办法引入新的启发式算法，减小耗时。  
 
-![images]（https://github.com/HUOJIAXI/GraduationProject/blob/master/results/MAS_syn_base.jpg）
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/MAS_syn_base.jpg)
 
 现有模型耗时 80.381949s
 
