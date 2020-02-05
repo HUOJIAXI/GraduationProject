@@ -4,7 +4,7 @@
 % 后期返回temp matrix， PATH matrix
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
-function [PATH,Path]=IP_solver(D,l,t,h)
+function [PATH,Path]=IP_solver(D,l,t,numrobot)
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));
@@ -66,8 +66,10 @@ ops = sdpsettings('verbose',0,'solver','gurobi');%verbose计算冗余量，值�
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
-    value(x)
-    value(z)
+%    value(x)
+%    value(z)
+    text=' 号机器人原始路径求解成功，原始路径长度：';
+    disp([num2str(numrobot),text,num2str(value(z))]);
 else
     disp('求解过程中出错');
 end
@@ -130,19 +132,9 @@ PATH=cat(1,X,Y)'; % 路径存入PATH matrix
 %    temp(X(i),Y(i))=1;
 %end
 %%
-x_fig=zeros((length(Path)-1),1);
-y_fig=zeros((length(Path)-1),1);
-for i = 1:(length(Path)-1)
-    x_fig(i)=Path(i);
-    y_fig(i)=Path(i+1);
-end
 
-str=['robot=',num2str(h)];
-figure(h)
-%G=digraph(A,'OmitSelfLoops');
-G=digraph(x_fig,y_fig,'OmitSelfLoops');
-plot(G,'Layout','layered');
-title(str);
+
+
 
 
 

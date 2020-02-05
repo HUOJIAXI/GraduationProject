@@ -1,7 +1,7 @@
 %% Version 04/02/2019
 % 此函数用作解决冲突重新规划路径用，算法类似IP_solver.m
 
-function [PATH,Path]=Modify_path(temp,l,t)
+function [PATH,Path]=Modify_path(temp,l,t,numrobot)
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));
@@ -63,8 +63,10 @@ ops = sdpsettings('verbose',0,'solver','gurobi');%verbose计算冗余量，值�
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
-    value(x)
-    value(z)
+%    value(x)
+%    value(z)
+    text=' 号机器人避免冲突修改路径求解成功，剩余路径长度';
+    disp([num2str(numrobot),text,num2str(value(z))]);
 else
     disp('求解过程中出错');
 end
@@ -81,23 +83,11 @@ for i=1:length(o)
     end
 end
 
-% if l < t
-%     G = graph(o,'upper','OmitSelfLoops');  
-% end
-% if l > t
-%     G = graph(o,'lower','OmitSelfLoops');
-% end
-% k=G.Edges;
-% 
-% [Path,distance] = shortestpath(G,l,t,'Method','positive');
-%if l < t
-
 %% 邻接矩阵转换，路径绘制
 Path=solvermatrix(o,l,t);
-%end
-%if l > t
-%    Path=solvermatrix(o,l,t,1);
-%end
+
 m = size(D,1);
 [X,Y]=spread(Path,m);
 PATH=cat(1,X,Y)'; % 路径存入PATH matrix
+
+

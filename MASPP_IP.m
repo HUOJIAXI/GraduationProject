@@ -1,6 +1,6 @@
 %% 路径规划总程序
 
-function PathStore = MASPP_IP(D,RobotNum,Start,Goal)
+function [PathStore,Path_num] = MASPP_IP(D,RobotNum,Start,Goal)
 
 PathStore=cell(RobotNum,1);
 Path_num=cell(RobotNum,1);
@@ -31,12 +31,7 @@ for i=1:RobotNum
     
 end
 
-
-save('PathStore.mat')
-save('Path_num.mat')
 temp=D;
-load('PathStore.mat');
-load('Path_num.mat');
 
 %%
 res=1;
@@ -48,6 +43,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
     if res < size(PathStore{1},1)
         for i = 1:RobotNum
             temp(PathStore{i}(res+1,1),PathStore{i}(res+1,2))=1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
+            
             Start(i)=Path_num{i}(res); % 将机器人实际所在节点作为出发点
         end
         save('temp.mat');
@@ -60,9 +56,16 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         robot_coli=setdiff(1:numel(path_temp), I); % 判断有多少个机器人在时刻res+1时存在冲突
         if ~isempty(robot_coli)
             for j = 1:length(robot_coli) % 第j个机器人存在冲突
-                [PATH,path_num]=Modify_path(temp,Start(j),Goal(j));  % 第j个冲突机器人路径重新规划
+                text=' 号机器人出现冲突';
+                disp([num2str(j),text]);
+                if Start(j) == Goal(j)
+                    text=' 号机器人已到达终点，冲突忽略';
+                    disp([num2str(j),text]);  
+                    continue; %% 忽略与被已经达到终点的机器人发生冲突的情况。
+                end
+                [PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
                 PathStore{j}([res-1,max([size(PathStore{j},1),res-1+size(PATH,1)])],:) = PATH;  %更新第j个机器人的最优路径选择集合 res-1开始更新PathStore矩阵
-                Path_num{j}([res-1,max([size(Path_num{j}),res-1+size(path_num)])],:) = path_num;
+                Path_num{j}([res-1,max([size(Path_num{j}),res-1+size(Path_num)])],:) = Path_num_MAJ;
             end
         end
 
@@ -80,15 +83,9 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
     
 end
 %%
+save('Path_num.mat');
+load('Path_num.mat');
 
-
-mapdesigner(fliplr(D)); % 原始环境
-hold on;
-
-for i = 1:RobotNum
-    plot((PathStore{i}(:,2)-1/2),(PathStore{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) % 将所有机器人的路径显示在图中。
-    hold on;
-end
 
 
 
