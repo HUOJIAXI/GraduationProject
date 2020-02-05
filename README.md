@@ -1,4 +1,8 @@
 # GraduationProject 项目日志
+## 到目前为止的效果：  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLI.gif)
+
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
 
