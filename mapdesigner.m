@@ -1,7 +1,7 @@
-function mapdesigner(G)
+function mapdesigner(G,num)
 MM = size(G,2);
 G = rot90(G,2);
-    figure(3)
+    figure(num)
     axis([0,MM,0,MM])
     for i=1:MM
         for j=1:MM
