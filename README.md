@@ -63,6 +63,8 @@ Author: HUO JIAXI
 
 不足：耗时仍然较长，并且避碰算法仍需要改进，还存在一些在调试过程中没有被发现的问题，需要进一步调试代码。  
 
-6台机器人运行耗时：224.504326s  
+6台机器人运行耗时：224.504326s    
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/MAS_COLI_BASE.png)
 
 
