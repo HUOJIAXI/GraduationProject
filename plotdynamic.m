@@ -14,9 +14,9 @@ for i = 1:RobotNum
 %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
 %     PathStore{i} = PATH;
 %     Path_num{i} = path_num;
-    MAX=max([size(PathStore{i},1),MAX]);
+    MAX=max([size(PathStore{i,1},1),MAX]);
 %    MAX=MAX+1;
-    H(i)=size(PathStore{i},1);
+    H(i)=size(PathStore{i,1},1);
 end
 
 MAX = MAX+1;
@@ -24,7 +24,7 @@ MAX = MAX+1;
 for i=1:RobotNum
     if size(PathStore{i},1)<MAX 
         SI=size(PathStore{i});
-        for j = SI+1:MAX
+        for j = (SI+1):MAX
             PathStore{i}(j,1) =  PathStore{i}(H(i),1);
             PathStore{i}(j,2) =  PathStore{i}(H(i),2);
 %             Path_num{i}(j)=Path_num{i}(H(i));

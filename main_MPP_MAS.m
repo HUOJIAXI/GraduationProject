@@ -41,7 +41,7 @@ RobotNum = length(Start);
  tic
  [PathStore,Path_num]=MASPP_IP(D,RobotNum,Start,Goal);
  toc
- save('PathStore.mat');
+ 
 %% 仿真视频存储
 plotdynamic(D,PathStore,RobotNum,Start,Goal);
 
