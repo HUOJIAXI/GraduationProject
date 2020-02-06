@@ -86,7 +86,7 @@ end
 %% 邻接矩阵转换，路径绘制
 Path=solvermatrix(o,l,t);
 
-m = size(D,1);
+m = size(temp,1);
 [X,Y]=spread(Path,m);
 PATH=cat(1,X,Y)'; % 路径存入PATH matrix
 

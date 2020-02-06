@@ -7,6 +7,32 @@ video = VideoWriter('simulation_6ROB_COLI','MPEG-4');
 video.FrameRate=2;
 open(video);
 globaltime = 0;
+
+MAX=0;
+
+for i = 1:RobotNum
+%     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
+%     PathStore{i} = PATH;
+%     Path_num{i} = path_num;
+    MAX=max([size(PathStore{i},1),MAX]);
+%    MAX=MAX+1;
+    H(i)=size(PathStore{i},1);
+end
+
+MAX = MAX+1;
+
+for i=1:RobotNum
+    if size(PathStore{i},1)<MAX 
+        SI=size(PathStore{i});
+        for j = SI+1:MAX
+            PathStore{i}(j,1) =  PathStore{i}(H(i),1);
+            PathStore{i}(j,2) =  PathStore{i}(H(i),2);
+%             Path_num{i}(j)=Path_num{i}(H(i));
+        end
+    end
+    
+end
+
 for loop=1:50
     if loop > size(PathStore{1,1},1)
         break;
@@ -18,6 +44,7 @@ for loop=1:50
     
     mapdesigner(fliplr(D),1);
     hold on;
+%     axis([0 13 0 13]); 
     
     for i=1:RobotNum
         if  ~isempty(PathStore{i,1})
