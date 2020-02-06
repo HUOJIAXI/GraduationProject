@@ -7,8 +7,8 @@ clc;
 D = load('tsp_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [16,3,9,8,49,1];
-Goal = [121,123,143,96,131,24]; % 1号机器人终点121终点会冲突 111没有问题
+Start = [16,133,9,8,49,1];
+Goal = [121,74,143,96,131,24]; % 1号机器人终点121终点会冲突 111没有问题
 flag=0;
 COLI_START=zeros(length(Start),1);
 COLI_FIN=zeros(length(Goal),1);
@@ -29,6 +29,8 @@ for i = 1:length(Start)
 end
 
 if flag ==1
+    text='终点或节点不可以选在障碍物处';
+    disp(text);
     return;
 end
 
