@@ -64,7 +64,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
             for j = (SI+1):MAX
                 PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
                 PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-                Path_num{i}(j)=Path_num{i}(H(i));
+                Path_num{i}(j)      =  Path_num{i}(H(i));
             end
         end
 
@@ -81,40 +81,73 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         
         res = res + 1; % 从res时刻到下一时刻res+1
         %save('temp.mat');
-        %% 迎面冲突
+ 
         
-        %% 转角冲突
+      
         for i = 1:RobotNum
-            path_temp(i) = Path_num{i,1}(res);
+            path_temp(i) = Path_num{i,1}(res); % 储存下一节点
+        end
+        
+        %% 交叉冲突
+        for i =1:RobotNum
+            for j = 1:RobotNum
+                if (abs(path_temp(i)-path_num(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_num(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)
+                    text=' 号机器人出现交叉冲突，正在寻找替代路径...';
+                    disp([num2str(j),text]);
+                    [X_start,Y_start] = spread_sin(Start(j),SD);
+                    temp(X_start,Y_start)=0; % 释放起始节点
+                    [PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                    
+                    PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
+                    Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+
+                    PathStore{j,1}=[PathStore{j,1};PATH];
+                    Path_num{j,1}=[Path_num{j,1} Path_num_MAJ];
+                end
+            end
         end
 
 %         I = unique(path_temp, 'first'); % path_temp中的去重复后存于I
 %         robot_coli=setdiff(1:numel(path_temp), I); % 判断有多少个机器人在时刻res+1时存在冲突（转角冲突），缺少迎面冲突的问题，需要再加入一个限制
+       
+
+        %% 非交叉冲突
         z=0;
         robot_coli=[];
         
-         for l=1:length(path_temp)
-             same=path_temp(l);
-             for p=1:length(path_temp)
-                 if same == path_temp(p) && l ~= p
-                     z=z+1;
-                     robot_coli(z)=p;
+         for l=1:RobotNum
+             if ~ismember(l,robot_coli)
+                 same=path_temp(l);
+                 for p=1:RobotNum
+                     if same == path_temp(p) && l ~= p
+                         z=z+1;
+                         robot_coli(z)=p;
+                     end
                  end
              end
          end
             
         if ~isempty(robot_coli)
             for j = 1:length(robot_coli) % 第j个机器人存在冲突
-                text=' 号机器人出现转角冲突，正在寻找替代路径...';
+                text=' 号机器人出现非交叉冲突，正在寻找替代路径...';
                 disp([num2str(robot_coli(j)),text]);
                 if Start(robot_coli(j)) == Goal(robot_coli(j))
                     text=' 号机器人已到达终点，冲突忽略';
                     disp([num2str(robot_coli(j)),text]);  
-                    continue; %% 忽略与被已经达到终点的机器人发生冲突的情况。
+                    continue; %% 忽略与已经达到终点的机器人发生冲突的情况。
                 end
                 
                 % 使用备用终点，防止终点被占据
                 [X_fin,Y_fin] = spread_sin(Goal(robot_coli(j)),SD);
+                [X_start,Y_start] = spread_sin(Start(robot_coli(j)),SD);
+                
+                % 暂停行动，防止起点被占据
+                if temp(X_start,Y_start)==1
+                    disp('起点被占用，现时刻暂停');
+                    PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1};(PathStore{robot_coli(j),1}(res-1,:))];
+                     break;
+                end
+                
                 flgn=0;
                 if temp(X_fin,Y_fin)==1
                     disp('备用终点启用');
@@ -161,6 +194,8 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                 
             end
         end
+        
+        %% 节点释放
 
         for i = 1:RobotNum
             disp('释放当前节点')
