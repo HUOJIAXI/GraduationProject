@@ -7,7 +7,7 @@ clc;
 D = load('tsp_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [16,133,9,8,49,1,5];
+Start = [16,133,9,8,49,1,7];
 Goal = [121,74,143,96,131,24,35]; % 1号机器人终点121终点会冲突 111没有问题
 flag=0;
 COLI_START=zeros(length(Start),1);
