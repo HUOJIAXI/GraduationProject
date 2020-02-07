@@ -64,7 +64,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
             for j = (SI+1):MAX
                 PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
                 PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-                Path_num{i}(j)      =  Path_num{i}(H(i));
+                Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
             end
         end
 
@@ -91,12 +91,67 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         %% 交叉冲突
         for i =1:RobotNum
             for j = 1:RobotNum
-                if (abs(path_temp(i)-path_num(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_num(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)
+                if (abs(path_temp(i)-path_temp(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_temp(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)
+                    
                     text=' 号机器人出现交叉冲突，正在寻找替代路径...';
                     disp([num2str(j),text]);
                     [X_start,Y_start] = spread_sin(Start(j),SD);
+                    disp(num2str(temp(X_start,Y_start)))
+                    disp('交叉冲突释放起始节点')
                     temp(X_start,Y_start)=0; % 释放起始节点
-                    [PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                    disp(num2str(temp(X_start,Y_start)))
+
+                    [X_fin,Y_fin] = spread_sin(Goal(j),SD);
+                    disp(num2str(temp(X_fin,Y_fin)))
+                    disp('交叉冲突释放目标节点')
+                    temp(X_fin,Y_fin)=0;% 释放目标节点
+                    disp(num2str(temp(X_fin,Y_fin)))
+                    tic
+                    [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                    toc
+
+                    %
+                    if RE == 1
+                        % 对于某些情况，终点被包围，可能需要启用备用终点，现版本仍然无法避免，只能对于四周被包围的情况，如果周围存在0点的话，无法使用
+                        disp('终点被包围，需要启用备用终点');
+                        flgn=0;
+                        disp('备用终点启用');
+                        for m = 1:SD*SD-Goal(j)
+                        [X_fin_pos,Y_fin_pos]=spread_sin(Goal(j)+m,SD);
+                            if temp(X_fin_pos,Y_fin_pos)==0
+                                Goal(j)=Goal(j)+m;
+                                flgn=1;
+                                break;
+                            end
+                        end
+
+                        if flgn==0
+                            for m = 1:Goal(j)-1
+                                [X_fin_neg,Y_fin_neg]=spread_sin(Goal(j)-m,SD);
+                                if temp(X_fin_neg,Y_fin_neg)==0
+                                    Goal(j)=Goal(j)-m;
+                                    flgn=2;
+                                    break;
+                                end
+                            end
+                        end
+
+                        if flgn==0
+                            return
+                        end               
+                        
+                        [~,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
+                        
+                        if flgn==1
+                            Goal(j)=Goal(j)-m;
+                        end
+                        
+                        if flgn==2
+                            Goal(j)=Goal(j)+m;
+                        end
+                        
+                    end
+                    %
                     
                     PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
                     Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
@@ -177,7 +232,11 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                 end                               
                 %
                  
-                [PATH,Path_num_MAJ]=Modify_path(temp,Start(robot_coli(j)),Goal(robot_coli(j)),robot_coli(j));  % 第j个冲突机器人路径重新规划
+                [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(robot_coli(j)),Goal(robot_coli(j)),robot_coli(j));  % 第j个冲突机器人路径重新规划
+                
+                if RE == 1
+                    disp('终点被包围，启用备用终点');
+                end
                 
 %                 PathStore{j}([res-1,max([size(PathStore{j,1},1),res-1+size(PATH,1)])],:) = PATH;  %更新第j个机器人的最优路径选择集合 res-1开始更新PathStore矩阵
 %                 Path_num{j}([res-1,max([size(Path_num{j,1}),res-1+size(Path_num_MAJ)])],:) = Path_num_MAJ;
@@ -220,10 +279,13 @@ inte=Goal-Goal_ori;
 for i = 1:RobotNum
     if inte(i) ~= 0
         disp('开始规划剩余路径');
-        [PATH_sup,Path_num_sup]=Modify_path(temp,Goal(i),Goal_ori(i),i);
+        [~,PATH_sup,Path_num_sup]=Modify_path(temp,Goal(i),Goal_ori(i),i);
         PathStore{i,1}=[PathStore{i,1};PATH_sup];
         Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+    else
+        disp('所有路径已规划完成')
     end
+    
 end
 
 %%
