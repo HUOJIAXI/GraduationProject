@@ -106,9 +106,9 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                     disp('交叉冲突释放目标节点')
                     temp(X_fin,Y_fin)=0;% 释放目标节点
                     disp(num2str(temp(X_fin,Y_fin)))
-                    tic
+                 %   tic
                     [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
-                    toc
+                 %   toc
 
                     %
                     if RE == 1
