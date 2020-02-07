@@ -1,4 +1,4 @@
-function plotdynamic(D,PathStore,RobotNum,Start,Goal)
+function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,1);
 [X,Y]=spread(Start,m);
@@ -33,8 +33,16 @@ for i=1:RobotNum
     
 end
 
+for i=1:RobotNum
+    final = unique(find(Path_num{i,1}==Goal(i)));
+    finalindice(i) = final(1);
+end
+
+indice=max(finalindice);
+
+
 for loop=1:50
-    if loop > size(PathStore{1,1},1)
+    if loop > indice
         break;
     end
     frame = getframe;
@@ -51,6 +59,9 @@ for loop=1:50
            %AllRobotState(PathStore{i,1}(loop,1),PathStore{i,1}(loop,2)) = 1;
            if PathStore{i,1}(loop,1)==X_F(i) && PathStore{i,1}(loop,2)==Y_F(i)
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)
+%                 if i == RobotNum
+%                     break;
+%                 end
                 
            elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i)   
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)

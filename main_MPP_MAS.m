@@ -1,5 +1,5 @@
 %% 主函数
-% Version 3.0
+% Version 4.1
 % Author : HUO JIAXI
 %% 初始化环境
 clear;
@@ -43,7 +43,7 @@ RobotNum = length(Start);
  toc
  
 %% 仿真视频存储
-plotdynamic(D,PathStore,RobotNum,Start,Goal);
+plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
 
 %% 原始环境
 mapdesigner(fliplr(D),2);
