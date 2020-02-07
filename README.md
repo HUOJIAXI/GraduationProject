@@ -1,7 +1,7 @@
 # GraduationProject 项目日志
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLI.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLIANTI.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -54,7 +54,7 @@ Author: HUO JIAXI
 
 现有模型耗时 80.381949s  
 
-## Version 3.0 04/02/2019  
+## Version 3.0 05/02/2019  
 Author: HUO JIAXI  
 
 3.0版本将求解MAS模型所得到的优化路径动态化，并且作为mp4视频文件作为运行结果存储。  
@@ -70,5 +70,14 @@ Author: HUO JIAXI
 6台机器人运行耗时：224.504326s    
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/MAS_COLI_BASE.png)
+
+## Version 4.0 06/02/2020  
+Author: HUO JIAXI  
+
+4.0版本已经实现多机器人系统的对角冲突以及非交叉冲突，需要进一步调试交叉冲突的躲避方法。  
+
+6台机器人运行耗时：359.223416s  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version4.0.png)
 
 
