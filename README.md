@@ -1,7 +1,7 @@
 # GraduationProject 项目日志
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLIANTI.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/ROBOT_version4.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -79,5 +79,16 @@ Author: HUO JIAXI
 6台机器人运行耗时：359.223416s  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version4.0.png)
+
+## Version 4.1 07/02/2020
+Author: HUO JIAXI
+
+4.1版本实现了非交叉冲突的优化设计，并且调试成功了交叉冲突的躲避方法。但是对于终点在某一时刻被包围的情况还是没有得到非常好的优化，容易造成求解器错误，但是以目前的环境密度，4.1版本能够实现7机器人环境的优化路径规划。  
+
+不足：需要优化搜寻方法，效率太低，特别是对于终点被包围的情况，求解器很难求解，需要设置备用终点，备用终点的选取也需要优化。
+
+7台机器人运行耗时：481.073032s  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version4.1results.png)
 
 
