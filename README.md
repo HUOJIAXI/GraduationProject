@@ -91,4 +91,11 @@ Author: HUO JIAXI
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version4.1results.png)
 
+## Version 4.1 08/02/2019
+Author: HUO JIAXI  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/时间分配结果4.1.png)
+
+经过分析，由于原始路径的规划需要对每个机器人进行全图搜寻，导致在原始路径的规划中耗费了非常多的时间，另外对于解决冲突的算法，也对出现冲突的机器人进行全图搜寻（4.0版本需要对每对冲突机器人的每个个体进行全图搜寻，所导致的资源浪费更加严重，4.1版本对其进行优化，只需选定一个机器人进行重新规划即可，冲突即可得到解除）。全图搜寻的效率比较低，调用Gurobi耗费大量的时间，所以对于启发式算法，可以考虑对全图的分割。不进行原始路径的规划，而是对于每个时刻进行逐个阶段规划以及冲突解除，可以根据机器人个体的起始点和终点设定对于每个机器人个体不同的全图分割方式，以缩短模型的状态空间。
+
 
