@@ -103,55 +103,52 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 
                     [X_fin,Y_fin] = spread_sin(Goal(j),SD);
                     disp(num2str(temp(X_fin,Y_fin)))
-                    disp('交叉冲突释放目标节点')
+                    disp('交叉冲突临时释放目标节点')
                     temp(X_fin,Y_fin)=0;% 释放目标节点
                     disp(num2str(temp(X_fin,Y_fin)))
                  %   tic
                     [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
                  %   toc
+                 
+                    temp_ori =temp;
+                    
+                    while 1
+                        if RE == 0
+                            break
+                        end
+                        
+                        if RE == 1
+                              disp('终点被包围，启用备用终点,重新规划路径');
+                              [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
 
-                    %
-                    if RE == 1
-                        % 对于某些情况，终点被包围，可能需要启用备用终点，现版本仍然无法避免，只能对于四周被包围的情况，如果周围存在0点的话，无法使用
-                        disp('终点被包围，需要启用备用终点');
-                        flgn=0;
-                        disp('备用终点启用');
-                        for m = 1:SD*SD-Goal(j)
-                        [X_fin_pos,Y_fin_pos]=spread_sin(Goal(j)+m,SD);
-                            if temp(X_fin_pos,Y_fin_pos)==0
-                                Goal(j)=Goal(j)+m;
-                                flgn=1;
-                                break;
-                            end
+                              if flgn == 0
+                                 disp('环境密度太大，无法找到备用终点，求解错误');
+                                 return;
+                              end
+
+                              [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
+                              
+                              if flgn==1
+                                    Goal(j)=Goal(j)-m; % 返回原始终点
+                              end
+
+                              if flgn==2
+                                    Goal(j)=Goal(j)+m;
+                              end
+
+                              if RE == 0
+                                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                    break
+                              end
                         end
 
-                        if flgn==0
-                            for m = 1:Goal(j)-1
-                                [X_fin_neg,Y_fin_neg]=spread_sin(Goal(j)-m,SD);
-                                if temp(X_fin_neg,Y_fin_neg)==0
-                                    Goal(j)=Goal(j)-m;
-                                    flgn=2;
-                                    break;
-                                end
-                            end
-                        end
+                         if RE == 1
+                             [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
+                             disp('该备用终点依然被包围，重新寻找备用终点')
+                             temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
+                         end
 
-                        if flgn==0
-                            return
-                        end               
-                        
-                        [~,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
-                        
-                        if flgn==1
-                            Goal(j)=Goal(j)-m;
-                        end
-                        
-                        if flgn==2
-                            Goal(j)=Goal(j)+m;
-                        end
-                        
                     end
-                    %
                     
                     PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
                     Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
@@ -161,10 +158,6 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                 end
             end
         end
-
-%         I = unique(path_temp, 'first'); % path_temp中的去重复后存于I
-%         robot_coli=setdiff(1:numel(path_temp), I); % 判断有多少个机器人在时刻res+1时存在冲突（转角冲突），缺少迎面冲突的问题，需要再加入一个限制
-       
 
         %% 非交叉冲突
         z=0;
@@ -203,49 +196,59 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                      break;
                 end
                 
-                flgn=0;
                 if temp(X_fin,Y_fin)==1
-                    disp('备用终点启用');
-                    for m = 1:SD*SD-Goal(robot_coli(j))
-                    [X_fin_pos,Y_fin_pos]=spread_sin(Goal(robot_coli(j))+m,SD);
-                        if temp(X_fin_pos,Y_fin_pos)==0
-                            Goal(robot_coli(j))=Goal(robot_coli(j))+m;
-                            flgn=1;
-                            break;
-                        end
-                    end
-                    
-                    if flgn==0
-                        for m = 1:Goal(robot_coli(j))-1
-                            [X_fin_neg,Y_fin_neg]=spread_sin(Goal(robot_coli(j))-m,SD);
-                            if temp(X_fin_neg,Y_fin_neg)==0
-                                Goal(robot_coli(j))=Goal(robot_coli(j))-m;
-                                flgn=1;
-                                break;
-                            end
-                        end
-                    end
-                    
-                    if flgn==0
-                        return
-                    end
-                end                               
-                %
-                 
+                     disp('终点被占用，临时释放终点');
+                     temp(X_fin,Y_fin)=0;
+                end
+                     
                 [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(robot_coli(j)),Goal(robot_coli(j)),robot_coli(j));  % 第j个冲突机器人路径重新规划
                 
-                if RE == 1
-                    disp('终点被包围，启用备用终点');
+                temp_ori =temp;
+                while 1
+                    if RE == 0
+                           break
+                    end
+                        
+                    if RE == 1
+                          disp('终点被包围，启用备用终点,重新规划路径');
+                          [Goal(robot_coli(j)),flgn,m]=GOAL_RESERVE(temp_ori,Goal(robot_coli(j)),SD);
+
+                          if flgn == 0
+                             disp('环境密度太大，无法找到备用终点，求解错误');
+                             return;
+                          end
+
+                          [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(robot_coli(j)),Goal(robot_coli(j)),robot_coli(j));
+                          
+                          if flgn==1
+                            Goal(robot_coli(j))=Goal(robot_coli(j))-m; % 返回原始终点
+                          end
+
+                          if flgn==2
+                             Goal(robot_coli(j))=Goal(robot_coli(j))+m;
+                          end
+                    end
+                   
+                    
+                     if RE == 0
+                            disp('备用终点启用成功，已生成备用路径，已切换为原始终点');     
+                            break
+                     end
+
+                     if RE == 1
+                         [X_fin_it,Y_fin_it] = spread_sin(Goal(robot_coli(j)),SD);
+                         disp('该备用终点依然被包围，重新寻找备用终点')
+                         temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
+                     end
+                 
                 end
-                
-%                 PathStore{j}([res-1,max([size(PathStore{j,1},1),res-1+size(PATH,1)])],:) = PATH;  %更新第j个机器人的最优路径选择集合 res-1开始更新PathStore矩阵
-%                 Path_num{j}([res-1,max([size(Path_num{j,1}),res-1+size(Path_num_MAJ)])],:) = Path_num_MAJ;
+                            
 
                 PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:)=[];
                 Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2))=[];
                 
                 PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1};PATH];
-                Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ]; %% 2和3在12时碰撞 Path_num有问题
+                Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ]; 
                 
 %                 if Fn == 1
 %                     temp(X_fin,Y_fin)=1; % 恢复被清空的终点
@@ -257,7 +260,6 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         %% 节点释放
 
         for i = 1:RobotNum
-            disp('释放当前节点')
             temp(PathStore{i}(res,1),PathStore{i}(res,2))=0; % 释放当前节点
         end
         
@@ -283,7 +285,8 @@ for i = 1:RobotNum
         PathStore{i,1}=[PathStore{i,1};PATH_sup];
         Path_num{i,1}=[Path_num{i,1} Path_num_sup];
     else
-        disp('所有路径已规划完成')
+        text = ' 号机器人所有无碰撞路径已规划完成';
+        disp([num2str(i),text]);
     end
     
 end

@@ -3,7 +3,7 @@ function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 m=size(D,1);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_6ROB_COLI','MPEG-4');
+video = VideoWriter('simulation_6ROB_COLI_am','MPEG-4');
 video.FrameRate=2;
 open(video);
 globaltime = 0;
@@ -42,7 +42,7 @@ indice=max(finalindice);
 
 
 for loop=1:50
-    if loop > indice
+    if loop > indice+1
         break;
     end
     frame = getframe;
