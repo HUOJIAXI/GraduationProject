@@ -2,7 +2,7 @@
 ## 仿真平台：Intel I7 RAM 16G / Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/ROBOT_version4.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLI_am.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
