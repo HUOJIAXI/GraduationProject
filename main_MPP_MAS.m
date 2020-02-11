@@ -40,7 +40,7 @@ end
 RobotNum = length(Start);
 %% 求解
  tic
- [PathStore,Path_num]=MASPP_IP(D,RobotNum,Start,Goal);
+ [PathStore,Path_num]=MASPP_IP_div(D,RobotNum,Start,Goal);
  toc
  
 %% 仿真视频存储
