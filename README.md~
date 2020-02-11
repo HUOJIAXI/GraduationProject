@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 5.0
-## 仿真平台：Intel I7 RAM 16G - Matlab for mac
+# GraduationProject 项目日志
+## 仿真平台：Intel I7 RAM 16G / Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_7ROB_COLI_version5.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_6ROB_COLI_am.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -123,13 +123,11 @@ Author: HUO JIAXI
 
 此时求解Modify_IP函数的IP模型所对应的IP模型会大大减小，只需要求解对应的一部分环境。考虑到环境中的障碍物为2x1大小，因此考虑求解修改路径的IP模型环境为以机器人实际位置为中心的7x7的正方形环境。可行性仍有待验证，将可行性分析作为4.3版本进行探究。
 
-## Version 5.0 11/02/2020
+## Version 4.3 11/02/2020
 Author: HUO JIAXI  
 
 针对昨天提出的想法，将4.2版本进行了优化，尝试将发生冲突的路径矩阵的一部分替换，而非替换所有的部分，还需要进行测试。  
 
 而对于原始路径规划，由于不考虑机器人之间的碰撞，并且是有规律的障碍物，因此原始最优路径不会会在在包含起点终点的一个正方形区域中（可以更小），起点或是终点是该正方形区域的一个顶点，且起点和终点都在正方形区域的边缘。在这种情况下对于动态的规划机器人的原始路径可以避免很大的资源浪费，缩减对于机器人个体的IP模型的状态空间。  
 
-对于相同的环境和机器人，改进后的MAS路径规划IP模型求解总耗时：272.666104s，比4.2版本的432.608s缩短了160秒，节约了三分钟的运行时间，由于还没有对冲突解除算法进行优化，因此仍然有优化的空间。  
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result_7MAS_op.png)
+改进后的IP模型
