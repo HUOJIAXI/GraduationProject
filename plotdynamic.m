@@ -3,7 +3,7 @@ function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 m=size(D,1);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_7ROB_COLI_version5.0','MPEG-4');
+video = VideoWriter('simulation_8ROB_COLI_version5.1','MPEG-4');
 video.FrameRate=2;
 open(video);
 globaltime = 0;
