@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 5.0
+# GraduationProject 项目日志 Version 5.1
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_7ROB_COLI_version5.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version5.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -133,3 +133,18 @@ Author: HUO JIAXI
 对于相同的环境和机器人，改进后的MAS路径规划IP模型求解总耗时：272.666104s，比4.2版本的432.608s缩短了160秒，节约了三分钟的运行时间，由于还没有对冲突解除算法进行优化，因此仍然有优化的空间。  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result_7MAS_op.png)
+
+## Version 5.1 12/02/2020
+Author: HUO JIAXI  
+
+5.1版本对冲突解除算法进行了一定程度上的优化，并且经过测试，暂时没有发现问题，模型能够成功被求解，但是根据现在的环境密度，该启发式算法还没有很大的用武之地，在靠近环境边缘发生的冲突并没有启动该启发式算法，因此之后还可以对边缘发生的冲突的启发式解决方法进行一定的优化，在环境中部发生的冲突能够调用该启发式算法，并且能够求解。  
+
+5.1版本进一步验证了对于原始最优路径启发式算法的可行性，并且将环境密度提高，容纳八台机器人。并且优化了补充规划，由于某些机器人在特殊情况下，会在临近终点时发生冲突，因此其在其他所有机器人到达终点后仍然停留在备用终点位置上，由于这汇总情况不常见，因此对于补充算法没有调用冲突解决算法，出现碰撞的可能性不高，为了节约时间，也引入了启发式算法，成功求解模型。  
+
+由于扩大了环境密度，因此发生的冲突变多，求解冲突的情况也会增多，因此求解时间会变长，但是仍然优于未优化前的模型求解时间。  
+
+针对备用终点会造成机器人的等待问题，将在6.0版本中进行解决，目前的想法是将补充算法提前至返回原终点的位置，即在返回原终点的同时，补充返回原点的路径。  
+
+目前对于8机器人的求解时间：391s
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version5.1.png)

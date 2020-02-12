@@ -93,7 +93,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 
     end
     
-    if res < size(PathStore{3,1},1)    
+    if res < MAX   
         %% 解决两种冲突，迎面冲突和转角冲突
         for i = 1:RobotNum
             temp(PathStore{i,1}(res+1,1),PathStore{i,1}(res+1,2)) = 1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
@@ -130,213 +130,349 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                     temp(X_fin,Y_fin)=0;% 释放目标节点
 %                     disp(num2str(temp(X_fin,Y_fin)))
 
-    %% 2020年2月11日版本，需进一步修改。
+    %% 2020年2月12日版本，需进一步修改。
                      Goal_res_x_1=[];
                      Goal_res_x_2=[];
                      Goal_res_y_1=[];
                      Goal_res_y_2=[];
-                     if X_start > 3 && Y_start > 3
-                     temp_reduit=temp(X_start-3:X_start+3,Y_start-3:Y_start+3); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
+                     encarde = 2;
+                     if X_start > encarde && Y_start > encarde
+                             disp('横纵坐标满足大于encarde的要求')
+                             %% 优化碰撞处理
+                             %if (Y_fin-Y_start)*(Y_fin-Y_start)+ (X_fin-X_start)*(X_fin-X_start)>= (encarde+1)*(encarde+1)*2
+                             if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
+                                 disp('终点在框外')
+                                 temp_reduit=temp(X_start-encarde:X_start+encarde,Y_start-encarde:Y_start+encarde); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
 
-                     for k = X_start-3:X_start+3
-                         if ismember([k,Y_start-3],PathStore{i,1})
-                             Goal_res_x_1=k+3-X_start;  % 还需要判断是离终点最近的交点，可以通过原始的起点和终点的对应方向进行判断，但是并不准确，可以判断交点与终点的绝对距离。
-                         end
+                                 for k = X_start-encarde:X_start+encarde
+                                     num_temp=Y_start-encarde+(k-1)*SD;
+                                     if ismember(num_temp,Path_num{i,1})
+                                         Goal_res_x_1=[Goal_res_x_1 k];  % 还需要判断是离终点最近的交点，可以通过原始的起点和终点的对应方向进行判断，但是并不准确，可以判断交点与终点的绝对距离。
+                                     end
+                                     
+                                     num_temp=Y_start+encarde+(k-1)*SD;
+                                     if ismember(num_temp,Path_num{i,1})
+                                         Goal_res_x_2=[Goal_res_x_2 k]; 
+                                     end
+                                 end
 
-                         if ismember([k,Y_start+3],PathStore{i,1})
-                             Goal_res_x_2=k+3-X_start; 
-                         end
-                     end
+                                 for k = Y_start-encarde:Y_start+encarde
+                                     num_temp=k+(X_start-encarde-1)*SD;
+                                     if ismember(num_temp,Path_num{i,1})
+                                         Goal_res_y_1=[Goal_res_y_1 k];  % 还需要判断是离终点最近的交点，可以通过原始的起点和终点的对应方向进行判断，但是并不准确，可以判断交点与终点的绝对距离。
+                                     end
+                                     num_temp=k+(X_start+encarde-1)*SD;
+                                     if ismember(num_temp,Path_num{i,1})
+                                         Goal_res_y_2=[Goal_res_y_2 k]; 
+                                     end
+                                 end
 
-                     for k = Y_start-3:Y_start+3
-                         if ismember([X_start-3,k],PathStore{i,1})
-                             Goal_res_y_1=k+3-Y_start;  % 还需要判断是离终点最近的交点，可以通过原始的起点和终点的对应方向进行判断，但是并不准确，可以判断交点与终点的绝对距离。
-                         end
+                                 short_1=[];
+                                 short_2=[];
+                                 short_3=[];
+                                 short_4=[];
 
-                         if ismember([X_start+3,k],PathStore{i,1})
-                             Goal_res_y_2=k+3-Y_start; 
-                         end
-                     end
+                                 if(~isempty(Goal_res_x_1))
+                                     for m = 1:length(Goal_res_x_1)
+                                         short_1(m,1) = (Goal_res_x_1(m)-X_fin)*(Goal_res_x_1(m)-X_fin)+(Y_fin-Y_start+encarde)*(Y_fin-Y_start+encarde);
+                                         short_1(m,2) = Goal_res_x_1(m);
+                                     end
+                                 end
 
-                     Goal_res_X_1=Goal_res_x_1+X_start-3;
-                     Goal_res_X_2=Goal_res_x_2+X_start-3;
-                     Goal_res_Y_1=Goal_res_y_1+Y_start-3;
-                     Goal_res_Y_2=Goal_res_y_2+Y_start-3;
+                                 if(~isempty(Goal_res_x_2))
+                                     for m = 1:length(Goal_res_x_2)
+                                         short_2(m,1) = (Goal_res_x_2(m)-X_fin)*(Goal_res_x_2(m)-X_fin)+(Y_fin-Y_start-encarde)*(Y_fin-Y_start-encarde);
+                                         short_2(m,2) = Goal_res_x_2(m);
+                                     end
+                                 end
 
-                     short_1=[];
-                     short_2=[];
-                     short_3=[];
-                     short_4=[];
+                                 if(~isempty(Goal_res_y_1))
+                                     for m = 1:length(Goal_res_y_1)
+                                         short_3(m,1) = (Goal_res_y_1(m)-Y_fin)*(Goal_res_y_1(m)-Y_fin)+(X_fin-X_start+encarde)*(X_fin-X_start+encarde);
+                                         short_3(m,2) = Goal_res_y_1(m);
+                                     end
+                                 end
 
-                     if(~isempty(Goal_res_X_1))
-                         for m = 1:length(Goal_res_X_1)
-                             short_1(m,1) = [short_1 (Goal_res_X_1(m)-X_fin)*(Goal_res_X_1(m)-X_fin)+(Y_fin-Y_start+3)*(Y_fin-Y_start+3)];
-                             short_1(m,2) = Goal_res_X_1(m);
-                         end
-                     end
+                                 if(~isempty(Goal_res_y_2))
+                                     for m = 1:length(Goal_res_y_2)
+                                         short_4(m,1) = (Goal_res_y_2(m)-Y_fin)*(Goal_res_y_2(m)-Y_fin)+(X_fin-X_start-encarde)*(X_fin-X_start-encarde);
+                                         short_4(m,2) = Goal_res_y_2(m); % temp
+                                     end
+                                 end
 
-                     if(~isempty(Goal_res_X_2))
-                         for m = 1:length(Goal_res_X_2)
-                             short_2(m,1) = [short_2 (Goal_res_X_2(m)-X_fin)*(Goal_res_X_2(m)-X_fin)+(Y_fin-Y_start-3)*(Y_fin-Y_start-3)];
-                             short_2(m,2) = Goal_res_X_2(m);
-                         end
-                     end
+                                 if (~isempty(Goal_res_y_2)||~isempty(Goal_res_y_1)||~isempty(Goal_res_x_2)||~isempty(Goal_res_x_1))
+                                     if(~isempty(short_1)) 
+                                         [shorest(1,1),p]=min(short_1(:,1));
+                                         shorest(1,2)=short_1(p,2);
+                                     else
+                                         shorest(1,1)=10000;
+                                         shorest(1,2)=100;
+                                     end
 
-                     if(~isempty(Goal_res_Y_1))
-                         for m = 1:length(Goal_res_Y_1)
-                             short_3(m,1) = [short_3 (Goal_res_Y_1(m)-Y_fin)*(Goal_res_Y_1(m)-Y_fin)+(X_fin-X_start+3)*(X_fin-X_start+3)];
-                             short_3(m,2) = Goal_res_Y_1(m);
-                         end
-                     end
+                                     if(~isempty(short_2))
+                                         [shorest(2,1),p]=min(short_2(:,1));
+                                         shorest(2,2)=short_2(p,2);
+                                     else
+                                         shorest(2,1)=10000;
+                                         shorest(2,2)=100;
+                                     end
+                                     if(~isempty(short_3))
+                                         [shorest(3,1),p]=min(short_3(:,1));
+                                         shorest(3,2)=short_3(p,2);
+                                     else
+                                         shorest(3,1)=10000;
+                                         shorest(3,2)=100;
+                                     end
+                                     if(~isempty(short_4))
+                                         [shorest(4,1),p]=min(short_4(:,1));
+                                         shorest(4,2)=short_4(p,2);
+                                     else
+                                         shorest(4,1)=10000;
+                                         shorest(4,2)=100;
+                                     end
 
-                     if(~isempty(Goal_res_Y_2))
-                         for m = 1:length(Goal_res_Y_2)
-                             short_4(m,1) = [short_4 (Goal_res_Y_2(m)-Y_fin)*(Goal_res_Y_2(m)-Y_fin)+(X_fin-X_start-3)*(X_fin-X_start-3)];
-                             short_4(m,2) = Goal_res_Y_2(m);
-                         end
-                     end
+                                     [~,f]=min(shorest(:,1));
 
-                     [shorest_1(1),p]=min(short_1(:,1));
-                     shorest_1(2)=short_1(p,2);
-                     [shorest_2(1),p]=min(short_2(:,1));
-                     shorest_2(2)=short_2(p,2);
-                     [shorest_3(1),p]=min(short_3(:,1));
-                     shorest_3(2)=short_3(p,2);
-                     [shorest_4(1),p]=min(short_4(:,1));
-                     shorest_4(2)=short_4(p,2);
+                                    % if (Y_fin-Y_start)*(Y_fin-Y_start)+ (X_fin-X_start)*(X_fin-X_start)> (encarde+1)*(encarde+1)*2
+                                         if f == 1
+                                             Goal_res_x=shorest(1,2);
+                                             Goal_res_y=Y_start-encarde;
+                                         elseif f == 2
+                                             Goal_res_x=shorest(2,2);
+                                             Goal_res_y=Y_start+encarde;
+                                         elseif f == 3
+                                             Goal_res_y=shorest(3,2);
+                                             Goal_res_x=X_start-encarde;
+                                         elseif f == 4
+                                             Goal_res_y=shorest(4,2);
+                                             Goal_res_x=X_start+encarde;
+                                         end
 
-                     [~,p]=min(shorest_1(1),shorest_2(1),shorest_3(1),shorest_4(1));
-                     if p == 1
-                         Goal_res_x=shorest_1(2);
-                         Goal_res_y=Y_start-3;
-                     elseif p == 2
-                         Goal_res_x=shorest_2(2);
-                         Goal_res_y=Y_start+3;
-                     elseif p == 3
-                         Goal_res_y=shorest_3(2);
-                         Goal_res_x=X_start-3;
-                     elseif p == 4
-                         Goal_res_y=shorest_4(2);
-                         Goal_res_x=X_start+3;
-                     end
+                                         %Goal_res = (Goal_res_x-X_start+3+1)+(Goal_res_y-Y_start+2)*7; %转换为temp_reduit中的标号
+                                     %if shorest_path > (encarde+1)*(encarde+1)*2
+                                         Goal_res_temp=Goal_res_y+(Goal_res_x-1)*SD;
+                                         encarde_total=encarde*2+1;
+                                         Goal_res = (Goal_res_y-Y_start+encarde+1)+(Goal_res_x-(X_start-encarde))*encarde_total; %转换为temp_reduit中的标号
 
-                     Goal_res = (Goal_res_x-X_start+3)+(Goal_res_y-Y_start+2)*7; %转换为temp_reduit中的标号
+                                         centrale=encarde_total*encarde+encarde+1;
+                                         %   tic
+                                         [Goal_X_fin,Goal_Y_fin] = spread_sin(Goal_res,encarde_total);
+                                         if temp_reduit(encarde+1,encarde+1)==1
+                                             disp('缩减图中起点被占用，释放起点');
+                                             temp_reduit(encarde+1,encarde+1) = 0;
+                                         end
+                                         if temp_reduit(Goal_X_fin,Goal_Y_fin) == 1
+                                            disp('缩减图中终点被占用，释放终点');
+                                            temp_reduit(Goal_X_fin,Goal_Y_fin) = 0;
+                                         end
+                                            disp('缩减图开始求解')
+                                            [~,PATH,Path_num_MAJ]=Modify_path(temp_reduit,centrale,Goal_res,j);  % 第j个冲突机器人路径重新规划，将规划得到的路径替换掉在原始路径中对应的部分。
 
-                     %   tic
-                        [~,PATH,Path_num_MAJ]=Modify_path(temp_reduit,13,Goal_res,j);  % 第j个冲突机器人路径重新规划，将规划得到的路径替换掉在原始路径中对应的部分。
-                     %   toc
-                     PATH(:,1)=PATH(:,1)+X_start-3;
-                     PATH(:,2)=PATH(:,2)+Y_start-3;
-                     for u = 1: length(PATH(:,1))
-                         Path_num_MAJ(u)=PATH(:,1)+X_start-3+(Goal_res_y+Y_start-4)*SD;
-                     end
-                 
-%                    temp_ori =temp;
-                    
-%                     while 1
-%                         if RE == 0
-%                             break
-%                         end
-%                         
-%                         if RE == 1
-%                               disp('终点被包围，启用备用终点,重新规划路径');
-%                               [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
-% 
-%                               if flgn == 0
-%                                  disp('环境密度太大，无法找到备用终点，求解错误');
-%                                  return;
-%                               end
-% 
-%                               [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
-%                               
-%                               if flgn==1
-%                                     Goal(j)=Goal(j)-m; % 返回原始终点
-%                               end
-% 
-%                               if flgn==2
-%                                     Goal(j)=Goal(j)+m;
-%                               end
-% 
-%                               if RE == 0
-%                                     disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-%                                     break
-%                               end
-%                         end
-% 
-%                          if RE == 1
-%                              [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
-%                              disp('该备用终点依然被包围，重新寻找备用终点')
-%                              temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
-%                          end
-% 
-%                     end
-                    
-                %    z=find(PathStore{j,1},Path_num_MAJ(u));
-                    
-                    PathStore_temp=PathStore{j,1}(z+1:size(PathStore{j,1},1),:);
-                    Path_num_temp=Path_num{j,1}(z+1:size(Path_num{j,1},2));
-                    
-                    PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
-                    Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+                                            %u = length(Path_num_MAJ); % 最后一个标号
+                                             %   toc
+                                            PATH(:,1)=PATH(:,1)+X_start-encarde-1;
+                                            PATH(:,2)=PATH(:,2)+Y_start-encarde-1;
+                                            Path_num_MAJ=(PATH(:,2)+(PATH(:,1)-1)*SD)'; %  转换坐标
 
-                    PathStore{j,1}=[PathStore{j,1};PATH;PathStore_temp];
-                    Path_num{j,1}=[Path_num{j,1} Path_num_MAJ Path_num_temp]; % 替换矩阵部分
-                    
-                 else
-                     %% 补充原始节点的横纵坐标小于等于3的情况
-                    [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
-                 %   toc
-                 
-                    temp_ori =temp;
-                    
-                    while 1
-                        if RE == 0
-                            break
-                        end
-                        
-                        if RE == 1
-                              disp('终点被包围，启用备用终点,重新规划路径');
-                              [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
 
-                              if flgn == 0
-                                 disp('环境密度太大，无法找到备用终点，求解错误');
-                                 return;
-                              end
+                                            z=find(Path_num{j,1}==Goal_res_temp); % 寻找最后一个标号的位置
 
-                              [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
-                              
-                              if flgn==1
-                                    Goal(j)=Goal(j)-m; % 返回原始终点
-                              end
+                                            PathStore_temp=PathStore{j,1}(z+1:size(PathStore{j,1},1),:);
+                                            Path_num_temp=Path_num{j,1}(z+1:size(Path_num{j,1},2));
 
-                              if flgn==2
-                                    Goal(j)=Goal(j)+m;
-                              end
+                                            PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
+                                            Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
 
-                              if RE == 0
-                                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                            PathStore{j,1}=[PathStore{j,1};PATH;PathStore_temp];
+                                            Path_num{j,1}=[Path_num{j,1},Path_num_MAJ,Path_num_temp]; % 替换矩阵部分
+                                     else
+                                         [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                                     %   toc
+
+                                         temp_ori =temp;
+
+                                         while 1
+                                            if RE == 0
+                                                break
+                                            end
+
+                                            if RE == 1
+                                                  disp('终点被包围，启用备用终点,重新规划路径');
+                                                  [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
+
+                                                  if flgn == 0
+                                                     disp('环境密度太大，无法找到备用终点，求解错误');
+                                                     return;
+                                                  end
+
+                                                  [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
+
+                                                  if flgn==1
+                                                        disp('返回原终点-2')
+                                                        Goal(j)=Goal(j)-m; % 返回原始终点
+                                                        [PATH_sup,path_num_sup]=sup_path(D,Goal(j)+m,Goal(j),SD,j)  ;
+                                                        PATH=[PATH;PATH_sup];
+                                                        Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                                        if RE == 0
+                                                            disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                                        break
+                                                        end
+                                                  
+                                                  end
+
+                                                  if flgn==2
+                                                        disp('返回原终点+2')
+                                                        Goal(j)=Goal(j)+m;
+                                                        [PATH_sup,path_num_sup]=sup_path(D,Goal(j)-m,Goal(j),SD,j)  ;
+                                                        PATH=[PATH;PATH_sup];
+                                                        Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                                        if RE == 0
+                                                            disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                                        break
+                                                        end
+                                                  end
+
+ 
+                                            end
+
+                                             if RE == 1
+                                                 [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
+                                                 disp('该备用终点依然被包围，重新寻找备用终点')
+                                                 temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
+                                             end
+
+                                        end
+
+                                        PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
+                                        Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+
+                                        PathStore{j,1}=[PathStore{j,1};PATH];
+                                        Path_num{j,1}=[Path_num{j,1} Path_num_MAJ];
+                                    end
+
+                                 else
+                                        [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                                     %   toc
+
+                                        temp_ori =temp;
+
+                                        while 1
+                                            if RE == 0
+                                                break
+                                            end
+
+                                            if RE == 1
+                                                  disp('终点被包围，启用备用终点,重新规划路径');
+                                                  [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
+
+                                                  if flgn == 0
+                                                     disp('环境密度太大，无法找到备用终点，求解错误');
+                                                     return;
+                                                  end
+
+                                                  [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
+
+                                                  if flgn==1
+                                                      Goal(j)=Goal(j)-m; 
+                                                      [PATH_sup,path_num_sup]=sup_path(D,Goal(j)+m,Goal(j),SD,j)  ;
+                                                      PATH=[PATH;PATH_sup];
+                                                      Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                                      % 返回原始终点
+                                                        if RE == 0
+                                                            disp('备用终点启用成功，已生成备用路径，已切换回原始终点');                                           
+                                                            break
+                                                        end
+                                                  end
+
+                                                  if flgn==2
+                                                        Goal(j)=Goal(j)+m;
+                                                        [PATH_sup,path_num_sup]=sup_path(D,Goal(j)-m,Goal(j),SD,j)  ;
+                                                        PATH=[PATH;PATH_sup];
+                                                        Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                                        if RE == 0
+                                                            disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                                            break
+                                                        end
+                                                  end
+                                            end
+
+                                             if RE == 1
+                                                 [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
+                                                 disp('该备用终点依然被包围，重新寻找备用终点')
+                                                 temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
+                                             end
+
+                                        end
+
+                                        PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
+                                        Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+
+                                        PathStore{j,1}=[PathStore{j,1};PATH];
+                                        Path_num{j,1}=[Path_num{j,1} Path_num_MAJ];
+                             end
+                            %% 
+                     else
+                         %% 补充原始节点的横纵坐标小于等于3的情况
+                         
+                            [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);  % 第j个冲突机器人路径重新规划
+                         %   toc
+
+                            temp_ori =temp;
+
+                            while 1
+                                if RE == 0
                                     break
-                              end
-                        end
+                                end
 
-                         if RE == 1
-                             [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
-                             disp('该备用终点依然被包围，重新寻找备用终点')
-                             temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
-                         end
+                                if RE == 1
+                                      disp('终点被包围，启用备用终点,重新规划路径');
+                                      [Goal(j),flgn,m]=GOAL_RESERVE(temp_ori,Goal(j),SD);
 
-                    end
-                    
-                    PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
-                    Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+                                      if flgn == 0
+                                         disp('环境密度太大，无法找到备用终点，求解错误');
+                                         return;
+                                      end
 
-                    PathStore{j,1}=[PathStore{j,1};PATH];
-                    Path_num{j,1}=[Path_num{j,1} Path_num_MAJ];
+                                      [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start(j),Goal(j),j);
+
+                                      if flgn==1
+                                            Goal(j)=Goal(j)-m; % 返回原始终点
+                                            [PATH_sup,path_num_sup]=sup_path(D,Goal(j)+m,Goal(j),SD,j)  ;
+                                            PATH=[PATH;PATH_sup];
+                                            Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                            if RE == 0
+                                                disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                                break
+                                            end
+                                      end
+
+                                      if flgn==2
+                                            Goal(j)=Goal(j)+m;
+                                            [PATH_sup,path_num_sup]=sup_path(D,Goal(j)-m,Goal(j),SD,j)  ;
+                                            PATH=[PATH;PATH_sup];
+                                            Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                                            if RE == 0
+                                                disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                                                break
+                                            end
+                                      end
+                                end
+
+                                 if RE == 1
+                                     [X_fin_it,Y_fin_it] = spread_sin(Goal(j),SD);
+                                     disp('该备用终点依然被包围，重新寻找备用终点')
+                                     temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
+                                 end
+
+                            end
+
+                            PathStore{j,1}(res-1:size(PathStore{j,1},1),:)=[];
+                            Path_num{j,1}(res-1:size(Path_num{j,1},2))=[];
+
+                            PathStore{j,1}=[PathStore{j,1};PATH];
+                            Path_num{j,1}=[Path_num{j,1} Path_num_MAJ];
                      
-                 end
-                    
-
-                 
+                     end  
                 end
             end
         end
@@ -404,10 +540,16 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                           
                           if flgn==1
                             Goal(robot_coli(j))=Goal(robot_coli(j))-m; % 返回原始终点
+                            [PATH_sup,path_num_sup]=sup_path(D,Goal(robot_coli(j))+m,Goal(robot_coli(j)),SD,j)  ;
+                            PATH=[PATH;PATH_sup];
+                            Path_num_MAJ=[Path_num_MAJ path_num_sup];
                           end
 
                           if flgn==2
                              Goal(robot_coli(j))=Goal(robot_coli(j))+m;
+                            [PATH_sup,path_num_sup]=sup_path(D,Goal(robot_coli(j))-m,Goal(robot_coli(j)),SD,j)  ;
+                            PATH=[PATH;PATH_sup];
+                            Path_num_MAJ=[Path_num_MAJ path_num_sup];
                           end
                     end
                    
@@ -445,7 +587,11 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
             temp(PathStore{i}(res,1),PathStore{i}(res,2))=0; % 释放当前节点
         end
         
-        if isequal(Start,Goal)
+        SAME=unique(Start-Goal);
+        same_num=find(SAME);
+        
+        if isequal(path_temp,Goal) || SAME(same_num(1))==2 || SAME(same_num(1))==-2
+        %if isequal(path_temp,Goal)
         %if res==size(PathStore{3,1},1)
              disp('路径修改全部完成')
              flag = 1;
@@ -459,13 +605,35 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 end
 
 %% 补充规划变更过的终点
-inte=Goal-Goal_ori;
+inte=Goal-Start;
 for i = 1:RobotNum
     if inte(i) ~= 0
         disp('开始规划剩余路径');
-        [~,PATH_sup,Path_num_sup]=Modify_path(temp,Goal(i),Goal_ori(i),i);
+        
+        [X_start,Y_start] = spread_sin(Start(i),SD);
+        [X_fin,Y_fin] = spread_sin(Goal(i),SD);
+        squ=max(abs(X_start-X_fin),abs(Y_start-Y_fin));
+        ini_x=min(X_start,X_fin);
+        ini_y=min(Y_start,Y_fin);
+        
+        Start_op_x=X_start-ini_x+1;
+        Start_op_y=Y_start-ini_y+1;
+        Goal_op_x =X_fin  -ini_x+1;
+        Goal_op_y =Y_fin  -ini_y+1;
+        Start_op=Start_op_y+(Start_op_x-1)*(squ+1);
+        Goal_op = Goal_op_y+(Goal_op_x-1)*(squ+1);
+        
+        temp_D=D(ini_x:ini_x+squ,ini_y:ini_y+squ);
+        [PATH_sup,~]=IP_solver(temp_D,Start_op,Goal_op,i);
+        PATH_sup(:,1)=PATH_sup(:,1)+ini_x-1;
+        PATH_sup(:,2)=PATH_sup(:,2)+ini_y-1;
+        %path_num=path_num+(ini_y-1)+(ini_x-1)*SD;
+        Path_num_sup=(PATH_sup(:,2)+(PATH_sup(:,1)-1)*SD)';
+       
         PathStore{i,1}=[PathStore{i,1};PATH_sup];
         Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+        text = ' 号机器人所有无碰撞路径已规划完成';
+        disp([num2str(i),text]);
     else
         text = ' 号机器人所有无碰撞路径已规划完成';
         disp([num2str(i),text]);
