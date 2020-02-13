@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 5.1
+# GraduationProject 项目日志 Version 6.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version5.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version6.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
