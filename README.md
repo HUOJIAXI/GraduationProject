@@ -148,3 +148,20 @@ Author: HUO JIAXI
 目前对于8机器人的求解时间：391s
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version5.1.png)
+
+# Version 6.0 13/02/2020
+Author: HUO JIAXI
+
+6.0版本完善了启发式算法，并且将MASPP_IP_div中的代码代码模块化。通过代码模块化，可以减少一定的延时。
+
+6.0版本将备用终点会造成机器人等待的问题修复，在机器人规划至备用终点后，会调用启发式路径规划将路径规划回原始终点，这样不但可以绕开被占用的终点，也可以节省运行时间，避免造成等待。
+
+另外将启发式路径修复引入到非交叉冲突中，在7机器人的环境中运行良好，相对于未引入启发式修复算法，仅仅引入了启发式原始路径算法的5.0版本，节省了50s左右的运行时间，仍然有改进的空间，启发式算法所框定的范围还可以更小，子图分割仍然可以更细。
+
+7-机器人：  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version6.0_7ROBOT.png)
+
+8-机器人:  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version6.0_robot8.png)
