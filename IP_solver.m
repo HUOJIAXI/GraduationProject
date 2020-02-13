@@ -68,10 +68,10 @@ result  = optimize(C,z,ops);
 if result.problem== 0
 %    value(x)
 %    value(z)
-    text=' 号机器人原始路径求解成功，原始路径长度：';
+    text=' 号机器人最优路径求解成功，最优路径长度：';
     disp([num2str(numrobot),text,num2str(value(z))]);
 else
-    disp('求解过程中出错');
+    disp('求解路径中存在障碍物，起点终点无法直达');
 end
 
 o=value(x);

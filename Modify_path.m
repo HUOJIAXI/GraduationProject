@@ -70,7 +70,7 @@ if result.problem== 0
     disp([num2str(numrobot),text,num2str(value(z))]);
 else
     RE=1;
-    disp('求解过程中出错');
+    disp('求解路径中存在障碍物，起点终点无法直达');
 end
 
 if RE == 0
