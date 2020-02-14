@@ -1,4 +1,4 @@
-function [PATH,path_num] =sup_path(D,D_ori,Start,Goal,SD,i)
+function [PATH,path_num] = ori_path(D,Start,Goal,SD,i)
     [X_start,Y_start] = spread_sin(Start,SD);
     [X_fin,Y_fin] = spread_sin(Goal,SD);
     squ=max(abs(X_start-X_fin),abs(Y_start-Y_fin));
@@ -15,13 +15,10 @@ function [PATH,path_num] =sup_path(D,D_ori,Start,Goal,SD,i)
         
         temp_D=D(ini_x:ini_x+squ,ini_y:ini_y+squ);
         [PATH,~]=IP_solver(temp_D,Start_op,Goal_op,i);
-        PATH=PATH(2:length(PATH),:);
         PATH(:,1)=PATH(:,1)+ini_x-1;
         PATH(:,2)=PATH(:,2)+ini_y-1;
         %path_num=path_num+(ini_y-1)+(ini_x-1)*SD;
         path_num=(PATH(:,2)+(PATH(:,1)-1)*SD)';
     else
-        [PATH,path_num]=IP_solver(D_ori,Start,Goal,i);
-        PATH=PATH(2:length(PATH),:);
-        path_num=path_num(2:length(path_num));
+        [PATH,path_num]=IP_solver(D,Start,Goal,i);
     end

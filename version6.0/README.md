@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 6.1
+# GraduationProject 项目日志 Version 6.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version6.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version6.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -165,17 +165,3 @@ Author: HUO JIAXI
 8-机器人:  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/version6.0_robot8.png)
-
-## Version 6.1 14/02/2020
-Author: HUO JIAXI  
-
-6.1版本将启发式算法的应用进行了扩展，将交叉冲突和非交叉冲突的冲突处理都引入了启发式算法，并且对于通过图分割对模型规模进行缩减的启发式算法进行了进一步的验证，发现能够适用于中部发生的碰撞，对于这样的碰撞，求解器只需要求解一部分的环境，而非整个环境。对于在边角部位发生的碰撞，由于6.1版本的启发式算法还无法应用于边角部位，对于边角部位的冲突，仍然需要求解整个模型，但是依然可以开发不同的启发式算法。从仿真结果中可以看出启动启发式算法的冲突解除耗时远小于未调用启发式算法的冲突。即使如此，6.1版本对于8机器人的环境仍然降低了运算时间，目前未273.193s，比6.0版本减小了68秒的时间。  
-
-对于之后的版本可以考虑引入单行线法则，在原始路径规划阶段避免一些不必要的冲突，减少调用冲突解决算法的次数，这样可以更进一步降低运行时间。  
-
-8-机器人：  
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.1.png)
-
-运行时间：273.193s  
-最长机器人路径：18
