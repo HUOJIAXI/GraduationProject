@@ -79,4 +79,15 @@ for i = 1:RobotNum
     title(str);
 end
 
+D_after=D;
+for i = 1:RobotNum
+    D_after(PathStore{i}(:,1),PathStore{i}(:,2))=1;
+end
+
+D_mes=D_after-D;
+
+path_go=find(D_mes==1);
+dis_total=length(path_go);
+disp('系统总路程（不包括重复经过的点）')
+disp(dis_total)
 
