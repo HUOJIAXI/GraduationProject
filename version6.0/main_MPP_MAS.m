@@ -1,7 +1,7 @@
 %% 主函数
-% Version 6。0
+% Version 4.2
 % Author : HUO JIAXI
-% 现行版本能够解决终点被包围的情况，但是无法解决起点被包围的情况，主要原因是暂时对于现在的IP模型，我们无法区分是终点被包围的情况，因此在备用终点启动后仍然求解失败，则使机器人暂停一个时刻。
+% 现行版本能够解决终点被包围的情况，但是无法解决起点被包围的情况，主要原因是暂时对于现在的IP模型，我们无法区分是终点被包围的情况，还是起点被包围的情况，因此还需要优化
 %% 初始化环境
 clear;
 clc;
@@ -10,7 +10,6 @@ m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
 Start = [16,133,9,8,49,33,7,111];
 Goal = [121,74,143,96,131,45,35,141]; 
-encarde=2; %启发式算法参数
 % Start = [16,133,9,8,49,1,7];
 % Goal = [121,74,143,96,131,24,35]; 
 
@@ -44,7 +43,7 @@ end
 RobotNum = length(Start);
 %% 求解
  tic
- [PathStore,Path_num]=MASPP_IP_div(D,RobotNum,Start,Goal,encarde);
+ [PathStore,Path_num]=MASPP_IP_div(D,RobotNum,Start,Goal);
  toc
  
 %% 仿真视频存储
