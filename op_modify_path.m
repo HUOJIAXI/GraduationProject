@@ -142,7 +142,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
           end
 
         [RE,PATH,~]=Modify_path(temp_reduit,centrale,Goal_res,j);
-
+            
           if flgn==1
                 disp('返回原终点-m')
                 disp('释放原始终点')
@@ -165,7 +165,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                 [PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
                 PATH=[PATH;PATH_sup];
     %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if R == 0
+                if RE == 0
                     disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
                 end
           end
@@ -176,8 +176,18 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
              disp('该备用终点依然被包围，道路被完全阻挡')
 
              disp('寻找备用终点失败，机器人在此时刻暂停行动，或是已经到达终点')
-             PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
-             Path_num_MAJ_res=(PathStore_MAJ_res(:,2)+(PathStore_MAJ_res(:,1)-1)*SD)';
+             PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
+             Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+             
+             PathStore(res-1:size(PathStore,1),:)=[];
+             Path_num(res-1:size(Path_num,2))=[];
+
+             PathStore_MAJ_res=[PathStore;PATH];
+             Path_num_MAJ_res=[Path_num Path_num_MAJ];
+             
+%              PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
+%              Path_num_MAJ_res=(PathStore_MAJ_res(:,2)+(PathStore_MAJ_res(:,1)-1)*SD)';
+             
          else
 
             PATH(:,1)=PATH(:,1)+X_start-encarde-1;
@@ -211,42 +221,64 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
           end
 
           [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start,Goal,j);
+          
+           if RE == 0
+              if flgn==1
+                    disp('返回原终点-2')
+                    Goal=Goal-m; % 返回原始终点
+                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
+                    PATH=[PATH;PATH_sup];
+                    Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
 
-          if flgn==1
-                disp('返回原终点-2')
-                Goal=Goal-m; % 返回原始终点
-                [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
-                PATH=[PATH;PATH_sup];
-                Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
+              end
 
-          end
+              if flgn==2
+                    disp('返回原终点+2')
+                    Goal=Goal+m;
+                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
+                    PATH=[PATH;PATH_sup];
+                    Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
+              end
+           
+          else
+             if flgn==1
+                    disp('返回原终点-2')
+                    Goal=Goal-m; % 返回原始终点
+              end
 
-          if flgn==2
-                disp('返回原终点+2')
-                Goal=Goal+m;
-                [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
-                PATH=[PATH;PATH_sup];
-                Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
-          end
-
-
-        end
-
-         if RE == 1
+              if flgn==2
+                    disp('返回原终点+2')
+                    Goal=Goal+m;
+              end
        %      [X_fin_it,Y_fin_it] = spread_sin(Goal,SD);
-             disp('该备用终点依然被包围，道路被完全阻挡')
+                 disp('该备用终点依然被包围，道路被完全阻挡')
           %   temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
                  disp('寻找备用终点失败，机器人暂停在此时刻暂停行动')
                 % n_robot=find(Path_num==Start);
-                PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
-                Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
-         end
+%                 PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
+%                 Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+                
+                PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
+                Path_num_MAJ=Path_num(res-1:size(Path_num,2));
+                
+                PathStore(res:size(PathStore,1),:)=[];
+                Path_num(res:size(Path_num,2))=[];
+
+                PathStore_MAJ_res=[PathStore;PATH];
+                Path_num_MAJ_res=[Path_num Path_num_MAJ];
+                return
+                
+          end
+
+        end
+
+         
 
         PathStore(res-1:size(PathStore,1),:)=[];
         Path_num(res-1:size(Path_num,2))=[];
