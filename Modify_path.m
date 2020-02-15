@@ -22,7 +22,8 @@ C = [];
 %%
 % 静止不动时返回0
 if l == t
-    Path = [];
+    RE=1;
+    PATH = [];
     Path(1) = l;
     distance = 0;
     return
@@ -92,9 +93,11 @@ if RE == 0
     m = size(temp,1);
     [X,Y]=spread(Path,m);
     PATH=cat(1,X,Y)'; % 路径存入PATH matrix
+    RE=0;
 else
     PATH = [];
     Path = [];
+    RE=1;
 
 end
 

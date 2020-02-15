@@ -190,7 +190,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                 disp('终点在框外')
-                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
                               elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                 disp('终点在框内')
                                % [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);

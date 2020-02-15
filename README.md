@@ -183,10 +183,16 @@ Author: HUO JIAXI
 ## Version 6.2 15/02/2020
 Author: HUO JIAXI  
 
-6.2版本解决了6.1版本中未解决的在非交叉冲突解除中出现的bug（在备用终点启用后可能导致无法回到原始起点的bug）。并且增加两台机器人，目前能够求解10台机器人，总用时337.43s。  
+6.2版本解决了6.1版本中未解决的在非交叉冲突解除中出现的bug（在备用终点启用后可能导致无法回到原始起点的bug，以及在Modify_Path中出现的若起点终点在同一点时会报错的bug）。并且增加两台机器人，目前能够求解10台机器人，总用时337.43s。  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.2_10robots.png)
 
 运行时间：337.43s
 系统总消耗时刻：19
 系统总路程（不包含重复经过的点）：110
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.2_10robots_2.png)
+
+运行时间：386.75s
+191 系统总消耗时刻：18
+192 系统总路程（不包含重复经过的点）：85
