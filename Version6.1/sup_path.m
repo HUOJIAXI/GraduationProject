@@ -13,7 +13,7 @@ function [PATH,path_num] =sup_path(D,D_ori,Start,Goal,SD,i)
         Start_op=Start_op_y+(Start_op_x-1)*(squ+1);
         Goal_op = Goal_op_y+(Goal_op_x-1)*(squ+1);
         
-        temp_D=D_ori(ini_x:ini_x+squ,ini_y:ini_y+squ);
+        temp_D=D(ini_x:ini_x+squ,ini_y:ini_y+squ);
         [PATH,~]=IP_solver(temp_D,Start_op,Goal_op,i);
         PATH=PATH(2:length(PATH),:);
         PATH(:,1)=PATH(:,1)+ini_x-1;

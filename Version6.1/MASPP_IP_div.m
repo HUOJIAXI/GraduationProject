@@ -194,9 +194,8 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                               elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                 disp('终点在框内')
                                % [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
-                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},temp] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},RE,Start(robot_coli(j)),Goal(robot_coli(j)),temp] = ori_path_op(temp,Start(robot_coli(j)),Goal(robot_coli(j)),PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
 %                                 if RE == 1
-%                               [PathStore{j,1},Path_num{j,1},temp] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{j,1},Path_num{j,1},SD,j,encarde,res);
 %                                     disp('启发式算法失效')
 %                                     [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
 %                                 end
