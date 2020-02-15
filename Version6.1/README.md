@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 6.2
+# GraduationProject 项目日志 Version 6.1
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_10ROB_COLI_version6.2.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_8ROB_COLI_version6.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -179,14 +179,3 @@ Author: HUO JIAXI
 
 运行时间：273.193s  
 最长机器人路径：18
-
-## Version 6.2 15/02/2020
-Author: HUO JIAXI  
-
-6.2版本解决了6.1版本中未解决的在非交叉冲突解除中出现的bug（在备用终点启用后可能导致无法回到原始起点的bug）。并且增加两台机器人，目前能够求解10台机器人，总用时337.43s。  
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.2_10robots.png)
-
-运行时间：337.43s
-系统总消耗时刻：19
-系统总路程（不包含重复经过的点）：110
