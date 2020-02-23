@@ -108,8 +108,8 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 
 %                     encarde = 2;
                      
-                     if X_start > encarde && Y_start > encarde
-                             disp('横纵坐标满足大于encarde的要求')
+                     if X_start > encarde && Y_start > encarde && X_start+encarde <= SD && Y_start+encarde <= SD
+                             disp('横纵坐标满足大于边框的要求')
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                  disp('终点在框外')
@@ -122,13 +122,45 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                                  [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
 %                                end
                              else
-                                 disp('终点在框外')
+                                 disp('终点在框外') 
                                  [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD,encarde);
                              end
                             
                      else
-                         % 补充原始节点的横纵坐标小于等于3的情况
-                             disp('横纵坐标不满足大于encarde的要求')
+                         % 补充原始节点的横纵坐标小于等于3的情况，需要增加额外的启发式算法
+                             disp('横或纵坐标不满足大于边框的要求')
+%                              if X_start <= encarde 
+%                                  disp('纵坐标小于等于边框长度')
+%                              end
+%                              
+%                              if Y_start <= encarde
+%                                  disp('横坐标小于等于边框长度')
+%                              end
+%                              
+%                              if X_start+encarde >= SD
+%                                  disp('边框下边界超限')
+%                              end
+%                              
+%                              if Y_start+encarde >= SD
+%                                  disp('边框上边界超限')
+%                              end
+                             %
+                             if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
+                                 disp('冲突出现在左下边界')
+                             
+                             elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
+                                 disp('冲突出现在左上边界')
+                             
+                             elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
+                                 disp('冲突出现在右上边界')
+                             
+                             elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
+                                 disp('冲突出现在右下边界')
+                                 
+                             else
+                                 
+                             end
+                                                
                             [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
                      
                      end  
@@ -185,8 +217,8 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                      temp(X_fin,Y_fin)=0;
 %                 end
                 
-                 if X_start > encarde && Y_start > encarde
-                             disp('横纵坐标满足大于encarde的要求')
+                 if X_start > encarde && Y_start > encarde && X_start+encarde <= SD && Y_start+encarde <= SD
+                             disp('横纵坐标满足大于边框的要求')
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                 disp('终点在框外')
@@ -202,13 +234,44 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                                 end
                              else
                                  disp('终点在框外')
-                                 [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
+                                 [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
                              end
                             
                  else
                          % 补充原始节点的横纵坐标小于等于3的情况
                             [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
-                     
+                            
+%                              if X_start <= encarde 
+%                                  disp('纵坐标小于等于边框长度')
+%                              end
+%                              if Y_start <= encarde
+%                                  disp('横坐标小于等于边框长度')
+%                              end
+%                              
+%                              if X_start+encarde >= SD
+%                                  disp('边框下边界超限')
+%                              end
+%                              
+%                              if Y_start+encarde >= SD
+%                                  disp('边框上边界超限')
+%                              end
+                             
+                             %
+                             if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
+                                 disp('冲突出现在左下边界')
+                             
+                             elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
+                                 disp('冲突出现在左上边界')
+                             
+                             elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
+                                 disp('冲突出现在右上边界')
+                             
+                             elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
+                                 disp('冲突出现在右下边界')
+                                 
+                             else
+                                 
+                             end
                  end       
                 
             end
