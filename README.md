@@ -191,11 +191,13 @@ Author: HUO JIAXI
 系统总消耗时刻：19
 系统总路程（不包含重复经过的点）：110
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.2_10robots_2.png)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result6.2_10robot_2.png)
 
-运行时间：386.75s
-系统总消耗时刻：18
-系统总路程（不包含重复经过的点）：85
+运行时间：390.15s
+
+系统总消耗时刻：20
+
+系统总路程（不包含重复经过的点）：90
 
 ## Version 6.3 16/02/2020
 Author: HUO JIAXI  
