@@ -92,6 +92,11 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
             for j = 1:RobotNum
                 if (abs(path_temp(i)-path_temp(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_temp(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)
                     
+                    if Start(j) == Goal(j)
+                    text=' 号机器人已到达终点，冲突忽略';
+                    disp([num2str(j),text]);  
+                    continue; %% 忽略与已经达到终点的机器人发生冲突的情况。
+                    end
                     text=' 号机器人出现交叉冲突，正在寻找替代路径...';
                     disp([num2str(j),text]);
                     [X_start,Y_start] = spread_sin(Start(j),SD);
@@ -113,55 +118,70 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                  disp('终点在框外')
-                                [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD,encarde);
+                                [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),~]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD,encarde);
                              elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                  disp('终点在框内') %% 可以尝试启发式方法，将求解范围缩小，修改temp，借鉴原始路径的启发式方法
-                                 [PathStore{j,1},Path_num{j,1},temp] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{j,1},Path_num{j,1},SD,j,encarde,res);
+                                 [PathStore{j,1},Path_num{j,1},~] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{j,1},Path_num{j,1},SD,j,encarde,res);
 %                                if RE == 1
 %                                   disp('启发式算法失效')
 %                                  [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
 %                                end
                              else
                                  disp('终点在框外') 
-                                 [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD,encarde);
+                                 [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),~] = op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD,encarde);
                              end
                             
                      else
                          % 补充原始节点的横纵坐标小于等于3的情况，需要增加额外的启发式算法
                              disp('横或纵坐标不满足大于边框的要求')
-%                              if X_start <= encarde 
-%                                  disp('纵坐标小于等于边框长度')
-%                              end
+
+%                              if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
+%                                  disp('冲突出现在左下边界')
 %                              
-%                              if Y_start <= encarde
-%                                  disp('横坐标小于等于边框长度')
-%                              end
+%                              elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
+%                                  disp('冲突出现在左上边界')
 %                              
-%                              if X_start+encarde >= SD
-%                                  disp('边框下边界超限')
-%                              end
+%                              elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
+%                                  disp('冲突出现在右上边界')
 %                              
-%                              if Y_start+encarde >= SD
-%                                  disp('边框上边界超限')
+%                              elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
+%                                  disp('冲突出现在右下边界')
+%                                  
+%                              else
+%                                                                
 %                              end
-                             %
-                             if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
-                                 disp('冲突出现在左下边界')
                              
-                             elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
-                                 disp('冲突出现在左上边界')
+                              % 优化边界冲突处理，将原环境拓展
+                             one_add_y=ones(SD,encarde);
+                             one_add_x=ones(encarde,SD+2*encarde);
+                             temp_am=temp;
+                             D_am=D;
                              
-                             elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
-                                 disp('冲突出现在右上边界')
+                             temp_am_op_1=[one_add_y temp_am one_add_y];
+                             temp_am_op=[one_add_x;temp_am_op_1;one_add_x];
                              
-                             elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
-                                 disp('冲突出现在右下边界')
-                                 
+                             D_am_op_1=[one_add_y D_am one_add_y];
+                             D_am_op=[one_add_x;D_am_op_1;one_add_x];
+                             
+                       %      [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
+                             
+                              disp('环境图进行扩展处理')
+                             % 优化碰撞处理
+                             if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
+                                 disp('终点在框外')
+                                [PathStore{j,1},Path_num{j,1},Start(j),Goal(j)]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD+2*encarde,SD,encarde);
+                             elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
+                                 disp('终点在框内') %% 可以尝试启发式方法，将求解范围缩小，修改temp，借鉴原始路径的启发式方法
+                                 [PathStore{j,1},Path_num{j,1}] = ori_path_op_am(D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,PathStore{j,1},Path_num{j,1},SD,j,encarde,res);
+%                                if RE == 1
+%                                   disp('启发式算法失效')
+%                                  [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
+%                                end
                              else
-                                 
+                                 disp('终点在框外') 
+                                  [PathStore{j,1},Path_num{j,1},Start(j),Goal(j)]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD+2*encarde,SD,encarde);
                              end
-                                                
-                            [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
+                             
                      
                      end  
                 end
@@ -169,6 +189,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         end
 
         %% 非交叉冲突
+        
         z=0;
         robot_coli=[];
         
@@ -202,14 +223,22 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                 if temp(X_start,Y_start)==1
                     disp('起点被占用，现时刻暂停');
                    % PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1};(PathStore{robot_coli(j),1}(res-1,:))];
-                    PATH= [PathStore{robot_coli(j),1}(res-1,:) ; PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:)];
-                    Path_num_MAJ=[Path_num{robot_coli(j),1}(res-1),Path_num{robot_coli(j),1}(res-1:size(Path_num,2))];
-                    PathStore{robot_coli(j),1}(res-1:size(PathStore,1),:)=[];
-                    Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2))=[];
+                    PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
+                    Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
+                    
+                    PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+                    Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
 
-                    PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1};PATH];
+                    PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
                     Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-                     break;
+                    continue
+                    
+%                     disp(res)
+%                     disp(PATH)
+%                     disp(Path_num_MAJ)
+%                     disp(PathStore{robot_coli(j),1})
+%                     disp(Path_num{robot_coli(j),1})
+%                     temp(X_start,Y_start)=0;
                 end
 %                 
 %                 if temp(X_fin,Y_fin)==1
@@ -222,11 +251,11 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                 disp('终点在框外')
-                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),~]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
                               elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                 disp('终点在框内')
                                % [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
-                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},temp] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},~] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
 %                                 if RE == 1
 %                               [PathStore{j,1},Path_num{j,1},temp] = ori_path_op(D,temp,X_start,Y_start,X_fin,Y_fin,PathStore{j,1},Path_num{j,1},SD,j,encarde,res);
 %                                     disp('启发式算法失效')
@@ -234,43 +263,57 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                                 end
                              else
                                  disp('终点在框外')
-                                 [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
+                                 [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),~]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD,encarde);
                              end
                             
                  else
                          % 补充原始节点的横纵坐标小于等于3的情况
-                            [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
-                            
-%                              if X_start <= encarde 
-%                                  disp('纵坐标小于等于边框长度')
-%                              end
-%                              if Y_start <= encarde
-%                                  disp('横坐标小于等于边框长度')
-%                              end
+                            %[PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),~] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
+% 
+%                              if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
+%                                  disp('冲突出现在左下边界')
 %                              
-%                              if X_start+encarde >= SD
-%                                  disp('边框下边界超限')
-%                              end
+%                              elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
+%                                  disp('冲突出现在左上边界')
 %                              
-%                              if Y_start+encarde >= SD
-%                                  disp('边框上边界超限')
+%                              elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
+%                                  disp('冲突出现在右上边界')
+%                              
+%                              elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
+%                                  disp('冲突出现在右下边界')
+%                                  
+%                              else
+%                                  
 %                              end
                              
-                             %
-                             if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
-                                 disp('冲突出现在左下边界')
+                             one_add_y=ones(SD,encarde);
+                             one_add_x=ones(encarde,SD+2*encarde);
+                             temp_am=temp;
+                             D_am=D;
                              
-                             elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
-                                 disp('冲突出现在左上边界')
+                             temp_am_op_1=[one_add_y temp_am one_add_y];
+                             temp_am_op=[one_add_x;temp_am_op_1;one_add_x];
                              
-                             elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
-                                 disp('冲突出现在右上边界')
+                             D_am_op_1=[one_add_y D_am one_add_y];
+                             D_am_op=[one_add_x;D_am_op_1;one_add_x];
                              
-                             elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
-                                 disp('冲突出现在右下边界')
-                                 
+                       %      [PathStore{j,1},Path_num{j,1},Start(j),Goal(j),temp] = op_modify_sup(temp,PathStore{j,1},Path_num{j,1},Start(j),Goal(j),res,j,SD,D);
+                             
+                              disp('环境图进行扩展处理')
+                             % 优化碰撞处理
+                             if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
+                                 disp('终点在框外')
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(jj),Goal(robot_coli(j))]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD+2*encarde,SD,encarde);
+                             elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
+                                 disp('终点在框内') %% 可以尝试启发式方法，将求解范围缩小，修改temp，借鉴原始路径的启发式方法
+                                 [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1}] = ori_path_op_am(D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
+%                                if RE == 1
+%                                   disp('启发式算法失效')
+%                                  [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),temp] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
+%                                end
                              else
-                                 
+                                 disp('终点在框外') 
+                                  [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j))]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD+2*encarde,SD,encarde);
                              end
                  end       
                 
@@ -278,14 +321,39 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         end
         
         %% 节点释放
-
+        
+         MAX = 0;
+         
         for i = 1:RobotNum
-            temp(PathStore{i}(res,1),PathStore{i}(res,2))=0; % 释放当前节点
+        %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
+        %     PathStore{i} = PATH;
+        %     Path_num{i} = path_num;
+            MAX=max([size(PathStore{i,1},1),MAX]);
+        %    MAX=MAX+1;
+            H(i)=size(PathStore{i,1},1);
+        end
+
+        MAX =MAX+1;
+
+        for i=1:RobotNum
+            if size(PathStore{i,1},1)<MAX 
+                SI=size(PathStore{i,1});
+                for j = (SI+1):MAX
+                    PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+                    PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+                    Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+                end
+            end
+
         end
         
         if isequal(Start,Goal)
              disp('路径修改全部完成')
              flag = 1;
+        else
+            for i = 1:RobotNum
+                temp(PathStore{i,1}(res,1),PathStore{i,1}(res,2))=0; % 释放当前节点
+            end
         end
         
     else

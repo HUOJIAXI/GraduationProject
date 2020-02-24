@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 6.3
+# GraduationProject 项目日志 Version 7.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_12ROB_COLI_version6.3.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_12ROB_COLI_version7.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -199,7 +199,7 @@ Author: HUO JIAXI
 
 系统总路程（不包含重复经过的点）：90
 
-## Version 6.3 16/02/2020
+## Version 6.3 23/02/2020
 Author: HUO JIAXI  
 
 6.3版本通过调试解决了之前版本中一直没有察觉到的一些bug，比如解决非交叉冲突中出现的对启发式解法op_modify_sup中输入参数错误的问题，这在调试中得到了修复。 
@@ -215,3 +215,18 @@ Author: HUO JIAXI
 系统总消耗时刻：20
 
 系统总路程（不包含重复经过的点）：102
+
+## Version 7.0 24/02/2020
+Author: HUO JIAXI
+
+7.0版本通过拓展环境优化了边界处冲突，将冲突解决时间大大缩短，是优化前的1/2不到，但是运行时间会出现一定的浮动，对于12个机器人的环境，运行时间在200s左右。
+
+但是7.0版本的稳定性不是很高，会出现跳跃的情况，可能需要在求解器中添加约束，需要在之后的版本中加以改进优化。  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result7.0_12robots.png)
+
+运行时间：211.37s  
+
+系统总消耗时刻：15
+
+系统总路程：107 

@@ -148,7 +148,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                 disp('释放原始终点')
                 temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                 Goal_res=Goal_res-m; % 返回原始终点
-                [PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j)  ;
+                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j)  ;
                 PATH=[PATH;PATH_sup];
     %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
@@ -162,7 +162,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                 Goal_res=Goal_res+m;
                 disp('释放原始终点')
                 temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                [PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
+                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
                 PATH=[PATH;PATH_sup];
     %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
