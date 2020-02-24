@@ -17,7 +17,7 @@ function [PathStore_MAJ_Res,Path_num_MAJ_Res,Start,Goal,temp] = op_modify_sup(te
 
           if flgn==1
                 Goal=Goal-m; % 返回原始终点
-                [PATH_sup,path_num_sup]=sup_path(D,D,Goal+m,Goal,SD,j)  ;
+                [RE,PATH_sup,path_num_sup]=sup_path(D,D,Goal+m,Goal,SD,j)  ;
                 PATH=[PATH;PATH_sup];
                 Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
@@ -27,7 +27,7 @@ function [PathStore_MAJ_Res,Path_num_MAJ_Res,Start,Goal,temp] = op_modify_sup(te
 
           if flgn==2
                 Goal=Goal+m;
-                [PATH_sup,path_num_sup]=sup_path(D,D,Goal-m,Goal,SD,j)  ;
+                [RE,PATH_sup,path_num_sup]=sup_path(D,D,Goal-m,Goal,SD,j)  ;
                 PATH=[PATH;PATH_sup];
                 Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
