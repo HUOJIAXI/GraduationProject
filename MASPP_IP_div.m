@@ -70,7 +70,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 
     end
     
-    if res < MAX   
+    if res < 100 
         %% 解决两种冲突，迎面冲突和转角冲突
         for i = 1:RobotNum
             temp(PathStore{i,1}(res+1,1),PathStore{i,1}(res+1,2)) = 1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
@@ -397,6 +397,12 @@ for i = 1:RobotNum
         disp([num2str(i),text]);
     end
     
+end
+
+disp('纠正路径误差')
+
+for n =1:RobotNum
+    [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
 end
 
 %%
