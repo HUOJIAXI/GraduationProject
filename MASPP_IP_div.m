@@ -46,31 +46,31 @@ flag=0;
 
 while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达到终点后 flag置1 退出循环
 %    RobotNum=3;
-    MAX = 0;
-    for i = 1:RobotNum
-    %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
-    %     PathStore{i} = PATH;
-    %     Path_num{i} = path_num;
-        MAX=max([size(PathStore{i,1},1),MAX]);
-    %    MAX=MAX+1;
-        H(i)=size(PathStore{i,1},1);
-    end
+%     MAX = 0;
+%     for i = 1:RobotNum
+%     %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
+%     %     PathStore{i} = PATH;
+%     %     Path_num{i} = path_num;
+%         MAX=max([size(PathStore{i,1},1),MAX]);
+%     %    MAX=MAX+1;
+%         H(i)=size(PathStore{i,1},1);
+%     end
+%     
+%     MAX =MAX+1;
+% 
+%     for i=1:RobotNum
+%         if size(PathStore{i,1},1)<MAX 
+%             SI=size(PathStore{i,1});
+%             for j = (SI+1):MAX
+%                 PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+%                 PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+%                 Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+%             end
+%         end
+% 
+%     end
     
-    MAX =MAX+1;
-
-    for i=1:RobotNum
-        if size(PathStore{i,1},1)<MAX 
-            SI=size(PathStore{i,1});
-            for j = (SI+1):MAX
-                PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
-                PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-                Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
-            end
-        end
-
-    end
-    
-    if res < 100 
+    if res < 50 
         %% 解决两种冲突，迎面冲突和转角冲突
         for i = 1:RobotNum
             temp(PathStore{i,1}(res+1,1),PathStore{i,1}(res+1,2)) = 1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
@@ -303,7 +303,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                  disp('终点在框外')
-                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(jj),Goal(robot_coli(j))]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD+2*encarde,SD,encarde);
+                                [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(j),Goal(robot_coli(j))]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(robot_coli(j)),Goal(robot_coli(j)),Path_num{robot_coli(j),1},PathStore{robot_coli(j),1},robot_coli(j),res,SD+2*encarde,SD,encarde);
                              elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                  disp('终点在框内') %% 可以尝试启发式方法，将求解范围缩小，修改temp，借鉴原始路径的启发式方法
                                  [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1}] = ori_path_op_am(D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},SD,robot_coli(j),encarde,res);
@@ -321,8 +321,50 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         end
         
         %% 节点释放
+        % 判断是否求解结束
+        juge=unique(Goal-Start);
+        juge_n=size(juge,2);
         
-         MAX = 0;
+        MAX_ro=0;
+        
+        for i = 1:RobotNum
+                inte=Goal(i)-Start(i);
+                if inte == 0
+                    nu=find(Path_num{i,1}==Goal(i));
+                    MAX_ro=max([nu(1),MAX_ro]);
+                end
+        end
+            
+        if juge_n==2
+            
+            inte=Goal-Start;
+            for i = 1:RobotNum
+                if inte(i) ~= 0
+                    disp(MAX_ro)
+                    sup=unique(Path_num{i,1}(MAX_ro:size(Path_num{i,1},2)));
+                    disp(sup)
+                    Path_num{i,1}(MAX_ro+1:size(Path_num{i,1},2))=[];
+                    Path_num{i,1}=[Path_num{i,1} sup];
+                    PathStore{i,1}(size(Path_num{i,1},2)+1:size(PathStore{i,1},1),:)=[];
+                    
+                    [PathStore_i,PathStore_i_i]=spread(Path_num{i,1},SD);
+                    PathStore{i,1}(:,1)=PathStore_i';
+                    PathStore{i,1}(:,2)=PathStore_i_i';
+                    
+                    disp('开始规划剩余路径并防止在某点卡死');
+
+                    [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
+
+                    PathStore{i,1}=[PathStore{i,1};PATH_sup];
+                    Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+                    flag=1;
+                    Start=Goal;
+                end
+
+            end
+        end
+        
+        MAX = 0;
          
         for i = 1:RobotNum
         %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
@@ -368,26 +410,7 @@ for i = 1:RobotNum
     if inte(i) ~= 0
         disp('开始规划剩余路径');
         
-        [X_start,Y_start] = spread_sin(Start(i),SD);
-        [X_fin,Y_fin] = spread_sin(Goal(i),SD);
-        squ=max(abs(X_start-X_fin),abs(Y_start-Y_fin));
-        ini_x=min(X_start,X_fin);
-        ini_y=min(Y_start,Y_fin);
-        
-        Start_op_x=X_start-ini_x+1;
-        Start_op_y=Y_start-ini_y+1;
-        Goal_op_x =X_fin  -ini_x+1;
-        Goal_op_y =Y_fin  -ini_y+1;
-        Start_op=Start_op_y+(Start_op_x-1)*(squ+1);
-        Goal_op = Goal_op_y+(Goal_op_x-1)*(squ+1);
-        
-        temp_D=D(ini_x:ini_x+squ,ini_y:ini_y+squ);
-        [PATH_sup,~]=IP_solver(temp_D,Start_op,Goal_op,i);
-        PATH_sup(:,1)=PATH_sup(:,1)+ini_x-1;
-        PATH_sup(:,2)=PATH_sup(:,2)+ini_y-1;
-        %path_num=path_num+(ini_y-1)+(ini_x-1)*SD;
-        Path_num_sup=(PATH_sup(:,2)+(PATH_sup(:,1)-1)*SD)';
-       
+        [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);   
         PathStore{i,1}=[PathStore{i,1};PATH_sup];
         Path_num{i,1}=[Path_num{i,1} Path_num_sup];
         text = ' 号机器人所有无碰撞路径已规划完成';
@@ -398,6 +421,28 @@ for i = 1:RobotNum
     end
     
 end
+
+MAX=0;
+for i = 1:RobotNum
+    MAX=max([size(PathStore{i,1},1),MAX]);
+%    MAX=MAX+1;
+    H(i)=size(PathStore{i,1},1);
+end
+
+MAX =MAX+1;
+
+for i=1:RobotNum
+    if size(PathStore{i,1},1)<MAX 
+        SI=size(PathStore{i,1});
+        for j = (SI+1):MAX
+            PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+            PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+            Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+        end
+    end
+
+end
+        
 
 disp('纠正路径误差')
 

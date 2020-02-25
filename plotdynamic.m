@@ -40,7 +40,7 @@ end
 
 indice=max(finalindice);
 
-for loop=1:50
+for loop=1:10000
     if loop > indice+1
         break;
     end
