@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 7.0
+# GraduationProject 项目日志 Version 7.1
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_12ROB_COLI_version7.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_13ROB_COLI_version7.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -230,3 +230,12 @@ Author: HUO JIAXI
 系统总消耗时刻：15
 
 系统总路程：107 
+
+## Version 7.1 25/02/2020
+Author: HUO JIAXI
+
+7.1版本改进了7.0版本中出现的跳跃的情况，并且解决了可能会发生的在某点卡死的情况，在13个机器人的环境下，运行时间进一步减少，运行时间为195.06s。  
+
+但是7.1版本还存在着出现子循环的情况，造成了一定的资源浪费，但是最后能够到达最终目的地，还需要在之后的版本中进行改进。  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result7.1_13robots.png)
