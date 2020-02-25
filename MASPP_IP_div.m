@@ -511,5 +511,20 @@ for i=1:RobotNum
 
 end
 
+disp('检查路径是否存在跳跃')
+
+for i=1:RobotNum
+    for n = 1:length(Path_num{i,1})-1
+        if abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=1 && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=SD && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=0
+            Path_num{i,1}(n+1)=Path_num{i,1}(n);
+        end
+    end
+end
+
+disp('检查完成')
+for n =1:RobotNum
+    [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
+end
+
 save('Path_num.mat');
 save('PathStore.mat');

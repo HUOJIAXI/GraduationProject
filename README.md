@@ -2,7 +2,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_13ROB_COLI_version7.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_14ROB_COLI_version7.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -236,6 +236,8 @@ Author: HUO JIAXI
 
 7.1版本改进了7.0版本中出现的跳跃的情况，并且解决了可能会发生的在某点卡死的情况，在13个机器人的环境下，运行时间进一步减少，运行时间为195.06s。  
 
-但是7.1版本还存在着出现子循环的情况，造成了一定的资源浪费，但是最后能够到达最终目的地，还需要在之后的版本中进行改进。  
+但是7.1版本还存在着出现子循环的情况，造成了一定的资源浪费，但是最后能够到达最终目的地，还需要在之后的版本中进行改进。
+
+另外在op_modify_path中可能存在重复顶点未去除的bug，需要在后面的版本中加以修复，其他的冲突处理算法运行正常。  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result7.1_13robots.png)
