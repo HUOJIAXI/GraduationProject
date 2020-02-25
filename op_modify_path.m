@@ -1,4 +1,5 @@
-function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD,encarde)
+%% 去重复问题
+unction [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD,encarde)
     temp_reduit=temp(X_start-encarde:X_start+encarde,Y_start-encarde:Y_start+encarde); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
     D_reduit=D(X_start-encarde:X_start+encarde,Y_start-encarde:Y_start+encarde);
 
@@ -148,7 +149,8 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                 disp('释放原始终点')
                 temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                 Goal_res=Goal_res-m; % 返回原始终点
-                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j)  ;
+                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j) ; %需要扣除重复的点
+    %            PATH(size(PATH,1),:)=[]; %最后一个重复的点去除
                 PATH=[PATH;PATH_sup];
     %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
@@ -163,6 +165,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                 disp('释放原始终点')
                 temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                 [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
+      %          PATH(size(PATH,1),:)=[];
                 PATH=[PATH;PATH_sup];
     %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
@@ -227,6 +230,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                     disp('返回原终点-2')
                     Goal=Goal-m; % 返回原始终点
                     [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
+            %        PATH(size(PATH,1),:)=[];
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
@@ -239,6 +243,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                     disp('返回原终点+2')
                     Goal=Goal+m;
                     [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
+             %       PATH(size(PATH,1),:)=[];
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
