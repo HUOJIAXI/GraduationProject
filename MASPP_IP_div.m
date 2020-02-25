@@ -1,6 +1,6 @@
 %% 本版本基于MASPP_IP，探究通过子图分割降低路径修改时延
 
-function [PathStore,Path_num] = MASPP_IP_div(D,RobotNum,Start,Goal,encarde)
+function [PathStore,Path_num] = MASPP_IP_div(D,RobotNum,Start,Goal,encarde,control)
 
 PathStore=cell(RobotNum,1);
 Path_num=cell(RobotNum,1);
@@ -450,7 +450,66 @@ for n =1:RobotNum
     [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
 end
 
-%%
+%% 整理路径 消除卡顿
+disp('调节路径整理参数，消除路径中不必要的卡顿')
+
+LEN=size(PathStore{1,1},1);
+ro=zeros(RobotNum,1);
+
+for n = 1:RobotNum
+    if Path_num{n,1}(LEN-control)~=Goal(n) % 可以调节路径整理调整参数
+        ro(n)=1;
+    end
+end
+
+ROB=zeros(RobotNum,1);
+
+for n = 1:RobotNum
+    if ro(n) ~=1
+        flag=find(Path_num{n,1}==Goal(n));
+        ROB(n)=flag(1); %第一次到达终点的索引
+    end
+end
+
+ROB_MAX=max(ROB);
+
+for n =1:RobotNum
+    if ro(n) == 1
+        disp('重新规划出现卡顿的机器人')
+        
+        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
+%         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
+        Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
+        Path_num{n,1}=[Path_num{n,1} sup];
+        PathStore{n,1}(size(Path_num{n,1},2)+1:size(PathStore{n,1},1),:)=[];
+
+        [PathStore_n,PathStore_n_i]=spread(Path_num{n,1},SD);
+        PathStore{n,1}(:,1)=PathStore_n';
+        PathStore{n,1}(:,2)=PathStore_n_i';
+    end
+end
+
+% 统一化维度
+MAX=0;
+for i = 1:RobotNum
+    MAX=max([size(PathStore{i,1},1),MAX]);
+%    MAX=MAX+1;
+    H(i)=size(PathStore{i,1},1);
+end
+
+MAX =MAX+1;
+
+for i=1:RobotNum
+    if size(PathStore{i,1},1)<MAX 
+        SI=size(PathStore{i,1});
+        for j = (SI+1):MAX
+            PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+            PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+            Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+        end
+    end
+
+end
 
 save('Path_num.mat');
 save('PathStore.mat');
