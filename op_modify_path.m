@@ -1,5 +1,5 @@
 %% 去重复问题
-unction [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD,encarde)
+function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD,encarde)
     temp_reduit=temp(X_start-encarde:X_start+encarde,Y_start-encarde:Y_start+encarde); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
     D_reduit=D(X_start-encarde:X_start+encarde,Y_start-encarde:Y_start+encarde);
 
