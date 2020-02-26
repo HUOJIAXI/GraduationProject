@@ -5,7 +5,7 @@ function [PATH,path_num] = ori_path(D,Start,Goal,SD,i)
     ini_x=min(X_start,X_fin);
     ini_y=min(Y_start,Y_fin);
     if (ini_x+squ)<=SD && (ini_y+squ)<=SD
-        
+        disp('在框内')
         Start_op_x=X_start-ini_x+1;
         Start_op_y=Y_start-ini_y+1;
         Goal_op_x =X_fin  -ini_x+1;

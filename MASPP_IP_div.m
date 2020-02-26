@@ -15,9 +15,43 @@ SD=size(D,1);
 %% 存储单机器人的原始最佳路径
 % 扩展路径矩阵，使得所有矩阵的维度一样，方便之后的去障碍算法。
 for i = 1:RobotNum
-    [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
-    PathStore{i,1} = PATH;
-    Path_num{i,1} = path_num;
+    [X_ST,Y_ST]=spread(Start(i),SD);
+    [X_FI,Y_FI]=spread(Goal(i),SD);
+    X_MI=floor((X_ST+X_FI)/2);
+    Y_MI=floor((Y_ST+Y_FI)/2);
+%     disp(X_MI)
+%     disp(Y_MI)
+    if X_MI>=1 || Y_MI>=1
+        if D(X_MI,Y_MI)==0 &&  (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+            Start_MI=(Y_MI+(X_MI-1)*SD);
+            [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
+            [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
+            PATH_2(1,:)=[];
+            path_num_2(1)=[];
+            PathStore{i,1} = [PATH_1;PATH_2];
+            Path_num{i,1} = [path_num_1 path_num_2];
+        elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+            Y_MI=Y_MI-1;
+            Start_MI=(Y_MI+(X_MI-1)*SD);
+            [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
+            [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
+            PATH_2(1,:)=[];
+            path_num_2(1)=[];
+            PathStore{i,1} = [PATH_1;PATH_2];
+            Path_num{i,1} = [path_num_1 path_num_2];
+            
+        else
+            [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
+            PathStore{i,1} = PATH;
+            Path_num{i,1} = path_num;
+        end
+    
+    else
+        [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
+        PathStore{i,1} = PATH;
+        Path_num{i,1} = path_num;
+    end
+    
     MAX=max([size(PathStore{i,1},1),MAX]);
 %    MAX=MAX+1;
     H(i)=size(PathStore{i,1},1);
@@ -45,32 +79,7 @@ res=1;
 flag=0;
 
 while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达到终点后 flag置1 退出循环
-%    RobotNum=3;
-%     MAX = 0;
-%     for i = 1:RobotNum
-%     %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
-%     %     PathStore{i} = PATH;
-%     %     Path_num{i} = path_num;
-%         MAX=max([size(PathStore{i,1},1),MAX]);
-%     %    MAX=MAX+1;
-%         H(i)=size(PathStore{i,1},1);
-%     end
-%     
-%     MAX =MAX+1;
-% 
-%     for i=1:RobotNum
-%         if size(PathStore{i,1},1)<MAX 
-%             SI=size(PathStore{i,1});
-%             for j = (SI+1):MAX
-%                 PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
-%                 PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-%                 Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
-%             end
-%         end
-% 
-%     end
-    
-    if res < 50 
+    if res < 25
         %% 解决两种冲突，迎面冲突和转角冲突
         for i = 1:RobotNum
             temp(PathStore{i,1}(res+1,1),PathStore{i,1}(res+1,2)) = 1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
@@ -83,15 +92,20 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
  
         
         path_temp=zeros(RobotNum,1);
+        path_num_temp=zeros(RobotNum,2);
         for i = 1:RobotNum
             path_temp(i) = Path_num{i,1}(res); % 储存下一节点
+            path_num_temp(i,1)=PathStore{i,1}(res,1);
+            path_num_temp(i,2)=PathStore{i,1}(res,2);
         end
         
         %% 交叉冲突
         for i =1:RobotNum
             for j = 1:RobotNum
                 if (abs(path_temp(i)-path_temp(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_temp(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)
-                    
+                  % (abs(path_temp(i)-path_temp(j))==SD && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==SD)||(abs(path_temp(i)-path_temp(j))==1 && abs(Path_num{i,1}(res-1)-Path_num{j,1}(res-1))==1)||  
+                  %||  (abs(path_num_temp(i,2)-path_num_temp(j,2))==1 &&
+                  %abs(path_num_temp(i,1)-path_num_temp(j,1))==0)||(abs(path_num_temp(i,2)-path_num_temp(j,2))==0 && abs(path_num_temp(i,1)-path_num_temp(j,1))==1)&&i~=j
                     if Start(j) == Goal(j)
                     text=' 号机器人已到达终点，冲突忽略';
                     disp([num2str(j),text]);  
@@ -133,24 +147,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                             
                      else
                          % 补充原始节点的横纵坐标小于等于3的情况，需要增加额外的启发式算法
-                             disp('横或纵坐标不满足大于边框的要求')
-
-%                              if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
-%                                  disp('冲突出现在左下边界')
-%                              
-%                              elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
-%                                  disp('冲突出现在左上边界')
-%                              
-%                              elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
-%                                  disp('冲突出现在右上边界')
-%                              
-%                              elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
-%                                  disp('冲突出现在右下边界')
-%                                  
-%                              else
-%                                                                
-%                              end
-                             
+                             disp('横或纵坐标不满足大于边框的要求')                           
                               % 优化边界冲突处理，将原环境拓展
                              one_add_y=ones(SD,encarde);
                              one_add_x=ones(encarde,SD+2*encarde);
@@ -196,8 +193,10 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
          for l=1:RobotNum
              if ~ismember(l,robot_coli)
                  same=path_temp(l);
+                 same_x=path_num_temp(l,1);
+                 same_y=path_num_temp(l,2);
                  for p=1:RobotNum
-                     if same == path_temp(p) && l ~= p
+                     if (same == path_temp(p) && l ~= p) || (same_x==path_num_temp(p,1) && same_y==path_num_temp(p,2) && l~=p)
                          z=z+1;
                          robot_coli(z)=p;
                      end
@@ -267,31 +266,24 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              end
                             
                  else
-                         % 补充原始节点的横纵坐标小于等于3的情况
-                            %[PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),~] = op_modify_sup(temp,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},Start(robot_coli(j)),Goal(robot_coli(j)),res,robot_coli(j),SD,D);
-% 
-%                              if X_start-1 < SD-X_start && Y_start-1 < SD-Y_start
-%                                  disp('冲突出现在左下边界')
-%                              
-%                              elseif X_start-1 > SD-X_start && Y_start-1 < SD-Y_start
-%                                  disp('冲突出现在左上边界')
-%                              
-%                              elseif X_start-1 > SD-X_start && Y_start-1 > SD-Y_start
-%                                  disp('冲突出现在右上边界')
-%                              
-%                              elseif X_start-1 < SD-X_start && Y_start-1 > SD-Y_start
-%                                  disp('冲突出现在右下边界')
-%                                  
-%                              else
-%                                  
-%                              end
-                             
+                      
                              one_add_y=ones(SD,encarde);
                              one_add_x=ones(encarde,SD+2*encarde);
-                             temp_am=temp;
+                             
+%                              if size(temp,2) >SD
+%                                  temp(:,size(temp,2))=[];
+%                              end
+%                              
+%                              temp_am=temp;
+%                              
+%                              if size(temp_am,2) >SD
+%                                  temp_am(:,size(temp_am,2))=[];
+%                              end
                              D_am=D;
+                             temp_am=temp;
                              
                              temp_am_op_1=[one_add_y temp_am one_add_y];
+                          %   disp(temp_am_op_1)
                              temp_am_op=[one_add_x;temp_am_op_1;one_add_x];
                              
                              D_am_op_1=[one_add_y D_am one_add_y];
@@ -322,47 +314,47 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         
         %% 节点释放
         % 判断是否求解结束
-        juge=unique(Goal-Start);
-        juge_n=size(juge,2);
-        
-        MAX_ro=0;
-        
-        for i = 1:RobotNum
-                inte=Goal(i)-Start(i);
-                if inte == 0
-                    nu=find(Path_num{i,1}==Goal(i));
-                    MAX_ro=max([nu(1),MAX_ro]);
-                end
-        end
-            
-        if juge_n==2
-            
-            inte=Goal-Start;
-            for i = 1:RobotNum
-                if inte(i) ~= 0
-                    disp(MAX_ro)
-                    sup=unique(Path_num{i,1}(MAX_ro:size(Path_num{i,1},2)));
-                    disp(sup)
-                    Path_num{i,1}(MAX_ro+1:size(Path_num{i,1},2))=[];
-                    Path_num{i,1}=[Path_num{i,1} sup];
-                    PathStore{i,1}(size(Path_num{i,1},2)+1:size(PathStore{i,1},1),:)=[];
-                    
-                    [PathStore_i,PathStore_i_i]=spread(Path_num{i,1},SD);
-                    PathStore{i,1}(:,1)=PathStore_i';
-                    PathStore{i,1}(:,2)=PathStore_i_i';
-                    
-                    disp('开始规划剩余路径并防止在某点卡死');
-
-                    [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
-
-                    PathStore{i,1}=[PathStore{i,1};PATH_sup];
-                    Path_num{i,1}=[Path_num{i,1} Path_num_sup];
-                    flag=1;
-                    Start=Goal;
-                end
-
-            end
-        end
+%         juge=unique(Goal-Start);
+%         juge_n=size(juge,2);
+%         
+%         MAX_ro=0;
+%         
+%         for i = 1:RobotNum
+%                 inte=Goal(i)-Start(i);
+%                 if inte == 0
+%                     nu=find(Path_num{i,1}==Goal(i));
+%                     MAX_ro=max([nu(1),MAX_ro]);
+%                 end
+%         end
+%             
+%         if juge_n==2
+%             
+%             inte=Goal-Start;
+%             for i = 1:RobotNum
+%                 if inte(i) ~= 0
+%                     disp(MAX_ro)
+%                     sup=unique(Path_num{i,1}(MAX_ro:size(Path_num{i,1},2)));
+%                %     disp(sup)
+%                     Path_num{i,1}(MAX_ro+1:size(Path_num{i,1},2))=[];
+%                     Path_num{i,1}=[Path_num{i,1} sup];
+%                     PathStore{i,1}(size(Path_num{i,1},2)+1:size(PathStore{i,1},1),:)=[];
+%                     
+%                     [PathStore_i,PathStore_i_i]=spread(Path_num{i,1},SD);
+%                     PathStore{i,1}(:,1)=PathStore_i';
+%                     PathStore{i,1}(:,2)=PathStore_i_i';
+%                     
+%                     disp('开始规划剩余路径并防止在某点卡死');
+% 
+%                     [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
+% 
+%                     PathStore{i,1}=[PathStore{i,1};PATH_sup];
+%                     Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+%                     flag=1;
+%                     Start=Goal;
+%                 end
+% 
+%             end
+%         end
         
         MAX = 0;
          
@@ -395,9 +387,31 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         else
             for i = 1:RobotNum
                 temp(PathStore{i,1}(res,1),PathStore{i,1}(res,2))=0; % 释放当前节点
+                if res ==2
+                    temp(PathStore{i,1}(1,1),PathStore{i,1}(1,2))=0; 
+                end
             end
         end
         
+        
+        N_F=0;
+        pass=[];
+        for i = 1:RobotNum
+            if Path_num{i,1}(res)==Goal(i) && ~ismember(i,pass)
+                N_F=N_F+1;
+                pass=[pass;i];
+    %            disp(pass)
+            end
+        end
+        
+        flag_fin=0;
+        if N_F==RobotNum
+            flag=1;
+            flag_fin=1;
+            disp('所有机器人已经到达终点')
+        end
+        
+%         if Path_num{i,1}(j)
     else
         flag=1;
     end
@@ -405,113 +419,157 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 end
 
 %% 补充规划变更过的终点
-inte=Goal-Start;
-for i = 1:RobotNum
-    if inte(i) ~= 0
-        disp('开始规划剩余路径');
-        
-        [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);   
-        PathStore{i,1}=[PathStore{i,1};PATH_sup];
-        Path_num{i,1}=[Path_num{i,1} Path_num_sup];
-        text = ' 号机器人所有无碰撞路径已规划完成';
-        disp([num2str(i),text]);
-    else
-        text = ' 号机器人所有无碰撞路径已规划完成';
-        disp([num2str(i),text]);
-    end
-    
-end
+if flag_fin ~= 1
+        inte=Goal-Start;
+        for i = 1:RobotNum
+            if inte(i) ~= 0
+                disp('开始规划剩余路径');
 
-MAX=0;
-for i = 1:RobotNum
-    MAX=max([size(PathStore{i,1},1),MAX]);
-%    MAX=MAX+1;
-    H(i)=size(PathStore{i,1},1);
-end
+                disp(Start(i))
+                disp(Goal(i))
+                [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
+                disp(PATH_sup)
+                disp(Path_num_sup)
+                PATH_sup(size(PATH_sup,1),:)=[];
+                Path_num_sup(size(Path_num_sup,2))=[];
+                PathStore{i,1}=[PathStore{i,1};PATH_sup];
+                Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+                disp(PathStore{i,1})
+                text = ' 号机器人所有无碰撞路径已规划完成';
+                disp([num2str(i),text]);
+            else
+                text = ' 号机器人所有无碰撞路径已规划完成';
+                disp([num2str(i),text]);
+            end
 
-MAX =MAX+1;
-
-for i=1:RobotNum
-    if size(PathStore{i,1},1)<MAX 
-        SI=size(PathStore{i,1});
-        for j = (SI+1):MAX
-            PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
-            PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-            Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
         end
-    end
 
-end
-        
-
-disp('纠正路径误差')
-
-for n =1:RobotNum
-    [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
-end
-
-%% 整理路径 消除卡顿
-disp('调节路径整理参数，消除路径中不必要的卡顿')
-
-LEN=size(PathStore{1,1},1);
-ro=zeros(RobotNum,1);
-
-for n = 1:RobotNum
-    if Path_num{n,1}(LEN-control)~=Goal(n) % 可以调节路径整理调整参数
-        ro(n)=1;
-    end
-end
-
-ROB=zeros(RobotNum,1);
-
-for n = 1:RobotNum
-    if ro(n) ~=1
-        flag=find(Path_num{n,1}==Goal(n));
-        ROB(n)=flag(1); %第一次到达终点的索引
-    end
-end
-
-ROB_MAX=max(ROB);
-
-for n =1:RobotNum
-    if ro(n) == 1
-        disp('重新规划出现卡顿的机器人')
-        
-        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
-%         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
-        Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
-        Path_num{n,1}=[Path_num{n,1} sup];
-        PathStore{n,1}(size(Path_num{n,1},2)+1:size(PathStore{n,1},1),:)=[];
-
-        [PathStore_n,PathStore_n_i]=spread(Path_num{n,1},SD);
-        PathStore{n,1}(:,1)=PathStore_n';
-        PathStore{n,1}(:,2)=PathStore_n_i';
-    end
-end
-
-% 统一化维度
-MAX=0;
-for i = 1:RobotNum
-    MAX=max([size(PathStore{i,1},1),MAX]);
-%    MAX=MAX+1;
-    H(i)=size(PathStore{i,1},1);
-end
-
-MAX =MAX+1;
-
-for i=1:RobotNum
-    if size(PathStore{i,1},1)<MAX 
-        SI=size(PathStore{i,1});
-        for j = (SI+1):MAX
-            PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
-            PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
-            Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+        MAX=0;
+        for i = 1:RobotNum
+            MAX=max([size(PathStore{i,1},1),MAX]);
+        %    MAX=MAX+1;
+            H(i)=size(PathStore{i,1},1);
         end
-    end
 
+        MAX =MAX+1;
+
+        for i=1:RobotNum
+            if size(PathStore{i,1},1)<MAX 
+                SI=size(PathStore{i,1});
+                for j = (SI+1):MAX
+                    PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+                    PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+                    Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+                end
+            end
+
+        end
+
+
+        disp('纠正路径误差')
+
+        for n =1:RobotNum
+            [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
+        end
+
+        %% 整理路径 消除卡顿
+        disp('调节路径整理参数，消除路径中不必要的卡顿')
+
+        LEN=size(PathStore{1,1},1);
+        ro=zeros(RobotNum,1);
+
+        for n = 1:RobotNum
+            if Path_num{n,1}(LEN-control)~=Goal(n) % 可以调节路径整理调整参数
+                ro(n)=1;
+            end
+        end
+
+        ROB=zeros(RobotNum,1);
+
+        for n = 1:RobotNum
+            if ro(n) ~=1
+                flag=find(Path_num{n,1}==Goal(n));
+                ROB(n)=flag(1); %第一次到达终点的索引
+            end
+        end
+
+        ROB_MAX=max(ROB);
+
+            if ismember(1,ro)
+                for n =1:RobotNum
+                    if ro(n) == 1
+                        disp('重新规划出现卡顿的机器人')
+
+                        [X_ST,Y_ST]=spread(Path_num{n,1}(ROB_MAX),SD);
+                        [X_FI,Y_FI]=spread(Goal(n),SD);
+                        X_MI=floor((X_ST+X_FI)/2);
+                        Y_MI=floor((Y_ST+Y_FI)/2);
+                %        disp(X_MI)
+                %        disp(Y_MI)
+
+                        if X_MI>=1 || Y_MI>=1
+                            if D(X_MI,Y_MI)==0 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+                                Start_MI=(Y_MI+(X_MI-1)*SD);
+                                [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
+                                [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
+                                path_num_2(1)=[];
+                                sup= [path_num_1 path_num_2];
+
+                            elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+                                Y_MI=Y_MI-1;
+                                Start_MI=(Y_MI+(X_MI-1)*SD);
+                                [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
+                                [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
+                                path_num_2(1)=[];
+                                sup = [path_num_1 path_num_2];
+
+                            else
+                            [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n); % 将原始路径规划分块
+                            end
+
+                        else
+                            [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);  
+                        end
+                %        disp(sup)
+                %        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
+                %         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
+                        if ~isempty(sup)
+                            Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
+                            Path_num{n,1}=[Path_num{n,1} sup];
+
+                            PathStore{n,1}(size(Path_num{n,1},2)+1:size(PathStore{n,1},1),:)=[];
+
+                            [PathStore_n,PathStore_n_i]=spread(Path_num{n,1},SD);
+                            PathStore{n,1}(:,1)=PathStore_n';
+                            PathStore{n,1}(:,2)=PathStore_n_i';
+                        end
+                    end
+                end
+            end
+
+        % 统一化维度
+        MAX=0;
+        for i = 1:RobotNum
+            MAX=max([size(PathStore{i,1},1),MAX]);
+        %    MAX=MAX+1;
+            H(i)=size(PathStore{i,1},1);
+        end
+
+        MAX =MAX+1;
+
+        for i=1:RobotNum
+            if size(PathStore{i,1},1)<MAX 
+                SI=size(PathStore{i,1});
+                for j = (SI+1):MAX
+                    PathStore{i,1}(j,1) =  PathStore{i,1}(H(i),1);
+                    PathStore{i,1}(j,2) =  PathStore{i,1}(H(i),2);
+                    Path_num{i,1}(j)      =  Path_num{i,1}(H(i));
+                end
+            end
+
+        end
 end
-
-disp('检查路径是否存在跳跃')
+%disp('检查路径是否存在跳跃')
 
 % for i=1:RobotNum
 %     for n = 1:length(Path_num{i,1})-1

@@ -1,4 +1,5 @@
 function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_ori,D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD_am,SD,encarde)
+    
     temp_reduit=temp(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
     D_reduit=D(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde);
 
@@ -20,11 +21,11 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
     end
 
     for k = Y_start-encarde:Y_start+encarde
-     num_temp=k+(X_start-encarde-1)*SD;
+     num_temp=k+(X_start-encarde-1)*(SD);
      if ismember(num_temp,Path_num)
          Goal_res_y_1=[Goal_res_y_1 k];  % 还需要判断是离终点最近的交点，可以通过原始的起点和终点的对应方向进行判断，但是并不准确，可以判断交点与终点的绝对距离。
      end
-     num_temp=k+(X_start+encarde-1)*SD;
+     num_temp=k+(X_start+encarde-1)*(SD);
      if ismember(num_temp,Path_num)
          Goal_res_y_2=[Goal_res_y_2 k]; 
      end
@@ -113,12 +114,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
 
      %Goal_res = (Goal_res_x-X_start+3+1)+(Goal_res_y-Y_start+2)*7; %转换为temp_reduit中的标号
  %if shorest_path > (encarde+1)*(encarde+1)*2
-     Goal_res_y=Goal_res_y+encarde;
-     Goal_res_x=Goal_res_x+encarde;
      
-     Goal_res_temp=Goal_res_y+(Goal_res_x-1)*SD_am;
+     Goal_res_temp=Goal_res_y+(Goal_res_x-1)*SD;
      encarde_total=encarde*2+1;
-     Goal_res = (Goal_res_y-Y_start+1)+(Goal_res_x-X_start)*encarde_total; %转换为temp_reduit中的标号
+     Goal_res = (Goal_res_y-(Y_start)+encarde+1)+(Goal_res_x-(X_start)+encarde)*encarde_total; %转换为temp_reduit中的标号
 
      centrale=encarde_total*encarde+encarde+1;
      %   tic
@@ -128,10 +127,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
          disp('缩减图中起点被占用，释放起点');
          temp_reduit(encarde+1,encarde+1) = 0;
      end
-%      if temp_reduit(Goal_X_fin,Goal_Y_fin) == 1
-%         disp('缩减图中终点被占用，释放终点');
-%         temp_reduit(Goal_X_fin,Goal_Y_fin) = 0;
-%      end
+
         disp('缩减图开始求解')
         [RE,PATH,~]=Modify_path(temp_reduit,centrale,Goal_res,j);  % 第j个冲突机器人路径重新规划，将规划得到的路径替换掉在原始路径中对应的部分。
         
@@ -156,6 +152,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     if m ~= 1
                         PATH(size(PATH,1),:)=[];
                     end
+                    
                     [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j)  ;
                     PATH=[PATH;PATH_sup];
                 if RE == 0
@@ -185,7 +182,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
              disp('该备用终点依然被包围，道路被完全阻挡')
 
              disp('寻找备用终点失败，机器人在此时刻暂停行动，或是已经到达终点')
-             PATH= [PathStore(res-1,:)+encarde ; PathStore(res-1:size(PathStore,1),:)+encarde]; % 暂停有问题
+             PATH= [PathStore(res-1,:); PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
              Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
              
              PathStore(res-1:size(PathStore,1),:)=[];
@@ -193,6 +190,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
 
              PathStore_MAJ_res=[PathStore;PATH];
              Path_num_MAJ_res=[Path_num Path_num_MAJ];
+             return
              
 %              PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
 %              Path_num_MAJ_res=(PathStore_MAJ_res(:,2)+(PathStore_MAJ_res(:,1)-1)*SD)';
@@ -274,7 +272,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
        %      [X_fin_it,Y_fin_it] = spread_sin(Goal,SD);
                  disp('该备用终点依然被包围，道路被完全阻挡')
           %   temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
-                 disp('寻找备用终点失败，机器人暂停在此时刻暂停行动')
+                 disp('寻找备用终点失败，机器人暂停在此时刻行动')
                 % n_robot=find(Path_num==Start);
 %                 PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
 %                 Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];

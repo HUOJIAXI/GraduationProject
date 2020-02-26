@@ -25,10 +25,10 @@ C = [];
 %%
 % 静止不动时返回0
 if l == t
-    PATH = [];
+    [N,B]=spread_sin(t,n);
+    PATH = [N,B];
     Path(1) = l;
-    distance = 0;
-    disp('起点终点不能选择同一个点')
+    disp('起点终点在同一个点')
     return
 end
 %% 约束1 确保路径从起点出发并在终点结束
