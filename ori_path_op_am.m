@@ -18,34 +18,36 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
           end
 
           [RE,PATH,~]=Modify_path(temp_D,central,Goal_op,i);
+          
+          
+              if RE == 0
+              disp('备用终点启用成功，已生成备用路径，已切换回原始终点'); 
+                  if flgn==1
+                        disp('返回原终点-m')
+                        disp(temp_D(Goal_op_x,Goal_op_y));
+                        disp('释放原始终点')
+                        temp_D(Goal_op_x,Goal_op_y)=0;
+                        Goal_op=Goal_op-m; % 返回原始终点
+                        if m ~= 1
+                            PATH(size(PATH,1),:)=[];
+                        end
+                        [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i)  ;
+                        PATH=[PATH;PATH_sup];
+                        disp(PATH)
+                  end
 
-          if flgn==1
-                disp('返回原终点-m')
-                disp(temp_D(Goal_op_x,Goal_op_y));
-                disp('释放原始终点')
-                temp_D(Goal_op_x,Goal_op_y)=0;
-                Goal_op=Goal_op-m; % 返回原始终点
-                [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i)  ;
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
-
-          end
-
-          if flgn==2
-                disp('返回原终点+m')
-                Goal_op=Goal_op+m;
-                disp('释放原始终点')
-                temp_D(Goal_op_x,Goal_op_y)=0;
-                [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
-          end
+                  if flgn==2
+                        disp('返回原终点+m')
+                        Goal_op=Goal_op+m;
+                        disp('释放原始终点')
+                        temp_D(Goal_op_x,Goal_op_y)=0;
+                        if m ~= 1
+                            PATH(size(PATH,1),:)=[];
+                        end
+                        [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
+                        PATH=[PATH;PATH_sup];
+                  end
+              end
      end
 
      if RE == 1

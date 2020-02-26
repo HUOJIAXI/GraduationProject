@@ -15,7 +15,7 @@ SD=size(D,1);
 %% 存储单机器人的原始最佳路径
 % 扩展路径矩阵，使得所有矩阵的维度一样，方便之后的去障碍算法。
 for i = 1:RobotNum
-    [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i);
+    [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
     PathStore{i,1} = PATH;
     Path_num{i,1} = path_num;
     MAX=max([size(PathStore{i,1},1),MAX]);
@@ -513,18 +513,18 @@ end
 
 disp('检查路径是否存在跳跃')
 
-for i=1:RobotNum
-    for n = 1:length(Path_num{i,1})-1
-        if abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=1 && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=SD && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=0
-            Path_num{i,1}(n+1)=Path_num{i,1}(n);
-        end
-    end
-end
-
-disp('检查完成')
-for n =1:RobotNum
-    [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
-end
+% for i=1:RobotNum
+%     for n = 1:length(Path_num{i,1})-1
+%         if abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=1 && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=SD && abs(Path_num{i,1}(n+1)-Path_num{i,1}(n)) ~=0
+%             Path_num{i,1}(n+1)=Path_num{i,1}(n);
+%         end
+%     end
+% end
+% 
+% disp('检查完成')
+% for n =1:RobotNum
+%     [PathStore{n,1}(:,1),PathStore{n,1}(:,2)]=spread(Path_num{n,1},SD);
+% end
 
 save('Path_num.mat');
 save('PathStore.mat');
