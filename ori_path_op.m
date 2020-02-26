@@ -9,43 +9,56 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res,D] = ori_path_op(D_ori,D,X_start,Y
     [RE,PATH,~]=Modify_path(temp_D,central,Goal_op,i);
     
       if RE == 1
-          disp('终点被包围，启用备用终点,重新规划路径');
-          [Goal_op,flgn,m]=GOAL_RESERVE(temp_D,Goal_op,SD_temp);
+        
+              disp('终点被包围，启用备用终点,重新规划路径');
+              [Goal_op,flgn,m]=GOAL_RESERVE(temp_D,Goal_op,SD_temp);
 
-          if flgn == 0
-             disp('环境密度太大，无法找到备用终点，求解错误');
-             return;
-          end
+              if flgn == 0
+                 disp('环境密度太大，无法找到备用终点，求解错误');
+                 return;
+              end
 
-          [RE,PATH,~]=Modify_path(temp_D,central,Goal_op,i);
+        [RE,PATH,~]=Modify_path(temp_D,central,Goal_op,i);
 
-          if flgn==1
-                disp('返回原终点-m')
-                disp(temp_D(Goal_op_x,Goal_op_y));
-                disp('释放原始终点')
-                temp_D(Goal_op_x,Goal_op_y)=0;
-                Goal_op=Goal_op-m; % 返回原始终点
-                [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i)  ;
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
+        if RE == 0
+            disp('备用终点启用成功');   
+              if flgn==1
+                    disp('返回原终点-m')
+                    disp(temp_D(Goal_op_x,Goal_op_y));
+                    disp('释放原始终点')
+                    temp_D(Goal_op_x,Goal_op_y)=0;
+                    Goal_op=Goal_op-m; % 返回原始终点
+                    disp(m)
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
+                    
+                    [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i);
+                    PATH=[PATH;PATH_sup];
+                    disp(PATH)
+        %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
 
-          end
+              end
 
-          if flgn==2
-                disp('返回原终点+m')
-                Goal_op=Goal_op+m;
-                disp('释放原始终点')
-                temp_D(Goal_op_x,Goal_op_y)=0;
-                [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
-          end
+              if flgn==2
+                    disp('返回原终点+m')
+                    Goal_op=Goal_op+m;
+                    disp('释放原始终点')
+                    temp_D(Goal_op_x,Goal_op_y)=0;
+                    [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
+                    PATH=[PATH;PATH_sup];
+        %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
+              end
+        end
      end
 
      if RE == 1

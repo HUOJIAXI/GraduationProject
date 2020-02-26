@@ -143,35 +143,45 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
           end
 
         [RE,PATH,~]=Modify_path(temp_reduit,centrale,Goal_res,j);
-            
-          if flgn==1
-                disp('返回原终点-m')
-                disp('释放原始终点')
-                temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                Goal_res=Goal_res-m; % 返回原始终点
-                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j) ; %需要扣除重复的点
-    %            PATH(size(PATH,1),:)=[]; %最后一个重复的点去除
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
+        
+        
+         if RE ==0
+             disp('备用终点启用成功');
+              if flgn==1
+                    disp('返回原终点-m')
+                    disp('释放原始终点')
+                    temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
+                    Goal_res=Goal_res-m; % 返回原始终点
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j) ; %需要扣除重复的点
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
+                    PATH=[PATH;PATH_sup];
+        %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    disp(PATH)
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
 
-          end
+              end
 
-          if flgn==2
-                disp('返回原终点+m')
-                Goal_res=Goal_res+m;
-                disp('释放原始终点')
-                temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
-      %          PATH(size(PATH,1),:)=[];
-                PATH=[PATH;PATH_sup];
-    %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                if RE == 0
-                    disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
-                end
-          end
+              if flgn==2
+                    disp('返回原终点+m')
+                    Goal_res=Goal_res+m;
+                    disp('释放原始终点')
+                    temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
+                    PATH=[PATH;PATH_sup];
+        %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
+                    if RE == 0
+                        disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
+                    end
+              end
+         end
+         
          end
          
          if RE == 1
@@ -226,11 +236,14 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
           [RE,PATH,Path_num_MAJ]=Modify_path(temp,Start,Goal,j);
           
            if RE == 0
+               disp('备用终点启用成功');     
               if flgn==1
                     disp('返回原终点-2')
                     Goal=Goal-m; % 返回原始终点
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
                     [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
-            %        PATH(size(PATH,1),:)=[];
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
@@ -242,8 +255,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
               if flgn==2
                     disp('返回原终点+2')
                     Goal=Goal+m;
+                    if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                    end
                     [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
-             %       PATH(size(PATH,1),:)=[];
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
