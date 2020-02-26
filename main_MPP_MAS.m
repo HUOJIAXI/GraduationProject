@@ -1,3 +1,4 @@
+ 
 %% 主函数
 % Version 7.1
 % Author : HUO JIAXI
@@ -8,10 +9,11 @@ clc;
 D = load('tsp_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [16,135,18,7,42,33,8,111,144,129,150,1,12,121]; % 113
-Goal = [121,74,135,96,131,45,35,141,150,100,168,94,133,137]; % 135
+Start = [16,135,18,7,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
+Goal = [121,74,135,96,131,45,35,141,111,100,133,94,46,143,31,59]; % 135
 encarde=2; %启发式算法参数2 3
-control=15; % 路径整理调整参数d
+control=15; % 路径整理调整参数
+print=0; %是否需要单项打印各个机器人的路径
 % Start = [16,133,9,8,49,1,7];
 % Goal = [121,74,143,96,131,24,35]; 
 
@@ -64,20 +66,22 @@ for i = 1:RobotNum
 end
 
 %% 打印各个机器人的行走顺序
-for i = 1:RobotNum
-    x_fig=zeros((length(Path_num{i})-1),1);
-    y_fig=zeros((length(Path_num{i})-1),1);
-    for j = 1:(length(Path_num{i})-1)
-        x_fig(j)=Path_num{i}(j);
-        y_fig(j)=Path_num{i}(j+1);
+if print == 1
+    for i = 1:RobotNum
+        x_fig=zeros((length(Path_num{i})-1),1);
+        y_fig=zeros((length(Path_num{i})-1),1);
+        for j = 1:(length(Path_num{i})-1)
+            x_fig(j)=Path_num{i}(j);
+            y_fig(j)=Path_num{i}(j+1);
+        end
+
+        figure(2+i)
+        str=['robot=',num2str(i)];
+        %G=digraph(A,'OmitSelfLoops');
+        G=digraph(x_fig,y_fig,'OmitSelfLoops');
+        plot(G,'Layout','layered');
+        title(str);
     end
-    
-    figure(2+i)
-    str=['robot=',num2str(i)];
-    %G=digraph(A,'OmitSelfLoops');
-    G=digraph(x_fig,y_fig,'OmitSelfLoops');
-    plot(G,'Layout','layered');
-    title(str);
 end
 
 D_after=D;

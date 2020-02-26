@@ -153,9 +153,11 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                     Goal_res=Goal_res-m; % 返回原始终点
                     [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j) ; %需要扣除重复的点
+     %               disp(PATH_sup)
                     if m ~= 1
                         PATH(size(PATH,1),:)=[];
                     end
+                    disp(PATH)
                     PATH=[PATH;PATH_sup];
         %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     disp(PATH)
@@ -189,15 +191,17 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
              disp('该备用终点依然被包围，道路被完全阻挡')
 
              disp('寻找备用终点失败，机器人在此时刻暂停行动，或是已经到达终点')
-             PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
-             Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
              
-             PathStore(res-1:size(PathStore,1),:)=[];
-             Path_num(res-1:size(Path_num,2))=[];
+            PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
+            Path_num_MAJ=Path_num(res-1:size(Path_num,2));
 
-             PathStore_MAJ_res=[PathStore;PATH];
-             Path_num_MAJ_res=[Path_num Path_num_MAJ];
-             
+            PathStore(res:size(PathStore,1),:)=[];
+            Path_num(res:size(Path_num,2))=[];
+
+            PathStore_MAJ_res=[PathStore;PATH];
+            Path_num_MAJ_res=[Path_num Path_num_MAJ];
+                
+            return
 %              PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
 %              Path_num_MAJ_res=(PathStore_MAJ_res(:,2)+(PathStore_MAJ_res(:,1)-1)*SD)';
              

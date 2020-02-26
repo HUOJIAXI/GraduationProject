@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 7.1
+# GraduationProject 项目日志 Version 8.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_14ROB_COLI_version7.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -241,3 +241,30 @@ Author: HUO JIAXI
 另外在op_modify_path中可能存在重复顶点未去除的bug，需要在后面的版本中加以修复，其他的冲突处理算法运行正常。  
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result7.1_13robots.png)
+
+## Version 8.0 26/02/2020
+Author: HUO JIAXI
+
+8.0版本修复了7.1版本中出现的子循环的情况，并且提高了机器人密度，通过增加密度解决了之前没有发现的一些bug，对于16机器人的环境，能够完成求解。运行时间为257s左右，由于机器人密度的上升，所以发生冲突的情况也更加复杂，因此会修改更多的路径，需要调用不同的启发式方法，但是到目前为止，方法证明是正确的。  
+
+目前的版本支持继续扩展密度。  
+
+14机器人：  
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result8.0_14robots.png)  
+
+运行时间：114.46s  
+
+系统总消耗时间：25
+
+系统总路程：96  
+
+16机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/result8.0_16robots.png)  
+
+运行时间：257.75s
+
+系统总消耗时间：25
+
+系统总路程：106    

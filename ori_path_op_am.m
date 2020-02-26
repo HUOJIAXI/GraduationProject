@@ -1,4 +1,5 @@
 function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,Y_start,X_fin,Y_fin,PathStore,Path_num,SD,i,encarde,res)
+
     Goal_op_x=X_fin-X_start+encarde+1; % 终点坐标转换
     Goal_op_y=Y_fin-Y_start+encarde+1;
     Goal_op = Goal_op_y+(Goal_op_x-1)*(2*encarde+1);
@@ -24,16 +25,16 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
               disp('备用终点启用成功，已生成备用路径，已切换回原始终点'); 
                   if flgn==1
                         disp('返回原终点-m')
-                        disp(temp_D(Goal_op_x,Goal_op_y));
+                     %   disp(temp_D(Goal_op_x,Goal_op_y));
                         disp('释放原始终点')
                         temp_D(Goal_op_x,Goal_op_y)=0;
                         Goal_op=Goal_op-m; % 返回原始终点
                         if m ~= 1
-                            PATH(size(PATH,1),:)=[];
+                        PATH(size(PATH,1),:)=[];
                         end
                         [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i)  ;
                         PATH=[PATH;PATH_sup];
-                        disp(PATH)
+                     %   disp(PATH)
                   end
 
                   if flgn==2
@@ -41,9 +42,9 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
                         Goal_op=Goal_op+m;
                         disp('释放原始终点')
                         temp_D(Goal_op_x,Goal_op_y)=0;
-                        if m ~= 1
-                            PATH(size(PATH,1),:)=[];
-                        end
+                       if m ~= 1
+                        PATH(size(PATH,1),:)=[];
+                       end
                         [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
                         PATH=[PATH;PATH_sup];
                   end
@@ -56,14 +57,24 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
       %   temp_ori(X_fin_it,Y_fin_it)=1; % 将无法使用的备用终点排除
          disp('寻找备用终点失败，机器人在此时刻暂停行动')
             % n_robot=find(Path_num==Start);
-         PATH= [PathStore(res-1,:)+encarde ; PathStore(res-1:size(PathStore,1),:)+encarde];
+         PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
+         
+         Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+             
+         PathStore(res-1:size(PathStore,1),:)=[];
+         Path_num(res-1:size(Path_num,2))=[];
+
+         PathStore_MAJ_res=[PathStore;PATH];
+         Path_num_MAJ_res=[Path_num Path_num_MAJ];
+         return
           %  Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
      end
 
-    PATH_MAJ(:,1)=PATH(:,1)+X_start+encarde-encarde-1-encarde;
-    PATH_MAJ(:,2)=PATH(:,2)+Y_start+encarde-encarde-1-encarde;
+    PATH_MAJ(:,1)=PATH(:,1)+X_start-encarde-1;
+    PATH_MAJ(:,2)=PATH(:,2)+Y_start-encarde-1;
     %path_num=path_num+(ini_y-1)+(ini_x-1)*SD;
-    disp(PATH_MAJ)
+ %
+ %disp(PATH_MAJ)
     
     Path_num_MAJ=(PATH_MAJ(:,2)+(PATH_MAJ(:,1)-1)*SD)';
 
