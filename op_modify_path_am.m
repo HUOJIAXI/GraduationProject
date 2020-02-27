@@ -182,14 +182,15 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
              disp('该备用终点依然被包围，道路被完全阻挡')
 
              disp('寻找备用终点失败，机器人在此时刻暂停行动，或是已经到达终点')
-             PATH= [PathStore(res-1,:); PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
-             Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
-             
-             PathStore(res-1:size(PathStore,1),:)=[];
-             Path_num(res-1:size(Path_num,2))=[];
-
-             PathStore_MAJ_res=[PathStore;PATH];
-             Path_num_MAJ_res=[Path_num Path_num_MAJ];
+             [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
+%              PATH= [PathStore(res-1,:); PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
+%              Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+%              
+%              PathStore(res-1:size(PathStore,1),:)=[];
+%              Path_num(res-1:size(Path_num,2))=[];
+% 
+%              PathStore_MAJ_res=[PathStore;PATH];
+%              Path_num_MAJ_res=[Path_num Path_num_MAJ];
              return
              
 %              PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
@@ -276,15 +277,15 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                 % n_robot=find(Path_num==Start);
 %                 PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
 %                 Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
-                
-                PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
-                Path_num_MAJ=Path_num(res-1:size(Path_num,2));
-                
-                PathStore(res:size(PathStore,1),:)=[];
-                Path_num(res:size(Path_num,2))=[];
-
-                PathStore_MAJ_res=[PathStore;PATH];
-                Path_num_MAJ_res=[Path_num Path_num_MAJ];
+                [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
+%                 PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
+%                 Path_num_MAJ=Path_num(res-1:size(Path_num,2));
+%                 
+%                 PathStore(res:size(PathStore,1),:)=[];
+%                 Path_num(res:size(Path_num,2))=[];
+% 
+%                 PathStore_MAJ_res=[PathStore;PATH];
+%                 Path_num_MAJ_res=[Path_num Path_num_MAJ];
                 return
                 
           end
