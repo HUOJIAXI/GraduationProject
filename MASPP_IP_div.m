@@ -83,6 +83,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         %% 解决两种冲突，迎面冲突和转角冲突
         for i = 1:RobotNum
             temp(PathStore{i,1}(res+1,1),PathStore{i,1}(res+1,2)) = 1; % 将动态地图中所有机器人下一时刻所在的节点定为障碍物
+        %    temp(PathStore{i,1}(res,1),PathStore{i,1}(res,2)) = 1; 
             Start(i)=Path_num{i,1}(res); % 将机器人实际所在节点作为出发点
         end
        
@@ -222,15 +223,92 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                 if temp(X_start,Y_start)==1
                     disp('起点被占用，现时刻暂停');
                    % PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1};(PathStore{robot_coli(j),1}(res-1,:))];
-                    PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
-                    Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
+                   
+%                    flag_stop=0;
+%                     for z=1:RobotNum
+%                         if Path_num{robot_coli(j),1}(res-1) == Path_num{robot_coli(z),1}(res)
+%                             flag_stop=1;
+%                             break
+%                         end
+%                     end
+                    [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1}]=traite_pause(D,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},res,1);
                     
-                    PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-                    Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+%                     if flag_stop == 0
+%                         PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
+%                         Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
+% 
+%                         PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                         Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                         PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                         Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                         continue
+%                     else
+%                         if PathStore{robot_coli(j),1}(res-1,2)-1~=0 || PathStore{robot_coli(j),1}(res-1,1)-1~=0
+%                             if PathStore{robot_coli(j),1}(res-1,2)-1~=0 && D(PathStore{robot_coli(j),1}(res-1,1),PathStore{robot_coli(j),1}(res-1,2)-1)==1 % 在货架处躲避
+%                                 
+%                                 PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
+%                                 Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
+%                                 
+%                                 PathStore{robot_coli(j),1}(res-1,2)=PathStore{robot_coli(j),1}(res-1,2)-1;
+%                                 Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
+%                                 
+%                                 PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                                 Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                                 PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                                 Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                                 continue
+% 
+%                             elseif PathStore{robot_coli(j),1}(res-1,1)-1~=0 && D(PathStore{robot_coli(j),1}(res-1,1)-1,PathStore{robot_coli(j),1}(res-1,2))==1
+% 
+%                                 PathStore{robot_coli(j),1}(res-1,1)=PathStore{robot_coli(j),1}(res-1,1)-1;
+%                                 Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
+%                                 PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                                 Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                                 PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                                 Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                                 continue
+%                             end
+%                         end
+%                             
+%                         
+%                         if D(PathStore{robot_coli(j),1}(res-1,1),PathStore{robot_coli(j),1}(res-1,2)+1)==1
+%                             
+%                             PathStore{robot_coli(j),1}(res-1,2)=PathStore{robot_coli(j),1}(res-1,2)-1;
+%                             Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
+%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                             continue
+%                             
+%                         elseif D(PathStore{robot_coli(j),1}(res-1,1)+1,PathStore{robot_coli(j),1}(res-1,2))==1
+%                             
+%                             PathStore{robot_coli(j),1}(res-1,1)=PathStore{robot_coli(j),1}(res-1,1)-1;
+%                             Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
+%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                             continue 
+%                         else 
+%                             disp('机器人被包围，机器人停止等待处理')
+%                             PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
+%                             Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
+% 
+%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
+%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
+% 
+%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
+%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
+%                             continue
+%                         end
+%                     end
 
-                    PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-                    Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-                    continue
                     
 %                     disp(res)
 %                     disp(PATH)
@@ -387,8 +465,8 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         else
             for i = 1:RobotNum
                 temp(PathStore{i,1}(res,1),PathStore{i,1}(res,2))=0; % 释放当前节点
-                if res ==2
-                    temp(PathStore{i,1}(1,1),PathStore{i,1}(1,2))=0; 
+                if res == 2
+                    temp(PathStore{i,1}(res-1,1),PathStore{i,1}(res-1,2))=0; 
                 end
             end
         end
@@ -432,8 +510,8 @@ if flag_fin ~= 1
                 disp(Path_num_sup)
                 PATH_sup(size(PATH_sup,1),:)=[];
                 Path_num_sup(size(Path_num_sup,2))=[];
-                PathStore{i,1}=[PathStore{i,1};PATH_sup];
-                Path_num{i,1}=[Path_num{i,1} Path_num_sup];
+                PathStore{i,1}=[PathStore{i,1};flipud(PATH_sup)];
+                Path_num{i,1}=[Path_num{i,1} fliplr(Path_num_sup)];
                 disp(PathStore{i,1})
                 text = ' 号机器人所有无碰撞路径已规划完成';
                 disp([num2str(i),text]);

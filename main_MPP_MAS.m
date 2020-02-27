@@ -9,7 +9,7 @@ clc;
 D = load('tsp_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [16,135,18,7,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
+Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
 Goal = [121,74,135,96,131,45,35,141,111,100,133,94,46,143,31,59]; % 135
 encarde=2; %启发式算法参数2 3
 control=15; % 路径整理调整参数
@@ -56,13 +56,13 @@ plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
 %% 原始环境
 mapdesigner(fliplr(D),2);
 
+show=ceil(sqrt(RobotNum));
+
 for i = 1:RobotNum
-    plot((PathStore{i}(:,2)-1/2),(PathStore{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) % 将所有机器人的路径显示在图中。
-    if(i==RobotNum)
-        break;
-    else
-        hold on;
-    end
+        mapdesigner_show(fliplr(D),i,show);
+        plot((PathStore{i}(:,2)-1/2),(PathStore{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) ;% 将所有机器人的路径显示在图中。
+        str=['robot=',num2str(i)];
+        title(str);
 end
 
 %% 打印各个机器人的行走顺序

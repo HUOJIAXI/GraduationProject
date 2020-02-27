@@ -68,14 +68,15 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res,D] = ori_path_op(D_ori,D,X_start,Y
          disp('寻找备用终点失败，机器人暂停在此时刻暂停行动')
             % n_robot=find(Path_num==Start);
        %PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
-        PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
-        Path_num_MAJ=Path_num(res-1:size(Path_num,2));
-
-        PathStore(res:size(PathStore,1),:)=[];
-        Path_num(res:size(Path_num,2))=[];
-
-        PathStore_MAJ_res=[PathStore;PATH];
-        Path_num_MAJ_res=[Path_num Path_num_MAJ];
+       [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
+%         PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
+%         Path_num_MAJ=Path_num(res-1:size(Path_num,2));
+% 
+%         PathStore(res:size(PathStore,1),:)=[];
+%         Path_num(res:size(Path_num,2))=[];
+% 
+%         PathStore_MAJ_res=[PathStore;PATH];
+%         Path_num_MAJ_res=[Path_num Path_num_MAJ];
         return
           %  Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
      end

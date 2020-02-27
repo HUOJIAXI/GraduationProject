@@ -1,8 +1,8 @@
-# GraduationProject 项目日志 Version 8.0
+# GraduationProject 项目日志 Version 8.1 削减式算法最终版
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.0_1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -268,3 +268,14 @@ Author: HUO JIAXI
 系统总消耗时间：25
 
 系统总路程：106    
+
+## Version 8.1 削减式算法最终版
+Author: HUO JIAXI
+
+8.1版本为削减式优化算法的最终版本，更新了暂停等待的情况下机器人进入货架等待的情况（在一定情况下防止堵塞），并且时间在180s左右（在16台机器人的情况下）。但是削减式优化算法无法解决死锁的问题：可能将可行路径在优化过程中被阻断，导致无法求解。
+
+对于死锁问题，通过了郑老师的讨论，可以尝试新的方法：单行道法则，这是新的方向，因此削减式算法将暂时不再更新，在论文的撰写过程中可作为一个模块，与单行道法则进行对比。  
+
+16个机器人的路径：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Vesion8.1.jpg)

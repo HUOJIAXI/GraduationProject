@@ -40,8 +40,11 @@ function [PathStore_MAJ_Res,Path_num_MAJ_Res,Start,Goal,temp] = op_modify_sup(te
          disp('该备用终点依然被包围，道路被完全阻挡')
          disp('寻找备用终点失败，机器人暂停在此时刻暂停行动')
                 % n_robot=find(Path_num==Start);
-        PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
-        Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+        [PathStore_MAJ_Res,Path_num_MAJ_Res]=traite_pause(D,PathStore,Path_num,res,1);
+        
+        return
+%         PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
+%         Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
      end
 
     PathStore(res-1:size(PathStore,1),:)=[];
