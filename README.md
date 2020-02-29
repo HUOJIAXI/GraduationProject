@@ -1,8 +1,9 @@
 # GraduationProject 项目日志 Version 8.1 削减式算法最终版
+# 当前进行：单行线法则版本 Version 1.1
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_2ROB_Version1.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -279,3 +280,11 @@ Author: HUO JIAXI
 16个机器人的路径：
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/Vesion8.1.jpg)
+
+# 单行线法则
+## Version 1.1 单行线法则1.1版本
+Author: HUO JIAXI
+
+单行道规划的1.1版本实现了3X3一障碍物环境的双机器人无碰撞规划，将单机器人整数规划模型扩展为多机器人，并且添加了多个约束，使得在该环境下，环境中的巷道均为单行道形式，但是有些约束不具有通用性，在障碍物增加的情况下可能无法实现求解。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Vesion1.1_one_way.jpg)
