@@ -71,9 +71,9 @@ for k = 1:numrobot
         [i_x,i_y]=spread_sin(i,size_D);
     %    [j_y,j_y]=spread_sin(j,size_D);
         if i > j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
-            dir(k,i,j) = x(k,i,j);
+            dir(k,i,j) = x(k,i,j); % 由大索引到小索引的方向为1
         elseif i < j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
-            dir(k,i,j) = -x(k,i,j);
+            dir(k,i,j) = x(k,i,j)+1; % 由小索引到大索引的方向为2
         elseif i == j && mod(i,2)==0
             dir(k,i,j) = 0;  
         else
@@ -83,20 +83,33 @@ for k = 1:numrobot
     end
 end
 
-for k = 1:numrobot
-    for i = 1:n
-        if i==1||i==3||i==6||i==9
-                C = [C, sum(dir(k,i,:))+sum(dir(k,:,i))<=1];
-        end
+%for k = 1:numrobot
+for i = 1:n
+    if i==1||i==3||i==6||i==9
+            C = [C, sum(dir(1,i,:))+sum(dir(2,i,:))~=2];
+            C = [C, sum(dir(1,i,:))+sum(dir(2,i,:))~=4];
     end
 end
+%end
 %% 约束5 单行线法则 （巷道方向框定）
 
+% for i = 1:n
+%     for j = 1:n
+%         C = [C, dir(1,1,2)-dir(2,3,2)+dir(2,8,7)+dir(1,7,8)==0]; %% 仅对于3*3小环境有效
+%     end
+% end
 for i = 1:n
-    for j = 1:n
-        C = [C, dir(1,1,2)-dir(2,3,2)+dir(2,8,7)+dir(1,7,8)==0]; %% 仅对于3*3小环境有效
+    if i == 1|| i==7 
+        C=[C,dir(1,i,i+1)+dir(2,i+1,i) ~= 3 ];
+       % C=[C,dir(1,7,8)+dir(2,8,7) ~= 3 ];
+    end
+    
+    if i == 4||i==6
+        C=[C,dir(1,i,i+3)+dir(2,i+3,i) ~= 3 ];
+       % C=[C,dir(1,7,8)+dir(2,8,7) ~= 3 ];
     end
 end
+
 
 %% 
 %% 求解IP模型
@@ -104,7 +117,7 @@ end
 % 参数设置
 
 ops = sdpsettings('verbose',0,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
-
+%ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
