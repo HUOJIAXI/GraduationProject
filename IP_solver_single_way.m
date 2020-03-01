@@ -20,6 +20,7 @@ z=0;
 for i = 1:numrobot
     z = z+sum(sum(d.*x(i,:,:)));
 end
+%z = sum(sum(d.*x(1,:,:)));
 
 % 约束添加
 C = [];
@@ -110,21 +111,32 @@ for i = 1:n
     end
 end
 
-
 %% 
+
+for k=1:numrobot
+    for i = 1:n
+        for j = 1:n
+            if i==j 
+                C = [C,x(k,i,j)==0];
+            end
+        end
+    end
+end
+
 %% 求解IP模型
 
 % 参数设置
 
-ops = sdpsettings('verbose',0,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',1,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
-%    value(x)
-%    disp(value(z))
-    text=' 系统总最优路径长度：';
-    disp([text,num2str(value(z))]);
+%    value(z)
+%    disp(value(x))
+%    text=' 系统总最优路径长度：';
+%    disp([text,num2str(value(z))]);
+    disp('系统总最优路径长度：Best objective');
 else
     disp('求解路径中存在障碍物，起点终点无法直达');
 end
