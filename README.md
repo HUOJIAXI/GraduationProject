@@ -2,7 +2,7 @@
 # Version 8.1 削减式算法最终版(具有在货架下躲避冲突的功能)
 # Version 8.1 最终效果：
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
-# 当前进行：单行线法则版本 Version 1.1
+# 当前进行：单行线法则版本 Version 1.2
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
@@ -290,4 +290,11 @@ Author: HUO JIAXI
 
 单行道规划的1.1版本实现了3X3一障碍物环境的双机器人无碰撞规划，将单机器人整数规划模型扩展为多机器人，并且添加了多个约束，使得在该环境下，环境中的巷道均为单行道形式，但是有些约束不具有通用性，在障碍物增加的情况下可能无法实现求解。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Vesion1.1_one_way.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.1_one_way.jpg)
+
+## Version 1.2
+Author: HUO JIAXI
+
+1.2版本提高了通用性，改变了方向的表达方式，由1.1版本的1和-1改为1和2，以方便巷道方向的框定：每个巷道点对于所有机器人（目前为2）的方向之和不等于3，即机器人在同一巷道中不可反向
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2_one_way.jpg)
