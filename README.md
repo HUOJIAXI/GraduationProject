@@ -298,3 +298,5 @@ Author: HUO JIAXI
 1.2版本提高了通用性，改变了方向的表达方式，由1.1版本的1和-1改为1和2，以方便巷道方向的框定：每个巷道点对于所有机器人（目前为2）的方向之和不等于3，即机器人在同一巷道中不可反向
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2_one_way.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.1.png)

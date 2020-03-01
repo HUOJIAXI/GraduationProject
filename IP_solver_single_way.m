@@ -84,14 +84,18 @@ for k = 1:numrobot
     end
 end
 
-%for k = 1:numrobot
-for i = 1:n
-    if i==1||i==3||i==6||i==9
-            C = [C, sum(dir(1,i,:))+sum(dir(2,i,:))~=2];
-            C = [C, sum(dir(1,i,:))+sum(dir(2,i,:))~=4];
+for k = 1:numrobot-1
+    for i = 1:size_D
+        if mod(i,2)==1
+            for j = 1:size_D
+                if mod(j,2)==1
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=2];
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=4];
+                end
+            end
+        end
     end
 end
-%end
 %% 约束5 单行线法则 （巷道方向框定）
 
 % for i = 1:n
@@ -99,15 +103,11 @@ end
 %         C = [C, dir(1,1,2)-dir(2,3,2)+dir(2,8,7)+dir(1,7,8)==0]; %% 仅对于3*3小环境有效
 %     end
 % end
-for i = 1:n
-    if i == 1|| i==7 
-        C=[C,dir(1,i,i+1)+dir(2,i+1,i) ~= 3 ];
-       % C=[C,dir(1,7,8)+dir(2,8,7) ~= 3 ];
-    end
-    
-    if i == 4||i==6
-        C=[C,dir(1,i,i+3)+dir(2,i+3,i) ~= 3 ];
-       % C=[C,dir(1,7,8)+dir(2,8,7) ~= 3 ];
+for k = 1:numrobot-1
+    for i = 1:n
+        for j = 1:n
+                C=[C,dir(k,i,j)+dir(k+1,j,i) ~= 3 ];
+        end
     end
 end
 
@@ -144,17 +144,17 @@ end
 %disp(value(dir))
 o=value(x);
 
-for k=1:numrobot
-    for i=1:length(o)
-        for j = 1 : length(o)
-            if(i==j)
-                o(k,i,j)=0;
-            else
-                continue;
-            end
-        end
-    end
-end
+% for k=1:numrobot
+%     for i=1:length(o)
+%         for j = 1 : length(o)
+%             if(i==j)
+%                 o(k,i,j)=0;
+%             else
+%                 continue;
+%             end
+%         end
+%     end
+% end
 
 %disp(o(2,:,:));
 %% 邻接矩阵转换，路径绘制
