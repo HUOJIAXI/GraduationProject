@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_2ROB_Version1.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_3ROB_Version1.2.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -295,8 +295,16 @@ Author: HUO JIAXI
 ## Version 1.2
 Author: HUO JIAXI
 
-1.2版本提高了通用性，改变了方向的表达方式，由1.1版本的1和-1改为1和2，以方便巷道方向的框定：每个巷道点对于所有机器人（目前为2）的方向之和不等于3，即机器人在同一巷道中不可反向
+1.2版本提高了通用性，改变了方向的表达方式，由1.1版本的1和-1改为1和2，以方便巷道方向的框定：每个巷道点对于所有机器人（目前为2）的方向之和不等于3，即机器人在同一巷道中不可反向。并且通过增加机器人的个数证明其通用性。运行时间比双机器人时增加了1.5s左右，在可接受范围内。
+
+1.2版本修复了视频生成中存在的帧数会发生变化的问题。
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2_one_way.jpg)
 
+双机器人： 
+
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.1.png)
+
+三机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2.png)
