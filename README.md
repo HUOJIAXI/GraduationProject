@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_4ROB_Version2.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/simulation_4ROB_Version2.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -316,8 +316,8 @@ Author: HUO JIAXI
 
 2.0版本会出现在保证单行道方向的时候两个机器人可能会交叉进入对方的巷道，这个问题需要征求老师的建议，是否需要添加新的对于单行道方向的限制。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.0_4Rob.png)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_4Rob.png)
 
 四机器人：
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.0_one_way_4Rob.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_one_way_4Rob.jpg)
 
