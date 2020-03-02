@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_3ROB_Version1.2.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_4ROB_Version2.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -307,4 +307,17 @@ Author: HUO JIAXI
 
 三机器人：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2.png)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2.png)  
+
+## Version 2.0
+Author: HUO JIAXI
+
+2.0版本扩大了环境，将3*3的环境扩展到5*5的四机器人空间，并且添加了针对不同的交叉点避免同进同出的限制，以及单行道方向限制，完成时间为70s。
+
+2.0版本会出现在保证单行道方向的时候两个机器人可能会交叉进入对方的巷道，这个问题需要征求老师的建议，是否需要添加新的对于单行道方向的限制。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.0_4Rob.png)
+
+四机器人：
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.0_one_way_4Rob.jpg)
+

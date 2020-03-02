@@ -3,8 +3,8 @@ clc;
 D = load('dist_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [1,3,4];
-Goal = [9,7,3];
+Start = [1,5,15,10];
+Goal = [25,21,22,23];
 RobotNum = size(Start,2);
 size_D=size(D,1);
 
