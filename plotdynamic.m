@@ -3,9 +3,12 @@ function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 m=size(D,1);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_2ROB_Version1.1','MPEG-4');
+video = VideoWriter('simulation_2ROB_Version1.2','MPEG-4');
 video.FrameRate=2;
 open(video);
+
+ax = gca();
+
 globaltime = 0;
 
 MAX=0;
@@ -45,7 +48,6 @@ for loop=1:10000
         break;
     end
     frame = getframe;
-    writeVideo(video,frame);
     pause(0.5);
     cla;
     
@@ -70,18 +72,13 @@ for loop=1:10000
            end
         end
     end
-    
-%     plot(AllRobotState-1/2,'ks','MarkerFaceColor','r','MarkerSize',10)
-    
-%     for i=1:RobotNum
-%         if  ~isempty(PathStore{i,1})
-%            AllRobotState(PathStore{i,1}(loop,1),PathStore{i,1}(loop,2)) = 0;
-%         end
-%     end
-    globaltime = globaltime + 1;
+  
+    writeVideo(video,getframe(ax))
+    globaltime = globaltime + 1;  
 end
 
 disp('系统总消耗时刻：')
 disp(globaltime);
 disp(loop);
+% close(gca);
 close(video);
