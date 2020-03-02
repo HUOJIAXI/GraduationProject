@@ -47,7 +47,7 @@ for loop=1:10000
     if loop > indice+1
         break;
     end
-    frame = getframe;
+%     frame = getframe(ax);
     pause(0.5);
     cla;
     
