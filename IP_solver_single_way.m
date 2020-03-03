@@ -144,7 +144,7 @@ end
 % for k = 1:numrobot-2
 %     for i = 3:size_D-2
 %         if mod(i,2)==1
-%             for j = 3:size_D-2
+%             for j = 3:size_D-2  - -
 %                 if mod(j,2)==1
 %                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))+sum(dir(k+2,j+(i-1)*size_D,:))~=6];
 %                 end
