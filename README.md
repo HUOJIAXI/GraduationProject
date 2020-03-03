@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/simulation_9ROB_Version2.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version2.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
