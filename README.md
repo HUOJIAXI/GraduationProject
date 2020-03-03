@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_3ROB_Version1.2.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/simulation_9ROB_Version2.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -307,4 +307,32 @@ Author: HUO JIAXI
 
 三机器人：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2.png)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version1.2.png)  
+
+## Version 2.0
+Author: HUO JIAXI
+
+2.0版本扩大了环境，将3*3的环境扩展到5*5的四机器人空间，并且添加了针对不同的交叉点避免同进同出的限制，以及单行道方向限制，完成时间为70s。
+
+2.0版本会出现在保证单行道方向的时候两个机器人可能会交叉进入对方的巷道，这个问题需要征求老师的建议，是否需要添加新的对于单行道方向的限制。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_4Rob.png)
+
+四机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_one_way_4Rob.jpg)
+
+## Version 2.1
+Author: HUO JIAXI
+
+2.1版本通过将模型规模进一步扩大，扩大为7*7的环境，并且有9个机器人，通过求解，发现之前所设定的约束条件可以满足要求，因此初步判定这些约束条件具有通用性。
+
+3。0版本尝试将起点终点的选取随机化，以得出一般性结论，需要用到：r = a + (b-a).*rand([m n])
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.1_one_way_9Robot.jpg)
+
+九机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.1.jpg)
+
+

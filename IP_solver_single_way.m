@@ -74,7 +74,7 @@ for k = 1:numrobot
         if i > j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
             dir(k,i,j) = x(k,i,j); % 由大索引到小索引的方向为1
         elseif i < j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
-            dir(k,i,j) = x(k,i,j)+1; % 由小索引到大索引的方向为2
+            dir(k,i,j) = x(k,i,j)+2; % 由小索引到大索引的方向为3
         elseif i == j && mod(i,2)==0
             dir(k,i,j) = 0;  
         else
@@ -84,29 +84,84 @@ for k = 1:numrobot
     end
 end
 
+%% 在边界处四个交界点：
 for k = 1:numrobot-1
     for i = 1:size_D
-        if mod(i,2)==1
+        if i==1||i==size_D
             for j = 1:size_D
-                if mod(j,2)==1
+                if j==1||j==size_D
                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=2];
-                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=4];
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
                 end
             end
         end
     end
 end
-%% 约束5 单行线法则 （巷道方向框定）
 
-% for i = 1:n
-%     for j = 1:n
-%         C = [C, dir(1,1,2)-dir(2,3,2)+dir(2,8,7)+dir(1,7,8)==0]; %% 仅对于3*3小环境有效
+%% 周围交界点
+for k = 1:numrobot-2
+    for i = 1:size_D
+        if i==1||i==size_D
+            for j = 3:size_D-2
+                if mod(j,2)==1
+ %                   disp(j+(i-1)*size_D)
+%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))-sum(dir(k+1,j+(i-1)*size_D,:))-sum(dir(k+2,j+(i-1)*size_D,:))~=-3];
+%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))-sum(dir(k+1,j+(i-1)*size_D,:))-sum(dir(k+2,j+(i-1)*size_D,:))~=0];
+                     C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=7];
+                     C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=5];
+                end
+            end
+        elseif mod(i,2)==1
+            for j = 1:size_D 
+                if j==1 || j == size_D
+ %                   disp(j+(i-1)*size_D)
+                %    C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)-dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+1)-dir(k+2,j+(i-1)*size_D,j+(i-1)*size_D+size_D)==-3];
+                     C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=7];
+                     C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=5];
+                %    C = [C, sum(dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D))-sum(dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+1))-sum(dir(k+2,j+(i-1)*size_D,j+(i-1)*size_D+size_D))~=0];
+                end
+            end
+        end
+    end
+end
+
+%% 中部点
+if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向全为入边或出边的情况
+for k = 1:numrobot-3
+    for i = 3:size_D-2
+        if mod(i,2)==1
+            for j = 3:size_D-2
+                if mod(j,2)==1
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))+sum(dir(k+2,j+(i-1)*size_D,:))+sum(dir(k+3,j+(i-1)*size_D,:))~=8];
+                end
+            end
+        end
+    end
+end
+end
+
+% if numrobot >= 4
+% for k = 1:numrobot-2
+%     for i = 3:size_D-2
+%         if mod(i,2)==1
+%             for j = 3:size_D-2  - -
+%                 if mod(j,2)==1
+%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))+sum(dir(k+2,j+(i-1)*size_D,:))~=6];
+%                 end
+%             end
+%         end
 %     end
 % end
+% end
+
+
+
+%% 约束5 单行线法则 （巷道方向框定）
+
 for k = 1:numrobot-1
     for i = 1:n
         for j = 1:n
-                C=[C,dir(k,i,j)+dir(k+1,j,i) ~= 3 ];
+                C=[C,dir(k,i,j)+dir(k+1,j,i) ~= 4 ];
         end
     end
 end
