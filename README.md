@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/simulation_4ROB_Version2.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/simulation_9ROB_Version2.1.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -319,5 +319,20 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_4Rob.png)
 
 四机器人：
+
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/dev_one_way/Result_one_way/Version2.0_one_way_4Rob.jpg)
+
+## Version 2.1
+Author: HUO JIAXI
+
+2.1版本通过将模型规模进一步扩大，扩大为7*7的环境，并且有9个机器人，通过求解，发现之前所设定的约束条件可以满足要求，因此初步判定这些约束条件具有通用性。
+
+3。0版本尝试将起点终点的选取随机化，以得出一般性结论，需要用到：r = a + (b-a).*rand([m n])
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.1_one_way_9Robot.jpg)
+
+九机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.1.jpg)
+
 
