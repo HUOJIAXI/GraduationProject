@@ -3,9 +3,11 @@ clc;
 D = load('dist_map.txt'); 
 m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
-Start = [1,5,15,10,18,20,3,29,45];
-Goal = [24,21,22,26,49,42,38,43,4];
-RobotNum = size(Start,2);
+% Start = [1,5,15,10,18,20,3,29,45];
+% Goal = [24,21,22,26,49,42,38,43,4];
+RobotNum=9;
+[Start,Goal]=rand_Goal_Start(D,RobotNum);
+%RobotNum = size(Start,2);
 size_D=size(D,1);
 
 tic
@@ -24,3 +26,6 @@ for i = 1:RobotNum
         str=['robot=',num2str(i)];
         title(str);
 end
+
+save('PathStore.mat')
+save('Path_num.mat')

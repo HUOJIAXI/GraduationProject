@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version2.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version3.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -335,4 +335,26 @@ Author: HUO JIAXI
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version2.1.jpg)
 
+## Version 3.0
+Author: HUO JIAXI
 
+3.0版本添加了随机初始点和终点：通过输入机器人个数，即可生成一组对应每个机器人的随机起点和终点，并且随机起点和终点不会出现在障碍物处，并且机器人之间的起点不会重合，终点也不会重合。
+
+根据对模型的随机测试，我们得到了如下结果，为了节省时间，我们安排了三个机器人：
+	运行时间（s）	最佳路径长度
+
+1.    46				13
+
+2.    49				20
+
+3.	  53				17
+
+通过三组随机测试，可以发现模型的求解时间变化在可接受的范围内，但是测试的过程中电脑会发热，会影响一定的求解速度。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version3.0_9Rob.jpg)
+
+九机器人：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version3.0.png)
+
+接下来的任务是尝试利用切割的方法，减小求解规模。
