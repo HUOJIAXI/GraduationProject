@@ -7,7 +7,7 @@ obs=[];
 for i = 1:m
     for j = 1:n
         if D(i,j) == 1
-            obs=[obs j+(i-1)*m];
+            obs=[obs j+(i-1)*n];
         end
     end
 end

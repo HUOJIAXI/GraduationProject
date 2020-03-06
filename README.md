@@ -2,11 +2,11 @@
 # Version 8.1 削减式算法最终版(具有在货架下躲避冲突的功能)
 # Version 8.1 最终效果：
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
-# 当前进行：单行线法则版本 Version 1.2
+# 当前进行：单行线法则版本 Version 4.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version3.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version4.0.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -358,3 +358,18 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version3.0.png)
 
 接下来的任务是尝试利用切割的方法，减小求解规模。
+
+## Version 4.0
+Author: HUO JIAXI
+
+4.0版本由拓扑结构扩展为由1*3的货架组成的7*13的环境中，并且引入IP模型。
+
+并且在调试过程中发现之前版本的单行线规则中的保持路径方向的限制存在问题，会存在方向出现问题的问题，会出现冲突的情况，由于在拓扑图结构中不会出现冲突，因此在扩展的13*7环境中可以通过调节机器人的速度实现避障。
+
+由于单行线规则复杂度变高，因此求解时间变长（可能是电脑温度太高，导致电脑运行速度变慢），还需要改进IP模型。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.0.png)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.0_9Rob.jpg)
+
+
