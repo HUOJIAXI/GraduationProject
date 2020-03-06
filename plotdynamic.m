@@ -1,6 +1,6 @@
 function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
-m=size(D,1);
+m=size(D,2);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
 video = VideoWriter('simulation_9ROB_Version3.0','MPEG-4');
@@ -66,11 +66,12 @@ end
 
 
 for i=1:RobotNum
-    final = unique(find(Path_num{i,1}==Goal(i)));
-    finalindice(i) = final(1);
+    final = length(Path_num{i});
+    finalindice(i) = final;
 end
 
 indice=max(finalindice);
+disp(indice)
 
 for loop=1:10000
     if loop > indice+1

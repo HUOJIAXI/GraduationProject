@@ -1,4 +1,4 @@
-function [start_re_ori,goal_re_ori,start_sp,goal_sp,D_reduit] = reduit(Start,Goal,D)
+function [start_re,goal_re,start_sp,goal_sp,D_reduit] = reduit(Start,Goal,D)
 
 sizeD=size(D,2);
 [start_sp_X,start_sp_Y]=spread(Start,sizeD);
@@ -7,11 +7,11 @@ sizeD=size(D,2);
 for i =1:length(start_sp_Y)
     if mod(start_sp_Y(i),2)==0
         
-        if mod(start_sp_Y(i)/2,2)==1
-                start_sp_Y(i)=start_sp_Y(i)-1;
-        end
-        if mod(start_sp_Y(i)/2,2)==0
+        if mod(start_sp_Y(i),2)==1
                 start_sp_Y(i)=start_sp_Y(i)+1;
+        end
+        if mod(start_sp_Y(i),2)==0
+                start_sp_Y(i)=start_sp_Y(i)-1;
         end
         
     end
@@ -21,11 +21,11 @@ start_sp=start_sp_Y+(start_sp_X-1)*sizeD;
 
 for i =1:length(Goal_sp_Y)
     if mod(Goal_sp_Y(i),2)==0
-        if mod(Goal_sp_Y(i)/2,2)==1
-            Goal_sp_Y(i)=Goal_sp_Y(i)-1;
-        end
-        if mod(Goal_sp_Y(i)/2,2)==0
+        if mod(Goal_sp_Y(i),2)==1
             Goal_sp_Y(i)=Goal_sp_Y(i)+1;
+        end
+        if mod(Goal_sp_Y(i),2)==0
+            Goal_sp_Y(i)=Goal_sp_Y(i)-1;
         end
     end
 end
@@ -64,7 +64,8 @@ start_re=start_sp_Y+(start_sp_X-1)*sizeDre;
 
 goal_re =Goal_sp_Y+(Goal_sp_X-1)*sizeDre;
 
-start_re_ori=unique(start_re,'stable');
-goal_re_ori=unique(goal_re,'stable');
+% start_re_ori=unique(start_re,'stable');
+% goal_re_ori=unique(goal_re,'stable');
+%num=length(start_re_ori);
 
 
