@@ -1,3 +1,4 @@
+
 %% Version: 28/02/2020
 % Author:HUO JIAXI
 % 引入单行道限制
@@ -13,7 +14,8 @@ n = size(d,1);
 
 x = binvar(numrobot,n,n,'full'); % n*n维的决策变量
 u = intvar(numrobot,n);
-dir = intvar(numrobot,n,n,'full'); % a 表示每个巷道的方向
+dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
+%p = intvar((n-1)/2,1);
 
 % 目标
 z=0;
@@ -90,12 +92,13 @@ for k = 1:numrobot-1
         if i==1||i==size_D
             for j = 1:size_D
                 if (i==1&&j==1)|| (i==size_D&&j==size_D)
-                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=2];
-                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=4];
+               %     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
                 end
                 
                 if (i==1&&j==size_D)|| (i==size_D&&j==1)
-                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=4];
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=2];
+                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
                 end
                 
             end
@@ -189,52 +192,63 @@ end
 %             end
 %    end
 
-for k = 1:numrobot
     for i = 1:size_D
       for j = 1:size_D
-          if k ~= numrobot
-              if ((mod(i,2)==1)&&(mod(j,2)==0)) 
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(k+1,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D+1,j+(i-1)*size_D)+dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+1)~=4];
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(k+1,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D-1,j+(i-1)*size_D)+dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D-1)~=4];
+%          if k ~= numrobot
+               if ((mod(i,2)==1)&&(mod(j,2)==0)) 
+               for k = 1:numrobot
+                   for p = 1:numrobot
+                       if k ~=p
+                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(p,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
+%                             C = [C, dir(k,j+(i-1)*size_D+1,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D+1)~=4];
+                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(p,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
+%                             C = [C, dir(k,j+(i-1)*size_D-1,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D-1)~=4];
+                       end
+                   end
+               end
     %           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
               elseif ((mod(i,2)==0)&&(mod(j,2)==1))
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(k+1,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D+size_D,j+(i-1)*size_D)+dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+size_D)~=4];
-                 
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(k+1,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D-size_D,j+(i-1)*size_D)+dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D-size_D)~=4];
+              for k =1:numrobot
+                  for p = 1:numrobot
+                      if k~=p
+                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(p,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
+%                             C = [C, dir(k,j+(i-1)*size_D+size_D,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D+size_D)~=4];
+
+                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(p,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
+%                             C = [C, dir(k,j+(i-1)*size_D-size_D,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D-size_D)~=4];
+                      end
+                  end
               end
-          end
+              end
+%           end
           
-          if k == numrobot
-              if ((mod(i,2)==1)&&(mod(j,2)==0)) 
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(1,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D+1,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D+1)~=4];
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(1,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D-1,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D-1)~=4];
-    %           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
-              elseif ((mod(i,2)==0)&&(mod(j,2)==1))
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(1,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D+size_D,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D+size_D)~=4];
-                 
-                C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(1,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
-                C = [C, dir(k,j+(i-1)*size_D-size_D,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D-size_D)~=4];
-              end
-          end
+%           if k == numrobot
+%               if ((mod(i,2)==1)&&(mod(j,2)==0)) 
+%                 C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(1,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
+%                 C = [C, dir(k,j+(i-1)*size_D+1,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D+1)~=4];
+%                 C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(1,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
+%                 C = [C, dir(k,j+(i-1)*size_D-1,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D-1)~=4];
+%     %           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
+%               elseif ((mod(i,2)==0)&&(mod(j,2)==1))
+%                 C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(1,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
+%                 C = [C, dir(k,j+(i-1)*size_D+size_D,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D+size_D)~=4];
+%                  
+%                 C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(1,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
+%                 C = [C, dir(k,j+(i-1)*size_D-size_D,j+(i-1)*size_D)+dir(1,j+(i-1)*size_D,j+(i-1)*size_D-size_D)~=4];
+%               end
+%           end
       end 
     end
-end
 
-for i = 1:size_D
-      for j = 1:size_D
-          if ((mod(i,2)==1)&&(mod(j,2)==0)) || ((mod(i,2)==0)&&(mod(j,2)==1))
-          C = [C, sum(dir(numrobot,j+(i-1)*size_D,:))+sum(dir(1,:,j+(i-1)*size_D))~=4];
-%           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
-          end
-      end 
-end
+
+% for i = 1:size_D
+%       for j = 1:size_D
+%           if ((mod(i,2)==1)&&(mod(j,2)==0)) || ((mod(i,2)==0)&&(mod(j,2)==1))
+%           C = [C, sum(dir(numrobot,j+(i-1)*size_D,:))+sum(dir(1,:,j+(i-1)*size_D))~=4];
+% %           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
+%           end
+%       end 
+% end
 
 
 % for i = 1:n

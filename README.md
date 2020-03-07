@@ -6,7 +6,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version4.0.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version4.2.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -364,7 +364,7 @@ Author: HUO JIAXI
 
 4.0版本由拓扑结构扩展为由1*3的货架组成的7*13的环境中，并且引入IP模型。
 
-并且在调试过程中发现之前版本的单行线规则中的保持路径方向的限制存在问题，会存在方向出现问题的问题，会出现冲突的情况，由于在拓扑图结构中不会出现冲突，因此在扩展的13*7环境中可以通过调节机器人的速度实现避障。
+并且在调试过程中发现之前版本的单行线规则中的保持路径方向的限制存在问题，会存在方向出现问题的问题，会出现冲突的情况，由于在拓扑图结构中不会出现冲突，因此在扩展的13x7环境中可以通过调节机器人的速度实现避障。
 
 由于单行线规则复杂度变高，因此求解时间变长（可能是电脑温度太高，导致电脑运行速度变慢），还需要改进IP模型。
 
@@ -372,4 +372,27 @@ Author: HUO JIAXI
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.0_9Rob.jpg)
 
+## Vesion 4.1
+Author: HUO JIAXI
 
+4.1版本处理了4.0版本存在的由原环境转拓扑图存在的导致起点终点偏移的问题。
+
+4.1版本存在IP模型限制存在的问题，对于控制巷道方向会失效。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.1.jpg)
+
+## Version 4.2
+Author: HUO JIAXI
+
+4.2版本修复了4.1版本中IP模型存在的巷道方向控制失效的问题，但是存在限制过多的问题，会导致求解速度很慢，对于7x13的需要求解将近40分钟的时间。因此需要改进模型中的限制。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.2_9rob.png)
+
+## Version 4.2 ops
+Author: HUO JIAXI
+
+4.2改进版本改进了4.2版本的限制，主要针对巷道方向的控制限制。降低了限制数量，缩小了模型规模，8机器人环境求解时间在290s左右，9机器人580s，相对于4.2版本的40分钟由一定的提高，并且由于求解次数过多，可能会导致计算机运行速度变慢，因此在初始状态下运行可能会得到更快的运行时间。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.2_9rob_ops.png)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.2_9rob.jpg)

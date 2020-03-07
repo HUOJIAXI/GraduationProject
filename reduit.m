@@ -7,10 +7,10 @@ sizeD=size(D,2);
 for i =1:length(start_sp_Y)
     if mod(start_sp_Y(i),2)==0
         
-        if mod(start_sp_Y(i),2)==1
+        if mod(start_sp_Y(i)/2,2)==1
                 start_sp_Y(i)=start_sp_Y(i)+1;
         end
-        if mod(start_sp_Y(i),2)==0
+        if mod(start_sp_Y(i)/2,2)==0
                 start_sp_Y(i)=start_sp_Y(i)-1;
         end
         
@@ -21,10 +21,10 @@ start_sp=start_sp_Y+(start_sp_X-1)*sizeD;
 
 for i =1:length(Goal_sp_Y)
     if mod(Goal_sp_Y(i),2)==0
-        if mod(Goal_sp_Y(i),2)==1
+        if mod(Goal_sp_Y(i)/2,2)==1
             Goal_sp_Y(i)=Goal_sp_Y(i)+1;
         end
-        if mod(Goal_sp_Y(i),2)==0
+        if mod(Goal_sp_Y(i)/2,2)==0
             Goal_sp_Y(i)=Goal_sp_Y(i)-1;
         end
     end
