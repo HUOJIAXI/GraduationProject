@@ -5,7 +5,7 @@ m = size(D,1);
 % 判断是否存在起始点在障碍物处的情况
 % Start = [1,5,15,10,18,20,3,29,45];
 % Goal = [24,21,22,26,49,42,38,43,4];
-RobotNum=9;
+RobotNum=12;
 [Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum);
 %RobotNum = size(Start,2);
 

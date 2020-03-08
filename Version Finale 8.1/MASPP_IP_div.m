@@ -503,16 +503,16 @@ if flag_fin ~= 1
             if inte(i) ~= 0
                 disp('开始规划剩余路径');
 
-                disp(Start(i))
-                disp(Goal(i))
+          %      disp(Start(i))
+         %       disp(Goal(i))
                 [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
-                disp(PATH_sup)
-                disp(Path_num_sup)
+         %       disp(PATH_sup)
+          %      disp(Path_num_sup)
                 PATH_sup(size(PATH_sup,1),:)=[];
                 Path_num_sup(size(Path_num_sup,2))=[];
                 PathStore{i,1}=[PathStore{i,1};flipud(PATH_sup)];
                 Path_num{i,1}=[Path_num{i,1} fliplr(Path_num_sup)];
-                disp(PathStore{i,1})
+           %     disp(PathStore{i,1})
                 text = ' 号机器人所有无碰撞路径已规划完成';
                 disp([num2str(i),text]);
             else

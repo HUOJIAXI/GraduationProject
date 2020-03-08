@@ -1,6 +1,6 @@
 function [PathStore,Path_num]=traite_pause(D,PathStore,Path_num,res,flag)
 SD=size(D,1);
-flag_stop=1;
+flag_stop=0; % 是否启动货架躲避方法
 if flag_stop == 0
     PATH= PathStore(res-1:size(PathStore,1),:);
     Path_num_MAJ=Path_num(res-1:size(Path_num,2));

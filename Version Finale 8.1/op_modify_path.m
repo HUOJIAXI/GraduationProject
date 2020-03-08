@@ -157,10 +157,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                     if m ~= 1
                         PATH(size(PATH,1),:)=[];
                     end
-                    disp(PATH)
+     %               disp(PATH)
                     PATH=[PATH;PATH_sup];
         %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
-                    disp(PATH)
+       %             disp(PATH)
                     if RE == 0
                         disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
                     end
