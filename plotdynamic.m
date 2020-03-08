@@ -71,7 +71,7 @@ for i=1:RobotNum
 end
 
 indice=max(finalindice);
-disp(indice)
+%disp(indice)
 
 for loop=1:10000
     if loop > indice+1
@@ -188,6 +188,6 @@ end
 
 disp('系统总消耗时刻：')
 disp(globaltime);
-disp(loop);
+%disp(loop);
 % close(gca);
 close(video);

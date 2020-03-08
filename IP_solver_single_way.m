@@ -134,6 +134,7 @@ for k = 1:numrobot-2
     end
 end
 
+
 %% 中部点
 if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向全为入边或出边的情况
 for k = 1:numrobot-3
@@ -148,21 +149,6 @@ for k = 1:numrobot-3
     end
 end
 end
-
-% if numrobot >= 4
-% for k = 1:numrobot-2
-%     for i = 3:size_D-2
-%         if mod(i,2)==1
-%             for j = 3:size_D-2  - -
-%                 if mod(j,2)==1
-%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))+sum(dir(k+2,j+(i-1)*size_D,:))~=6];
-%                 end
-%             end
-%         end
-%     end
-% end
-% end
-
 
 
 %% 约束5 单行线法则 （巷道方向框定）
@@ -201,7 +187,7 @@ end
                        if k ~=p
                             C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(p,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
 %                             C = [C, dir(k,j+(i-1)*size_D+1,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D+1)~=4];
-                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(p,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
+%                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-1)+dir(p,j+(i-1)*size_D-1,j+(i-1)*size_D)~=4];
 %                             C = [C, dir(k,j+(i-1)*size_D-1,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D-1)~=4];
                        end
                    end
@@ -214,7 +200,7 @@ end
                             C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(p,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
 %                             C = [C, dir(k,j+(i-1)*size_D+size_D,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D+size_D)~=4];
 
-                            C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(p,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
+ %                           C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)+dir(p,j+(i-1)*size_D-size_D,j+(i-1)*size_D)~=4];
 %                             C = [C, dir(k,j+(i-1)*size_D-size_D,j+(i-1)*size_D)+dir(p,j+(i-1)*size_D,j+(i-1)*size_D-size_D)~=4];
                       end
                   end

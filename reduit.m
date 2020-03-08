@@ -39,6 +39,7 @@ for i =1:sizeD
     end
 end
 
+
 % start_sp_ori=unique(start_sp);
 % goal_sp_ori=unique(goal_sp);
 
@@ -63,6 +64,16 @@ sizeDre =size(D_reduit,2);
 start_re=start_sp_Y+(start_sp_X-1)*sizeDre;
 
 goal_re =Goal_sp_Y+(Goal_sp_X-1)*sizeDre;
+
+
+for i=1:length(start_sp_Y)
+    if D_reduit(Goal_sp_X(i),Goal_sp_Y(i)) ==1 || D_reduit(start_sp_X(i),start_sp_Y(i)) ==1
+        disp('起点终点选择错误')
+        return
+    end
+end
+
+disp('起点终点审查通过')
 
 % start_re_ori=unique(start_re,'stable');
 % goal_re_ori=unique(goal_re,'stable');

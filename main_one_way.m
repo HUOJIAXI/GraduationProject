@@ -19,6 +19,7 @@ toc
 
 [PathStore_new,Path_num_new]=broaden(PathStore,D,RobotNum,Start_ori,Goal_ori);
 
+exam(Path_num_new,Start_ori,Goal_ori,RobotNum);
 
 plotdynamic(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori);
 

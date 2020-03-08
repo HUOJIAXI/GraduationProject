@@ -2,7 +2,7 @@
 # Version 8.1 削减式算法最终版(具有在货架下躲避冲突的功能)
 # Version 8.1 最终效果：
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
-# 当前进行：单行线法则版本 Version 4.0
+# 当前进行：单行线法则版本 Version 5.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
@@ -391,8 +391,20 @@ Author: HUO JIAXI
 ## Version 4.2 ops
 Author: HUO JIAXI
 
-4.2改进版本改进了4.2版本的限制，主要针对巷道方向的控制限制。降低了限制数量，缩小了模型规模，8机器人环境求解时间在290s左右，9机器人580s，相对于4.2版本的40分钟由一定的提高，并且由于求解次数过多，可能会导致计算机运行速度变慢，因此在初始状态下运行可能会得到更快的运行时间。
+4.2改进版本改进了4.2版本的限制，主要针对巷道方向的控制限制。降低了限制数量，缩小了模型规模，8机器人环境求解时间在290s左右，9机器人260s，相对于4.2版本的40分钟由一定的提高，并且由于求解次数过多，可能会导致计算机运行速度变慢，因此在初始状态下运行可能会得到更快的运行时间。
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.2_9rob_ops.png)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version4.2_ops.jpg)
+
+## Version 5.0
+Author: HUO JIAXI
+
+5.0版本完善了单行道法则，添加了起点终点检查功能，防止出现随机起点终点选取错误问题，因此能够执行随机任务。
+
+随着模型规模的增大，对于某些起点终点的选择，会出现不存在路径的情况，但是是少数情况，正常情况下都能够正确求解，并且路径不存在冲突。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version5.0.png)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version5.0.jpg)
+
