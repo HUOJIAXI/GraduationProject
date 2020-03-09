@@ -408,3 +408,10 @@ Author: HUO JIAXI
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/Version5.0.jpg)
 
+## Version 5.1
+Author: HUO JIAXI
+
+5.1版本是对于动态整数规划方法的改进，改进了原始路径的规划方法，由于原始路径不考虑机器人之间的冲突，因此可以不用调用通用求解器，并且由于是规则的环境，因此可以我设计了"直线移动法"进行初始路径规划，规划速度非常快，在1s以内，并且用随机起点终点进行了算法可行性验证。接下来需要将其应用于整体算法中，预计可以节约一大半的运行时间。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/ops_ori.jpg)
+

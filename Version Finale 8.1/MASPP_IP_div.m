@@ -115,10 +115,10 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                     text=' 号机器人出现交叉冲突，正在寻找替代路径...';
                     disp([num2str(j),text]);
                     [X_start,Y_start] = spread_sin(Start(j),SD);
-                    disp(num2str(temp(X_start,Y_start)))
+%                     disp(num2str(temp(X_start,Y_start)))
                     disp('交叉冲突释放起始节点')
                     temp(X_start,Y_start)=0; % 释放起始节点
-                    disp(num2str(temp(X_start,Y_start)))
+%                     disp(num2str(temp(X_start,Y_start)))
 
                      [X_fin,Y_fin] = spread_sin(Goal(j),SD);
 %                     disp(num2str(temp(X_fin,Y_fin)))
