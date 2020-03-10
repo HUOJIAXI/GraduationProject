@@ -581,10 +581,10 @@ if flag_fin ~= 1
                 for n =1:RobotNum
                     if ro(n) == 1
                         disp('重新规划出现卡顿的机器人')
-                        [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
-                        [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
-                        path_num_2(1)=[];
-                        sup= [path_num_1 path_num_2];
+                        [~,sup] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Goal(n),1,D);
+                   %     [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
+%                         path_num_2(1)=[];
+%                         sup= [path_num_1 path_num_2];
                         if ~isempty(sup)
                             Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
                             Path_num{n,1}=[Path_num{n,1} sup];

@@ -157,8 +157,8 @@ for i = 1:numrobot
         path_s(:,1)=linspace(Start_x,Goal_x,abs(Start_x-Goal_x)+1)';
         
         flag_p=0;
-       for j = 1:size(path_g(:,2),1)
-            if D(path_g(j,1),path_g(j,2)) == 1
+       for j = 1:size(path_s(:,2),1)
+            if D(path_s(j,1),path_s(j,2)) == 1
                 flag_p=1;
                 break
             end
