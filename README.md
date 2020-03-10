@@ -1,7 +1,7 @@
 # GraduationProject 项目日志 
 # Version 8.1 削减式算法最终版(具有在货架下躲避冲突的功能)
 # Version 8.1 最终效果：
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_version8.1.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_versionfinal.gif)
 # 当前进行：单行线法则版本 Version 5.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
