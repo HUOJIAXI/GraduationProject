@@ -415,3 +415,11 @@ Author: HUO JIAXI
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/ops_ori.jpg)
 
+## Version Final dyanmic
+Author: HUO JIAXI
+
+本版本将动态多机器人仓储环境整体路径规划设计完善，对于初始路径规划以及最后的补充规划，调用适用于障碍物成块规则出现环境的“直线移动”最短路径规划方法，成功将16机器人的13x13环境的求解时间压缩在不超过160s，并且对于不同的随机起点终点时间浮动不大，时间稳定性较高。但是依然会出现死锁的问题，而在毕设的第二个版本“整体单行道整数规划”方法中，死锁问题得到了解决。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/VersionFinal_dynamic_ops.png)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/VersionFinal_dynamic_ops.jpg)

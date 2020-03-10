@@ -15,42 +15,45 @@ SD=size(D,1);
 %% 存储单机器人的原始最佳路径
 % 扩展路径矩阵，使得所有矩阵的维度一样，方便之后的去障碍算法。
 for i = 1:RobotNum
-    [X_ST,Y_ST]=spread(Start(i),SD);
-    [X_FI,Y_FI]=spread(Goal(i),SD);
-    X_MI=floor((X_ST+X_FI)/2);
-    Y_MI=floor((Y_ST+Y_FI)/2);
-%     disp(X_MI)
-%     disp(Y_MI)
-    if X_MI>=1 || Y_MI>=1
-        if D(X_MI,Y_MI)==0 &&  (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-            Start_MI=(Y_MI+(X_MI-1)*SD);
-            [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
-            [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
-            PATH_2(1,:)=[];
-            path_num_2(1)=[];
-            PathStore{i,1} = [PATH_1;PATH_2];
-            Path_num{i,1} = [path_num_1 path_num_2];
-        elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-            Y_MI=Y_MI-1;
-            Start_MI=(Y_MI+(X_MI-1)*SD);
-            [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
-            [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
-            PATH_2(1,:)=[];
-            path_num_2(1)=[];
-            PathStore{i,1} = [PATH_1;PATH_2];
-            Path_num{i,1} = [path_num_1 path_num_2];
-            
-        else
-            [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
-            PathStore{i,1} = PATH;
-            Path_num{i,1} = path_num;
-        end
-    
-    else
-        [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
-        PathStore{i,1} = PATH;
-        Path_num{i,1} = path_num;
-    end
+    [PathStore,Path_num] = ori_path_am(Start,Goal,RobotNum,D);
+    text=' 号机器人原始路径规划完成';
+    disp([num2str(i),text]);
+%     [X_ST,Y_ST]=spread(Start(i),SD);
+%     [X_FI,Y_FI]=spread(Goal(i),SD);
+%     X_MI=floor((X_ST+X_FI)/2);
+%     Y_MI=floor((Y_ST+Y_FI)/2);
+% %     disp(X_MI)
+% %     disp(Y_MI)
+%     if X_MI>=1 || Y_MI>=1
+%         if D(X_MI,Y_MI)==0 &&  (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+%             Start_MI=(Y_MI+(X_MI-1)*SD);
+%             [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
+%             [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
+%             PATH_2(1,:)=[];
+%             path_num_2(1)=[];
+%             PathStore{i,1} = [PATH_1;PATH_2];
+%             Path_num{i,1} = [path_num_1 path_num_2];
+%         elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+%             Y_MI=Y_MI-1;
+%             Start_MI=(Y_MI+(X_MI-1)*SD);
+%             [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
+%             [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
+%             PATH_2(1,:)=[];
+%             path_num_2(1)=[];
+%             PathStore{i,1} = [PATH_1;PATH_2];
+%             Path_num{i,1} = [path_num_1 path_num_2];
+%             
+%         else
+%             [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
+%             PathStore{i,1} = PATH;
+%             Path_num{i,1} = path_num;
+%         end
+%     
+%     else
+%         [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
+%         PathStore{i,1} = PATH;
+%         Path_num{i,1} = path_num;
+%     end
     
     MAX=max([size(PathStore{i,1},1),MAX]);
 %    MAX=MAX+1;
@@ -505,7 +508,8 @@ if flag_fin ~= 1
 
           %      disp(Start(i))
          %       disp(Goal(i))
-                [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
+                [PATH_sup,Path_num_sup] = ori_path_am_sin(Start(i),Goal(i),1,D);
+          %      [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
          %       disp(PATH_sup)
           %      disp(Path_num_sup)
                 PATH_sup(size(PATH_sup,1),:)=[];
@@ -577,40 +581,10 @@ if flag_fin ~= 1
                 for n =1:RobotNum
                     if ro(n) == 1
                         disp('重新规划出现卡顿的机器人')
-
-                        [X_ST,Y_ST]=spread(Path_num{n,1}(ROB_MAX),SD);
-                        [X_FI,Y_FI]=spread(Goal(n),SD);
-                        X_MI=floor((X_ST+X_FI)/2);
-                        Y_MI=floor((Y_ST+Y_FI)/2);
-                %        disp(X_MI)
-                %        disp(Y_MI)
-
-                        if X_MI>=1 || Y_MI>=1
-                            if D(X_MI,Y_MI)==0 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-                                Start_MI=(Y_MI+(X_MI-1)*SD);
-                                [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
-                                [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
-                                path_num_2(1)=[];
-                                sup= [path_num_1 path_num_2];
-
-                            elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-                                Y_MI=Y_MI-1;
-                                Start_MI=(Y_MI+(X_MI-1)*SD);
-                                [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
-                                [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
-                                path_num_2(1)=[];
-                                sup = [path_num_1 path_num_2];
-
-                            else
-                            [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n); % 将原始路径规划分块
-                            end
-
-                        else
-                            [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);  
-                        end
-                %        disp(sup)
-                %        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
-                %         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
+                        [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
+                        [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
+                        path_num_2(1)=[];
+                        sup= [path_num_1 path_num_2];
                         if ~isempty(sup)
                             Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
                             Path_num{n,1}=[Path_num{n,1} sup];
@@ -621,6 +595,55 @@ if flag_fin ~= 1
                             PathStore{n,1}(:,1)=PathStore_n';
                             PathStore{n,1}(:,2)=PathStore_n_i';
                         end
+%                         [X_ST,Y_ST]=spread(Path_num{n,1}(ROB_MAX),SD);
+%                         [X_FI,Y_FI]=spread(Goal(n),SD);
+%                         X_MI=floor((X_ST+X_FI)/2);
+%                         Y_MI=floor((Y_ST+Y_FI)/2);
+%                 %        disp(X_MI)
+%                 %        disp(Y_MI)
+% 
+%                         if X_MI>=1 || Y_MI>=1
+%                             if D(X_MI,Y_MI)==0 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+%                                 Start_MI=(Y_MI+(X_MI-1)*SD);
+%                               %  [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
+%                                 [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
+%                                 [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
+%                                % [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
+%                                 path_num_2(1)=[];
+%                                 sup= [path_num_1 path_num_2];
+% 
+%                             elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
+%                                 Y_MI=Y_MI-1;
+%                                 Start_MI=(Y_MI+(X_MI-1)*SD);
+% %                                 [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
+% %                                 [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
+%                                 [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
+%                                 [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
+%                                 path_num_2(1)=[];
+%                                 sup = [path_num_1 path_num_2];
+% 
+%                             else
+%                                 [~,sup] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Goal(n),1,D);
+%                             %[~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n); % 将原始路径规划分块
+%                             end
+% 
+%                         else
+%                             [~,sup] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Goal(n),1,D);
+%                           %  [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);  
+%                         end
+%                 %        disp(sup)
+%                 %        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
+%                 %         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
+%                         if ~isempty(sup)
+%                             Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
+%                             Path_num{n,1}=[Path_num{n,1} sup];
+% 
+%                             PathStore{n,1}(size(Path_num{n,1},2)+1:size(PathStore{n,1},1),:)=[];
+% 
+%                             [PathStore_n,PathStore_n_i]=spread(Path_num{n,1},SD);
+%                             PathStore{n,1}(:,1)=PathStore_n';
+%                             PathStore{n,1}(:,2)=PathStore_n_i';
+%                         end
                     end
                 end
             end

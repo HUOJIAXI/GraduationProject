@@ -1,11 +1,10 @@
-function [PathStore,Path_num] = ori_path_am(Start,Goal,numrobot,D)
-PathStore=cell(numrobot,1);
-Path_num=cell(numrobot,1);
+function [PathStore,Path_num] = ori_path_am_sin(Start,Goal,numrobot,D)
+
 sizeD=size(D,1);
 
 for i = 1:numrobot
-    [Goal_x,Goal_y] = spread_sin(Goal(i),sizeD);
-    [Start_x,Start_y] = spread_sin(Start(i),sizeD);
+    [Goal_x,Goal_y] = spread_sin(Goal,sizeD);
+    [Start_x,Start_y] = spread_sin(Start,sizeD);
     
     if Start_x ~= Goal_x && Goal_y ~= Start_y
         path_g=zeros(abs(Start_y-Goal_y)+1,2);
@@ -34,7 +33,7 @@ for i = 1:numrobot
 
         if flag_s==0 && flag_g==0
             path_g(1,:)=[];
-            PathStore{i,1}=[path_s;path_g];
+            PathStore=[path_s;path_g];
             continue
         end
         
@@ -48,7 +47,7 @@ for i = 1:numrobot
             path_s(:,1)=linspace(Start_x,Start_x,abs(Start_y-Goal_y)+1)';
             
             path_g(1,:)=[];
-            PathStore{i,1}=[path_s;path_g];
+            PathStore=[path_s;path_g];
             continue       
         end
         
@@ -90,7 +89,7 @@ for i = 1:numrobot
 %                     path_s(end,:)=[];
 %                     path_g=[[Goal_x Start_y];path_g];
                 end
-                PathStore{i,1}=[path_s;path_g;[Goal_x Goal_y]];
+                PathStore=[path_s;path_g;[Goal_x Goal_y]];
                 continue
             end
             
@@ -99,7 +98,7 @@ for i = 1:numrobot
                     path_s(:,2)=path_s(:,2)+1;
                     path_s=[[Start_x Start_y];path_s];
                     path_g(1:2,:)=[];
-                    PathStore{i,1}=[path_s;path_g];   
+                    PathStore=[path_s;path_g];   
                     continue
                 end
 
@@ -107,7 +106,7 @@ for i = 1:numrobot
                     path_s(:,2)=path_s(:,2)-1;
                     path_g(1:2,:)=[];
                     path_s=[[Start_x Start_y];path_s];
-                    PathStore{i,1}=[path_s;path_g];   
+                    PathStore=[path_s;path_g];   
                     
                     continue
                 end
@@ -135,16 +134,16 @@ for i = 1:numrobot
         if flag_p==1
             if  mod(Start_x,3) == 0 
                 path_g(:,1)=path_g(:,1)+1;
-                PathStore{i,1}=[[Start_x Start_y];path_g;[Goal_x Goal_y]];
+                PathStore=[[Start_x Start_y];path_g;[Goal_x Goal_y]];
                 continue
 
             elseif mod(Start_x,3) ~= 0
                 path_g(:,1)=path_g(:,1)-1;
-                PathStore{i,1}=[[Start_x Start_y]; path_g; [Goal_x Goal_y]];
+                PathStore=[[Start_x Start_y]; path_g; [Goal_x Goal_y]];
                 continue
             end
         else
-            PathStore{i,1}=path_g;
+            PathStore=path_g;
             continue
         end
         
@@ -167,10 +166,10 @@ for i = 1:numrobot
         
         if flag_p==1
         path_s(:,1)=path_s(:,1)-1;
-        PathStore{i,1}=[[Start_x Start_y]; path_s; [Goal_x Goal_y]]; 
+        PathStore=[[Start_x Start_y]; path_s; [Goal_x Goal_y]]; 
         continue
         else
-            PathStore{i,1}=path_s;
+            PathStore=path_s;
             continue
         end
     end
@@ -178,11 +177,5 @@ for i = 1:numrobot
 end
 
 for i =1:numrobot
-    Path_num{i,1}=(PathStore{i,1}(:,2)+(PathStore{i,1}(:,1)-1)*sizeD)';
+    Path_num=(PathStore(:,2)+(PathStore(:,1)-1)*sizeD)';
 end
-
-%disp('原始路径规划完成')
-
-% for i =1:numrobot
-%     disp(Path_num{i,1}(end)-Goal(i))
-% end

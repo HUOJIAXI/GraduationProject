@@ -62,7 +62,7 @@ mapdesigner(fliplr(D),2);
 show=ceil(sqrt(RobotNum));
 
 for i = 1:RobotNum
-        mapdesigner_show(fliplr(D),i,show);
+        mapdesigner_show(fliplr(D),i,show,0);
         plot((PathStore{i}(:,2)-1/2),(PathStore{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) ;% 将所有机器人的路径显示在图中。
         str=['robot=',num2str(i)];
         title(str);
