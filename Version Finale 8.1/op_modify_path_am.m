@@ -1,7 +1,8 @@
 function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_ori,D,temp,X_start,Y_start,X_fin,Y_fin,Start,Goal,Path_num,PathStore,j,res,SD_am,SD,encarde)
     
     temp_reduit=temp(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde); % 分割出以实际节点为中心的7*7的正方形区域，起始点为分割后的中心点13，终点为分割后子图与原路径的交点
-    D_reduit=D(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde);
+    D_reduit=      D(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde);
+%     disp(temp_reduit)
 
     Goal_res_x_1=[];
     Goal_res_x_2=[];
@@ -148,12 +149,12 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     disp('返回原终点-m')
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                    Goal_res=Goal_res-m; % 返回原始终点
+                    %Goal_res=Goal_res-m; % 返回原始终点
                     if m ~= 1
                         PATH(size(PATH,1),:)=[];
                     end
-                    
-                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j)  ;
+%                      disp(temp_reduit)
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res,Goal_res-m,SD_temp,j)  ;
                     PATH=[PATH;PATH_sup];
                 if RE == 0
                     disp('已切换回原始终点');     

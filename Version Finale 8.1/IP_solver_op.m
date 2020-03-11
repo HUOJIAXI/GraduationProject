@@ -5,6 +5,7 @@
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
 function [RE,PATH,Path]=IP_solver_op(D,l,t,numrobot)
+sizeD=size(D,1);
 d = transfer(D);
 n = size(d,1); 
 % 决策变量
@@ -16,10 +17,12 @@ z = sum(sum(d.*x));
 % 约束添加
 C = [];
 %%后期作为参数在调用中赋值
+
 %%
 % 静止不动时返回0
 if l == t
-    PATH = [];
+    [ori_x,ori_y]=spread_sin(l,sizeD);
+    PATH = [ori_x,ori_y];
     Path(1) = l;
     distance = 0;
     disp('起点终点不能选择同一个点')

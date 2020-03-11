@@ -1,9 +1,9 @@
-function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
+function plotdynamic_show(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,2);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_12ROB_Version5.0','MPEG-4');
+video = VideoWriter('simulation_16ROB_Versionfinal','MPEG-4');
 video.FrameRate=2;
 open(video);
 
@@ -110,7 +110,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
     
            elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i) 
                if loop==1
@@ -134,7 +134,7 @@ for loop=1:10000
                     yy = y-temp;            
                 end
                 
-                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
                 
                else
 
@@ -155,7 +155,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
             
                end
                 
@@ -178,7 +178,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
             
            end
         end
@@ -193,7 +193,3 @@ disp(globaltime);
 %disp(loop);
 % close(gca);
 close(video);
-
-% for i = 1:RobotNum
-%     disp(Path_num{i,1}(end)-Goal(i))
-% end

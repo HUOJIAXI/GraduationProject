@@ -156,6 +156,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              one_add_y=ones(SD,encarde);
                              one_add_x=ones(encarde,SD+2*encarde);
                              temp_am=temp;
+%                              disp(temp)
                              D_am=D;
                              
                              temp_am_op_1=[one_add_y temp_am one_add_y];
@@ -170,6 +171,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                              % 优化碰撞处理
                              if abs(Y_fin-Y_start) > encarde && abs(X_fin-X_start)> encarde
                                  disp('终点在框外')
+%                                  disp(temp_am_op)
                                 [PathStore{j,1},Path_num{j,1},Start(j),Goal(j)]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD+2*encarde,SD,encarde);
                              elseif abs(Y_fin-Y_start) <= encarde && abs(X_fin-X_start)<= encarde
                                  disp('终点在框内') %% 可以尝试启发式方法，将求解范围缩小，修改temp，借鉴原始路径的启发式方法
@@ -183,8 +185,9 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                                   [PathStore{j,1},Path_num{j,1},Start(j),Goal(j)]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD+2*encarde,SD,encarde);
                              end
                              
-                     
+                     temp(X_start,Y_start)=1;
                      end  
+                     
                 end
             end
         end
@@ -477,11 +480,13 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         
         N_F=0;
         pass=[];
+        
         for i = 1:RobotNum
             if Path_num{i,1}(res)==Goal(i) && ~ismember(i,pass)
                 N_F=N_F+1;
-                pass=[pass;i];
-    %            disp(pass)
+                pass=[pass i];
+%                 disp(pass)
+                
             end
         end
         
@@ -508,14 +513,14 @@ if flag_fin ~= 1
 
           %      disp(Start(i))
          %       disp(Goal(i))
-                [PATH_sup,Path_num_sup] = ori_path_am_sin(Start(i),Goal(i),1,D);
+                [PATH_sup,Path_num_sup] = ori_path_am_sin(Path_num{i,1}(end),Goal(i),1,D);
           %      [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
          %       disp(PATH_sup)
           %      disp(Path_num_sup)
                 PATH_sup(size(PATH_sup,1),:)=[];
                 Path_num_sup(size(Path_num_sup,2))=[];
-                PathStore{i,1}=[PathStore{i,1};flipud(PATH_sup)];
-                Path_num{i,1}=[Path_num{i,1} fliplr(Path_num_sup)];
+                PathStore{i,1}=[PathStore{i,1};PATH_sup];
+                Path_num{i,1}=[Path_num{i,1} Path_num_sup];
            %     disp(PathStore{i,1})
                 text = ' 号机器人所有无碰撞路径已规划完成';
                 disp([num2str(i),text]);

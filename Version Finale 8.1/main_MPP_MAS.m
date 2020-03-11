@@ -54,7 +54,7 @@ RobotNum = length(Start);
  toc
  
 %% 仿真视频存储
-plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
+plotdynamic_show(D,PathStore,Path_num,RobotNum,Start,Goal);
 
 %% 原始环境
 mapdesigner(fliplr(D),2);
