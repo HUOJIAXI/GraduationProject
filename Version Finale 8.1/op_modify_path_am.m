@@ -150,11 +150,12 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                     %Goal_res=Goal_res-m; % 返回原始终点
-                    if m ~= 1
-                        PATH(size(PATH,1),:)=[];
-                    end
+
 %                      disp(temp_reduit)
                     [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res,Goal_res-m,SD_temp,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
+                        PATH(size(PATH,1),:)=[];
+                    end
                     PATH=[PATH;PATH_sup];
                 if RE == 0
                     disp('已切换回原始终点');     
@@ -166,10 +167,11 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     Goal_res=Goal_res+m;
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                    if m ~= 1
+
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
-                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
                     PATH=[PATH;PATH_sup];
                 if RE == 0
                     disp('已切换回原始终点');     
@@ -236,7 +238,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     disp('返回原终点-2')
                     Goal=Goal-m; % 返回原始终点
                     [RE,PATH_sup,path_num_sup]=sup_path(temp_ori,Goal+m,Goal,SD,j)  ;
-                    if m ~= 1
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
                     PATH=[PATH;PATH_sup];
@@ -251,7 +253,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     disp('返回原终点+2')
                     Goal=Goal+m;
                     [RE,PATH_sup,path_num_sup]=sup_path(temp_ori,Goal-m,Goal,SD,j)  ;
-                    if m ~= 1
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
                     PATH=[PATH;PATH_sup];

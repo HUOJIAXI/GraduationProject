@@ -18,6 +18,9 @@ function [PathStore_MAJ_Res,Path_num_MAJ_Res,Start,Goal,temp] = op_modify_sup(te
           if flgn==1
                 Goal=Goal-m; % 返回原始终点
                 [RE,PATH_sup,path_num_sup]=sup_path(D,D,Goal+m,Goal,SD,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
+                        PATH(size(PATH,1),:)=[];
+                    end
                 PATH=[PATH;PATH_sup];
                 Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
@@ -29,6 +32,9 @@ function [PathStore_MAJ_Res,Path_num_MAJ_Res,Start,Goal,temp] = op_modify_sup(te
                 Goal=Goal+m;
                 [RE,PATH_sup,path_num_sup]=sup_path(D,D,Goal-m,Goal,SD,j)  ;
                 PATH=[PATH;PATH_sup];
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
+                        PATH(size(PATH,1),:)=[];
+                    end
                 Path_num_MAJ=[Path_num_MAJ path_num_sup];
                 if RE == 0
                     disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     

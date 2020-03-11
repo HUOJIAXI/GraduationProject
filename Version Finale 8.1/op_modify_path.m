@@ -151,10 +151,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
                     disp('返回原终点-m')
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                    Goal_res=Goal_res-m; % 返回原始终点
-                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res+m,Goal_res,SD_temp,j) ; %需要扣除重复的点
+%                     Goal_res=Goal_res-m; % 返回原始终点
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res,Goal_res-m,SD_temp,j) ; %需要扣除重复的点
      %               disp(PATH_sup)
-                    if m ~= 1
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
      %               disp(PATH)
@@ -169,14 +169,18 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
 
               if flgn==2
                     disp('返回原终点+m')
-                    Goal_res=Goal_res+m;
+%                     Goal_res=Goal_res+m;
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
-                    if m ~= 1
+
+                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res,Goal_res+m,SD_temp,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
-                    [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res-m,Goal_res,SD_temp,j)  ;
+%                     disp(PATH_sup)
+%                     disp(PATH)
                     PATH=[PATH;PATH_sup];
+%                     disp(PATH)
         %                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
                         disp('备用终点启用成功，已生成备用路径，已切换回原始终点');     
@@ -247,10 +251,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
               if flgn==1
                     disp('返回原终点-2')
                     Goal=Goal-m; % 返回原始终点
-                    if m ~= 1
+                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
-                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal+m,Goal,SD,j)  ;
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0
@@ -262,10 +266,10 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal,temp]=op_modify_path(D,t
               if flgn==2
                     disp('返回原终点+2')
                     Goal=Goal+m;
-                    if m ~= 1
+                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
                     end
-                    [PATH_sup,path_num_sup]=sup_path_ori(temp,Goal-m,Goal,SD,j)  ;
                     PATH=[PATH;PATH_sup];
                     Path_num_MAJ=[Path_num_MAJ path_num_sup];
                     if RE == 0

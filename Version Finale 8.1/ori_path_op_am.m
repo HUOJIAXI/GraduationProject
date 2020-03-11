@@ -29,10 +29,10 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
                         disp('释放原始终点')
                         temp_D(Goal_op_x,Goal_op_y)=0;
                         Goal_op=Goal_op-m; % 返回原始终点
-                        if m ~= 1
-                        PATH(size(PATH,1),:)=[];
-                        end
                         [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op+m,Goal_op,SD_temp,i)  ;
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
+                        PATH(size(PATH,1),:)=[];
+                    end
                         PATH=[PATH;PATH_sup];
                      %   disp(PATH)
                   end
@@ -42,10 +42,13 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
                         Goal_op=Goal_op+m;
                         disp('释放原始终点')
                         temp_D(Goal_op_x,Goal_op_y)=0;
-                       if m ~= 1
-                        PATH(size(PATH,1),:)=[];
-                       end
+
                         [RE,PATH_sup,~]=sup_path(temp_D,D_reduit,Goal_op-m,Goal_op,SD_temp,i)  ;
+                        
+                    if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
+                        PATH(size(PATH,1),:)=[];
+                    end
+                    
                         PATH=[PATH;PATH_sup];
                   end
               end
