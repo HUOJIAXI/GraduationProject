@@ -1,12 +1,33 @@
 function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,1);
+n=size(D,1);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_14ROB_COLI_version7.1','MPEG-4');
+video = VideoWriter('simulation_16ROB_COLI_version8.1','MPEG-4');
 video.FrameRate=2;
 open(video);
+
+ax = gca();
+
 globaltime = 0;
+
+%% 明确障碍物位置
+nobs=[];
+obs=[];
+for i = 1:m
+    for j = 1:n
+        if D(i,j) == 1
+            obs=[obs j+(i-1)*n];
+%             [obs_x,obs_y]=spread(obs,m);
+        else
+            nobs=[nobs j+(i-1)*n];
+        end
+    end
+end
+%%
+
+
 
 MAX=0;
 
@@ -44,8 +65,7 @@ for loop=1:10000
     if loop > indice+1
         break;
     end
-    frame = getframe;
-    writeVideo(video,frame);
+
     pause(0.5);
     cla;
     
@@ -56,17 +76,21 @@ for loop=1:10000
     for i=1:RobotNum
         if  ~isempty(PathStore{i,1})
            %AllRobotState(PathStore{i,1}(loop,1),PathStore{i,1}(loop,2)) = 1;
-           if PathStore{i,1}(loop,1)==X_F(i) && PathStore{i,1}(loop,2)==Y_F(i)
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点
-           elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i) 
-               if loop==1
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)
+           if find(nobs==Path_num{i,1}(loop))
+               if PathStore{i,1}(loop,1)==X_F(i) && PathStore{i,1}(loop,2)==Y_F(i)
+                    plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点
+               elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i)
+                   if loop==1
+                    plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)
+                   else
+                    plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
+                   end
+
                else
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
+                    plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
                end
-                
            else
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
+               plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10) 
            end
         end
     end
@@ -78,7 +102,9 @@ for loop=1:10000
 %            AllRobotState(PathStore{i,1}(loop,1),PathStore{i,1}(loop,2)) = 0;
 %         end
 %     end
+    writeVideo(video,getframe(ax))
     globaltime = globaltime + 1;
+
 end
 
 disp('系统总消耗时刻：')

@@ -20,6 +20,8 @@ function [RE,PATH,path_num] =sup_path(D,D_ori,Start,Goal,SD,i)
 %         disp(temp_D)
 %         disp(Start_op)
 %         disp(Goal_op)
+        temp_D(Start_op_x,Start_op_y)=0;
+
         [RE,PATH,~]=IP_solver_op(temp_D,Start_op,Goal_op,i);
         PATH=PATH(2:length(PATH),:);
 %         disp(PATH)

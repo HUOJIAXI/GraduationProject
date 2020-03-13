@@ -17,6 +17,7 @@ disp('起点终点选取完成')
 encarde=2; %启发式算法参数2 3
 control=15; % 路径整理调整参数
 print=0; %是否需要单项打印各个机器人的路径
+flag_dir=1; % 是否启用货架躲避
 % Start = [16,133,9,8,49,1,7];
 % Goal = [121,74,143,96,131,24,35]; 
 
@@ -54,7 +55,11 @@ RobotNum = length(Start);
  toc
  
 %% 仿真视频存储
-plotdynamic_show(D,PathStore,Path_num,RobotNum,Start,Goal);
+if flag_dir==1
+    plotdynamic_show(D,PathStore,Path_num,RobotNum,Start,Goal);
+else
+    plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
+end
 
 %% 原始环境
 mapdesigner(fliplr(D),2);
