@@ -2,7 +2,7 @@
 # Version 8.1 削减式动态算法最终版(具有在货架下躲避冲突的功能)
 # Version final 最终效果：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_COLI_versionfinal.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_Versionfinal.gif)
 
 # 当前进行：单行线法则版本 Version 5.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
