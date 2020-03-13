@@ -18,42 +18,6 @@ for i = 1:RobotNum
     [PathStore,Path_num] = ori_path_am(Start,Goal,RobotNum,D);
     text=' 号机器人原始路径规划完成';
     disp([num2str(i),text]);
-%     [X_ST,Y_ST]=spread(Start(i),SD);
-%     [X_FI,Y_FI]=spread(Goal(i),SD);
-%     X_MI=floor((X_ST+X_FI)/2);
-%     Y_MI=floor((Y_ST+Y_FI)/2);
-% %     disp(X_MI)
-% %     disp(Y_MI)
-%     if X_MI>=1 || Y_MI>=1
-%         if D(X_MI,Y_MI)==0 &&  (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-%             Start_MI=(Y_MI+(X_MI-1)*SD);
-%             [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
-%             [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
-%             PATH_2(1,:)=[];
-%             path_num_2(1)=[];
-%             PathStore{i,1} = [PATH_1;PATH_2];
-%             Path_num{i,1} = [path_num_1 path_num_2];
-%         elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-%             Y_MI=Y_MI-1;
-%             Start_MI=(Y_MI+(X_MI-1)*SD);
-%             [PATH_1,path_num_1] = ori_path(D,Start(i),Start_MI,SD,i);
-%             [PATH_2,path_num_2] = ori_path(D,Start_MI,Goal(i),SD,i);
-%             PATH_2(1,:)=[];
-%             path_num_2(1)=[];
-%             PathStore{i,1} = [PATH_1;PATH_2];
-%             Path_num{i,1} = [path_num_1 path_num_2];
-%             
-%         else
-%             [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
-%             PathStore{i,1} = PATH;
-%             Path_num{i,1} = path_num;
-%         end
-%     
-%     else
-%         [PATH,path_num] = ori_path(D,Start(i),Goal(i),SD,i); % 将原始路径规划分块
-%         PathStore{i,1} = PATH;
-%         Path_num{i,1} = path_num;
-%     end
     
     MAX=max([size(PathStore{i,1},1),MAX]);
 %    MAX=MAX+1;
@@ -185,7 +149,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
                                   [PathStore{j,1},Path_num{j,1},Start(j),Goal(j)]=op_modify_path_am(temp,D_am_op,temp_am_op,X_start,Y_start,X_fin,Y_fin,Start(j),Goal(j),Path_num{j,1},PathStore{j,1},j,res,SD+2*encarde,SD,encarde);
                              end
                              
-                     temp(X_start,Y_start)=1;
+                     temp(X_start,Y_start)=1; %     恢复起点
                      end  
                      
                 end
@@ -238,90 +202,7 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
 %                         end
 %                     end
                     [PathStore{robot_coli(j),1},Path_num{robot_coli(j),1}]=traite_pause(D,PathStore{robot_coli(j),1},Path_num{robot_coli(j),1},res,1);
-                    
-%                     if flag_stop == 0
-%                         PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
-%                         Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
-% 
-%                         PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                         Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                         PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                         Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                         continue
-%                     else
-%                         if PathStore{robot_coli(j),1}(res-1,2)-1~=0 || PathStore{robot_coli(j),1}(res-1,1)-1~=0
-%                             if PathStore{robot_coli(j),1}(res-1,2)-1~=0 && D(PathStore{robot_coli(j),1}(res-1,1),PathStore{robot_coli(j),1}(res-1,2)-1)==1 % 在货架处躲避
-%                                 
-%                                 PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
-%                                 Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
-%                                 
-%                                 PathStore{robot_coli(j),1}(res-1,2)=PathStore{robot_coli(j),1}(res-1,2)-1;
-%                                 Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
-%                                 
-%                                 PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                                 Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                                 PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                                 Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                                 continue
-% 
-%                             elseif PathStore{robot_coli(j),1}(res-1,1)-1~=0 && D(PathStore{robot_coli(j),1}(res-1,1)-1,PathStore{robot_coli(j),1}(res-1,2))==1
-% 
-%                                 PathStore{robot_coli(j),1}(res-1,1)=PathStore{robot_coli(j),1}(res-1,1)-1;
-%                                 Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
-%                                 PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                                 Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                                 PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                                 Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                                 continue
-%                             end
-%                         end
-%                             
-%                         
-%                         if D(PathStore{robot_coli(j),1}(res-1,1),PathStore{robot_coli(j),1}(res-1,2)+1)==1
-%                             
-%                             PathStore{robot_coli(j),1}(res-1,2)=PathStore{robot_coli(j),1}(res-1,2)-1;
-%                             Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
-%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                             continue
-%                             
-%                         elseif D(PathStore{robot_coli(j),1}(res-1,1)+1,PathStore{robot_coli(j),1}(res-1,2))==1
-%                             
-%                             PathStore{robot_coli(j),1}(res-1,1)=PathStore{robot_coli(j),1}(res-1,1)-1;
-%                             Path_num{robot_coli(j),1}(res-1)=PathStore{robot_coli(j),1}(res-1,2)+(PathStore{robot_coli(j),1}(res-1,1)-1)*SD;
-%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                             continue 
-%                         else 
-%                             disp('机器人被包围，机器人停止等待处理')
-%                             PATH= PathStore{robot_coli(j),1}(res-1:size(PathStore{robot_coli(j),1},1),:);
-%                             Path_num_MAJ=Path_num{robot_coli(j),1}(res-1:size(Path_num{robot_coli(j),1},2));
-% 
-%                             PathStore{robot_coli(j),1}(res:size(PathStore{robot_coli(j),1},1),:)=[];
-%                             Path_num{robot_coli(j),1}(res:size(Path_num{robot_coli(j),1},2))=[];
-% 
-%                             PathStore{robot_coli(j),1}=[PathStore{robot_coli(j),1} ; PATH];
-%                             Path_num{robot_coli(j),1}=[Path_num{robot_coli(j),1} Path_num_MAJ];
-%                             continue
-%                         end
-%                     end
-
-                    
-%                     disp(res)
-%                     disp(PATH)
-%                     disp(Path_num_MAJ)
-%                     disp(PathStore{robot_coli(j),1})
-%                     disp(Path_num{robot_coli(j),1})
-%                     temp(X_start,Y_start)=0;
+                             
                 end
 %                 
 %                 if temp(X_fin,Y_fin)==1
@@ -398,47 +279,6 @@ while flag == 0 % 在所有机器人达到终点前 flag置0 所有机器人达�
         
         %% 节点释放
         % 判断是否求解结束
-%         juge=unique(Goal-Start);
-%         juge_n=size(juge,2);
-%         
-%         MAX_ro=0;
-%         
-%         for i = 1:RobotNum
-%                 inte=Goal(i)-Start(i);
-%                 if inte == 0
-%                     nu=find(Path_num{i,1}==Goal(i));
-%                     MAX_ro=max([nu(1),MAX_ro]);
-%                 end
-%         end
-%             
-%         if juge_n==2
-%             
-%             inte=Goal-Start;
-%             for i = 1:RobotNum
-%                 if inte(i) ~= 0
-%                     disp(MAX_ro)
-%                     sup=unique(Path_num{i,1}(MAX_ro:size(Path_num{i,1},2)));
-%                %     disp(sup)
-%                     Path_num{i,1}(MAX_ro+1:size(Path_num{i,1},2))=[];
-%                     Path_num{i,1}=[Path_num{i,1} sup];
-%                     PathStore{i,1}(size(Path_num{i,1},2)+1:size(PathStore{i,1},1),:)=[];
-%                     
-%                     [PathStore_i,PathStore_i_i]=spread(Path_num{i,1},SD);
-%                     PathStore{i,1}(:,1)=PathStore_i';
-%                     PathStore{i,1}(:,2)=PathStore_i_i';
-%                     
-%                     disp('开始规划剩余路径并防止在某点卡死');
-% 
-%                     [PATH_sup,Path_num_sup] = ori_path(D,Start(i),Goal(i),SD,i);
-% 
-%                     PathStore{i,1}=[PathStore{i,1};PATH_sup];
-%                     Path_num{i,1}=[Path_num{i,1} Path_num_sup];
-%                     flag=1;
-%                     Start=Goal;
-%                 end
-% 
-%             end
-%         end
         
         MAX = 0;
          
@@ -600,55 +440,6 @@ if flag_fin ~= 1
                             PathStore{n,1}(:,1)=PathStore_n';
                             PathStore{n,1}(:,2)=PathStore_n_i';
                         end
-%                         [X_ST,Y_ST]=spread(Path_num{n,1}(ROB_MAX),SD);
-%                         [X_FI,Y_FI]=spread(Goal(n),SD);
-%                         X_MI=floor((X_ST+X_FI)/2);
-%                         Y_MI=floor((Y_ST+Y_FI)/2);
-%                 %        disp(X_MI)
-%                 %        disp(Y_MI)
-% 
-%                         if X_MI>=1 || Y_MI>=1
-%                             if D(X_MI,Y_MI)==0 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-%                                 Start_MI=(Y_MI+(X_MI-1)*SD);
-%                               %  [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
-%                                 [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
-%                                 [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
-%                                % [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
-%                                 path_num_2(1)=[];
-%                                 sup= [path_num_1 path_num_2];
-% 
-%                             elseif D(X_MI,Y_MI)==1 && (abs(X_MI-X_FI)>=3 || abs(Y_MI-Y_FI)>=3) && (abs(X_MI-X_ST)>=3 || abs(Y_MI-Y_ST)>=3)
-%                                 Y_MI=Y_MI-1;
-%                                 Start_MI=(Y_MI+(X_MI-1)*SD);
-% %                                 [~,path_num_1] = ori_path(D,Path_num{n,1}(ROB_MAX),Start_MI,SD,n);
-% %                                 [~,path_num_2] = ori_path(D,Start_MI,Goal(n),SD,n);
-%                                 [~,path_num_1] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Start_MI,1,D);
-%                                 [~,path_num_2] = ori_path_am_sin(Start_MI,Goal(n),1,D);
-%                                 path_num_2(1)=[];
-%                                 sup = [path_num_1 path_num_2];
-% 
-%                             else
-%                                 [~,sup] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Goal(n),1,D);
-%                             %[~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n); % 将原始路径规划分块
-%                             end
-% 
-%                         else
-%                             [~,sup] = ori_path_am_sin(Path_num{n,1}(ROB_MAX),Goal(n),1,D);
-%                           %  [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);  
-%                         end
-%                 %        disp(sup)
-%                 %        [~,sup] = ori_path(D,Path_num{n,1}(ROB_MAX),Goal(n),SD,n);     
-%                 %         sup=unique(Path_num{n,1}(ROB_MAX:size(Path_num{n,1},2)));
-%                         if ~isempty(sup)
-%                             Path_num{n,1}(ROB_MAX+1:size(Path_num{n,1},2))=[];
-%                             Path_num{n,1}=[Path_num{n,1} sup];
-% 
-%                             PathStore{n,1}(size(Path_num{n,1},2)+1:size(PathStore{n,1},1),:)=[];
-% 
-%                             [PathStore_n,PathStore_n_i]=spread(Path_num{n,1},SD);
-%                             PathStore{n,1}(:,1)=PathStore_n';
-%                             PathStore{n,1}(:,2)=PathStore_n_i';
-%                         end
                     end
                 end
             end

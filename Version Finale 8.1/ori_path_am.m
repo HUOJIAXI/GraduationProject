@@ -166,7 +166,7 @@ for i = 1:numrobot
        end
         
         if flag_p==1
-        path_s(:,1)=path_s(:,1)-1;
+        path_s(:,2)=path_s(:,2)-1;
         PathStore{i,1}=[[Start_x Start_y]; path_s; [Goal_x Goal_y]]; 
         continue
         else
