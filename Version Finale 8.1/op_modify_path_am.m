@@ -150,8 +150,8 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                     disp('释放原始终点')
                     temp_reduit(Goal_X_fin,Goal_Y_fin)=0;
                     %Goal_res=Goal_res-m; % 返回原始终点
-
-%                      disp(temp_reduit)
+%                     disp(Goal_res)
+ %                     disp(temp_reduit)
                     [RE,PATH_sup,~]=sup_path(temp_reduit,D_reduit,Goal_res,Goal_res-m,SD_temp,j)  ;
                     if (PATH_sup(1,1)-PATH(end,1)==0 && PATH_sup(1,2)-PATH(end,2)==0)
                         PATH(size(PATH,1),:)=[];
@@ -185,15 +185,15 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
              disp('该备用终点依然被包围，道路被完全阻挡')
 
              disp('寻找备用终点失败，机器人在此时刻暂停行动，或是已经到达终点')
-             [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
-%              PATH= [PathStore(res-1,:); PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
-%              Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
-%              
-%              PathStore(res-1:size(PathStore,1),:)=[];
-%              Path_num(res-1:size(Path_num,2))=[];
-% 
-%              PathStore_MAJ_res=[PathStore;PATH];
-%              Path_num_MAJ_res=[Path_num Path_num_MAJ];
+%             [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
+             PATH= [PathStore(res-1,:); PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
+             Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
+             
+             PathStore(res-1:size(PathStore,1),:)=[];
+             Path_num(res-1:size(Path_num,2))=[];
+
+             PathStore_MAJ_res=[PathStore;PATH];
+             Path_num_MAJ_res=[Path_num Path_num_MAJ];
              return
              
 %              PathStore_MAJ_res= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)];
@@ -280,7 +280,7 @@ function [PathStore_MAJ_res,Path_num_MAJ_res,Start,Goal]=op_modify_path_am(temp_
                 % n_robot=find(Path_num==Start);
 %                 PATH= [PathStore(res-1,:) ; PathStore(res-1:size(PathStore,1),:)]; % 暂停有问题
 %                 Path_num_MAJ=[Path_num(res-1),Path_num(res-1:size(Path_num,2))];
-                [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,1);
+                [PathStore_MAJ_res,Path_num_MAJ_res]=traite_pause(D,PathStore,Path_num,res,0);
 %                 PATH= PathStore(res-1:size(PathStore,1),:); % 暂停有问题
 %                 Path_num_MAJ=Path_num(res-1:size(Path_num,2));
 %                 

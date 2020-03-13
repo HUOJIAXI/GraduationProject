@@ -1,7 +1,7 @@
 function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,1);
-n=size(D,1);
+n=size(D,2);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
 video = VideoWriter('simulation_16ROB_COLI_version8.1','MPEG-4');
