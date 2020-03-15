@@ -425,3 +425,10 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/VersionFinal_dynamic_ops.png)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/VersionFinal_dynamic_ops.jpg)
+
+## Version V2 oneway 1.0
+由于在V1版本中的单行道模型需要很长的时间进行求解，并且随着机器人个数增加，求解时间成指数上升。因此开发V2版本，尝试避免指数上升问题。
+
+1.0版本完成了可求解的单行道模型约束，并且求解成功，但是求解时间较长，但是经过测试，在求解过程的前半段求解器已经求解出了最优解，但是求解器并没有停止，仍然在继续检索，因此在1.0版本中对运行时间进行了限制，能够正常求解。
+
+1.1版本将对求解器利用assign和usex0进行初始值的赋值，尝试降低求解时间。

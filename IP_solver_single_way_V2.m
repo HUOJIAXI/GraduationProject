@@ -10,28 +10,30 @@ o_single=cell(numrobot,1);
 
 m_D=size(D,1);
 n_D=size(D,2);
-num_way=((m+1)*(n-1)+(m-1)*(n+1))/4; % 需要利用节点方向推出边占用情况
+ num_way=((m_D+1)*(n_D-1)+(m_D-1)*(n_D+1))/4; % 需要利用节点方向推出边占用情况
 
 d = transfer(D);
-n = size(d,1); 
+m = size(d,1); 
+n = size(d,2); 
 % 决策变量
 nobs=[];
 obs=[];
-for i = 1:m
-    for j = 1:n
+for i = 1:m_D
+    for j = 1:n_D
         if D(i,j) == 1
-            obs=[obs j+(i-1)*n]; % 障碍物所在位置
+            obs=[obs j+(i-1)*n_D]; % 障碍物所在位置
 %             [obs_x,obs_y]=spread(obs,m);
         else
-            nobs=[nobs j+(i-1)*n];
+            nobs=[nobs j+(i-1)*n_D];
         end
     end
 end
 
 x = binvar(numrobot,n,n,'full'); % n*n维的决策变量
-u = intvar(numrobot,n);
-dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
-dir_way=intvar(((m_D+1)*(n_D-1)+(m_D-1)*(n_D+1))/4);
+u = intvar(numrobot,n,1);
+% dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
+dir_way=intvar(num_way,1,'full');
+dir_rob=intvar(numrobot,num_way,1,'full');
 
 
 %p = intvar((n-1)/2,1);
@@ -88,74 +90,68 @@ end
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
 for k = 1:numrobot
-    for i = 1:n
-       for j = 1:n
-        [i_x,i_y]=spread_sin(i,size_D);
-    %    [j_y,j_y]=spread_sin(j,size_D);
-        if i > j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
-            dir(k,i,j) = x(k,i,j); % 由大索引到小索引的方向为1
-        elseif i < j && (mod(i,2)==0 || mod(j,2)==0) && (abs(i-j)== 1 || abs(i-j)== size_D) && D(i_x,i_y) ~=1
-            dir(k,i,j) = x(k,i,j)+2; % 由小索引到大索引的方向为3
-        elseif i == j && mod(i,2)==0
-            dir(k,i,j) = 0;  
-        else
-            dir(k,i,j) = 0;
-        end    
-       end
-    end
-end
-
-% for k = 1: n
-%     [i,j]=spread_sin(k,size_D);
-%     
-% end
-
-
-%% 在边界处四个交界点：
-% for k = 1:numrobot-1
-%     for i = 1:size_D
-%         if i==1||i==size_D
-%             for j = 1:size_D
-%                 if (i==1&&j==1)|| (i==size_D&&j==size_D)
-%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=4];
-%                    C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
-%                 end
-%                 
-%                 if (i==1&&j==size_D)|| (i==size_D&&j==1)
-%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=2];
-%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))~=6];
-%                 end
-%                 
+for i = 1:m
+    [i_x,i_y]=spread_sin(i,size_D);
+%     [j_x,j_y]=spread_sin(j,size_D);
+    if mod(i,2)==0  && D(i_x,i_y) ~=1 
+        if mod(i_x,2)==1 && mod(i_y,2)==0
+%             if i+1~=t
+                dir_rob(k,i/2) = x(k,i,i+1)+3*x(k,i+1,i);
+%             elseif i+1 ==t
+%                 dir_rob(k,i/2) = x(k,i-1,i)+3*x(k,i,i-1);
 %             end
-%         end
-%         
-%     end
-% end
+        end
+        if mod(i_x,2)==0 && mod(i_y,2)==1
+%             if i+size_D~=t
+                dir_rob(k,i/2) = x(k,i,i+size_D)+3*x(k,i+size_D,i);
+%             elseif i+size_D==t
+%                 dir_rob(k,i/2) = x(k,i-size_D,i)+3*x(k,i,i-size_D);
+%             end
+        end
+    end
+
+end
+end
+%% 约束5 单行线法则 （巷道方向框定）
+   
+for k = 1:num_way
+%     [i,j]=spread_sin(k,size_D);
+        for rob = 1:numrobot
+                 C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
+        end  
+end
+% %% 在边界处四个交界点：
+
+for k = 1:num_way
+     dir_way(k) = max(dir_rob(:,k));
+end
 
 for k = 1:n
     
     [i,j]=spread_sin(k,size_D);
      if (i==1&&j==1)
-        C = [C,  dir_way((j+(i-1)*size_D+1)/2)-dir_way((j+(i)*size_D)/2)~=0];
+        C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=2];
+        C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=6];
      end
      
      if (i==size_D&&j==size_D)
-        C = [C,  dir_way((j-1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~=0];
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=2];
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=6];
      end
      
      if (i==1&&j==size_D)
-        C = [C,  dir_way((j-1+(i-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2)==0];
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=4];
      end
      
      if (i==size_D&&j==1)
-        C = [C,  dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)==0];
+        C = [C,  dir_way((j+(i-1-1)*size_D)/2)+dir_way((j+1+(i-1)*size_D)/2)~=4];
      end
      
 end
 
-
-
-%% 周围交界点
+% 
+% 
+% %% 周围交界点
 for k = 1:n
 
     [i,j]=spread_sin(k,size_D);
@@ -173,7 +169,7 @@ for k = 1:n
         
 
     
-    elseif mod(i,2)==1
+    elseif mod(i,2)==1 && i>1 && i<size_D
         if j==1
            C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=7];
            C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=5];
@@ -186,49 +182,9 @@ for k = 1:n
     end
     
 end
-
-
-
-% for k = 1:numrobot-2
-%     for i = 1:size_D
-%         if i==1||i==size_D
-%             for j = 3:size_D-2
-%                 if mod(j,2)==1
-%  %                   disp(j+(i-1)*size_D)
-% %                     C = [C, sum(dir(k,j+(i-1)*size_D,:))-sum(dir(k+1,j+(i-1)*size_D,:))-sum(dir(k+2,j+(i-1)*size_D,:))~=-3];
-% %                     C = [C, sum(dir(k,j+(i-1)*size_D,:))-sum(dir(k+1,j+(i-1)*size_D,:))-sum(dir(k+2,j+(i-1)*size_D,:))~=0];
-%                      C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=7];
-%                      C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=5];
-%                 end
-%             end
-%         elseif mod(i,2)==1
-%             for j = 1:size_D 
-%                 if j==1 || j == size_D
-%  %                   disp(j+(i-1)*size_D)
-%                 %    C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D)-dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+1)-dir(k+2,j+(i-1)*size_D,j+(i-1)*size_D+size_D)==-3];
-%                      C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=7];
-%                      C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))+sum(dir(k+2,:,j+(i-1)*size_D))~=5];
-%                 %    C = [C, sum(dir(k,j+(i-1)*size_D,j+(i-1)*size_D-size_D))-sum(dir(k+1,j+(i-1)*size_D,j+(i-1)*size_D+1))-sum(dir(k+2,j+(i-1)*size_D,j+(i-1)*size_D+size_D))~=0];
-%                 end
-%             end
-%         end
-%     end
-% end
-
-
-%% 中部点
+% 
+% %% 中部点
 if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向全为入边或出边的情况
-% for k = 1:numrobot-3
-%     for i = 3:size_D-2
-%         if mod(i,2)==1
-%             for j = 3:size_D-2
-%                 if mod(j,2)==1
-%                     C = [C, sum(dir(k,j+(i-1)*size_D,:))+sum(dir(k+1,j+(i-1)*size_D,:))+sum(dir(k+2,j+(i-1)*size_D,:))+sum(dir(k+3,j+(i-1)*size_D,:))~=8];
-%                 end
-%             end
-%         end
-%     end
-% end
 
     for k = 1:n
         [i,j]=spread_sin(k,size_D);
@@ -241,56 +197,7 @@ if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向
     end  
 
 end
-
-
-%% 约束5 单行线法则 （巷道方向框定）
-for i = 1:size_D
-  for j = 1:size_D
-%          if k ~= numrobot
-           if ((mod(i,2)==1)&&(mod(j,2)==0)) 
-           for k = 1:numrobot-1
-               C = [C, max(dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D),1)+ max(dir(k+1,j+(i-1)*size_D+size_D,j+(i-1)*size_D),1)~=4];
-           end
-%           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
-          elseif ((mod(i,2)==0)&&(mod(j,2)==1))
-          for k =1:numrobot-1
-               C = [C, max(dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D),1) + max(dir(k+1,j+(i-1)*size_D+size_D,j+(i-1)*size_D),1)~=4];
-          end
-          end
-
-  end 
-end
-    
-    
-%     for i = 1:size_D
-%       for j = 1:size_D
-% %          if k ~= numrobot
-%                if ((mod(i,2)==1)&&(mod(j,2)==0)) 
-%                for k = 1:numrobot
-%                    for p = 1:numrobot
-%                        if k ~=p
-%                             C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+1)+dir(p,j+(i-1)*size_D+1,j+(i-1)*size_D)~=4];
-% 
-%                        end
-%                    end
-%                end
-%     %           C = [C, sum(dir(k,:,j+(i-1)*size_D))+sum(dir(k+1,:,j+(i-1)*size_D))~=4];
-%               elseif ((mod(i,2)==0)&&(mod(j,2)==1))
-%               for k =1:numrobot
-%                   for p = 1:numrobot
-%                       if k~=p
-%                             C = [C, dir(k,j+(i-1)*size_D,j+(i-1)*size_D+size_D)+dir(p,j+(i-1)*size_D+size_D,j+(i-1)*size_D)~=4];
-% 
-%                       end
-%                   end
-%               end
-%               end
-% 
-%       end 
-%     end
-
-
-
+%   
 for k=1:numrobot
     for i = 1:n
         for j = 1:n
@@ -305,36 +212,24 @@ end
 
 % 参数设置
 
-ops = sdpsettings('verbose',1,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',1,'solver','gurobi','gurobi.TimeLimit',150);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
 %    value(z)
-%    disp(value(x))
+    disp(value(dir_rob))
 %    text=' 系统总最优路径长度：';
 %    disp([text,num2str(value(z))]);
     disp('系统总最优路径长度：Best objective');
 else
-    disp('求解路径中存在障碍物，起点终点无法直达');
+    disp('外部结束');
+    disp(value(dir_rob))
 end
 
 %disp(value(dir))
 o=value(x);
 
-% for k=1:numrobot
-%     for i=1:length(o)
-%         for j = 1 : length(o)
-%             if(i==j)
-%                 o(k,i,j)=0;
-%             else
-%                 continue;
-%             end
-%         end
-%     end
-% end
-
-%disp(o(2,:,:));
 %% 邻接矩阵转换，路径绘制
 
 for i = 1:numrobot
