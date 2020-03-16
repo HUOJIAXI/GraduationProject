@@ -165,26 +165,26 @@ for k = 1:n
     
     if i==1||i==size_D
         if mod(j,2)==1 && i==1 && j > 1 && j < size_D
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2) ~=2];
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2) ~=-2];
+           C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=5];
+           C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=-1];
         end
         
         if mod(j,2)==1 && i==size_D && j > 1 && j < size_D
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)  ~=2];
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)  ~=-2];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~=-1];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~= 5];
         end
         
 
     
     elseif mod(i,2)==1 && i>1 && i<size_D
         if j==1
-           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=2];
-           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=-2];
+           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=5];
+           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=-1];
         end
         
         if j==size_D
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=2];
-           C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2+dir_way((j+(i-1+1)*size_D)/2) ~=-2];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=-1];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=5];
         end
     end
     
@@ -199,8 +199,13 @@ if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向
         if mod(i,2)==1 &&  i>1 && i < size_D && mod(j,2)==1 && j>1 && j < size_D
 
 %             C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-2*max(dir_way((j-1+(i-1)*size_D)/2),dir_way((j+(i-1+1)*size_D)/2))+dir_way((j+1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-2*max(dir_way((j+(i-1-1)*size_D)/2),dir_way((j+1+(i-1)*size_D)/2))~= 0];
+
         C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 4];
-        C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
+        C = [C, max(dir_way((j-1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1+1)*size_D)/2),1)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
+        
+%         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 1];
+%         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -5];
+        
         end
     end  
 
