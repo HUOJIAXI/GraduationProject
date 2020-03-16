@@ -4,11 +4,11 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_Versionfinal.gif)
 
-# 当前进行：单行线法则版本 Version 5.0
+# 当前进行：单行线法则版本 V2 2.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way/simulation_9ROB_Version4.2_ops.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -427,8 +427,29 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/VersionFinal_dynamic_ops.jpg)
 
 ## Version V2 oneway 1.0
+Author: HUO JIAXI
+
 由于在V1版本中的单行道模型需要很长的时间进行求解，并且随着机器人个数增加，求解时间成指数上升。因此开发V2版本，尝试避免指数上升问题。
 
 1.0版本完成了可求解的单行道模型约束，并且求解成功，但是求解时间较长，但是经过测试，在求解过程的前半段求解器已经求解出了最优解，但是求解器并没有停止，仍然在继续检索，因此在1.0版本中对运行时间进行了限制，能够正常求解。
 
-1.1版本将对求解器利用assign和usex0进行初始值的赋值，尝试降低求解时间。
+之后的版本将对求解器利用assign和usex0进行初始值的赋值，尝试降低求解时间。
+
+## Version V2 oneway 2.0
+Author: HUO JIAXI
+
+2.0版本更新了1.0版本的模型限制，发现了之前版本中限制存在的问题，对于交汇节点的入边出边限制，1.0版本可能会出现去除一些可能存在的可行路径的问题。
+
+2.0版本可以完成高密度环境的模型求解，可以解决16机器人的模型，但是求解时间会随着随机起点终点的选取而变化（Gurobi检索规模会随着起点终点的选取变化而变化）。
+
+2.0版本引入了初始解，针对dir_way决策变量赋以一个可行的单行道绕行方向，在一定程度上可以降低求解时间。
+
+该版本仍需进行优化，降低求解时间。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_9ROB_V2_indi.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_9ROB_V2.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2_indi.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.jpg)

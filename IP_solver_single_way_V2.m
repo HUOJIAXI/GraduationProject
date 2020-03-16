@@ -8,6 +8,8 @@ PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
+timelimit=round(50*numrobot);
+
 m_D=size(D,1);
 n_D=size(D,2);
  num_way=((m_D+1)*(n_D-1)+(m_D-1)*(n_D+1))/4; % 需要利用节点方向推出边占用情况
@@ -32,8 +34,8 @@ end
 x = binvar(numrobot,n,n,'full'); % n*n维的决策变量
 u = intvar(numrobot,n,1);
 % dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
-dir_way=intvar(num_way,1,'full');
-dir_rob=intvar(numrobot,num_way,1,'full');
+dir_way=intvar(1,num_way,'full');
+dir_rob=intvar(numrobot,num_way,'full');
 
 
 %p = intvar((n-1)/2,1);
@@ -132,19 +134,24 @@ for k = 1:n
      if (i==1&&j==1)
         C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=2];
         C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=6];
+%         C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=6];
      end
      
      if (i==size_D&&j==size_D)
         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=2];
         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=6];
+%         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=6];
      end
      
      if (i==1&&j==size_D)
         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=4];
+%         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=2];
+%         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=6];
      end
      
      if (i==size_D&&j==1)
         C = [C,  dir_way((j+(i-1-1)*size_D)/2)+dir_way((j+1+(i-1)*size_D)/2)~=4];
+%         C = [C,  dir_way((j+(i-1-1)*size_D)/2)+dir_way((j+1+(i-1)*size_D)/2)~=6];
      end
      
 end
@@ -158,32 +165,32 @@ for k = 1:n
     
     if i==1||i==size_D
         if mod(j,2)==1 && i==1 && j > 1 && j < size_D
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i+1-1)*size_D)/2) ~=7];
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i+1-1)*size_D)/2) ~=5];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2) ~=2];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2) ~=-2];
         end
         
         if mod(j,2)==1 && i==size_D && j > 1 && j < size_D
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) ~=7];
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) ~=5];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)  ~=2];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)  ~=-2];
         end
         
 
     
     elseif mod(i,2)==1 && i>1 && i<size_D
         if j==1
-           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=7];
-           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=5];
+           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=2];
+           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=-2];
         end
         
         if j==size_D
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=7];
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~=5];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2-dir_way((j+(i-1+1)*size_D)/2) ~=2];
+           C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2+dir_way((j+(i-1+1)*size_D)/2) ~=-2];
         end
     end
     
 end
 % 
-% %% 中部点
+%% 中部点
 if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向全为入边或出边的情况
 
     for k = 1:n
@@ -191,13 +198,14 @@ if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向
 
         if mod(i,2)==1 &&  i>1 && i < size_D && mod(j,2)==1 && j>1 && j < size_D
 
-            C = [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i-1-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2) ~= 8];
-
+%             C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-2*max(dir_way((j-1+(i-1)*size_D)/2),dir_way((j+(i-1+1)*size_D)/2))+dir_way((j+1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-2*max(dir_way((j+(i-1-1)*size_D)/2),dir_way((j+1+(i-1)*size_D)/2))~= 0];
+        C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 4];
+        C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
         end
     end  
 
 end
-%   
+  
 for k=1:numrobot
     for i = 1:n
         for j = 1:n
@@ -212,7 +220,10 @@ end
 
 % 参数设置
 
-ops = sdpsettings('verbose',1,'solver','gurobi','gurobi.TimeLimit',150);%verbose计算冗余量，值越大显示越详细
+[ini_dir_way] = initial();
+assign(dir_way,ini_dir_way);
+
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
