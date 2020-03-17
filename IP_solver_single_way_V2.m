@@ -8,7 +8,7 @@ PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
-timelimit=round(50*numrobot);
+timelimit=round(45*numrobot);
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -41,10 +41,16 @@ dir_rob=intvar(numrobot,num_way,'full');
 %p = intvar((n-1)/2,1);
 
 % 目标
+
 z=0;
 for i = 1:numrobot
     z = z+sum(sum(d.*x(i,:,:)));
 end
+% 
+% for i = 1:numrobot
+%     z = z+sum(min(dir_rob(i,:),1));
+% end
+
 %z = sum(sum(d.*x(1,:,:)));
 
 % 约束添加
@@ -128,6 +134,21 @@ for k = 1:num_way
      dir_way(k) = max(dir_rob(:,k));
 end
 
+for k = 1:num_way
+     C=[C, 0<=dir_way(k)<=3];
+
+end
+
+for k =1:num_way
+    for k_ro=1:numrobot
+         C=[C, 0<=dir_rob(k_ro,k)<=3];
+    end
+end
+
+% C=[C, 0<=dir_way(:)<=3];
+% C=[C, 0<=dir_rob(:,:)<=3];
+
+
 for k = 1:n
     
     [i,j]=spread_sin(k,size_D);
@@ -166,11 +187,13 @@ for k = 1:n
     if i==1||i==size_D
         if mod(j,2)==1 && i==1 && j > 1 && j < size_D
            C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=5];
-           C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=-1];
+%            C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=-1];
+           C= [C,  (dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2*3-max(dir_way((j-1+(i-1)*size_D)/2),1)~=0];
         end
         
         if mod(j,2)==1 && i==size_D && j > 1 && j < size_D
-           C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~=-1];
+            C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2*3-max(dir_way((j+1+(i-1)*size_D)/2),1) ~=0];
+%            C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~=-1];
            C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~= 5];
         end
         
@@ -179,11 +202,13 @@ for k = 1:n
     elseif mod(i,2)==1 && i>1 && i<size_D
         if j==1
            C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=5];
-           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=-1];
+%            C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=-1];
+           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2))/2*3-max(dir_way((j+(i-1-1)*size_D)/2),1)~=0];
         end
         
         if j==size_D
-           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=-1];
+            C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2*3-max(dir_way((j+(i-1+1)*size_D)/2),1)~=0];
+%            C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=-1];
            C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=5];
         end
     end
@@ -201,7 +226,8 @@ if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向
 %             C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-2*max(dir_way((j-1+(i-1)*size_D)/2),dir_way((j+(i-1+1)*size_D)/2))+dir_way((j+1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-2*max(dir_way((j+(i-1-1)*size_D)/2),dir_way((j+1+(i-1)*size_D)/2))~= 0];
 
         C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 4];
-        C = [C, max(dir_way((j-1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1+1)*size_D)/2),1)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
+%         C = [C, max(dir_way((j-1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1+1)*size_D)/2),1)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
+        C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))*3-(max(dir_way((j+1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1-1)*size_D)/2),1))~= 0];
         
 %         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 1];
 %         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -5];
@@ -239,7 +265,7 @@ if result.problem== 0
 %    disp([text,num2str(value(z))]);
     disp('系统总最优路径长度：Best objective');
 else
-    disp('外部结束');
+    disp('Finish ! ');
     disp(value(dir_rob))
 end
 

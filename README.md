@@ -8,7 +8,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -453,3 +453,16 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2_indi.jpg)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.jpg)
+
+## Version V2 oneway 2.2
+Author: HUO JIAXI
+
+2.2版本加入了对dir_way以及dir_rob两个方向变量的取值限制，限制为0-3之间，这样可以有效缩减Gurobi的求解规模，因此求解时间得到了一定的降低，对于16机器人的环境下，平均求解时间在300s左右，最快可以达到100s左右（得益于启发式初始解）。
+
+由于Gurobi约束的限制，求解结果会在小几率下出现结果为一个无限接近于实际正确值的小数的问题，但是并不影响求解，
+
+需要进一步引入启发式方法降低求解时间。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2_indi.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2.png)
