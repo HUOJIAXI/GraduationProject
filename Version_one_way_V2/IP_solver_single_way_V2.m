@@ -8,7 +8,7 @@ PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
-% timelimit=round(45*numrobot);
+timelimit=round(45*numrobot);
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -75,7 +75,7 @@ for i = 1:numrobot
 
     C = [C, sum(x(i,:,l(i))) - x(i,l(i),l(i)) == 0]; 
 end
-%% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
+%% 约束2 确保出入边条件，每个顶点在路径中仅出现一次
 for k=1:numrobot
     for i = 1:n
         if i ~= l(k) && i~=t(k)
@@ -83,7 +83,11 @@ for k=1:numrobot
             C = [C, sum(x(k,i,:))-x(k,i,i) <= 1];
             C = [C, sum(x(k,:,i))-x(k,i,i) <= 1];
         end
-        
+    end
+end
+%% 约束3 避免出现子循环
+for k=1:numrobot
+    for i = 1:n
         for j = 1:n
             if i~=j && i ~=l(k) && i ~=t(k) && j ~=l(k) && j ~=t(k)
                 C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
@@ -91,16 +95,6 @@ for k=1:numrobot
         end
     end
 end
-%% 约束3 避免出现子循环
-% for k=1:numrobot
-%     for i = 1:n
-%         for j = 1:n
-%             if i~=j && i ~=l(k) && i ~=t(k) && j ~=l(k) && j ~=t(k)
-%                 C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
-%             end
-%         end
-%     end
-% end
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
 for k = 1:numrobot
@@ -134,6 +128,7 @@ for k = 1:num_way
                  C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
         end  
 end
+% %% 在边界处四个交界点：
 
 for k = 1:num_way
      dir_way(k) = max(dir_rob(:,k));
@@ -141,17 +136,14 @@ end
 
 for k = 1:num_way
      C=[C, 0<=dir_way(k)<=3];
-     
+
+end
+
+for k =1:num_way
     for k_ro=1:numrobot
          C=[C, 0<=dir_rob(k_ro,k)<=3];
     end
 end
-
-% for k =1:num_way
-%     for k_ro=1:numrobot
-%          C=[C, 0<=dir_rob(k_ro,k)<=3];
-%     end
-% end
 
 % C=[C, 0<=dir_way(:)<=3];
 % C=[C, 0<=dir_rob(:,:)<=3];
@@ -160,78 +152,89 @@ end
 for k = 1:n
     
     [i,j]=spread_sin(k,size_D);
-    
-    %% 周围四个
      if (i==1&&j==1)
-        C = [C,  dir_way((j+(i-1)*n_D+1)/2)+dir_way((j+(i)*n_D)/2)~=2];
-        C = [C,  dir_way((j+(i-1)*n_D+1)/2)+dir_way((j+(i)*n_D)/2)~=6];
+        C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=2];
+        C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=6];
 %         C = [C,  dir_way((j+(i-1)*size_D+1)/2)+dir_way((j+(i)*size_D)/2)~=6];
      end
      
-     if (i==m_D&&j==n_D)
-        C = [C,  dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1-1)*n_D)/2)~=2];
-        C = [C,  dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1-1)*n_D)/2)~=6];
+     if (i==size_D&&j==size_D)
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=2];
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=6];
 %         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)~=6];
      end
      
-     if (i==1&&j==n_D)
-        C = [C,  dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1+1)*n_D)/2)~=4];
+     if (i==1&&j==size_D)
+        C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=4];
 %         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=2];
 %         C = [C,  dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)~=6];
      end
      
-     if (i==m_D&&j==1)
-        C = [C,  dir_way((j+(i-1-1)*n_D)/2)+dir_way((j+1+(i-1)*n_D)/2)~=4];
+     if (i==size_D&&j==1)
+        C = [C,  dir_way((j+(i-1-1)*size_D)/2)+dir_way((j+1+(i-1)*size_D)/2)~=4];
 %         C = [C,  dir_way((j+(i-1-1)*size_D)/2)+dir_way((j+1+(i-1)*size_D)/2)~=6];
      end
      
-     %% 边缘
-     if i==1||i==m_D
-        if mod(j,2)==1 && i==1 && j > 1 && j < n_D
-           C= [C,  dir_way((j+1+(i-1)*n_D)/2)+ dir_way((j+(i+1-1)*n_D)/2)-dir_way((j-1+(i-1)*n_D)/2) ~=5];
+end
+
+% 
+% 
+% %% 周围交界点
+for k = 1:n
+
+    [i,j]=spread_sin(k,size_D);
+    
+    if i==1||i==size_D
+        if mod(j,2)==1 && i==1 && j > 1 && j < size_D
+           C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=5];
 %            C= [C,  dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2)-dir_way((j-1+(i-1)*size_D)/2) ~=-1];
-           C= [C,  (dir_way((j+1+(i-1)*n_D)/2)+ dir_way((j+(i+1-1)*n_D)/2))/2*3-max(dir_way((j-1+(i-1)*n_D)/2),1)~=0];
+           C= [C,  (dir_way((j+1+(i-1)*size_D)/2)+ dir_way((j+(i+1-1)*size_D)/2))/2*3-max(dir_way((j-1+(i-1)*size_D)/2),1)~=0];
         end
         
-        if mod(j,2)==1 && i==m_D && j > 1 && j < n_D
-            C= [C, (dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1-1)*n_D)/2))/2*3-max(dir_way((j+1+(i-1)*n_D)/2),1) ~=0];
+        if mod(j,2)==1 && i==size_D && j > 1 && j < size_D
+            C= [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2))/2*3-max(dir_way((j+1+(i-1)*size_D)/2),1) ~=0];
 %            C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~=-1];
-           C= [C, dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1-1)*n_D)/2)-dir_way((j+1+(i-1)*n_D)/2)  ~= 5];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)  ~= 5];
         end
         
 
     
-    elseif mod(i,2)==1 && i>1 && i<m_D
+    elseif mod(i,2)==1 && i>1 && i<size_D
         if j==1
-           C= [C, dir_way((j+1+(i-1)*n_D)/2) + dir_way((j+(i-1+1)*n_D)/2)-dir_way((j+(i-1-1)*n_D)/2) ~=5];
+           C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=5];
 %            C= [C, dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2) ~=-1];
-           C= [C, (dir_way((j+1+(i-1)*n_D)/2) + dir_way((j+(i-1+1)*n_D)/2))/2*3-max(dir_way((j+(i-1-1)*n_D)/2),1)~=0];
+           C= [C, (dir_way((j+1+(i-1)*size_D)/2) + dir_way((j+(i-1+1)*size_D)/2))/2*3-max(dir_way((j+(i-1-1)*size_D)/2),1)~=0];
         end
         
         if j==size_D
-           C= [C, (dir_way((j-1+(i-1)*n_D)/2) + dir_way((j+(i-1-1)*n_D)/2))/2*3-max(dir_way((j+(i-1+1)*n_D)/2),1)~=0];
+            C= [C, (dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2))/2*3-max(dir_way((j+(i-1+1)*size_D)/2),1)~=0];
 %            C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=-1];
-           C= [C, dir_way((j-1+(i-1)*n_D)/2) + dir_way((j+(i-1-1)*n_D)/2)-dir_way((j+(i-1+1)*n_D)/2) ~=5];
+           C= [C, dir_way((j-1+(i-1)*size_D)/2) + dir_way((j+(i-1-1)*size_D)/2)-dir_way((j+(i-1+1)*size_D)/2) ~=5];
         end
-     end
-     
-    %% 中部
-     if numrobot >= 4
-         
-         if mod(i,2)==1 &&  i>1 && i < m_D && mod(j,2)==1 && j>1 && j < n_D
+    end
+    
+end
+% 
+%% 中部点
+if numrobot >= 4 % 在机器人个数小于4时中部点不会出现四个方向全为入边或出边的情况
+
+    for k = 1:n
+        [i,j]=spread_sin(k,size_D);
+
+        if mod(i,2)==1 &&  i>1 && i < size_D && mod(j,2)==1 && j>1 && j < size_D
 
 %             C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-2*max(dir_way((j-1+(i-1)*size_D)/2),dir_way((j+(i-1+1)*size_D)/2))+dir_way((j+1+(i-1)*size_D)/2)+dir_way((j+(i-1-1)*size_D)/2)-2*max(dir_way((j+(i-1-1)*size_D)/2),dir_way((j+1+(i-1)*size_D)/2))~= 0];
 
-        C = [C, dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1+1)*n_D)/2)-dir_way((j+1+(i-1)*n_D)/2)-dir_way((j+(i-1-1)*n_D)/2)~= 4];
+        C = [C, dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 4];
 %         C = [C, max(dir_way((j-1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1+1)*size_D)/2),1)-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -4];
-        C = [C, (dir_way((j-1+(i-1)*n_D)/2)+dir_way((j+(i-1+1)*n_D)/2))*3-(max(dir_way((j+1+(i-1)*n_D)/2),1)+max(dir_way((j+(i-1-1)*n_D)/2),1))~= 0];
+        C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))*3-(max(dir_way((j+1+(i-1)*size_D)/2),1)+max(dir_way((j+(i-1-1)*size_D)/2),1))~= 0];
         
 %         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= 1];
 %         C = [C, (dir_way((j-1+(i-1)*size_D)/2)+dir_way((j+(i-1+1)*size_D)/2))/2-dir_way((j+1+(i-1)*size_D)/2)-dir_way((j+(i-1-1)*size_D)/2)~= -5];
         
         end
-         
-     end 
+    end  
+
 end
   
 for k=1:numrobot
@@ -251,8 +254,7 @@ end
 [ini_dir_way] = initial();
 assign(dir_way,ini_dir_way);
 
-% ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
-ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1);
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
@@ -280,7 +282,7 @@ for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
     Path{i,1}=solvermatrix(o_sin,l(i),t(i));
-    m = size(D,2);
+    m = size(D,1);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix
 end

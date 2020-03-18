@@ -11,13 +11,12 @@ RobotNum=16;
 
 % [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(Start_ori,Goal_ori,D);
 % size_D=size(D_reduit,1);
-size_D=size(D,2);
+size_D=size(D,1);
 
-diary('res_16.txt');
+
 tic
  [PathStore,Path_num]=IP_solver_single_way_V2(D,Start_ori,Goal_ori,RobotNum,size_D);
 toc
-diary('off');
 
 % [PathStore_new,Path_num_new]=broaden(PathStore,D,RobotNum,Start_ori,Goal_ori);
 % 

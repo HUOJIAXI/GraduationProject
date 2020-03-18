@@ -4,13 +4,11 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/results/simulation_16ROB_Versionfinal.gif)
 
-# 当前进行：单行线法则版本 V2 3.0
+# 当前进行：单行线法则版本 V2 2.0
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3.gif)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_8ROB_V3.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2.gif)
 
 ## Version: 1.0 02/02/2020
 Author: HUO JIAXI. 
@@ -468,20 +466,3 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2_indi.jpg)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V2/simulation_16ROB_V2.2.png)
-
-## Version V3 oneway
-Author: HUO JIAXI
-
-3.0版本将模型优化为可适应任意规模的拓扑图结构环境（可应用之前方法中的拓扑图拓展方法拓展）。
-
-将模型规模扩展，将7x7环境增大为13x9，容纳16台机器人。在8机器人环境下，求解模型需要花费700s左右，16机器人则需要花费2800s左右，时间增长的原因是8机器人在13x7环境下不容易发生冲突，容易满足限制，而在16机器人环境下，冲突比较复杂，需要更多的时间求解模型，但是随着机器人个数上升，模型规模是线性上升的。
-
-对于7x7环境和13x9环境，由于环境规模增加了3倍，会导致模型规模快速增长。
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_8ROB_V3.png)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_8ROB_V3_indi.jpg)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3.png)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3_indi.jpg)

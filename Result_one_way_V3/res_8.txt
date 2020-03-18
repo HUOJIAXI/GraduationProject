@@ -1,0 +1,115 @@
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 116336 rows, 112688 columns and 777016 nonzeros
+Model fingerprint: 0xb92198de
+Variable types: 104 continuous, 112584 integer (111664 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 112052 unfixed non-continuous variables out of 112584
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R108712 by 1.000000000
+
+Presolve removed 2708 rows and 3896 columns
+Presolve time: 2.34s
+Presolved: 113628 rows, 108792 columns, 765880 nonzeros
+Variable types: 104 continuous, 108688 integer (107768 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+    6534   1.6666667e+100   0.000000e+00  2.356000e+103      5s
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 4.300000e+01, 2262 iterations, 1.44 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   43.00000    0   56          -   43.00000      -     -    6s
+     0     0   43.00000    0   52          -   43.00000      -     -   14s
+     0     0   43.00000    0   25          -   43.00000      -     -   17s
+     0     0   43.00000    0   40          -   43.00000      -     -   20s
+     0     0   43.00000    0   40          -   43.00000      -     -   20s
+     0     0   43.00000    0   42          -   43.00000      -     -   22s
+     0     0   43.00000    0   44          -   43.00000      -     -   22s
+     0     0   43.00000    0   43          -   43.00000      -     -   25s
+     0     0   43.00000    0   43          -   43.00000      -     -   25s
+     0     0   43.00000    0   45          -   43.00000      -     -   27s
+     0     0   43.00000    0   45          -   43.00000      -     -   27s
+     0     0   43.00000    0   35          -   43.00000      -     -   29s
+     0     0   43.00000    0   35          -   43.00000      -     -   30s
+H    0     0                      43.0000000   43.00000  0.00%     -   30s
+     0     0   43.00000    0   35   43.00000   43.00000  0.00%     -   31s
+
+Cutting planes:
+  Gomory: 4
+  Cover: 27
+  MIR: 24
+  RLT: 4
+
+Explored 1 nodes (8326 simplex iterations) in 31.06 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 43 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.300000000000e+01, best bound 4.300000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     3     3     3     0     0     0     1     0     0     0     0     0     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     1     1
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     3     3     3     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     3     3     3     0     0     0     0     0     0     0     0
+     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     3     3     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
