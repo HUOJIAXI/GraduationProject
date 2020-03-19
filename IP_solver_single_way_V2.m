@@ -186,6 +186,7 @@ for k = 1:n
      end
      
      %% 边缘
+     if numrobot >2
      if i==1||i==m_D
         if mod(j,2)==1 && i==1 && j > 1 && j < n_D
            C= [C,  dir_way((j+1+(i-1)*n_D)/2)+ dir_way((j+(i+1-1)*n_D)/2)-dir_way((j-1+(i-1)*n_D)/2) ~=5];
@@ -232,6 +233,7 @@ for k = 1:n
         end
          
      end 
+     end
 end
   
 for k=1:numrobot

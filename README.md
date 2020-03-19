@@ -8,7 +8,7 @@
 ## 仿真平台：Intel I7 RAM 16G - Matlab for mac
 ## 到目前为止的效果：  
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_test.gif)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_8ROB_V3.gif)
 
@@ -485,3 +485,8 @@ Author: HUO JIAXI
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3.png)
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Result_one_way_V3/simulation_16ROB_V3_indi.jpg)
+
+## Version 3.1 oneway
+Author: HUO JIAXI
+
+3.1版本通过移植V1版本的拓扑图拓展方法，将环境扩展成为一个大型的仓库环境，规则排布了24个1x3的货架，以及拥有16个机器人，求解时间在2400s左右。但是对于4机器人的环境中来说，则求解时间很短，因为对于4个机器人来说可以免除一些约束，可以提高求解效率。对于16机器人，在环境中发生的冲突会比较复杂，并且约束变量很多，因此需要较长的求解时间。
