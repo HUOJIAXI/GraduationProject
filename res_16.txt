@@ -1,40 +1,3 @@
-{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m', 10)" style="font-weight:bold">sdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m',10,0)">line 10</a>)
-
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m', 15)" style="font-weight:bold">ndsdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m',15,0)">line 15</a>)
-    Y = clean(Y);
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 39)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',39,0)">line 39</a>)
-X = clean(X);
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 89)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',89,0)">line 89</a>)
-                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 18)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',18,0)">line 18</a>)
- [PathStore,Path_num]=IP_solver_single_way_V2(D,Start_ori,Goal_ori,RobotNum,size_D);
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
-evalin('caller', strcat(script, ';'));
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
-起点终点审查通过
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/assign', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/assign.m', 41)" style="font-weight:bold">sdpvar/assign</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/assign.m',41,0)">line 41</a>)
-Both arguments must have same size
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 252)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',252,0)">line 252</a>)
-assign(dir_way,ini_dir_way);
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 15)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',15,0)">line 15</a>)
- [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start,Goal,RobotNum,size_D);
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
-evalin('caller', strcat(script, ';'));
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
-起点终点审查通过
-{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 39)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',39,0)">line 39</a>)
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
 起点终点审查通过
 Academic license - for non-commercial use only
 Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
@@ -85,49 +48,6 @@ Finish !
      0     0     0     0     0     0     0
      0     0     0     0     0     0     0
 
-{Index in position 2 exceeds array bounds (must not exceed 117).
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvermatrix', '/Users/huojiaxi/Desktop/IP_MPP/solvermatrix.m', 22)" style="font-weight:bold">solvermatrix</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/solvermatrix.m',22,0)">line 22</a>)
-        if a(k,q)==1
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 282)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',282,0)">line 282</a>)
-    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 15)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',15,0)">line 15</a>)
- [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start,Goal,RobotNum,size_D);
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
-evalin('caller', strcat(script, ';'));
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
-起点终点审查通过
-     0     0     0     0     0     0     0     0     0     0     0     0     0
-     0     1     0     1     0     1     0     1     0     1     0     1     0
-     0     0     0     0     0     0     0     0     0     0     0     0     0
-     0     1     0     1     0     1     0     1     0     1     0     1     0
-     0     0     0     0     0     0     0     0     0     0     0     0     0
-     0     1     0     1     0     1     0     1     0     1     0     1     0
-     0     0     0     0     0     0     0     0     0     0     0     0     0
-     0     1     0     1     0     1     0     1     0     1     0     1     0
-     0     0     0     0     0     0     0     0     0     0     0     0     0
-
-{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/plus', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/plus.m', 94)" style="font-weight:bold"> + </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/plus.m',94,0)">line 94</a>)
-
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/horzcat', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m', 28)" style="font-weight:bold">lmi/horzcat</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m',28,0)">line 28</a>)
-        F = F + H;
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 89)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',89,0)">line 89</a>)
-                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 16)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',16,0)">line 16</a>)
- [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start,Goal,RobotNum,size_D);
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
-evalin('caller', strcat(script, ';'));
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
-起点终点审查通过
      0     0     0     0     0     0     0     0     0     0     0     0     0
      0     1     0     1     0     1     0     1     0     1     0     1     0
      0     0     0     0     0     0     0     0     0     0     0     0     0
@@ -142,19 +62,7 @@ run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
 
     24    30
 
-{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 36)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',36,0)">line 36</a>)
 
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 89)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',89,0)">line 89</a>)
-                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 18)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',18,0)">line 18</a>)
- [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start,Goal,RobotNum,size_D);
-
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
-evalin('caller', strcat(script, ';'));
-} 
-run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
 起点终点审查通过
      0     0     0     0     0     0     0     0     0     0     0     0     0
      0     1     0     1     0     1     0     1     0     1     0     1     0
@@ -698,3 +606,120 @@ Best objective 2.800000000000e+01, best bound 2.800000000000e+01, gap 0.0000%
 
 系统总最优路径长度：Best objective
 Elapsed time is 264.587329 seconds.
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/minus', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/minus.m', 8)" style="font-weight:bold"> - </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/minus.m',8,0)">line 8</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('constraint', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/constraint.m', 17)" style="font-weight:bold">constraint</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/constraint.m',17,0)">line 17</a>)
+        Z = Y - X;
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/le', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/le.m', 5)" style="font-weight:bold"> <= </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/le.m',5,0)">line 5</a>)
+    y = constraint(X,'<=',Y);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m', 89)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/IP_solver_single_way_V2.m',89,0)">line 89</a>)
+                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m', 17)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m',17,0)">line 17</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start_new,Goal_new,RobotNum_new,size_D);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+c
+{Unrecognized function or variable 'c'.
+} 
+ datestr(now)
+
+ans =
+
+    '20-Mar-2020 20:58:10'
+
+run('/Users/huojiaxi/Desktop/IP_MPP/main_one_way_V2.m')
+起点终点审查通过
+20-Mar-2020 20:58:28
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x9f551c12
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 56140 unfixed non-continuous variables out of 56440
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R54408 by 1.000000000
+
+Presolve removed 1526 rows and 2040 columns
+Presolve time: 1.22s
+Presolved: 56098 rows, 54504 columns, 378950 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.800000e+01, 1146 iterations, 0.66 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   28.00000    0   33          -   28.00000      -     -    3s
+     0     0   28.00000    0   40          -   28.00000      -     -    9s
+     0     0   28.00000    0   33          -   28.00000      -     -   10s
+H    0     0                      28.0000000   28.00000  0.00%     -   11s
+
+Cutting planes:
+  Gomory: 4
+  Cover: 4
+  MIR: 10
+  GUB cover: 9
+  Zero half: 2
+
+Explored 1 nodes (3133 simplex iterations) in 12.00 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 28 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.800000000000e+01, best bound 2.800000000000e+01, gap 0.0000%
+  Columns 1 through 18
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     1     1     1     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 19 through 36
+
+     0     0     0     3     0     0     0     0     0     0     3     3     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     1     0     0
+
+  Columns 37 through 54
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 55 through 58
+
+     0     0     0     0
+     3     3     3     0
+     0     0     0     0
+     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 271.548473 seconds.
