@@ -2,7 +2,7 @@
 # 进入测试阶段：
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
 
 # Version 8.1 削减式动态算法最终版(具有在货架下躲避冲突的功能)
 # Version final 最终效果：
