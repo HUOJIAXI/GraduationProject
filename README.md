@@ -4,19 +4,19 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map_test2.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map_test2.jpg)
 
 ## 测试项目2: 控制机器人个数为4，增大环境大小，由3x3到15x15。实验结果发现相对于增加机器人个数，增大环境对运行时间的影响更大，是平方增长。
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_keep_size_rob.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_keep_size_rob.jpg)
 
 ## 测试项目3: 随机对机器人群中的一个进行扰动，比如起点或终点偏移一个单位，通过由扰动前所得到的初始解，可以降低求解的难度，降低求解时间，因此系统对小扰动的容忍度很高，时间浮动在5s以内。
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/disturb_test1.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/disturb_test1.jpg)
 
 ## 测试项目4：系统可能会由于一台机器人故障而减少一台机器人，测试结果求解时间会大大降低。
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/reduce_one_rob.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/reduce_one_rob.jpg)
 
 
 # Version 8.1 削减式动态算法最终版(具有在货架下躲避冲突的功能)
