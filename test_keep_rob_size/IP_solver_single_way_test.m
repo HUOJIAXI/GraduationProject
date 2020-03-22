@@ -3,7 +3,7 @@ PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
-% timelimit=round(100*numrobot);
+timelimit=round(100*numrobot);
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -250,7 +250,7 @@ assign(dir_rob,ini_dir_rob);
 assign(x,ini_x_value);
 assign(u,ini_u_value);
 
-ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1);%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);

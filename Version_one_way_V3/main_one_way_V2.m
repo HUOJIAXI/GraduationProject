@@ -9,7 +9,7 @@ RobotNum=4;
 [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(Start_ori,Goal_ori,D);
 size_D=size(D_reduit,2);
 
-diary('res_16.txt');
+diary('res.txt');
 
 disp(datestr(now));
 

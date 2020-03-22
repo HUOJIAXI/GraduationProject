@@ -1,9 +1,14 @@
-function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value)
+
+%% Version: 14/03/2020
+% Author:HUO JIAXI
+% 引入单行道限制
+%% 待修改
+function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_ini(D,l,t,numrobot,size_D,ini_dir_way)
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
-% timelimit=round(100*numrobot);
+timelimit=round(1000*numrobot);
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -246,19 +251,16 @@ end
 
 % 参数设置
 assign(dir_way,ini_dir_way);
-assign(dir_rob,ini_dir_rob);
-assign(x,ini_x_value);
-assign(u,ini_u_value);
 
-ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1);%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
-%     text=' 系统总最优路径长度：';
-%     disp([text,num2str(value(z))]);
+%    text=' 系统总最优路径长度：';
+%    disp([text,num2str(value(z))]);
 %     disp('系统总最优路径长度：Best objective');
 else
     disp('Finish ! ');
@@ -267,7 +269,6 @@ end
 
 dir_way_value=value(dir_way);
 dir_rob_value=value(dir_rob);
-
 x_value = value(x);
 u_value = value(u);
 

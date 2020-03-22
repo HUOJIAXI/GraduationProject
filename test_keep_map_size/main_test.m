@@ -11,7 +11,7 @@ run_time=zeros(1,RobotNum_total);
 [ini_dir_way] = initial();
 
 for i = 1:RobotNum_total
-    disp('   ');
+    disp('===================================');
     disp(['执行次数：',num2str(i)])
     Start_test = Start_ori(1:i);
     Goal_test = Goal_ori(1:i);
