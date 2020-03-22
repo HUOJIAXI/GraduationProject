@@ -2,7 +2,7 @@
 # 进入测试阶段：
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
 
-[images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
 
 [images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map_test2.jpg)
 
@@ -515,3 +515,5 @@ Author: HUO JIAXI
 Author: HUO JIAXI
 
 test版本主要对在相同环境下不同机器人个数模型求解时间进行分析。test版本优化了初始解，在增加机器人个数的过程中，将上一次运行生成的结果作为启发式初始解输入IP模型，使得求解时间得到一定程度的降低，并且可以发现在16个机器人之前，求解时间随着机器人个数的增加而线性增长，而机器人过多会导致模型过于复杂，求解时间则会大幅上升。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/simulation_20ROB_test.gif)
