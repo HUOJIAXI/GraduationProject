@@ -1,10 +1,10 @@
 clear;
 clc;
 
-size_D_index=9;
+size_D_index=7;
 [D]=construct_D(size_D_index);
 size_D=size(D,1);
-RobotNum_total=6;
+RobotNum_total=16;
 
 [Start_test,Goal_test]=rand_Goal_Start(D,RobotNum_total); % 随机生成一组测试集
 
