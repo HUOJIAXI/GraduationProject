@@ -4,7 +4,7 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map.jpg)
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_20_keep_size_map_test2.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/test_20_keep_size_map_test2.jpg)
 
 ## 测试项目2: 控制机器人个数为4，增大环境大小，由3x3到15x15。实验结果发现相对于增加机器人个数，增大环境对运行时间的影响更大，是平方增长。
 
