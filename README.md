@@ -524,6 +524,7 @@ Author: HUO JIAXI
 本版本主要对初始解算法进行了探究，发现初始解算法成功求解的条件比较苛刻，因为初始解很难满足单行线法则中的所有条件，因此初始解会被忽略。
 
 >User MIP start did not produce a new incumbent solution
+
 >User MIP start violates constraint R14176 by 1.000000000
 
 初始解能够在去除一台机器人以及在机器人的状态没有发生变化的情况下会起效：
