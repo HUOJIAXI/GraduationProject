@@ -11,7 +11,7 @@ o_single=cell(numrobot,1);
 
 m_D=size(D,1);
 n_D=size(D,2);
- num_way=((m_D+1)*(n_D-1)+(m_D-1)*(n_D+1))/4; % 需要利用节点方向推出边占用情况
+num_way=((m_D+1)*(n_D-1)+(m_D-1)*(n_D+1))/4; % 需要利用节点方向推出边占用情况
 
 d = transfer(D);
 m = size(d,1); 
@@ -253,6 +253,7 @@ assign(dir_way,ini_dir_way);
 
 ops = sdpsettings('verbose',1,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
 ops.usex0=1;
+ops.NumericFocus=3;
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);

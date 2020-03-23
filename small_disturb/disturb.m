@@ -1,10 +1,17 @@
-function [Start_test,Goal_test,dis_num]=disturb(Start_test,Goal_test,D,RobotNum_total)
+function [Start_test,Goal_test,dis_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=disturb(Start_test,Goal_test,D,RobotNum_total,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value)
 
 D_size=size(D,1);
 
 dis_num=1+round(rand(1,1)*(RobotNum_total-1));
 
 dis_flag=round(rand(1,1));
+% 
+% ini_u_value(dis_num,:)=0;
+% ini_x_value(:,:,dis_num)=0;
+% ini_dir_rob(dis_num,:)=0;
+% 
+% [ini_dir_way_res] = initial(D_size);
+% ini_dir_way=ini_dir_way_res;
 
 if dis_flag==0
     flag=0;
@@ -37,6 +44,7 @@ if dis_flag==0
             flag=1;
         end
     end
+    
     
 else
     flag = 0;

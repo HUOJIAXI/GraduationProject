@@ -11,6 +11,8 @@ RobotNum_total=6;
 run_time=zeros(1,2);
 
 [ini_dir_way] = initial(size_D);
+diary('res_reduce_one_rob.txt')
+disp(datestr(now));
 
 disp('===================================');
 
@@ -58,6 +60,7 @@ disp(['产生扰动机器人序号：',num2str(dis_num)])
 disp(['运行时间差: ',num2str(abs(run_time(1)-run_time(2)))])
 
 % plotdynamic(D,PathStore,Path_num,RobotNum_total,Start_ori,Goal_ori);
+diary('off');
 
 save('run_time.mat')
 

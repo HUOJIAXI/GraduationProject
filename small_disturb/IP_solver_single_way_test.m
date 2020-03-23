@@ -252,6 +252,7 @@ assign(u,ini_u_value);
 
 ops = sdpsettings('verbose',1,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
 ops.usex0=1;
+ops.NumericFocus=3;
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);

@@ -517,3 +517,18 @@ Author: HUO JIAXI
 test版本主要对在相同环境下不同机器人个数模型求解时间进行分析。test版本优化了初始解，在增加机器人个数的过程中，将上一次运行生成的结果作为启发式初始解输入IP模型，使得求解时间得到一定程度的降低，并且可以发现在16个机器人之前，求解时间随着机器人个数的增加而线性增长，而机器人过多会导致模型过于复杂，求解时间则会大幅上升。
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/simulation_20ROB_test.gif)
+
+## Version 3.2 oneway
+Author: HUO JIAXI
+
+本版本主要对初始解算法进行了探究，发现初始解算法成功求解的条件比较苛刻，因为初始解很难满足单行线法则中的所有条件，因此初始解会被忽略。
+
+* User MIP start did not produce a new incumbent solution *
+* User MIP start violates constraint R14176 by 1.000000000 *
+
+初始解能够在去除一台机器人以及在机器人的状态没有发生变化的情况下会起效：
+
+* User MIP start produced solution with objective 27 (0.20s) *
+* Loaded user MIP start with objective 27 *
+
+在机器人的初始情况发生变化的情况下，初始解很难满足条件，因此会被求解器忽略

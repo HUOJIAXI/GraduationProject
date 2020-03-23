@@ -4,7 +4,7 @@ clc;
 size_D_index=7;
 [D]=construct_D(size_D_index);
 size_D=size(D,1);
-RobotNum_total=16;
+RobotNum_total=6;
 
 [Start_test,Goal_test]=rand_Goal_Start(D,RobotNum_total); % 随机生成一组测试集
 
@@ -37,9 +37,12 @@ disp(Goal_test)
 
 disp('===================================');
 
+disp('暂停10秒，发生扰动')
+pause(10);
+
 disp('发生小扰动')
 
-[Start_test,Goal_test,dis_num]=disturb(Start_test,Goal_test,D,RobotNum_total);
+[Start_test,Goal_test,dis_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=disturb(Start_test,Goal_test,D,RobotNum_total,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value);
 
 disp('===================================');
 

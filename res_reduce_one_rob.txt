@@ -1,0 +1,98 @@
+23-Mar-2020 19:00:10
+===================================
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 16312 rows, 15426 columns and 102752 nonzeros
+Model fingerprint: 0x843207fc
+Variable types: 40 continuous, 15386 integer (15104 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+01]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+01]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 15212 unfixed non-continuous variables out of 15386
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R14176 by 1.000000000
+
+Presolve removed 897 rows and 1230 columns
+Presolve time: 0.18s
+Presolved: 15415 rows, 14196 columns, 99149 nonzeros
+Variable types: 40 continuous, 14156 integer (13874 binary)
+
+Root relaxation: objective 3.200000e+01, 778 iterations, 0.05 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                      32.0000000    0.00000   100%     -    0s
+     0     0     cutoff    0        32.00000   32.00000  0.00%     -    0s
+
+Explored 0 nodes (1114 simplex iterations) in 0.71 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 32 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.200000000000e+01, best bound 3.200000000000e+01, gap 0.0000%
+Elapsed time is 67.420669 seconds.
+发生扰动前起点
+     4    14    38     2    43    32
+
+发生扰动前终点
+    10     5    15    47    19    21
+
+===================================
+发生小扰动（减去一台机器人）
+===================================
+发生扰动后起点
+     4    14     2    43    32
+
+===================================
+发生扰动后终点
+    10     5    47    19    21
+
+===================================
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 13524 rows, 12882 columns and 85133 nonzeros
+Model fingerprint: 0x4d4dca67
+Variable types: 40 continuous, 12842 integer (12607 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+01]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+01]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start produced solution with objective 27 (0.20s)
+Loaded user MIP start with objective 27
+
+Presolve removed 1012 rows and 11947 columns
+Presolve time: 0.30s
+Presolved: 12512 rows, 935 columns, 28199 nonzeros
+Variable types: 40 continuous, 895 integer (660 binary)
+
+Root relaxation: cutoff, 376 iterations, 0.04 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0        27.00000   27.00000  0.00%     -    0s
+
+Explored 0 nodes (376 simplex iterations) in 0.66 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 27 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.700000000000e+01, best bound 2.700000000000e+01, gap 0.0000%
+Elapsed time is 57.899751 seconds.
+===================================
+产生扰动机器人序号：3
+运行时间差: 10.0111
