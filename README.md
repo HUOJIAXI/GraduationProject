@@ -1,4 +1,13 @@
 # GraduationProject 项目日志 
+## 连续性路径演示：
+## 1. 单行道方法（16机器人，25*9仓库环境）
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16ROB_Version5.0continue.gif)
+
+## 2. 动态启发式分割方法（16机器人，13*13仓库环境）
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16ROB_Continue.gif)
+
 # 进入测试阶段：
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
 
@@ -533,3 +542,10 @@ Author: HUO JIAXI
 >Loaded user MIP start with objective 27
 
 在机器人的初始情况发生变化的情况下，初始解很难满足条件，因此会被求解器忽略
+
+## Version 4.0 oneway
+Author: HUO JIAXI
+
+本版本将初始化解启发式方法进行了改进，启发式方法在一定概率上能够在小扰动情况下起效，可以降低求解时间。另外能够在系统中增加机器人的情况下起效。能够降低求解时间。并且通过测试，发现在扩大环境的情况下，使用启发式方法能够在大环境中降低大约200s的求解时间。
+
+
