@@ -1,4 +1,4 @@
-function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
+function plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,2);
 [X,Y]=spread(Start,m);
@@ -17,7 +17,7 @@ MAX=0;
 temp=0.1;
 
 %%
-[PathStore]=insert_value(PathStore,RobotNum);
+[PathStore]=insert_value_dyn(PathStore,RobotNum);
 
 for i = 1:RobotNum
     

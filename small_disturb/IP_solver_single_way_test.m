@@ -245,10 +245,10 @@ end
 %% 求解IP模型
 
 % 参数设置
-assign(dir_way,ini_dir_way);
-assign(dir_rob,ini_dir_rob);
+% assign(dir_way,ini_dir_way);
+% assign(dir_rob,ini_dir_rob);
 assign(x,ini_x_value);
-assign(u,ini_u_value);
+% assign(u,ini_u_value);
 
 ops = sdpsettings('verbose',1,'solver','gurobi');%verbose计算冗余量，值越大显示越详细
 ops.usex0=1;

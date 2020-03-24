@@ -1,0 +1,1176 @@
+24-Mar-2020 17:25:55
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/subsref.m', 73)" style="font-weight:bold">lmi/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/subsref.m',73,0)">line 73</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 258)" style="font-weight:bold">expandmodel</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',258,0)">line 258</a>)
+        Fconstraint = F(constraint);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compileinterfacedata', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m', 116)" style="font-weight:bold">compileinterfacedata</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m',116,0)">line 116</a>)
+    [F,failure,cause,operators] = expandmodel(F,h,options);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvesdp', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m', 242)" style="font-weight:bold">solvesdp</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m',242,0)">line 242</a>)
+[interfacedata,recoverdata,solver,diagnostic,F,Fremoved,ForiginalQuadratics] =
+compileinterfacedata(F,[],logdetStruct,h,options,0,solving_parametric);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('optimize', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m', 31)" style="font-weight:bold">optimize</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m',31,0)">line 31</a>)
+[varargout{1:nargout}] = solvesdp(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m', 260)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m',260,0)">line 260</a>)
+result  = optimize(C,z,ops);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 19)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',19,0)">line 19</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start_new,Goal_new,RobotNum_new,size_D);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+24-Mar-2020 17:58:21
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m', 89)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m',89,0)">line 89</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 19)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',19,0)">line 19</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start_new,Goal_new,RobotNum_new,size_D);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+clc
+clear
+load('run_time_test2.mat')
+load('run_time.mat')
+clear
+load('run_time.mat')
+[PathStore_inserted]=insert_value_dyn(PathStore,RobotNum_total)
+{Unrecognized function or variable 'PathStore'.
+} 
+[PathStore_inserted]=insert_value_dyn(PathStore_1,RobotNum_total)
+
+PathStore_inserted =
+
+  6×1 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {21×2 double}
+    {31×2 double}
+    {51×2 double}
+    {91×2 double}
+    {81×2 double}
+    {51×2 double}
+
+clear
+clc
+load('Path_num.mat')
+plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal)
+[Warning: The video's width and height has been padded to be a multiple of two as required by the H.264
+codec.] 
+{Dot indexing is not supported for variables of this type.
+
+Error in alternateGetframe
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getframe', '/Applications/MATLAB_R2019b.app/toolbox/matlab/graphics/printing/getframe.m', 138)" style="font-weight:bold">getframe</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/graphics/printing/getframe.m',138,0)">line 138</a>)
+x = alternateGetframe(parentFig, offsetRect, scaledOffsetRect, includeDecorations);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotdynamic_show_conti', '/Users/huojiaxi/Desktop/IP_MPP/Version Finale 8.1/plotdynamic_show_conti.m', 195)" style="font-weight:bold">plotdynamic_show_conti</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version Finale 8.1/plotdynamic_show_conti.m',195,0)">line 195</a>)
+    writeVideo(video,getframe(ax))
+} 
+[PathStore_inserted]=insert_value_dyn(PathStore,RobotNum)
+
+PathStore_inserted =
+
+  16×1 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {2183×2 double}
+    {2084×2 double}
+    {2139×2 double}
+    {2106×2 double}
+    {2172×2 double}
+    {2172×2 double}
+    {1996×2 double}
+    {2238×2 double}
+    {2073×2 double}
+    {2051×2 double}
+    {2194×2 double}
+    {2183×2 double}
+    {1886×2 double}
+    {2238×2 double}
+    {2051×2 double}
+    {2117×2 double}
+
+[PathStore_inserted]=insert_value_dyn(PathStore,RobotNum)
+
+PathStore_inserted =
+
+  16×1 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {2183×2 double}
+    {2084×2 double}
+    {2139×2 double}
+    {2106×2 double}
+    {2172×2 double}
+    {2172×2 double}
+    {1996×2 double}
+    {2238×2 double}
+    {2073×2 double}
+    {2051×2 double}
+    {2194×2 double}
+    {2183×2 double}
+    {1886×2 double}
+    {2238×2 double}
+    {2051×2 double}
+    {2117×2 double}
+
+[PathStore_inserted]=insert_value_dyn(PathStore,RobotNum)
+
+PathStore_inserted =
+
+  16×1 <a href="matlab:helpPopup cell" style="font-weight:bold">cell</a> array
+
+    {161×2 double}
+    {242×2 double}
+    {197×2 double}
+    {224×2 double}
+    {170×2 double}
+    {170×2 double}
+    {314×2 double}
+    {116×2 double}
+    {251×2 double}
+    {269×2 double}
+    {152×2 double}
+    {161×2 double}
+    {404×2 double}
+    {116×2 double}
+    {269×2 double}
+    {215×2 double}
+
+plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal)
+[Warning: The video's width and height has been padded to be a multiple of two as required by the H.264
+codec.] 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+24-Mar-2020 18:42:30
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 131537 rows, 126725 columns and 877705 nonzeros
+Model fingerprint: 0x558e1ac0
+Variable types: 104 continuous, 126621 integer (125585 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 126031 unfixed non-continuous variables out of 126621
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R122521 by 1.000000000
+
+Presolve removed 2339 rows and 2737 columns
+Presolve time: 0.14s
+
+Explored 0 nodes (0 simplex iterations) in 0.56 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Finish ! 
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+{Index in position 2 exceeds array bounds (must not exceed 117).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvermatrix', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/solvermatrix.m', 22)" style="font-weight:bold">solvermatrix</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/solvermatrix.m',22,0)">line 22</a>)
+        if a(k,q)==1
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m', 284)" style="font-weight:bold">IP_solver_single_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V2.m',284,0)">line 284</a>)
+    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 19)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',19,0)">line 19</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start_new,Goal_new,RobotNum_new,size_D);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     1     0     1     0     1     0     1     0     1     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     1     0     1     0     1     0     1     0     1     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     1     0     1     0     1     0     1     0     1     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     1     0     1     0     1     0     1     0     1     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+24-Mar-2020 19:00:08
+不存在重合起点终点
+    10    34    35    52    58     7    30    89     3
+
+    54     9    30    48    65   116   115    82    27
+
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m', 15)" style="font-weight:bold">ndsdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m',15,0)">line 15</a>)
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+24-Mar-2020 19:01:23
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x8a5a56fc
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 56140 unfixed non-continuous variables out of 56440
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R54408 by 1.000000000
+
+Presolve removed 1527 rows and 2040 columns
+Presolve time: 1.15s
+Presolved: 56097 rows, 54504 columns, 378933 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.700000e+01, 1141 iterations, 0.64 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   27.00000    0   23          -   27.00000      -     -    3s
+     0     0   27.00000    0   24          -   27.00000      -     -    8s
+     0     0   27.00000    0    2          -   27.00000      -     -   10s
+H    0     0                      29.0000000   27.00000  6.90%     -   10s
+H    0     0                      27.0000000   27.00000  0.00%     -   11s
+
+Cutting planes:
+  Learned: 2
+  Cover: 3
+  MIR: 2
+
+Explored 1 nodes (2828 simplex iterations) in 11.44 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 2: 27 29 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.700000000000e+01, best bound 2.700000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1
+     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     1     0     0     0     0     0     0     1     0     0     0
+     1     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0
+     0     3     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     1     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     3     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 276.272460 seconds.
+24-Mar-2020 19:08:17
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 176904 rows, 168832 columns and 1178620 nonzeros
+Model fingerprint: 0x10da5398
+Variable types: 104 continuous, 168728 integer (167348 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Warning: Completing partial solution with 167964 unfixed non-continuous variables out of 168728
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R163016 by 1.000000000
+
+Presolve removed 3890 rows and 5752 columns
+Presolve time: 3.74s
+Presolved: 173014 rows, 163080 columns, 1161897 nonzeros
+Variable types: 104 continuous, 162976 integer (161596 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   1.2000000e+101   0.000000e+00  5.700000e+101      7s
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 7.900000e+01, 3604 iterations, 2.25 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   79.00000    0  117          -   79.00000      -     -   10s
+     0     0   79.00231    0  168          -   79.00231      -     -   21s
+     0     0   79.00231    0   71          -   79.00231      -     -   27s
+     0     0   79.01157    0  226          -   79.01157      -     -   30s
+     0     0   79.12618    0  255          -   79.12618      -     -   31s
+     0     0   81.35565    0  219          -   81.35565      -     -   34s
+     0     0   81.35572    0  231          -   81.35572      -     -   35s
+     0     0   82.03360    0  262          -   82.03360      -     -   37s
+     0     0   82.03459    0  335          -   82.03459      -     -   38s
+     0     0   82.03704    0  326          -   82.03704      -     -   38s
+     0     0   82.03704    0  338          -   82.03704      -     -   39s
+     0     0   82.21048    0  250          -   82.21048      -     -   41s
+     0     0   82.26501    0  317          -   82.26501      -     -   42s
+     0     0   82.27604    0  326          -   82.27604      -     -   42s
+     0     0   82.27604    0  329          -   82.27604      -     -   42s
+     0     0   82.46961    0  305          -   82.46961      -     -   45s
+     0     0   82.53497    0  340          -   82.53497      -     -   45s
+     0     0   82.53948    0  282          -   82.53948      -     -   46s
+     0     0   82.54272    0  340          -   82.54272      -     -   46s
+     0     0   82.55724    0  341          -   82.55724      -     -   46s
+     0     0   82.55724    0  363          -   82.55724      -     -   47s
+     0     0   82.71496    0  377          -   82.71496      -     -   49s
+     0     0   82.71496    0  400          -   82.71496      -     -   50s
+     0     0   82.76548    0  411          -   82.76548      -     -   52s
+     0     0   82.76602    0  407          -   82.76602      -     -   52s
+     0     0   82.77454    0  408          -   82.77454      -     -   53s
+     0     0   82.77454    0  407          -   82.77454      -     -   53s
+     0     0   82.86665    0  482          -   82.86665      -     -   55s
+     0     0   82.86665    0  465          -   82.86665      -     -   56s
+     0     0   82.86665    0  466          -   82.86665      -     -   58s
+     0     0   82.86665    0  472          -   82.86665      -     -   58s
+     0     0   82.86665    0  500          -   82.86665      -     -   60s
+     0     0   82.86665    0  500          -   82.86665      -     -   61s
+     0     0   82.86937    0  112          -   82.86937      -     -   64s
+     0     0   82.86937    0  133          -   82.86937      -     -   64s
+     0     0   82.88713    0  119          -   82.88713      -     -   66s
+     0     0   82.88713    0  117          -   82.88713      -     -   67s
+     0     0   82.91752    0  123          -   82.91752      -     -   69s
+     0     0   82.91752    0  169          -   82.91752      -     -   69s
+     0     0   82.92117    0  165          -   82.92117      -     -   72s
+     0     0   82.92117    0  167          -   82.92117      -     -   72s
+     0     0   82.92117    0  160          -   82.92117      -     -   74s
+     0     0   82.92117    0  172          -   82.92117      -     -   74s
+     0     0   82.92117    0   84          -   82.92117      -     -   78s
+     0     0   82.92117    0  141          -   82.92117      -     -   78s
+     0     0   82.92117    0  104          -   82.92117      -     -   81s
+     0     0   82.92117    0  104          -   82.92117      -     -   86s
+H    0     0                      83.0000000   82.92117  0.09%     -   86s
+     0     0   82.92117    0  104   83.00000   82.92117  0.09%     -   87s
+
+Cutting planes:
+  Learned: 709
+  Cover: 61
+  Implied bound: 14
+  Clique: 78
+  MIR: 76
+  StrongCG: 3
+  Flow cover: 1
+  GUB cover: 1
+  Zero half: 7
+  RLT: 86
+  Relax-and-lift: 2
+
+Explored 1 nodes (18764 simplex iterations) in 87.11 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 83 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.300000000000e+01, best bound 8.300000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     1     0     0     0     0     0     0     1     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     3     0     0     0     0     0     1     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     3     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     1     0     0     0     0     0     3     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     1     0     0     0     0     3     3     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     1     0     0     0     3     3     3     0     0     0     1
+     0     0     0     3     0     0     0     0     0     0     3     0     0     0     0     0     0
+     0     3     0     0     0     0     0     0     3     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0
+     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     3     0     0     0     1     1     1     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     3     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     1     1     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0
+     0     0     0     0     0     1     1     1     1     0     0     3     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     3     0     0     0     0     0     0
+     0     0     0     0     0     3     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     3     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 1374.523883 seconds.
+24-Mar-2020 19:50:39
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x0ce4557a
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1527 rows and 2040 columns
+Presolve time: 1.17s
+Presolved: 56097 rows, 54504 columns, 378939 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.800000e+01, 1121 iterations, 0.67 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   28.00000    0   25          -   28.00000      -     -    3s
+H    0     0                      28.0000000   28.00000  0.00%     -    7s
+
+Cutting planes:
+  Cover: 3
+  MIR: 6
+  Mod-K: 1
+  RLT: 1
+
+Explored 1 nodes (1616 simplex iterations) in 7.20 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 28 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.800000000000e+01, best bound 2.800000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     1     0     0     0     0     0     0     1     0     0     0     0     0     0
+     0     0     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     3     0     0     0     1     1     1     0     0     0     0
+
+  Columns 35 through 51
+
+     1     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0
+     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 303.675073 seconds.
+24-Mar-2020 19:57:32
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 28394 rows, 28148 columns and 190532 nonzeros
+Model fingerprint: 0xecba0494
+Variable types: 58 continuous, 28090 integer (27860 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 780 rows and 1004 columns
+Presolve time: 0.52s
+Presolved: 27614 rows, 27144 columns, 187694 nonzeros
+Variable types: 8 continuous, 27136 integer (26856 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 1.600000e+01, 571 iterations, 0.41 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                      16.0000000    0.00000   100%     -    1s
+     0     0     cutoff    0        16.00000   16.00000  0.00%     -    1s
+
+Explored 0 nodes (660 simplex iterations) in 1.61 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 16 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.600000000000e+01, best bound 1.600000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1
+     0     3     0     0     0     0     1     1     0     0     0     0     3     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     3     3     3     0
+     0     1     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 124.187301 seconds.
+24-Mar-2020 20:01:28
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('yalmip', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/yalmip.m', 341)" style="font-weight:bold">yalmip</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/yalmip.m',341,0)">line 341</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('constraint/or', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m', 55)" style="font-weight:bold"> | </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m',55,0)">line 55</a>)
+        varargout{1} = yalmip('define','or',varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/ne', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/ne.m', 40)" style="font-weight:bold"> ~= </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/ne.m',40,0)">line 40</a>)
+    F = ((X<=Y-0.5) | (X>=Y+0.5));
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 134)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',134,0)">line 134</a>)
+                 C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 28)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',28,0)">line 28</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+[PathStore,Path_num] = ori_path_am(Start,Goal,D_reduit)
+{Operands to the || and && operators must be convertible to logical scalar values.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ori_path_am', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/ori_path_am.m', 7)" style="font-weight:bold">ori_path_am</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/ori_path_am.m',7,0)">line 7</a>)
+if Start_x ~= Goal_x && Goal_y ~= Start_y
+} 
+[PathStore,Path_num] = ori_path_am(Start_new(1),Goal_new(1),D_reduit)
+
+PathStore =
+
+     2     5
+     3     5
+     4     5
+     5     5
+     6     5
+     7     5
+     8     5
+
+
+Path_num =
+
+    18    31    44    57    70    83    96
+
+[PathStore,Path_num] = ori_path_am(Start_new(2),Goal_new(2),D_reduit)
+
+PathStore =
+
+     3     3
+     4     3
+     5     3
+     5     4
+     5     5
+     5     6
+     5     7
+     5     8
+     5     9
+     5    10
+     5    11
+     5    12
+
+
+Path_num =
+
+    29    42    55    56    57    58    59    60    61    62    63    64
+
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+24-Mar-2020 20:04:49
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 28394 rows, 28148 columns and 190532 nonzeros
+Model fingerprint: 0x285bdee2
+Variable types: 58 continuous, 28090 integer (27860 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 781 rows and 1006 columns
+Presolve time: 0.52s
+Presolved: 27613 rows, 27142 columns, 187691 nonzeros
+Variable types: 8 continuous, 27134 integer (26854 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Warning: switch to quad precision
+Concurrent spin time: 0.02s
+
+Solved with dual simplex
+
+Root relaxation: objective 9.000000e+00, 479 iterations, 0.40 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                       9.0000000    0.00000   100%     -    1s
+     0     0    9.00000    0    2    9.00000    9.00000  0.00%     -    1s
+
+Explored 0 nodes (479 simplex iterations) in 1.82 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 9 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 9.000000000000e+00, best bound 9.000000000000e+00, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     1     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     3     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 125.501914 seconds.
+24-Mar-2020 20:07:29
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 13832 rows, 13822 columns and 94041 nonzeros
+Model fingerprint: 0x7e867eff
+Variable types: 0 continuous, 13822 integer (13707 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start produced solution with objective 6 (0.16s)
+Loaded user MIP start with objective 6
+
+Presolve removed 417 rows and 13496 columns
+Presolve time: 0.40s
+Presolved: 13415 rows, 326 columns, 27403 nonzeros
+Variable types: 0 continuous, 326 integer (211 binary)
+
+Root relaxation: cutoff, 145 iterations, 0.05 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0         6.00000    6.00000  0.00%     -    0s
+
+Explored 0 nodes (145 simplex iterations) in 0.77 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 6 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.000000000000e+00, best bound 6.000000000000e+00, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     1     0     0     0     0     0     0     1     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     1     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 42.809733 seconds.
+24-Mar-2020 21:24:17
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 239328 rows, 224976 columns and 1589504 nonzeros
+Model fingerprint: 0x4b5fc346
+Variable types: 104 continuous, 224872 integer (223032 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 5070 rows and 7608 columns (presolve time = 6s) ...
+Presolve removed 5070 rows and 7608 columns
+Presolve time: 5.54s
+Presolved: 234258 rows, 217368 columns, 1566998 nonzeros
+Variable types: 104 continuous, 217264 integer (215424 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   1.6000000e+101   0.000000e+00  8.000000e+101     10s
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 1.220000e+02, 4777 iterations, 3.27 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  122.00000    0  224          -  122.00000      -     -   15s
+     0     0  122.50202    0  331          -  122.50202      -     -   31s
+     0     0  122.50202    0  124          -  122.50202      -     -   40s
+     0     0  122.50202    0  355          -  122.50202      -     -   46s
+     0     0  122.50403    0  383          -  122.50403      -     -   47s
+     0     0  124.00000    0  379          -  124.00000      -     -   52s
+     0     0  124.00000    0  387          -  124.00000      -     -   53s
+     0     0  124.00000    0  375          -  124.00000      -     -   57s
+     0     0  124.02701    0  419          -  124.02701      -     -   57s
+     0     0  124.02701    0  443          -  124.02701      -     -   58s
+     0     0  124.43548    0  247          -  124.43548      -     -   64s
+     0     0  124.43548    0  283          -  124.43548      -     -   64s
+     0     0  124.46731    0  403          -  124.46731      -     -   68s
+     0     0  124.49270    0  460          -  124.49270      -     -   68s
+     0     0  124.49308    0  469          -  124.49308      -     -   69s
+     0     0  124.49308    0  470          -  124.49308      -     -   69s
+     0     0  124.50972    0  439          -  124.50972      -     -   72s
+     0     0  124.51468    0  444          -  124.51468      -     -   73s
+     0     0  124.51468    0  454          -  124.51468      -     -   73s
+     0     0  124.65113    0  419          -  124.65113      -     -   77s
+     0     0  124.65113    0  422          -  124.65113      -     -   77s
+     0     0  125.10534    0  433          -  125.10534      -     -   80s
+     0     0  125.13651    0  470          -  125.13651      -     -   81s
+     0     0  125.13651    0  475          -  125.13651      -     -   81s
+     0     0  125.20460    0  485          -  125.20460      -     -   84s
+     0     0  125.20460    0  492          -  125.20460      -     -   85s
+     0     0  125.20460    0  505          -  125.20460      -     -   88s
+     0     0  125.20460    0  539          -  125.20460      -     -   89s
+     0     0  125.20460    0  349          -  125.20460      -     -   93s
+     0     0  125.20460    0  512          -  125.20460      -     -   94s
+     0     0  125.20460    0  453          -  125.20460      -     -   99s
+     0     0  125.20460    0  505          -  125.20460      -     -   99s
+     0     0  125.20460    0  368          -  125.20460      -     -  105s
+     0     0  125.20460    0  316          -  125.20460      -     -  117s
+     0     2  126.00000    0  311          -  126.00000      -     -  128s
+     1     5  128.28571    1  444          -  126.00000      -  1237  131s
+     7    12  129.00000    3  462          -  126.00000      -   292  137s
+    15    20  132.00000    4  487          -  126.00000      -   265  140s
+    23    28  130.00000    5  368          -  126.00000      -   210  145s
+    44    50  130.00000    9  391          -  126.00000      -   174  150s
+    65    75  130.00000   11  352          -  126.00000      -   164  156s
+    86    97  130.00000   15  189          -  126.00000      -   157  162s
+   100   110  130.41026   17  346          -  126.00000      -   153  166s
+   113   131  130.00000   20   99          -  126.00000      -   149  170s
+   150   162  132.04010   27  287          -  126.00000      -   139  178s
+   174   177  133.17917   36  190          -  126.00000      -   139  182s
+   192   190  134.65062   38  183          -  126.00000      -   137  185s
+   225   232  145.81944   42  211          -  126.00000      -   129  192s
+   252   252  143.87057   46  185          -  126.00000      -   124  197s
+   274   277  144.07612   47  191          -  126.00000      -   120  200s
+   334   318  130.17101   23  400          -  126.00000      -   111  207s
+   356   335  132.11667   24  254          -  126.00000      -   109  210s
+   414   391  131.26111   30  262          -  126.00000      -   103  218s
+   442   418  130.60000   27  220          -  126.00000      -   102  221s
+   471   436  130.65000   27  266          -  126.00000      -   102  225s
+   491   470  133.40000   27  301          -  126.00000      -   102  230s
+   557   537  133.66071   29  197          -  126.00000      -   101  239s
+   598   554  137.66667   34  191          -  126.00000      -  97.9  243s
+   637   570  139.01235   35  254          -  126.00000      -  97.2  247s
+   687   604  126.35362   21  321          -  126.00000      -  96.9  251s
+   726   627  130.35362   24  297          -  126.00000      -  97.4  255s
+   808   702  126.13333   21  181          -  126.00000      -  97.0  264s
+   858   732 infeasible   31               -  126.00000      -  96.0  268s
+   916   773  126.13333   17  300          -  126.00000      -  96.0  272s
+   970   806  126.50341   23  283          -  126.00000      -  95.3  277s
+  1027   807  133.75743   18  331          -  126.00000      -  95.5  282s
+  1029   808  130.69198   39  200          -  126.00000      -  95.4  296s
+  1030   809  126.30000   19  618          -  126.00000      -  95.3  300s
+  1033   811  162.50000   78  585          -  126.00000      -  95.0  309s
+  1034   812  188.50000   92  688          -  126.00000      -  94.9  310s
+  1035   812  130.17101   25  724          -  126.00000      -  94.8  315s
+  1039   815  194.50000   98  809          -  126.02024      -  94.4  320s
+  1040   816  126.13333   18  798          -  126.02024      -  94.3  325s
+  1041   816  156.00000   94  337          -  126.06876      -  94.3  335s
+  1042   817  156.25000   89  467          -  126.06876      -  94.2  341s
+  1044   818  128.18462   24  685          -  126.07079      -  94.0  348s
+  1046   820  133.08889   22  811          -  126.25245      -  93.8  350s
+  1050   822  126.26979   21  934          -  126.26979      -  93.4  358s
+  1052   824  137.84762   50  813          -  126.48569      -  93.3  361s
+  1053   824  141.00000   57  820          -  126.48569      -  93.2  368s
+  1055   826  132.75556   20  658          -  126.75010      -  93.0  370s
+  1060   829  126.78748   17  770          -  126.78748      -  92.6  375s
+  1061   830  163.50000  103  772          -  126.78748      -  92.5  381s
+  1065   832  133.08889   22  770          -  126.88223      -  92.1  389s
+  1066   833  160.16667   99  754          -  126.92186      -  92.0  390s
+  1068   834  158.57018   78  763          -  126.93313      -  91.9  396s
+  1071   836  130.01538   28  753          -  127.01123      -  91.6  404s
+  1072   837  134.66667   48  953          -  127.02142      -  91.5  405s
+  1073   838  140.81813   32  848          -  127.02142      -  91.4  411s
+  1076   840  127.07532   24  979          -  127.07532      -  91.2  415s
+  1079   842  140.62563   31  771          -  127.15113      -  90.9  422s
+  1081   843  127.22500   24  752          -  127.22500      -  90.8  430s
+  1083   844  134.13333   28  679          -  127.23077      -  90.6  438s
+  1085   846  130.32500   15  730          -  127.38095      -  90.4  440s
+  1086   846  142.18772   56  751          -  127.38095      -  90.4  445s
+  1088   848  188.50000   93  712          -  127.50000      -  90.2  452s
+  1090   849  156.25000   83  494          -  128.00000      -  90.0  459s
+  1091   850  134.07335   23  596          -  128.00000      -  89.9  460s
+  1092   850  128.13333   18  503          -  128.00000      -  89.9  466s
+  1093   851  134.52924   24  145          -  128.00000      -  89.8  473s
+  1094   852  137.77778   38  311          -  128.00000      -  89.7  479s
+  1095   852  128.00009   24  390          -  128.00009      -  89.6  505s
+  1096   853  140.21335   31  384          -  128.00009      -  89.5  512s
+  1097   854  128.03226    3  384          -  128.03226      -  89.4  516s
+  1098   857  128.03226   12  396          -  128.03226      -   147  554s
+  1100   861  128.03226   13  357          -  128.03226      -   147  566s
+  1104   863  128.03226   14  319          -  128.03226      -   147  572s
+  1108   866  128.06818   14  326          -  128.03226      -   148  575s
+  1116   871  128.03226   15  337          -  128.03226      -   148  586s
+  1126   880  129.00295   16  392          -  128.03226      -   150  592s
+  1137   882  128.03226   17  452          -  128.03226      -   150  597s
+  1142   889  128.05656   18  435          -  128.03226      -   151  605s
+  1150   889 infeasible   19               -  128.03226      -   152  611s
+  1157   896  129.01667   19  436          -  128.03226      -   153  617s
+  1172   907  131.00000   21  503          -  128.03226      -   154  621s
+  1182   910  131.00000   22  499          -  128.03226      -   153  627s
+  1189   917  131.00000   23  489          -  128.03226      -   154  635s
+  1208   930  131.33333   26  373          -  128.03226      -   155  644s
+  1220   937  131.00000   28  363          -  128.03226      -   155  647s
+  1231   941  132.14286   30  491          -  128.03226      -   156  650s
+  1255   949  131.02899   33  458          -  128.03226      -   157  659s
+  1267   952  131.05797   35  437          -  128.03226      -   157  661s
+  1280   957  133.00000   36  309          -  128.03226      -   158  666s
+  1303   967  133.00000   39  272          -  128.03226      -   158  672s
+  1321   972  140.00000   41  249          -  128.03226      -   157  676s
+  1355   988  134.00000   45  266          -  128.03226      -   156  682s
+  1374   992  134.00000   46  262          -  128.03226      -   155  687s
+  1393   994 infeasible   47               -  128.03226      -   155  691s
+  1407  1007  140.09524   49  359          -  128.03226      -   155  695s
+  1425  1023  140.09524   51  264          -  128.03226      -   154  701s
+  1455  1027  144.19048   54  173          -  128.03226      -   153  705s
+  1473  1041  148.00000   55  178          -  128.03226      -   152  710s
+  1524  1079  150.00000   59  198          -  128.03226      -   150  718s
+  1558  1091  150.92308   63  261          -  128.03226      -   148  726s
+  1585  1107  173.59304   66  291          -  128.03226      -   147  731s
+  1614  1124 infeasible   71               -  128.03226      -   146  737s
+  1652  1127  128.05656   19  476          -  128.03226      -   144  743s
+  1679  1143  131.00000   23  432          -  128.03226      -   144  749s
+  1710  1175  131.00000   30  327          -  128.03226      -   143  756s
+* 1756  1116             134     182.0000000  128.03226  29.7%   142  756s
+  1758  1123  131.00000   36  284  182.00000  128.03226  29.7%   141  763s
+  1789  1160  132.00000   42  343  182.00000  128.03226  29.7%   142  770s
+  1840  1168  132.25000   61  171  182.00000  128.03226  29.7%   139  779s
+  1876  1186  132.00000   77  106  182.00000  128.03226  29.7%   139  786s
+  1920  1200  132.08255   85  148  182.00000  128.03226  29.7%   138  794s
+  1951  1220  136.33333   86  171  182.00000  128.03226  29.7%   138  801s
+  1985  1250  133.14286   87  100  182.00000  128.03226  29.7%   139  810s
+  2029  1285  133.14286   88  120  182.00000  128.03226  29.7%   139  817s
+H 2057   989                     154.0000000  128.03226  16.9%   138  817s
+H 2086   860                     148.0000000  128.03226  13.5%   137  828s
+  2140   884  134.00000   98   74  148.00000  128.03226  13.5%   138  837s
+  2195   892     cutoff   97       148.00000  128.03226  13.5%   136  847s
+H 2266   845                     146.0000000  128.03226  12.3%   135  856s
+H 2324   504                     132.0000000  128.03226  3.01%   133  856s
+  2336   498  128.16667   27  390  132.00000  128.05000  2.99%   134  866s
+  2410   486  128.08333   22  433  132.00000  128.06624  2.98%   133  876s
+H 2474   431                     130.0000000  128.07143  1.48%   132  876s
+  2508   341     cutoff   29       130.00000  128.08333  1.47%   131  886s
+  2592   193  129.16667   17  534  130.00000  128.25000  1.35%   131  894s
+
+Cutting planes:
+  Learned: 2021
+  Gomory: 26
+  Cover: 344
+  Implied bound: 5
+  Clique: 33
+  MIR: 160
+  StrongCG: 22
+  Flow cover: 1272
+  GUB cover: 15
+  Inf proof: 1
+  Zero half: 169
+  Mod-K: 1
+  RLT: 92
+  Relax-and-lift: 2
+
+Explored 2734 nodes (357323 simplex iterations) in 895.34 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 6: 130 132 146 ... 182
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.300000000000e+02, best bound 1.300000000000e+02, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0
+     0     0     0     0     3     0     0     0     0     0     0     3     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     3     3     0
+     0     3     3     3     0     0     0     1     0     0     0     0     0     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     3     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     3
+     0     3     0     0     0     0     0     0     3     0     0     0     0     0     0     0     0
+     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0     0     3
+     0     0     0     0     0     0     0     0     0     0     0     0     1     1     1     0     0
+     0     0     0     0     0     0     0     0     0     0     1     1     0     0     0     0     0
+     0     0     0     0     0     0     3     0     0     0     1     1     1     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     1     0     0     0     0
+     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     3
+     0     0     0     0     0     0     0     0     0     0     0     1     1     1     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     1     1     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     1     0     0     0     0     3     3     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0
+     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0     0
+     0     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0
+     3     0     1     0     0     1     1     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     3     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     1     0     0     0     0     0
+     3     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     3     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     3     3     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 3206.487710 seconds.

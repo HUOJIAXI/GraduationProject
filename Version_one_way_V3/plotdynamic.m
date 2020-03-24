@@ -3,8 +3,9 @@ function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
 m=size(D,2);
 [X,Y]=spread(Start,m);
 [X_F,Y_F]=spread(Goal,m);
-video = VideoWriter('simulation_2ROB_test','MPEG-4');
-video.FrameRate=2;
+
+video = VideoWriter('simulation_16ROB_Version5.0','MPEG-4');
+video.FrameRate=8;
 open(video);
 
 ax = gca();
@@ -16,6 +17,13 @@ MAX=0;
 temp=0.1;
 
 %%
+[PathStore]=insert_value(PathStore,RobotNum);
+
+for i = 1:RobotNum
+    
+    Path_num{i,1}=(PathStore{i,1}(:,2)+(PathStore{i,1}(:,1)-1)*m)';
+    
+end
 
 for i = 1:RobotNum
 %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
@@ -80,7 +88,7 @@ for loop=1:10000
         break;
     end
 %     frame = getframe(ax);
-    pause(0.5);
+    pause(0.01);
     cla;
     
     mapdesigner(fliplr(D),1);
@@ -110,7 +118,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
     
            elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i) 
                if loop==1
@@ -134,7 +142,7 @@ for loop=1:10000
                     yy = y-temp;            
                 end
                 
-                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
                 
                else
 
@@ -155,7 +163,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+                line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
             
                end
                 
@@ -178,7 +186,7 @@ for loop=1:10000
                     xx = x;
                     yy = y-temp;            
                 end
-            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',3);
+            line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
             
            end
         end
@@ -188,8 +196,8 @@ for loop=1:10000
     globaltime = globaltime + 1;  
 end
 
-disp('系统总消耗时刻：')
-disp(globaltime);
+% disp('系统总消耗时刻：')
+% disp(globaltime);
 %disp(loop);
 % close(gca);
 close(video);

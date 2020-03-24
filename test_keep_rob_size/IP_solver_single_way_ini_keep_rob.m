@@ -3,7 +3,7 @@
 % Author:HUO JIAXI
 % 引入单行道限制
 %% 待修改
-function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_ini(D,l,t,numrobot,size_D,ini_dir_way)
+function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_ini_keep_rob(D,l,t,numrobot,size_D,ini_dir_way,ini_x_value)
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
@@ -251,8 +251,9 @@ end
 
 % 参数设置
 assign(dir_way,ini_dir_way);
+assign(x,ini_x_value);
 
-ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);

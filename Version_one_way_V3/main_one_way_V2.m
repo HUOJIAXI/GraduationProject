@@ -2,21 +2,30 @@ clear;
 clc;
 D = load('tsp_dist_broad.txt'); 
 m = size(D,1);
-RobotNum=4;
+RobotNum=16;
 [Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum);
 %RobotNum = size(Start,2);
 
 [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(Start_ori,Goal_ori,D);
+% disp(D_reduit)
 size_D=size(D_reduit,2);
+
+
 
 diary('res.txt');
 
 disp(datestr(now));
 
 [Start_new,Goal_new,RobotNum_new]=test_reduce_coincidence(Start,Goal,RobotNum);
+ini_x_value=[];
+for i = 1:RobotNum
+    [ini_x_value]=initial_guess(ini_x_value,Start_new(i),Goal_new(i),D_reduit);
+end
 
+% disp(Start_new)
+% disp(Goal_new)
 tic
- [PathStore,Path_num]=IP_solver_single_way_V2(D_reduit,Start_new,Goal_new,RobotNum_new,size_D);
+ [PathStore,Path_num]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
 %  [PathStore,Path_num]=IP_solver_single_way_V2(D,Start_ori,Goal_ori,RobotNum,size_D);
 toc
 diary('off');

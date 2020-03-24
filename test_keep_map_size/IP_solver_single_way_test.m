@@ -1,4 +1,4 @@
-function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value)
+function [PATH,Path,dir_way_value,dir_rob_value,x_value,u_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,~,ini_x_value,~)
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
@@ -246,11 +246,11 @@ end
 
 % 参数设置
 assign(dir_way,ini_dir_way);
-assign(dir_rob,ini_dir_rob);
+% assign(dir_rob,ini_dir_rob);
 assign(x,ini_x_value);
-assign(u,ini_u_value);
+% assign(u,ini_u_value);
 
-ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
@@ -271,14 +271,14 @@ dir_rob_value=value(dir_rob);
 x_value = value(x);
 u_value = value(u);
 
-x_add=zeros(n,n);
-x_value=cat(3,x_value,x_add);
-
-u_add=zeros(1,n);
-u_value=cat(1,u_value,u_add);
-
-dir_rob_add=zeros(1,num_way);
-dir_rob_value=cat(1,dir_rob_value,dir_rob_add);
+% x_add=zeros(n,n);
+% x_value=cat(3,x_value,x_add);
+% 
+% u_add=zeros(1,n);
+% u_value=cat(1,u_value,u_add);
+% 
+% dir_rob_add=zeros(1,num_way);
+% dir_rob_value=cat(1,dir_rob_value,dir_rob_add);
 
 
 %disp(value(dir))

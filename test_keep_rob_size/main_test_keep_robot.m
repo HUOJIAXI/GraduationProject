@@ -18,6 +18,11 @@ for size_D_index = 1 : size_max
         size_D=size(D,1);
 
         [Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum_total); % 随机生成一组测试集
+        
+        ini_x_value=[];
+        for i = 1:RobotNum_total
+            [ini_x_value]=initial_guess(ini_x_value,Start_ori(i),Goal_ori(i),D);
+        end
 
         disp('===================================');
         disp(['执行规模：',num2str(size_D_index)])
@@ -26,7 +31,7 @@ for size_D_index = 1 : size_max
         
         tic
 
-            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini(D,Start_ori,Goal_ori,RobotNum_total,size_D,ini_dir_way);    % 将上一次求解所得ini_dir_way作为原始解输入
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini_keep_rob(D,Start_ori,Goal_ori,RobotNum_total,size_D,ini_dir_way,ini_x_value);    % 将上一次求解所得ini_dir_way作为原始解输入
 
         toc
 
