@@ -7,6 +7,9 @@ if flag==1
 else
     subplot(l,l,num);
 end
+    axis([0,MM,0,NN])
+    xlim([0 MM])
+    ylim([0 NN])
    axis([0,MM,0,NN])
     for i=1:NN
         for j=1:MM

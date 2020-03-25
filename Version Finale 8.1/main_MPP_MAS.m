@@ -8,9 +8,11 @@ clear;
 clc;
 D = load('tsp_map.txt'); 
 m = size(D,1);
+n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
 numrobot=16;
-[Goal,Start]=rand_Goal_Start(D,numrobot);
+[r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
+% [Goal,Start]=rand_Goal_Start(D,numrobot);
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
 % Goal = [121,74,135,96,131,45,35,141,111,100,133,94,46,143,31,59]; % 135
@@ -22,20 +24,23 @@ flag_dir=1; % 是否启用货架躲避
 % Goal = [121,74,143,96,131,24,35]; 
 
 flag=0;
-COLI_START=zeros(length(Start),1);
-COLI_FIN=zeros(length(Goal),1);
-
+COLI_START=[];
+COLI_FIN=[];
+% disp(length(Start))
+% disp(length(Goal))
 for i = 1:length(Start)
-    [X,Y]=spread(Start,m);
-    [X_F,Y_F]=spread(Goal,m);
+    [X,Y]=spread(Start,n);
+    [X_F,Y_F]=spread(Goal,n);
     %for j = 1:length(X)
     if D(X(i),Y(i))==1
         flag = 1;
         COLI_START=[COLI_START;i];
+        break
     end
     if D(X_F(i),Y_F(i))==1
         flag = 1;
         COLI_FIN=[COLI_FIN;i];
+        break
     end
     %end
 end
@@ -56,7 +61,7 @@ RobotNum = length(Start);
  
 %% 仿真视频存储
 if flag_dir==1
-    plotdynamic_show(D,PathStore,Path_num,RobotNum,Start,Goal);
+    plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal,r_Goal,r_start);
 else
     plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
 end

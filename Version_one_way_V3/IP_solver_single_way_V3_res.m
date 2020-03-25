@@ -3,7 +3,7 @@
 % Author:HUO JIAXI
 % 引入单行道限制
 %% 待修改
-function [PATH,Path]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
+function [PATH,Path,value_dir_way]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
@@ -261,15 +261,15 @@ ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1);
 result  = optimize(C,z,ops);
 if result.problem== 0
 %    value(z)
-    disp(value(dir_rob))
+%     disp(value(dir_rob))
 %    text=' 系统总最优路径长度：';
 %    disp([text,num2str(value(z))]);
     disp('系统总最优路径长度：Best objective');
 else
     disp('Finish ! ');
-    disp(value(dir_rob))
+%     disp(value(dir_rob))
 end
-
+value_dir_way=value(dir_way);
 %disp(value(dir))
 o=value(x);
 

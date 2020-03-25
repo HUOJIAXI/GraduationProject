@@ -1,10 +1,12 @@
-function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal)
+function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal,~,~,dir_way)
 %AllRobotState = zeros(size(D,1),size(D,2));
-m=size(D,2);
-[X,Y]=spread(Start,m);
-[X_F,Y_F]=spread(Goal,m);
+MM = size(D,2);
+NN = size(D,1);
 
-video = VideoWriter('simulation_16ROB_Version5.0','MPEG-4');
+m=size(D,2);
+
+axis equal;
+video = VideoWriter('simulation_fortest','MPEG-4');
 video.FrameRate=8;
 open(video);
 
@@ -14,9 +16,12 @@ globaltime = 0;
 
 MAX=0;
 
-temp=0.1;
+temp=0.3;
 
 %%
+
+[PathStore]=biais_goal(PathStore,RobotNum,Start,Goal,m);
+
 [PathStore]=insert_value(PathStore,RobotNum);
 
 for i = 1:RobotNum
@@ -24,6 +29,14 @@ for i = 1:RobotNum
     Path_num{i,1}=(PathStore{i,1}(:,2)+(PathStore{i,1}(:,1)-1)*m)';
     
 end
+
+for i = 1:RobotNum
+    Goal(i)=Path_num{i,1}(length(Path_num{i,1}));
+    Start(i)=Path_num{i,1}(1);
+end
+
+[X_F,Y_F]=spread(Goal,m);
+[X,Y]=spread(Start,m);
 
 for i = 1:RobotNum
 %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);
@@ -47,6 +60,7 @@ for i=1:RobotNum
     end
     
 end
+
 
 %% 辨别方向
 for i = 1:RobotNum
@@ -90,8 +104,13 @@ for loop=1:10000
 %     frame = getframe(ax);
     pause(0.01);
     cla;
-    
+    axis equal;
+    xlim([0 MM])
+    ylim([0 NN])
     mapdesigner(fliplr(D),1);
+    
+    arrowdesign(dir_way,D)
+    
     hold on;
 %     axis([0 13 0 13]); 
     
@@ -99,8 +118,11 @@ for loop=1:10000
         if  ~isempty(PathStore{i,1})
            %AllRobotState(PathStore{i,1}(loop,1),PathStore{i,1}(loop,2)) = 1;
            if PathStore{i,1}(loop,1)==X_F(i) && PathStore{i,1}(loop,2)==Y_F(i)
+               axis([0,MM,0,NN])
+                axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点    
-                
+                xlim([0 MM])
+                ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
                 y=PathStore{i,1}(loop,1)-1/2;
                 
@@ -122,8 +144,11 @@ for loop=1:10000
     
            elseif PathStore{i,1}(loop,1)==X(i) && PathStore{i,1}(loop,2)==Y(i) 
                if loop==1
+                axis([0,MM,0,NN])   
+                axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)
-                
+                xlim([0 MM])
+                ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
                 y=PathStore{i,1}(loop,1)-1/2;
                 
@@ -145,8 +170,11 @@ for loop=1:10000
                 line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
                 
                else
-
+                axis([0,MM,0,NN])
+                axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
+                xlim([0 MM])
+                ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
                 y=PathStore{i,1}(loop,1)-1/2;
                 switch Path_dir(i,loop)
@@ -168,8 +196,11 @@ for loop=1:10000
                end
                 
            else
+              axis([0,MM,0,NN])
+               axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
-                
+                xlim([0 MM])
+                ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
                 y=PathStore{i,1}(loop,1)-1/2;
                 switch Path_dir(i,loop)

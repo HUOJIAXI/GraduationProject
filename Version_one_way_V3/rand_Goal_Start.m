@@ -1,4 +1,4 @@
-function [r_Goal,r_start]=rand_Goal_Start(D,numrobot)
+function [r_Goal,r_start]=rand_Goal_Start(D,numrobot,lenob)
 m=size(D,1);
 n=size(D,2);
 % a=floor(m/2);
@@ -17,6 +17,20 @@ for i = 1:m
         end
     end
 end
+
+croise=[];
+
+for i = 1:m
+    for j = 1:n        
+       if mod(i,2) == 1
+            if mod(j-1,lenob+1) == 0
+                croise=[croise j+(i-1)*n];
+            end
+       end
+    end
+end
+
+nobs=setdiff(nobs,croise);
 
 r_start = randperm(length(nobs),numrobot);
 r_Goal = randperm(length(nobs),numrobot);

@@ -1,10 +1,8 @@
-function plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal)
+function plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,r_Start,r_Goal,Goal,Start)
 %AllRobotState = zeros(size(D,1),size(D,2));
 m=size(D,2);
-[X,Y]=spread(Start,m);
-[X_F,Y_F]=spread(Goal,m);
 
-video = VideoWriter('simulation_16ROB_Version5.0','MPEG-4');
+video = VideoWriter('simulation_16ROB_Versionpre','MPEG-4');
 video.FrameRate=8;
 open(video);
 
@@ -17,6 +15,8 @@ MAX=0;
 temp=0.1;
 
 %%
+[PathStore]=biais_goal(PathStore,Path_num,RobotNum,Start,Goal,r_Start,r_Goal,m);
+
 [PathStore]=insert_value_dyn(PathStore,RobotNum);
 
 for i = 1:RobotNum
@@ -24,6 +24,15 @@ for i = 1:RobotNum
     Path_num{i,1}=(PathStore{i,1}(:,2)+(PathStore{i,1}(:,1)-1)*m)';
     
 end
+
+for i = 1:RobotNum
+    Goal(i)=Path_num{i,1}(length(Path_num{i,1}));
+    Start(i)=Path_num{i,1}(1);
+end
+
+[X_F,Y_F]=spread(Goal,m);
+[X,Y]=spread(Start,m);
+
 
 for i = 1:RobotNum
 %     [PATH,path_num]=IP_solver(D,Start(i),Goal(i),i);

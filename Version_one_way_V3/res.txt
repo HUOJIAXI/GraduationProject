@@ -1174,3 +1174,829 @@ Best objective 1.300000000000e+02, best bound 1.300000000000e+02, gap 0.0000%
 
 系统总最优路径长度：Best objective
 Elapsed time is 3206.487710 seconds.
+25-Mar-2020 13:33:46
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/plus', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/plus.m', 80)" style="font-weight:bold"> + </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/plus.m',80,0)">line 80</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/horzcat', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m', 28)" style="font-weight:bold">lmi/horzcat</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m',28,0)">line 28</a>)
+        F = F + H;
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 89)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',89,0)">line 89</a>)
+                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 28)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',28,0)">line 28</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点选择错误
+25-Mar-2020 13:34:49
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0xe77afde8
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1518 rows and 2044 columns
+Presolve time: 1.29s
+Presolved: 56106 rows, 54500 columns, 379046 nonzeros
+Variable types: 104 continuous, 54396 integer (53936 binary)
+
+Explored 0 nodes (0 simplex iterations) in 1.76 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+Finish ! 
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+{Index in position 2 exceeds array bounds (must not exceed 117).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvermatrix', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/solvermatrix.m', 22)" style="font-weight:bold">solvermatrix</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/solvermatrix.m',22,0)">line 22</a>)
+        if a(k,q)==1
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 285)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',285,0)">line 285</a>)
+    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 28)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',28,0)">line 28</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+{Index in position 1 exceeds array bounds (must not exceed 9).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('reduit', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/reduit.m', 70)" style="font-weight:bold">reduit</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/reduit.m',70,0)">line 70</a>)
+    if D_reduit(Goal_sp_X(i),Goal_sp_Y(i)) ==1 || D_reduit(start_sp_X(i),start_sp_Y(i)) ==1
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 9)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',9,0)">line 9</a>)
+[Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+{Index in position 1 exceeds array bounds (must not exceed 9).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('reduit', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/reduit.m', 70)" style="font-weight:bold">reduit</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/reduit.m',70,0)">line 70</a>)
+    if D_reduit(Goal_sp_X(i),Goal_sp_Y(i)) ==1 || D_reduit(start_sp_X(i),start_sp_Y(i)) ==1
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 9)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',9,0)">line 9</a>)
+[Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+25-Mar-2020 13:56:59
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x813ef75c
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1526 rows and 2040 columns
+Presolve time: 1.21s
+Presolved: 56098 rows, 54504 columns, 378950 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 3.200000e+01, 1209 iterations, 0.64 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   32.00000    0   44          -   32.00000      -     -    3s
+H    0     0                      32.0000000   32.00000  0.00%     -    6s
+
+Cutting planes:
+  Gomory: 17
+  Cover: 38
+  MIR: 30
+  GUB cover: 1
+  Zero half: 2
+
+Explored 1 nodes (1540 simplex iterations) in 7.60 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 32 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.200000000000e+01, best bound 3.200000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3     3     3
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3     3     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     3     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     1
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     3     0     0     0     0     1     1     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     3     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     1     1     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 221.352177 seconds.
+25-Mar-2020 14:28:22
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x516ca788
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1526 rows and 2040 columns
+Presolve time: 1.32s
+Presolved: 56098 rows, 54504 columns, 378950 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.416667e+01, 1141 iterations, 0.70 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   24.16667    0   31          -   24.16667      -     -    3s
+     0     0   26.00000    0   28          -   26.00000      -     -   10s
+     0     0   26.00000    0   17          -   26.00000      -     -   11s
+     0     0   26.00000    0   42          -   26.00000      -     -   13s
+     0     0   26.00000    0   64          -   26.00000      -     -   13s
+     0     0   26.00000    0   27          -   26.00000      -     -   14s
+     0     0   26.00000    0   33          -   26.00000      -     -   14s
+     0     0   27.00000    0   58          -   27.00000      -     -   16s
+     0     0   27.00000    0   59          -   27.00000      -     -   16s
+     0     0   28.00000    0   62          -   28.00000      -     -   17s
+     0     0   28.00000    0   62          -   28.00000      -     -   17s
+     0     0   28.00000    0   58          -   28.00000      -     -   18s
+H    0     0                      28.0000000   28.00000  0.00%     -   19s
+
+Cutting planes:
+  Learned: 7
+  Gomory: 2
+  Cover: 11
+  Implied bound: 1
+  Clique: 8
+  MIR: 36
+  StrongCG: 3
+  GUB cover: 1
+  Zero half: 4
+  RLT: 6
+
+Explored 1 nodes (3189 simplex iterations) in 19.41 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 28 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.800000000000e+01, best bound 2.800000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     3     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3
+     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     1     0     0     0     3     0     0     1     1     1     1     0     0     0     0
+     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     3
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     3     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 286.493370 seconds.
+25-Mar-2020 14:39:06
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/lmi.m', 204)" style="font-weight:bold">lmi</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/lmi.m',204,0)">line 204</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('lmi/horzcat', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m', 27)" style="font-weight:bold">lmi/horzcat</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@lmi/horzcat.m',27,0)">line 27</a>)
+        H = lmi(varargin{i});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 89)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',89,0)">line 89</a>)
+                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 28)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',28,0)">line 28</a>)
+ [PathStore,Path_num]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+clear
+load('Path_num.mat')
+plotdynamic(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori);
+     4     1
+     5     1
+     5     2
+     5     3
+     5     4
+     5     5
+     5     6
+     5     7
+     5     8
+     5     9
+     5    10
+     5    11
+     5    12
+     5    13
+     5    14
+     5    15
+     5    16
+     5    17
+     4    17
+     3    17
+     3    18
+     3    19
+     4     2
+
+     8     5
+     7     5
+     6     5
+     5     5
+     4     5
+     3     5
+     3     4
+     3     3
+     3     2
+     3     1
+     4     1
+     8     4
+
+     4    17
+     3    17
+     3    16
+     3    15
+     4    18
+
+     8    13
+     7    13
+     6    13
+     5    13
+     4    13
+     3    13
+     2    13
+     8    12
+
+[Warning: The video's width and height has been padded to be a multiple of two as required by the H.264
+codec.] 
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('getframe', '/Applications/MATLAB_R2019b.app/toolbox/matlab/graphics/printing/getframe.m', 58)" style="font-weight:bold">getframe</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/graphics/printing/getframe.m',58,0)">line 58</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotdynamic', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/plotdynamic.m', 222)" style="font-weight:bold">plotdynamic</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/plotdynamic.m',222,0)">line 222</a>)
+    writeVideo(video,getframe(ax))
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+25-Mar-2020 15:23:34
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x55d5fcf7
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1526 rows and 2040 columns
+Presolve time: 1.22s
+Presolved: 56098 rows, 54504 columns, 378950 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.01s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.000000e+01, 1041 iterations, 0.72 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   20.00000    0   41          -   20.00000      -     -    3s
+H    0     0                      24.0000000   20.00000  16.7%     -    7s
+H    0     0                      20.0000000   20.00000  0.00%     -    7s
+
+Cutting planes:
+  Gomory: 4
+  Cover: 28
+  MIR: 31
+  RLT: 2
+
+Explored 1 nodes (1239 simplex iterations) in 7.95 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 2: 20 24 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.000000000000e+01, best bound 2.000000000000e+01, gap 0.0000%
+  Columns 1 through 17
+
+     0     0     0     0     0     0     0     0     3     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     0     0     0     3     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 18 through 34
+
+     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     3
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     3     0     0     0     0     0     1     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+
+  Columns 35 through 51
+
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     3
+
+  Columns 52 through 58
+
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0
+
+系统总最优路径长度：Best objective
+Elapsed time is 285.955588 seconds.
+25-Mar-2020 15:38:00
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 57624 rows, 56544 columns and 384692 nonzeros
+Model fingerprint: 0x93f597c9
+Variable types: 104 continuous, 56440 integer (55980 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R1 by 1.000000000
+
+Presolve removed 1526 rows and 2040 columns
+Presolve time: 1.26s
+Presolved: 56098 rows, 54504 columns, 378950 nonzeros
+Variable types: 104 continuous, 54400 integer (53940 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+Concurrent spin time: 0.00s
+
+Solved with dual simplex
+
+Root relaxation: objective 2.600000e+01, 1198 iterations, 0.77 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                      26.0000000    0.00000   100%     -    3s
+     0     0     cutoff    0        26.00000   26.00000  0.00%     -    3s
+
+Explored 0 nodes (1299 simplex iterations) in 3.31 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 26 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.600000000000e+01, best bound 2.600000000000e+01, gap 0.0000%
+系统总最优路径长度：Best objective
+Elapsed time is 273.154982 seconds.
+25-Mar-2020 17:44:42
+不存在重合起点终点
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m', 9)" style="font-weight:bold">sdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m',9,0)">line 9</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m', 15)" style="font-weight:bold">ndsdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m',15,0)">line 15</a>)
+    Y = clean(Y);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 39)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',39,0)">line 39</a>)
+X = clean(X);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 89)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',89,0)">line 89</a>)
+                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 29)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',29,0)">line 29</a>)
+ [PathStore,Path_num,dir_way]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
+25-Mar-2020 17:48:02
+不存在重合起点终点
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 239328 rows, 224976 columns and 1589504 nonzeros
+Model fingerprint: 0x865101e7
+Variable types: 104 continuous, 224872 integer (223032 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+02]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R0 by 1.000000000
+
+Presolve removed 5067 rows and 7608 columns (presolve time = 5s) ...
+Presolve removed 5067 rows and 7608 columns
+Presolve time: 5.35s
+Presolved: 234261 rows, 217368 columns, 1567249 nonzeros
+Variable types: 104 continuous, 217264 integer (215424 binary)
+
+Deterministic concurrent LP optimizer: primal and dual simplex
+Showing first log only...
+
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   1.6000000e+101   0.000000e+00  7.800000e+101     10s
+Concurrent spin time: 0.05s
+
+Solved with dual simplex
+
+Root relaxation: objective 1.100000e+02, 4817 iterations, 3.57 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  110.00000    0  102          -  110.00000      -     -   14s
+     0     0  110.01575    0  136          -  110.01575      -     -   30s
+     0     0  110.01575    0   34          -  110.01575      -     -   38s
+     0     0  110.06575    0  311          -  110.06575      -     -   44s
+     0     0  110.17794    0  379          -  110.17794      -     -   45s
+     0     0  110.35028    0  323          -  110.35028      -     -   50s
+     0     0  110.67357    0  220          -  110.67357      -     -   51s
+     0     0  110.81250    0  288          -  110.81250      -     -   54s
+     0     0  110.81250    0  301          -  110.81250      -     -   55s
+     0     0  110.81250    0  293          -  110.81250      -     -   58s
+     0     0  110.81315    0  303          -  110.81315      -     -   59s
+     0     0  110.82059    0  278          -  110.82059      -     -   63s
+     0     0  110.82330    0  340          -  110.82330      -     -   64s
+     0     0  110.85677    0  342          -  110.85677      -     -   67s
+     0     0  110.86682    0  358          -  110.86682      -     -   68s
+     0     0  111.00652    0  339          -  111.00652      -     -   71s
+     0     0  111.05756    0  365          -  111.05756      -     -   72s
+     0     0  111.05795    0  408          -  111.05795      -     -   72s
+     0     0  111.05795    0  426          -  111.05795      -     -   73s
+     0     0  111.05795    0  396          -  111.05795      -     -   76s
+     0     0  111.05795    0  424          -  111.05795      -     -   77s
+     0     0  111.10225    0  346          -  111.10225      -     -   80s
+     0     0  111.13381    0  381          -  111.13381      -     -   80s
+     0     0  111.13381    0  391          -  111.13381      -     -   81s
+     0     0  111.27557    0  466          -  111.27557      -     -   84s
+     0     0  111.41832    0  445          -  111.41832      -     -   85s
+     0     0  111.41832    0  477          -  111.41832      -     -   85s
+     0     0  111.55761    0  488          -  111.55761      -     -   88s
+     0     0  111.55844    0  496          -  111.55844      -     -   89s
+     0     0  111.56010    0  500          -  111.56010      -     -   89s
+     0     0  111.56010    0  503          -  111.56010      -     -   90s
+     0     0  111.60331    0  521          -  111.60331      -     -   93s
+     0     0  111.63214    0  499          -  111.63214      -     -   94s
+     0     0  111.63763    0  489          -  111.63763      -     -   94s
+     0     0  111.63763    0  492          -  111.63763      -     -   94s
+     0     0  111.67278    0  528          -  111.67278      -     -   97s
+     0     0  111.67278    0  564          -  111.67278      -     -   98s
+     0     0  111.68768    0  583          -  111.68768      -     -  101s
+     0     0  111.68768    0  585          -  111.68768      -     -  102s
+     0     0  111.78571    0  492          -  111.78571      -     -  105s
+     0     0  111.79122    0  562          -  111.79122      -     -  106s
+     0     0  111.79122    0  577          -  111.79122      -     -  106s
+     0     0  111.79122    0  538          -  111.79122      -     -  109s
+     0     0  111.79122    0  583          -  111.79122      -     -  110s
+     0     0  111.79122    0  585          -  111.79122      -     -  113s
+     0     0  111.79122    0  603          -  111.79122      -     -  114s
+     0     0  111.79122    0  395          -  111.79122      -     -  118s
+     0     0  111.79122    0  461          -  111.79122      -     -  119s
+     0     0  111.79122    0  440          -  111.79122      -     -  123s
+     0     0  111.79405    0  571          -  111.79405      -     -  124s
+     0     0  111.79427    0  579          -  111.79427      -     -  124s
+     0     0  111.79427    0  574          -  111.79427      -     -  125s
+     0     0  111.79720    0  447          -  111.79720      -     -  129s
+     0     0  111.79720    0  512          -  111.79720      -     -  129s
+     0     0  111.79720    0  516          -  111.79720      -     -  132s
+     0     0  111.79720    0  521          -  111.79720      -     -  133s
+     0     0  111.79720    0  420          -  111.79720      -     -  137s
+     0     0  111.79720    0  413          -  111.79720      -     -  159s
+     0     2  113.28731    0  413          -  113.28731      -     -  167s
+     1     5  113.37500    1  251          -  113.28731      -   481  170s
+    11    16  116.00000    4  202          -  113.28731      -   171  176s
+    19    24  116.00000    6  194          -  113.28731      -   127  180s
+    37    45  116.00000   10  132          -  113.28731      -  86.3  185s
+    61    73  116.00000   17   17          -  113.28731      -  75.1  190s
+    90    96  116.00000   25   25          -  113.28731      -  61.9  196s
+   102   111  116.00000   28   25          -  113.28731      -  59.4  201s
+   126   135 infeasible   36               -  113.28731      -  58.9  206s
+   148   150  118.00000   48   26          -  113.28731      -  55.7  213s
+   154   152  118.72222   49   72          -  113.28731      -  59.1  216s
+   176   175  123.00000   53   13          -  113.28731      -  59.6  220s
+   199   198  123.00000   60   13          -  113.28731      -  61.6  225s
+   238   249  135.00000   66   15          -  113.28731      -  61.0  232s
+   263   258  136.04167   74   73          -  113.28731      -  58.7  235s
+   272   261 infeasible   75               -  113.28731      -  61.2  240s
+   305   296  116.06746    7  338          -  113.34752      -  60.6  245s
+   347   322  120.07293   12  260          -  113.34752      -  58.3  252s
+   361   336  116.09691   14  213          -  113.34752      -  59.6  255s
+   393   355  118.51190   22  140          -  113.34752      -  64.3  262s
+   428   395  125.96948   28  232          -  113.34752      -  66.4  267s
+   450   415  132.81014   29  287          -  113.34752      -  70.1  270s
+   487   438 infeasible   33               -  113.37647      -  69.0  276s
+   516   460  115.00000   12  218          -  113.37647      -  70.3  280s
+   575   537  121.80637   23  214          -  113.37647      -  71.1  287s
+   624   557 infeasible   29               -  113.37647      -  70.4  291s
+   685   606  127.75292   34  170          -  113.37647      -  70.3  298s
+   718   634  127.30292   35  276          -  113.37647      -  70.7  302s
+   762   681  128.79678   41  155          -  113.37647      -  70.2  307s
+   809   704  129.10897   48  210          -  113.37647      -  69.6  312s
+   843   719  136.75810   49  224          -  113.37647      -  69.9  316s
+   873   741  137.45175   52  187          -  113.37647      -  70.0  321s
+   916   789  138.52475   57  184          -  113.37647      -  71.7  326s
+   966   829  147.79312   63  200          -  113.37647      -  72.4  331s
+  1006   868  141.75000   73  103          -  113.37647      -  71.4  336s
+  1066   869  118.37901   13  136          -  113.37647      -  70.8  340s
+  1068   870  116.22450   38   72          -  113.37647      -  70.7  355s
+  1070   872  116.64226   21  435          -  113.37647      -  70.5  360s
+  1073   874  114.08889    7  467          -  113.37647      -  70.3  370s
+  1077   876  116.00000   10  564          -  113.37647      -  70.1  377s
+  1080   878  116.58889   19  685          -  113.37647      -  69.9  380s
+  1081   879  127.25425   27  698          -  113.37647      -  69.8  386s
+  1084   881  122.52083   34  565          -  113.37647      -  69.6  394s
+  1085   882  115.00000    9  529          -  113.45682      -  69.6  395s
+  1088   884  116.00000   23  466          -  113.67828      -  69.4  404s
+  1089   884  134.01978   30  654          -  113.74456      -  69.3  405s
+  1092   886  116.72994   22  716          -  113.78682      -  69.1  414s
+  1093   887  114.46667    6  785          -  113.91661      -  69.1  415s
+  1095   888  124.65719   46  780          -  113.99529      -  68.9  422s
+  1097   890  120.07293   13  697          -  114.02549      -  68.8  425s
+  1099   891  124.26549   37  830          -  114.07265      -  68.7  435s
+  1100   892  124.00000   23  759          -  114.08688      -  68.6  469s
+  1101   892  123.75893   39  553          -  114.08688      -  68.6  478s
+  1102   893  123.14987   38  553          -  114.87392      -  68.5  482s
+  1103   897  114.87392   15  519          -  114.87392      -   102  495s
+  1109   903  115.05333   17  220          -  114.87392      -   104  502s
+  1117   908  115.07475   18  396          -  114.87392      -   104  506s
+  1121   911  115.28059   18  608          -  114.87392      -   105  512s
+  1129   917  120.09500   19  316          -  114.87392      -   105  516s
+  1140   923  115.10436   21  529          -  114.87392      -   106  520s
+  1158   937  115.10436   22  511          -  114.87392      -   106  527s
+  1166   942  115.16107   24  449          -  114.87392      -   106  532s
+  1180   951  115.17603   26  420          -  114.87392      -   107  537s
+  1189   954  115.66667   28  142          -  114.87392      -   107  540s
+  1213   970  117.04167   31  132          -  114.87392      -   107  547s
+  1222   978  123.79167   32  243          -  114.87392      -   108  550s
+  1239   984  117.04167   34  120          -  114.87392      -   107  556s
+  1245   985  117.04167   35  120          -  114.87392      -   108  560s
+  1263   995  117.04167   38  120          -  114.87392      -   109  566s
+  1289  1012  117.04167   42  120          -  114.87392      -   109  571s
+  1318  1028  117.04167   44  121          -  114.87392      -   109  578s
+  1337  1039  117.04167   46  121          -  114.87392      -   109  582s
+  1356  1045  117.87500   48  144          -  114.87392      -   108  585s
+  1390  1065  119.70833   53  155          -  114.87392      -   107  592s
+  1406  1076  120.25000   56   83          -  114.87392      -   106  597s
+  1422  1085  121.50000   58   83          -  114.87392      -   106  601s
+  1458  1111  121.66667   64  120          -  114.87392      -   106  609s
+  1481  1126  134.00000   66  154          -  114.87392      -   105  616s
+  1503  1137  124.00000   69   85          -  114.87392      -   105  621s
+  1525  1145  124.00000   74   31          -  114.87392      -   104  625s
+  1543  1160  132.00000   76   49          -  114.87392      -   105  631s
+  1565  1168  124.00000   79   29          -  114.87392      -   105  638s
+  1587  1177  124.00000   81   29          -  114.87392      -   105  644s
+  1608  1197  132.00000   84   49          -  114.87392      -   106  650s
+  1638  1233  124.00000   89   27          -  114.87392      -   105  655s
+  1686  1267  124.50000   94   23          -  114.87392      -   103  660s
+  1738  1274  124.00000  100   23          -  114.87392      -   100  667s
+  1764  1298  124.00000  105   21          -  114.87392      -   101  672s
+  1800  1321  124.00000  111   21          -  114.87392      -  99.4  679s
+  1838  1346  124.50000  115   22          -  114.87392      -  98.6  684s
+  1880  1376  124.50000  119   22          -  114.87392      -  97.5  691s
+  1932  1419  124.00000  125   21          -  114.87392      -  95.9  698s
+  1993  1431  124.00000  131   21          -  114.87392      -  94.4  704s
+  2027  1472  124.00000  137   19          -  114.87392      -  93.7  710s
+  2081  1490  124.00000  146   13          -  114.87392      -  92.5  718s
+  2127  1508  128.25000  152   42          -  114.87392      -  92.7  726s
+  2174  1533  124.36667  158   58          -  114.87392      -  92.6  737s
+  2217  1559  142.45818  162  141          -  114.87392      -  92.9  744s
+  2270  1597  115.78791   19  384          -  114.87392      -  93.1  753s
+  2329  1618  120.00476   24  352          -  114.87392      -  94.0  762s
+  2374  1655  120.43162   32  210          -  114.87392      -  95.0  771s
+  2432  1686  124.00000   36   81          -  114.87392      -  94.5  782s
+  2496  1716  125.50000   54   78          -  114.87392      -  94.4  791s
+  2566  1760  129.00000   68   95          -  114.87392      -  93.9  800s
+  2649  1789  150.16541   81  176          -  114.87392      -  93.8  810s
+  2720  1828  157.50000   90   67          -  114.87392      -  93.8  820s
+  2802  1826  186.28070   97  103          -  114.87392      -  94.5  831s
+  2870  1861  186.84211   98  165          -  114.87392      -  95.5  842s
+  2950  1894 infeasible  103               -  114.87392      -  96.2  853s
+  3028  1938  196.43421  109   96          -  114.87392      -  96.6  865s
+  3120  2017 infeasible  110               -  114.87392      -  97.1  879s
+  3256  2124  118.25000   33  107          -  114.87392      -  95.6  892s
+  3414  2188  124.04167   60   77          -  114.87392      -  93.1  905s
+  3543  2281  124.50000   97   28          -  114.87392      -  92.3  918s
+  3683  2329  134.00000  134   63          -  114.87392      -  91.8  932s
+  3822  2386  134.04776  149  114          -  114.87392      -  91.0  946s
+  3938  2513  130.00000  165    7          -  114.87392      -  91.2  962s
+  4075  2657  138.33333  178   32          -  114.87392      -  91.0  978s
+  4238  2741  147.80702  182  112          -  114.87392      -  90.0  995s
+  4345  2811 infeasible  184               -  114.87392      -  90.9 1011s
+  4469  2912  170.17544  193   62          -  114.87392      -  91.3 1029s
+  4629  3012  178.29630  198   73          -  114.87392      -  90.5 1045s
+  4763  3135 infeasible  202               -  114.87392      -  92.0 1064s
+  4931  3300  187.93103  222   66          -  114.87392      -  92.1 1080s
+  5130  3464 infeasible  241               -  114.87392      -  91.4 1100s
+  5336  3648  120.25000   40   77          -  114.87392      -  90.7 1120s
+  5534  3776  142.73810   60  179          -  114.87392      -  90.6 1141s
+  5724  3954 infeasible   32               -  114.87392      -  90.8 1167s
+  5929  4095  130.50000   61   92          -  114.87392      -  90.4 1191s
+  6122  4266  153.25000   90   72          -  114.87392      -  90.7 1221s
+  6343  4414  122.00000   69   67          -  114.87392      -  90.0 1247s
+  6565  4538  136.14035  131   36          -  114.87392      -  90.0 1275s
+  6770  4690  164.88158  153  125          -  114.87392      -  90.7 1302s
+  6996  4890 infeasible  167               -  114.87392      -  91.5 1332s
+  7248  5094  123.76961   49  191          -  114.87392      -  91.7 1361s
+  7521  5324  140.14035  105   92          -  114.99351      -  92.2 1391s
+  7834  5530  118.00000   80   16          -  114.99351      -  91.9 1422s
+  8120  5715  139.03509  124   88          -  114.99351      -  91.6 1453s
+  8373  5957  202.71053  147   72          -  114.99351      -  93.0 1487s
+  8690  6272  216.58333  186  178          -  114.99351      -  94.2 1521s
+  9064  6513  236.00000  216   90          -  114.99351      -  93.9 1557s
+  9429  6829  270.55159  249  286          -  115.05333      -  94.4 1599s
+  9807  7100  124.35632   60  122          -  115.05333      -  93.7 1638s
+ 10188  7385  157.22139  113  157          -  115.06667      -  93.7 1679s
+ 10603  7658  124.00000   61   36          -  115.07576      -  94.0 1728s
+ 10975  8016  159.08408  114  308          -  115.08603      -  95.5 1768s
+ 11432  8406  143.50000   58  135          -  115.08603      -  95.2 1810s
+ 11905  8654  184.37378  140   98          -  115.09154      -  94.6 1857s
+ 12284  9019  128.33333   41   87          -  115.09154      -  94.8 1898s
+ 12745  9466 infeasible  117               -  115.10436      -  94.5 1941s
+H12933  2561                     126.0000000  115.10436  8.65%  94.1 1941s
+ 13267  2393     cutoff  123       126.00000  115.12821  8.63%  93.8 1986s
+ 13787  2684  122.01212   57  286  126.00000  115.17603  8.59%  92.7 2032s
+ 14282  2960 infeasible   38       126.00000  115.29011  8.50%  92.6 2079s
+H14539  1857                     122.0000000  115.30333  5.49%  92.2 2079s
+ 14666  1857     cutoff   21       122.00000  115.41308  5.40%  92.1 2080s
+ 14770  1913     cutoff   31       122.00000  115.41543  5.40%  92.1 2122s
+H14771  1278                     120.0000000  115.41543  3.82%  92.1 2122s
+ 15184  1299 infeasible   30       120.00000  115.62987  3.64%  92.8 2165s
+ 15558  1372  118.72602   28  345  120.00000  116.00000  3.33%  93.9 2209s
+ 15951  1368     cutoff   36       120.00000  116.08333  3.26%  94.9 2251s
+H15954   548                     118.0000000  116.08333  1.62%  94.9 2251s
+ 16306   307     cutoff   35       118.00000  116.42350  1.34%  96.1 2274s
+
+Cutting planes:
+  Learned: 718
+  Gomory: 35
+  Cover: 365
+  Implied bound: 9
+  Clique: 23
+  MIR: 104
+  StrongCG: 9
+  Flow cover: 1151
+  GUB cover: 10
+  Zero half: 87
+  RLT: 52
+
+Explored 16542 nodes (1605640 simplex iterations) in 2275.17 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 4: 118 120 122 126 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.180000000000e+02, best bound 1.180000000000e+02, gap 0.0000%
+系统总最优路径长度：Best objective
+Elapsed time is 4310.077675 seconds.
