@@ -1,12 +1,12 @@
 # GraduationProject 项目日志 
-## 连续性路径演示：
+## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（16机器人，25*9仓库环境）
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16ROB_Version5.0continue.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest.gif)
 
 ## 2. 动态启发式分割方法（16机器人，13*13仓库环境）
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16ROB_Continue.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_dyn_pre.gif)
 
 # 进入测试阶段：
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
