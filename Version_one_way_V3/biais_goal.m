@@ -1,5 +1,5 @@
-function [PathStore]=biais_goal(PathStore,RobotNum,~,Goal_ori,n)
-%     [X_start,Y_start]=spread(start_ori,n);
+function [PathStore]=biais_goal(PathStore,RobotNum,start_ori,Goal_ori,n)
+    [X_start,Y_start]=spread(start_ori,n);
     [X_goal,Y_goal]=spread(Goal_ori,n);
     for i = 1:RobotNum
 %         temp=PathStore{i,1};
@@ -28,7 +28,7 @@ function [PathStore]=biais_goal(PathStore,RobotNum,~,Goal_ori,n)
 %                 continue
 %             end
 %         end
-%         PathStore{i,1}=cat(1,[X_start(i) Y_start(i)],PathStore{i,1});
+        PathStore{i,1}=cat(1,[X_start(i) Y_start(i)],PathStore{i,1});
         PathStore{i,1}=cat(1,PathStore{i,1},[X_goal(i) Y_goal(i)]);
 %         disp(PathStore{i,1})
         

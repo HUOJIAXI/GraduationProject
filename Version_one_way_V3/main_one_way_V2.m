@@ -3,16 +3,13 @@ clc;
 D = load('tsp_dist_broad.txt'); 
 m = size(D,1);
 n = size(D,2);
-RobotNum=16;
+RobotNum=18;
 [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
 %RobotNum = size(Start,2);
 
 [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
 % disp(D_reduit)
 size_D=size(D_reduit,2);
-
-
-
 diary('res.txt');
 
 disp(datestr(now));
@@ -22,7 +19,9 @@ ini_x_value=[];
 for i = 1:RobotNum
     [ini_x_value]=initial_guess(ini_x_value,Start_new(i),Goal_new(i),D_reduit);
 end
-
+% D_reduit(m,:)=[];
+% 
+% disp(D_reduit)
 % disp(Start_new)
 % disp(Goal_new)
 tic
@@ -41,7 +40,7 @@ exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 
 % plotdynamic(D,PathStore,Path_num,RobotNum,Start_ori,Goal_ori);
 % 
-plotdynamic(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
+plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
 mapdesigner(fliplr(D),2);
 

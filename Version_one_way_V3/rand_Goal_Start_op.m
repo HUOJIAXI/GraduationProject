@@ -89,7 +89,12 @@ for i = 1: numrobot
         start_y(i)=start_y(i)+1;
         r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
     elseif mod(start_y(i),2)==1
-        start_x(i)=start_x(i)+1;
+        flag=rand(1);
+        if flag<1/2
+            start_x(i)=start_x(i)+1;
+        else
+            start_x(i)=start_x(i)-1;
+        end
         r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
     end
     
@@ -100,7 +105,12 @@ for i = 1: numrobot
         goal_y(i)=goal_y(i)+1;
         r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n;
     elseif mod(goal_y(i),2)==1
-        goal_x(i)=goal_x(i)+1;
+        flag=rand(1);
+        if flag<1/2
+            goal_x(i)=goal_x(i)+1;
+        else
+            goal_x(i)=goal_x(i)-1;
+        end
         r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n; % 最后进行执行
     end
     

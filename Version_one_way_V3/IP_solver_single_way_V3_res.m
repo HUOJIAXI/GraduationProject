@@ -8,7 +8,7 @@ PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 
-% timelimit=round(45*numrobot);
+timelimit=round(100*numrobot);
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -32,7 +32,7 @@ for i = 1:m_D
 end
 
 x = binvar(numrobot,n,n,'full'); % n*n维的决策变量
-u = intvar(numrobot,n,1);
+% u = intvar(numrobot,n,1);
 % dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
 dir_way=intvar(1,num_way,'full');
 dir_rob=intvar(numrobot,num_way,'full');
@@ -83,24 +83,14 @@ for k=1:numrobot
             C = [C, sum(x(k,i,:))-x(k,i,i) <= 1];
             C = [C, sum(x(k,:,i))-x(k,i,i) <= 1];
         end
-        
-        for j = 1:n
-            if i~=j && i ~=l(k) && i ~=t(k) && j ~=l(k) && j ~=t(k)
-                C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
-            end
-        end
-    end
-end
-%% 约束3 避免出现子循环
-% for k=1:numrobot
-%     for i = 1:n
+%         
 %         for j = 1:n
 %             if i~=j && i ~=l(k) && i ~=t(k) && j ~=l(k) && j ~=t(k)
 %                 C = [C,u(k,i)-u(k,j) + (n-3)*x(k,i,j)<=n-4];
 %             end
 %         end
-%     end
-% end
+    end
+end
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
 for k = 1:numrobot
@@ -109,15 +99,28 @@ for i = 1:m
 %     [j_x,j_y]=spread_sin(j,size_D);
     if mod(i,2)==0  && D(i_x,i_y) ~=1 
         if mod(i_x,2)==1 && mod(i_y,2)==0
+            if i ==l(k)
+                dir_rob(k,i/2) = x(k,l(k),i+1)+3*x(k,l(k),i-1);
+            elseif i ==t(k)
+                dir_rob(k,i/2) = x(k,i-1,t(k))+3*x(k,i+1,t(k));
 %             if i+1~=t
+            else
                 dir_rob(k,i/2) = x(k,i,i+1)+3*x(k,i+1,i);
+            end
 %             elseif i+1 ==t
 %                 dir_rob(k,i/2) = x(k,i-1,i)+3*x(k,i,i-1);
 %             end
         end
         if mod(i_x,2)==0 && mod(i_y,2)==1
 %             if i+size_D~=t
+           if i == l(k)
+               dir_rob(k,i/2) = x(k,l(k),i+size_D)+3*x(k,l(k),i-size_D);
+           elseif i ==t(k)
+               dir_rob(k,i/2) = x(k,i-size_D,t(k))+3*x(k,i+size_D,t(k));
+           else
                 dir_rob(k,i/2) = x(k,i,i+size_D)+3*x(k,i+size_D,i);
+           end
+                
 %             elseif i+size_D==t
 %                 dir_rob(k,i/2) = x(k,i-size_D,i)+3*x(k,i,i-size_D);
 %             end
@@ -250,12 +253,12 @@ end
 
 % 参数设置
 
-[ini_dir_way] = initial();
-assign(dir_way,ini_dir_way);
+% [ini_dir_way] = initial();
+% assign(dir_way,ini_dir_way);
 assign(x,ini_x_value);
 
 % ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
-ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1);
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);

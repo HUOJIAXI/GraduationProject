@@ -1,4 +1,4 @@
-function plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal,~,~,dir_way)
+function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal,~,~,dir_way)
 %AllRobotState = zeros(size(D,1),size(D,2));
 MM = size(D,2);
 NN = size(D,1);
