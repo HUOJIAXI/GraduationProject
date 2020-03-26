@@ -1,8 +1,8 @@
 # GraduationProject 项目日志 
 ## 连续性路径演示：(机器人最终进入货架)
-## 1. 单行道方法（16机器人，25*9仓库环境）
+## 1. 单行道方法（10机器人，13*17仓库环境）
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest20.gif)
 
 ## 2. 动态启发式分割方法（16机器人，13*13仓库环境）
 
