@@ -316,3 +316,1120 @@ codec.]
 系统总消耗时刻：
      7
 
+28-Mar-2020 12:20:45
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+{Unrecognized function or variable 'dir_way'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_ini', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m', 299)" style="font-weight:bold">IP_solver_single_way_ini</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',299,0)">line 299</a>)
+assign(dir_way,ini_dir_way);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 39)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',39,0)">line 39</a>)
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+            % 将上一次求解所得ini_dir_way作为原始解输入
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',299,0)
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:21:15
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+{Unrecognized function or variable 'dir_way'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_ini', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m', 317)" style="font-weight:bold">IP_solver_single_way_ini</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',317,0)">line 317</a>)
+dir_way_value=value(dir_way);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 39)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',39,0)">line 39</a>)
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+            % 将上一次求解所得ini_dir_way作为原始解输入
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',317,0)
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:22:31
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+{Unrecognized function or variable 'u'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_ini', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m', 326)" style="font-weight:bold">IP_solver_single_way_ini</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',326,0)">line 326</a>)
+u_value = value(u);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 39)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',39,0)">line 39</a>)
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+            % 将上一次求解所得ini_dir_way作为原始解输入
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',326,0)
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:22:47
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+{Output argument "u_value" (and maybe others) not assigned during call to "IP_solver_single_way_ini".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 39)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',39,0)">line 39</a>)
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+            % 将上一次求解所得ini_dir_way作为原始解输入
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:23:54
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.980521 seconds.
+运行时间: 1.981
+===================================
+执行机器人个数：1
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.794667 seconds.
+运行时间: 1.7952
+===================================
+执行机器人个数：1
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.746859 seconds.
+运行时间: 1.7475
+===================================
+执行机器人个数：1
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.729157 seconds.
+运行时间: 1.7293
+===================================
+执行机器人个数：1
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.736623 seconds.
+运行时间: 1.7375
+===================================
+执行机器人个数：1
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.796742 seconds.
+运行时间: 1.7969
+===================================
+执行机器人个数：1
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.747714 seconds.
+运行时间: 1.7478
+===================================
+执行机器人个数：1
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.732671 seconds.
+运行时间: 1.7328
+===================================
+执行机器人个数：1
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.718315 seconds.
+运行时间: 1.7185
+===================================
+执行机器人个数：1
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.743867 seconds.
+运行时间: 1.744
+===================================
+执行机器人个数：2
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 16.464150 seconds.
+运行时间: 16.4649
+===================================
+执行机器人个数：2
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/assign', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/assign.m', 41)" style="font-weight:bold">sdpvar/assign</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/assign.m',41,0)">line 41</a>)
+Both arguments must have same size
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/assign', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/assign.m', 4)" style="font-weight:bold">ndsdpvar/assign</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/assign.m',4,0)">line 4</a>)
+assign(sdpvar(x),y(:));
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 296)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',296,0)">line 296</a>)
+assign(x,ini_x_value);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 44)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',44,0)">line 44</a>)
+             [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_dir_rob,ini_x_value);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:30:32
+{Unrecognized function or variable 'Start_test'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 25)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',25,0)">line 25</a>)
+        [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',25,0)
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:44:15
+===================================
+执行机器人个数：1
+执行次数：1
+{Unrecognized function or variable 'Start_new'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 40)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',40,0)">line 40</a>)
+            [ini_x_value]=initial_guess(ini_x_value,Start_new(i),Goal_new(i),D_reduit);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 12:44:39
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.694910 seconds.
+运行时间: 1.6951
+===================================
+执行机器人个数：1
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.743131 seconds.
+运行时间: 1.7433
+===================================
+执行机器人个数：1
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.758207 seconds.
+运行时间: 1.7586
+===================================
+执行机器人个数：1
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.694334 seconds.
+运行时间: 1.6945
+===================================
+执行机器人个数：1
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.624439 seconds.
+运行时间: 1.6252
+===================================
+执行机器人个数：1
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.662181 seconds.
+运行时间: 1.6623
+===================================
+执行机器人个数：1
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.634382 seconds.
+运行时间: 1.6345
+===================================
+执行机器人个数：1
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.618794 seconds.
+运行时间: 1.6189
+===================================
+执行机器人个数：1
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.610121 seconds.
+运行时间: 1.6102
+===================================
+执行机器人个数：1
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.604956 seconds.
+运行时间: 1.6051
+平均运行时间: 1.6647
+===================================
+执行机器人个数：2
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 15.761466 seconds.
+运行时间: 15.7621
+===================================
+执行机器人个数：2
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 16.988600 seconds.
+运行时间: 16.9892
+===================================
+执行机器人个数：2
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 15.928357 seconds.
+运行时间: 15.9286
+===================================
+执行机器人个数：2
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 15.719334 seconds.
+运行时间: 15.7195
+===================================
+执行机器人个数：2
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 16.249299 seconds.
+运行时间: 16.2496
+===================================
+执行机器人个数：2
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 16.021199 seconds.
+运行时间: 16.0213
+===================================
+执行机器人个数：2
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 17.629839 seconds.
+运行时间: 17.63
+===================================
+执行机器人个数：2
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 17.152353 seconds.
+运行时间: 17.1525
+===================================
+执行机器人个数：2
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 16.242079 seconds.
+运行时间: 16.2422
+===================================
+执行机器人个数：2
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 17.241609 seconds.
+运行时间: 17.2417
+平均运行时间: 16.4936
+===================================
+执行机器人个数：3
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.125894 seconds.
+运行时间: 25.126
+===================================
+执行机器人个数：3
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 24.328009 seconds.
+运行时间: 24.3282
+===================================
+执行机器人个数：3
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.784471 seconds.
+运行时间: 25.7846
+===================================
+执行机器人个数：3
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.101153 seconds.
+运行时间: 25.1013
+===================================
+执行机器人个数：3
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 24.642841 seconds.
+运行时间: 24.643
+===================================
+执行机器人个数：3
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.223623 seconds.
+运行时间: 25.2238
+===================================
+执行机器人个数：3
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 24.697820 seconds.
+运行时间: 24.6979
+===================================
+执行机器人个数：3
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.386363 seconds.
+运行时间: 25.3865
+===================================
+执行机器人个数：3
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.383421 seconds.
+运行时间: 25.3835
+===================================
+执行机器人个数：3
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 26.052928 seconds.
+运行时间: 26.053
+平均运行时间: 25.1728
+===================================
+执行机器人个数：4
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.685932 seconds.
+运行时间: 34.6861
+===================================
+执行机器人个数：4
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.663913 seconds.
+运行时间: 34.6641
+===================================
+执行机器人个数：4
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.593727 seconds.
+运行时间: 34.5938
+===================================
+执行机器人个数：4
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.125641 seconds.
+运行时间: 34.1258
+===================================
+执行机器人个数：4
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 36.230079 seconds.
+运行时间: 36.2302
+===================================
+执行机器人个数：4
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 35.512857 seconds.
+运行时间: 35.513
+===================================
+执行机器人个数：4
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 36.139099 seconds.
+运行时间: 36.1392
+===================================
+执行机器人个数：4
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 37.525418 seconds.
+运行时间: 37.5255
+===================================
+执行机器人个数：4
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 36.641352 seconds.
+运行时间: 36.6415
+===================================
+执行机器人个数：4
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 35.756183 seconds.
+运行时间: 35.7563
+平均运行时间: 35.5875
+28-Mar-2020 13:07:03
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('derivebounds', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/derivebounds.m', 32)" style="font-weight:bold">derivebounds</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/derivebounds.m',32,0)">line 32</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('extract_bounds_from_max_operator', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/extract_bounds_from_max_operator.m', 4)" style="font-weight:bold">extract_bounds_from_max_operator</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/extract_bounds_from_max_operator.m',4,0)">line 4</a>)
+[M,m] = derivebounds(arg,LU);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('setupBounds', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/setupBounds.m', 31)" style="font-weight:bold">setupBounds</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/setupBounds.m',31,0)">line 31</a>)
+            LU = extract_bounds_from_max_operator(LU,extstruct,extendedvariables,i);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 134)" style="font-weight:bold">expandmodel</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',134,0)">line 134</a>)
+        LUbounds = setupBounds(F,options,extendedvariables);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compileinterfacedata', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m', 116)" style="font-weight:bold">compileinterfacedata</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m',116,0)">line 116</a>)
+    [F,failure,cause,operators] = expandmodel(F,h,options);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvesdp', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m', 242)" style="font-weight:bold">solvesdp</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m',242,0)">line 242</a>)
+[interfacedata,recoverdata,solver,diagnostic,F,Fremoved,ForiginalQuadratics] =
+compileinterfacedata(F,[],logdetStruct,h,options,0,solving_parametric);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('optimize', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m', 31)" style="font-weight:bold">optimize</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m',31,0)">line 31</a>)
+[varargout{1:nargout}] = solvesdp(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_ini', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m', 305)" style="font-weight:bold">IP_solver_single_way_ini</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_ini.m',305,0)">line 305</a>)
+result  = optimize(C,z,ops);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 46)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',46,0)">line 46</a>)
+            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+            % 将上一次求解所得ini_dir_way作为原始解输入
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('randperm')" style="font-weight:bold">randperm</a>
+K must be less than or equal to N.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('rand_Goal_Start', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/rand_Goal_Start.m', 21)" style="font-weight:bold">rand_Goal_Start</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/rand_Goal_Start.m',21,0)">line 21</a>)
+r_start = randperm(length(nobs),numrobot);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 8)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',8,0)">line 8</a>)
+[Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum_total*5); % 随机生成一组测试集
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 13:08:41
+===================================
+执行机器人个数：1
+执行次数：1
+{Index exceeds the number of array elements (30).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 34)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',34,0)">line 34</a>)
+        Start_test = Start_ori(test_choix);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+28-Mar-2020 13:09:39
+===================================
+执行机器人个数：1
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.103127 seconds.
+运行时间: 2.1033
+===================================
+执行机器人个数：1
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Warning: YALMIP has detected that your drive or network is unusually slow.
+This causes a severe delay in OPTIMIZE when I try to find available solvers.
+To avoid this, use the options CACHESOLVERS in SDPSETTINGS.
+See the FAQ for more information.
+Elapsed time is 4.132650 seconds.
+运行时间: 4.1328
+===================================
+执行机器人个数：1
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.030760 seconds.
+运行时间: 2.0311
+===================================
+执行机器人个数：1
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.072293 seconds.
+运行时间: 2.0725
+===================================
+执行机器人个数：1
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.065385 seconds.
+运行时间: 2.0661
+===================================
+执行机器人个数：1
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.080754 seconds.
+运行时间: 2.0809
+===================================
+执行机器人个数：1
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.078620 seconds.
+运行时间: 2.0787
+===================================
+执行机器人个数：1
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.052957 seconds.
+运行时间: 2.0531
+===================================
+执行机器人个数：1
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.111861 seconds.
+运行时间: 2.112
+===================================
+执行机器人个数：1
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.195676 seconds.
+运行时间: 2.1958
+===================================
+平均运行时间: 2.2926
+===================================
+执行机器人个数：2
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.641794 seconds.
+运行时间: 20.6425
+===================================
+执行机器人个数：2
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 21.040898 seconds.
+运行时间: 21.0415
+===================================
+执行机器人个数：2
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 21.662734 seconds.
+运行时间: 21.663
+===================================
+执行机器人个数：2
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.242071 seconds.
+运行时间: 20.2422
+===================================
+执行机器人个数：2
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.348579 seconds.
+运行时间: 20.3489
+===================================
+执行机器人个数：2
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.176001 seconds.
+运行时间: 20.1761
+===================================
+执行机器人个数：2
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.296869 seconds.
+运行时间: 20.297
+===================================
+执行机器人个数：2
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.532998 seconds.
+运行时间: 20.5331
+===================================
+执行机器人个数：2
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.552040 seconds.
+运行时间: 20.5522
+===================================
+执行机器人个数：2
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.538856 seconds.
+运行时间: 20.539
+===================================
+平均运行时间: 20.6034
+===================================
+执行机器人个数：3
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.187151 seconds.
+运行时间: 29.1873
+===================================
+执行机器人个数：3
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.185986 seconds.
+运行时间: 29.1861
+===================================
+执行机器人个数：3
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.511366 seconds.
+运行时间: 29.5115
+===================================
+执行机器人个数：3
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.552059 seconds.
+运行时间: 29.5522
+===================================
+执行机器人个数：3
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.127313 seconds.
+运行时间: 29.1274
+===================================
+执行机器人个数：3
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.264975 seconds.
+运行时间: 29.2651
+===================================
+执行机器人个数：3
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 30.290668 seconds.
+运行时间: 30.2908
+===================================
+执行机器人个数：3
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 30.431390 seconds.
+运行时间: 30.4315
+===================================
+执行机器人个数：3
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 30.667939 seconds.
+运行时间: 30.6681
+===================================
+执行机器人个数：3
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 30.775506 seconds.
+运行时间: 30.7756
+===================================
+平均运行时间: 29.7995
+===================================
+执行机器人个数：4
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 40.716481 seconds.
+运行时间: 40.7166
+===================================
+执行机器人个数：4
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 40.941389 seconds.
+运行时间: 40.9415
+===================================
+执行机器人个数：4
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.334901 seconds.
+运行时间: 41.335
+===================================
+执行机器人个数：4
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.499770 seconds.
+运行时间: 41.4999
+===================================
+执行机器人个数：4
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.958658 seconds.
+运行时间: 41.9588
+===================================
+执行机器人个数：4
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.656093 seconds.
+运行时间: 41.6562
+===================================
+执行机器人个数：4
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 42.398786 seconds.
+运行时间: 42.3989
+===================================
+执行机器人个数：4
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.393993 seconds.
+运行时间: 41.3941
+===================================
+执行机器人个数：4
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 44.259167 seconds.
+运行时间: 44.2593
+===================================
+执行机器人个数：4
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 44.413616 seconds.
+运行时间: 44.4137
+===================================
+平均运行时间: 42.0574
+===================================
+执行机器人个数：5
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 55.429782 seconds.
+运行时间: 55.4299
+===================================
+执行机器人个数：5
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 55.719621 seconds.
+运行时间: 55.7198
+===================================
+执行机器人个数：5
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 56.685255 seconds.
+运行时间: 56.6854
+===================================
+执行机器人个数：5
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 56.325570 seconds.
+运行时间: 56.3257
+===================================
+执行机器人个数：5
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 58.025824 seconds.
+运行时间: 58.026
+===================================
+执行机器人个数：5
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 57.319052 seconds.
+运行时间: 57.3192
+===================================
+执行机器人个数：5
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 54.445218 seconds.
+运行时间: 54.4453
+===================================
+执行机器人个数：5
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 55.063850 seconds.
+运行时间: 55.064
+===================================
+执行机器人个数：5
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 56.177410 seconds.
+运行时间: 56.1775
+===================================
+执行机器人个数：5
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 55.837176 seconds.
+运行时间: 55.8373
+===================================
+平均运行时间: 56.103
+===================================
+执行机器人个数：6
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 70.839908 seconds.
+运行时间: 70.8401
+===================================
+执行机器人个数：6
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 73.439333 seconds.
+运行时间: 73.4395
+===================================
+执行机器人个数：6
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 74.529645 seconds.
+运行时间: 74.5298
+===================================
+执行机器人个数：6
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 75.809555 seconds.
+运行时间: 75.8097
+===================================
+执行机器人个数：6
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 75.663959 seconds.
+运行时间: 75.6641
+===================================
+执行机器人个数：6
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 76.556314 seconds.
+运行时间: 76.5564
+===================================
+执行机器人个数：6
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 81.461119 seconds.
+运行时间: 81.4613
+===================================
+执行机器人个数：6
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 85.302674 seconds.
+运行时间: 85.3028
+===================================
+执行机器人个数：6
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 76.824114 seconds.
+运行时间: 76.8242
+===================================
+执行机器人个数：6
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 71.424241 seconds.
+运行时间: 71.4244
+===================================
+平均运行时间: 76.1852
+===================================
+执行机器人个数：7
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 87.541545 seconds.
+运行时间: 87.5417
+===================================
+执行机器人个数：7
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 87.861429 seconds.
+运行时间: 87.8616
+===================================
+执行机器人个数：7
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 87.916503 seconds.
+运行时间: 87.9166
+===================================
+执行机器人个数：7
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 86.856395 seconds.
+运行时间: 86.8565
+===================================
+执行机器人个数：7
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 88.088173 seconds.
+运行时间: 88.0883
+===================================
+执行机器人个数：7
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 89.433579 seconds.
+运行时间: 89.4337
+===================================
+执行机器人个数：7
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 89.666894 seconds.
+运行时间: 89.667
+===================================
+执行机器人个数：7
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 89.840788 seconds.
+运行时间: 89.8409
+===================================
+执行机器人个数：7
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 90.745819 seconds.
+运行时间: 90.7459
+===================================
+执行机器人个数：7
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 92.003138 seconds.
+运行时间: 92.0033
+===================================
+平均运行时间: 88.9955
+===================================
+执行机器人个数：8
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 106.923093 seconds.
+运行时间: 106.9232
+===================================
+执行机器人个数：8
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 108.711548 seconds.
+运行时间: 108.7117
+===================================
+执行机器人个数：8
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 108.465421 seconds.
+运行时间: 108.4655
+===================================
+执行机器人个数：8
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 110.254549 seconds.
+运行时间: 110.2547
+===================================
+执行机器人个数：8
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 110.522637 seconds.
+运行时间: 110.5228
+===================================
+执行机器人个数：8
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 111.827113 seconds.
+运行时间: 111.8272
+===================================
+执行机器人个数：8
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 114.036738 seconds.
+运行时间: 114.0369
+===================================
+执行机器人个数：8
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 114.451407 seconds.
+运行时间: 114.4515
+===================================
+执行机器人个数：8
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 113.574585 seconds.
+运行时间: 113.5747
+===================================
+执行机器人个数：8
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 117.509708 seconds.
+运行时间: 117.5098
+===================================
+平均运行时间: 111.6278
+===================================
+执行机器人个数：9
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 132.881078 seconds.
+运行时间: 132.8812
+===================================
+执行机器人个数：9
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 136.327021 seconds.
+运行时间: 136.3271
+===================================
+执行机器人个数：9
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 136.267763 seconds.
+运行时间: 136.2679
+===================================
+执行机器人个数：9
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 139.570063 seconds.
+运行时间: 139.5702
+===================================
+执行机器人个数：9
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 138.691109 seconds.
+运行时间: 138.6912
+===================================
+执行机器人个数：9
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 142.279856 seconds.
+运行时间: 142.28
+===================================
+执行机器人个数：9
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 143.542295 seconds.
+运行时间: 143.5424
+===================================
+执行机器人个数：9
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 142.180115 seconds.
+运行时间: 142.1802
+===================================
+执行机器人个数：9
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 142.885950 seconds.
+运行时间: 142.8861
+===================================
+执行机器人个数：9
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 145.650482 seconds.
+运行时间: 145.6506
+===================================
+平均运行时间: 140.0277
+===================================
+执行机器人个数：10
+执行次数：1
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 163.375157 seconds.
+运行时间: 163.3753
+===================================
+执行机器人个数：10
+执行次数：2
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 168.680184 seconds.
+运行时间: 168.6803
+===================================
+执行机器人个数：10
+执行次数：3
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 180.450323 seconds.
+运行时间: 180.4504
+===================================
+执行机器人个数：10
+执行次数：4
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 170.746119 seconds.
+运行时间: 170.7462
+===================================
+执行机器人个数：10
+执行次数：5
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 172.003278 seconds.
+运行时间: 172.0034
+===================================
+执行机器人个数：10
+执行次数：6
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 179.757780 seconds.
+运行时间: 179.7579
+===================================
+执行机器人个数：10
+执行次数：7
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 173.813193 seconds.
+运行时间: 173.8133
+===================================
+执行机器人个数：10
+执行次数：8
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 175.602699 seconds.
+运行时间: 175.6028
+===================================
+执行机器人个数：10
+执行次数：9
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 178.600146 seconds.
+运行时间: 178.6003
+===================================
+执行机器人个数：10
+执行次数：10
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 181.256215 seconds.
+运行时间: 181.2564
+===================================
+平均运行时间: 174.4286
