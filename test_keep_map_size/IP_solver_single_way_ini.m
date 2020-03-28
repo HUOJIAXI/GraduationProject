@@ -67,11 +67,15 @@ C = [];
 % 静止不动时返回0
 same=[];
 flag_same=0;
+temp_l=[];
+temp_t=[];
+temp_ini=[];
+
 for i = 1:numrobot
     if l(i) == t(i)
         [N,B]=spread_sin(t,n);
-        PATH{i,1} = [N,B];
-        Path{i,1}(1) = l(i);
+        PATH{numrobot,1} = [N,B];
+        Path{numrobot,1}(1) = l(i);
         disp('二次检查：起点终点在同一个点')
         same=[same i];
         flag_same=1;

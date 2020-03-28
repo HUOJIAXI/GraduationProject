@@ -1,5 +1,5 @@
 function [PathStore,Path_num] = ori_path_am(Start,Goal,D)
-sizeD=size(D,1);
+sizeD=size(D,2);
 
     [Goal_x,Goal_y] = spread_sin(Goal,sizeD);
     [Start_x,Start_y] = spread_sin(Start,sizeD);

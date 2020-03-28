@@ -1,13 +1,31 @@
+%% 机器人规模测试：13*17
+
 clear;
 clc;
-D = load('tsp_dist.txt'); 
-size_D=size(D,1);
-RobotNum_total=10;
-test_para=10;
+D = load('tsp_dist_broad.txt'); 
+RobotNum_total=15;
+test_para=10; %% 测试次数
 
-test_size=3;
+nobs=[];
+obs=[];
+m_D=size(D,1);
+n_D=size(D,2);
+for i = 1:m_D
+    for j = 1:n_D
+        if D(i,j) == 1
+            obs=[obs j+(i-1)*n_D]; % 障碍物所在位置
+%             [obs_x,obs_y]=spread(obs,m);
+        else
+            nobs=[nobs j+(i-1)*n_D];
+        end
+    end
+end
 
-[Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum_total*test_size); % 随机生成一组测试集
+
+test_size=length(obs);
+
+% [Start_ori,Goal_ori]=rand_Goal_Start(D,RobotNum_total*test_size); % 随机生成一组测试集
+[Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,test_size,3);
 
 run_time_global=cell(RobotNum_total,1);
 
@@ -32,27 +50,31 @@ for i = 1:RobotNum_total
         disp(['执行机器人个数：',num2str(i)])
         disp(['执行次数：',num2str(j)])
         
-        test_choix=randperm(RobotNum_total*test_size,i);
-        Start_test = Start_ori(test_choix);
-        Goal_test = Goal_ori(test_choix);
+        err=1;
+        while err==1
+            
+            test_choix=randperm(test_size,i);
+            [Start_test,Goal_test,start_sp,goal_sp,D_reduit] = reduit(r_start_ori(test_choix),r_Goal_ori(test_choix),D);
 
-        ini_x_value=[];
+            size_D=size(D_reduit,2);
+
+            ini_x_value=[];
+
+            for k = 1:i
+                [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D_reduit);
+            end
         
-        for k = 1:i
-            [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D);
-        end
         
-        if i == 1
-        tic
-
-            [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_ini(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);    % 将上一次求解所得ini_dir_way作为原始解输入
-
-        toc
-        else
-            tic
-             [PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D,Start_test,Goal_test,i,size_D,ini_dir_way,ini_dir_rob,ini_x_value);
+            tic           
+             [err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
             toc
+%                 disp(err)
+            if err == 0
+                break
+            end
+            
         end
+
 
         run_time_global{i,1}(j)=toc;
         disp(['运行时间: ',num2str(toc)])
@@ -62,15 +84,21 @@ for i = 1:RobotNum_total
     disp('===================================');
     disp(['平均运行时间: ',num2str(moyen(i))])
     
+    [PathStore_new,Path_num_new]=broaden(PathStore,D,i,r_start_ori(test_choix),r_Goal_ori(test_choix));
+    
 end
 
-% plotdynamic(D,PathStore,Path_num,RobotNum_total,Start_ori,Goal_ori);
+plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
 
 var_runtime=zeros(RobotNum_total,1);
 
 for i = 1 :RobotNum_total
+    
+    moyen(i)=mean(run_time_global{i,1});
     var_runtime(i)= std(run_time_global{i,1});
 end
+
+figure(2)
 
 rob=1:1:RobotNum_total;
 

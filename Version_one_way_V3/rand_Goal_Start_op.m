@@ -1,4 +1,4 @@
-function [r_Goal,r_start,r_start_ori,r_Goal_ori]=rand_Goal_Start_op_test(D,numrobot,lenob)
+function [r_Goal,r_start,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot,lenob)
 % r_start:实际起点终点
 % r_start_ori:偏移后起点终点
 m=size(D,1);
@@ -82,29 +82,37 @@ end
 [goal_x,goal_y]=spread(r_Goal,n);
 
 for i = 1: numrobot
-    flag=rand(1);
-    if flag<1/4
-        start_x(i)=start_x(i)+1;
-    elseif flag >= 1/4 && flag <1/2
-        start_x(i)=start_x(i)-1;
-    elseif flag >= 1/2 && flag < 3/4
-        start_y(i)=start_y(i)+1;
-    else
+    if mod(start_y(i)/2,2)==1
         start_y(i)=start_y(i)-1;
+        r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
+    elseif mod(start_y(i)/2,2)==0
+        start_y(i)=start_y(i)+1;
+        r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
+    elseif mod(start_y(i),2)==1
+        flag=rand(1);
+        if flag<1/2
+            start_x(i)=start_x(i)+1;
+        else
+            start_x(i)=start_x(i)-1;
+        end
+        r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
     end
-    r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
-
-    flag=rand(1);
-    if flag<1/4
-        goal_x(i)=goal_x(i)+1;
-    elseif flag >= 1/4 && flag <1/2
-        goal_x(i)=goal_x(i)-1;
-    elseif flag >= 1/2 && flag < 3/4
-        goal_y(i)=goal_y(i)+1;
-    else
+    
+    if mod(goal_y(i)/2,2)==1
         goal_y(i)=goal_y(i)-1;
+        r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n;
+    elseif mod(goal_y(i)/2,2)==0
+        goal_y(i)=goal_y(i)+1;
+        r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n;
+    elseif mod(goal_y(i),2)==1
+        flag=rand(1);
+        if flag<1/2
+            goal_x(i)=goal_x(i)+1;
+        else
+            goal_x(i)=goal_x(i)-1;
+        end
+        r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n; % 最后进行执行
     end
-    r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n; % 最后进行执行
     
 end
 

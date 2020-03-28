@@ -1,13 +1,13 @@
-function [PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,~,ini_x_value,~)
+function [err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_x_value)
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
 if numrobot <=16
-    timelimit=round(20*numrobot);
-else
     timelimit=round(100*numrobot);
+else
+    timelimit=round(200*numrobot);
 end
 
 m_D=size(D,1);
@@ -18,25 +18,15 @@ d = transfer(D);
 m = size(d,1); 
 n = size(d,2); 
 % 决策变量
-nobs=[];
-obs=[];
-for i = 1:m_D
-    for j = 1:n_D
-        if D(i,j) == 1
-            obs=[obs j+(i-1)*n_D]; % 障碍物所在位置
-%             [obs_x,obs_y]=spread(obs,m);
-        else
-            nobs=[nobs j+(i-1)*n_D];
-        end
-    end
-end
 
 x = binvar(n,n,numrobot,'full'); % n*n维的决策变量
+
 % u = intvar(numrobot,n,'full');
 % dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
 if flag_cross==1
     dir_way=intvar(1,num_way,'full');
 end
+
 dir_rob=intvar(numrobot,num_way,'full');
 
 
@@ -62,14 +52,22 @@ C = [];
 % 静止不动时返回0
 same=[];
 flag_same=0;
+temp_l=[];
+temp_t=[];
+temp_ini=[];
 for i = 1:numrobot
     if l(i) == t(i)
         [N,B]=spread_sin(t,n);
-        PATH{i,1} = [N,B];
-        Path{i,1}(1) = l(i);
+        PATH{numrobot,1} = [N,B];
+        Path{numrobot,1}(1) = l(i);
+        dir_way_value=[];
+        dir_rob_value=[];
+        x_value=[];
         disp('二次检查：起点终点在同一个点')
         same=[same i];
         flag_same=1;
+        err = 1;
+        return
     end
 end
 
@@ -90,6 +88,8 @@ if flag_same==1
 else
     disp('二次检查：不存在起点终点在同一个点的情况')
 end
+
+
 
 %% 约束1 确保路径从起点出发并在终点结束
 for i = 1:numrobot
@@ -334,9 +334,10 @@ x_value = value(x);
 
 
 %disp(value(dir))
-o=value(x);
 
+o=value(x);
 %% 邻接矩阵转换，路径绘制
+    
 
 for i = 1:numrobot
     o_single{i,1} =  squeeze(o(:,:,i)) ; 
@@ -345,7 +346,18 @@ end
 for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
-    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    try
+        Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    catch
+        err =1;
+        PATH=[];
+        Path=[];
+        dir_way_value=[];
+        dir_rob_value=[];
+        x_value=[];
+        break
+    end
+    err=0;
     m = size(D,2);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix
