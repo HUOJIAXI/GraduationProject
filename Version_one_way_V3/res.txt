@@ -13840,3 +13840,264 @@ Optimal solution found (tolerance 1.00e-04)
 Best objective 3.600000000000e+01, best bound 3.600000000000e+01, gap 0.0000%
 系统总最优路径长度：Best objective
 Elapsed time is 267.528590 seconds.
+29-Mar-2020 08:36:45
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 342)" style="font-weight:bold">expandmodel</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',342,0)">line 342</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compileinterfacedata', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m', 116)" style="font-weight:bold">compileinterfacedata</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m',116,0)">line 116</a>)
+    [F,failure,cause,operators] = expandmodel(F,h,options);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvesdp', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m', 242)" style="font-weight:bold">solvesdp</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m',242,0)">line 242</a>)
+[interfacedata,recoverdata,solver,diagnostic,F,Fremoved,ForiginalQuadratics] =
+compileinterfacedata(F,[],logdetStruct,h,options,0,solving_parametric);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('optimize', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m', 31)" style="font-weight:bold">optimize</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m',31,0)">line 31</a>)
+[varargout{1:nargout}] = solvesdp(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_V3_res', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m', 309)" style="font-weight:bold">IP_solver_single_way_V3_res</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/IP_solver_single_way_V3_res.m',309,0)">line 309</a>)
+result  = optimize(C,z,ops);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_one_way_V2', '/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m', 29)" style="font-weight:bold">main_one_way_V2</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m',29,0)">line 29</a>)
+ [PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+exit
+29-Mar-2020 08:43:45
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 582 rows, 13689 columns and 54401 nonzeros
+Model fingerprint: 0xfc843032
+Variable types: 0 continuous, 13689 integer (13689 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+00]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Loaded user MIP start with objective 6
+
+Presolve removed 270 rows and 13473 columns
+Presolve time: 0.23s
+Presolved: 312 rows, 216 columns, 980 nonzeros
+Variable types: 0 continuous, 216 integer (216 binary)
+
+Root relaxation: cutoff, 11 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0         6.00000    6.00000  0.00%     -    0s
+
+Explored 0 nodes (11 simplex iterations) in 0.31 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 6 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 6.000000000000e+00, best bound 6.000000000000e+00, gap 0.0000%
+Elapsed time is 1.074698 seconds.
+系统总最优路径长度：Best objective
+运行时间
+    1.0751
+
+29-Mar-2020 08:45:06
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 582 rows, 13689 columns and 54401 nonzeros
+Model fingerprint: 0x8cce0155
+Variable types: 0 continuous, 13689 integer (13689 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+00]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+Loaded user MIP start with objective 4
+
+Presolve removed 582 rows and 13689 columns
+Presolve time: 0.22s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.27 seconds
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 4 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.000000000000e+00, best bound 4.000000000000e+00, gap 0.0000%
+Elapsed time is 0.729113 seconds.
+系统总最优路径长度：Best objective
+Elapsed time is 0.792265 seconds.
+运行时间
+    0.7292
+
+29-Mar-2020 08:45:46
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 4474 rows, 55742 columns and 225724 nonzeros
+Model fingerprint: 0x89be4acf
+Variable types: 58 continuous, 55684 integer (55684 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+00]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R2025 by 1.000000000
+
+Presolve removed 1176 rows and 1856 columns
+Presolve time: 0.34s
+Presolved: 3298 rows, 53886 columns, 220864 nonzeros
+Variable types: 0 continuous, 53886 integer (53828 binary)
+
+Root relaxation: objective 4.000000e+01, 461 iterations, 0.04 seconds
+Another try with MIP start
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   40.00000    0   36          -   40.00000      -     -    0s
+H    0     0                      56.0000000   40.00000  28.6%     -    1s
+H    0     0                      44.0000000   40.00000  9.09%     -    1s
+     0     0   40.50000    0   67   44.00000   40.50000  7.95%     -    1s
+     0     0   40.50000    0   30   44.00000   40.50000  7.95%     -    2s
+     0     0   40.66667    0   72   44.00000   40.66667  7.58%     -    2s
+     0     0   41.00000    0   44   44.00000   41.00000  6.82%     -    2s
+     0     0   41.01613    0  126   44.00000   41.01613  6.78%     -    2s
+     0     0   41.03774    0   84   44.00000   41.03774  6.73%     -    2s
+     0     0   41.03774    0   87   44.00000   41.03774  6.73%     -    2s
+     0     0   44.00000    0  143   44.00000   44.00000  0.00%     -    2s
+
+Cutting planes:
+  Learned: 26
+  Gomory: 7
+  Cover: 20
+  MIR: 32
+  StrongCG: 6
+  GUB cover: 2
+  Zero half: 2
+  RLT: 7
+  Relax-and-lift: 4
+
+Explored 1 nodes (1942 simplex iterations) in 2.25 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 2: 44 56 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.400000000000e+01, best bound 4.400000000000e+01, gap 0.0000%
+Elapsed time is 10.320789 seconds.
+系统总最优路径长度：Best objective
+运行时间
+   10.3210
+
+29-Mar-2020 08:47:19
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 4474 rows, 55742 columns and 225724 nonzeros
+Model fingerprint: 0x28cc13e8
+Variable types: 58 continuous, 55684 integer (55684 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+00]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start produced solution with objective 36 (0.08s)
+Loaded user MIP start with objective 36
+
+Presolve removed 1528 rows and 54348 columns
+Presolve time: 1.22s
+Presolved: 2946 rows, 1394 columns, 11258 nonzeros
+Variable types: 0 continuous, 1394 integer (1336 binary)
+
+Root relaxation: objective 3.400000e+01, 331 iterations, 0.01 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 infeasible    0        36.00000   36.00000  0.00%     -    1s
+
+Explored 0 nodes (544 simplex iterations) in 1.37 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.600000000000e+01, best bound 3.600000000000e+01, gap 0.0000%
+Elapsed time is 9.661289 seconds.
+系统总最优路径长度：Best objective
+Elapsed time is 9.776849 seconds.
+运行时间
+    9.6614
+
+29-Mar-2020 20:08:42
+不存在重合起点终点
+二次检查：不存在起点终点在同一个点的情况
+Academic license - for non-commercial use only
+Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (mac64)
+Optimize a model with 4474 rows, 55742 columns and 225724 nonzeros
+Model fingerprint: 0xf4b1fa11
+Variable types: 58 continuous, 55684 integer (55684 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+00]
+  Objective range  [1e+00, 1e+100]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 4e+00]
+Warning: Model contains large objective coefficients
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+
+User MIP start did not produce a new incumbent solution
+User MIP start violates constraint R2108 by 1.000000000
+
+Presolve removed 1176 rows and 1856 columns
+Presolve time: 0.33s
+Presolved: 3298 rows, 53886 columns, 220864 nonzeros
+Variable types: 0 continuous, 53886 integer (53828 binary)
+
+Root relaxation: objective 2.200000e+01, 231 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+H    0     0                      22.0000000    0.00000   100%     -    0s
+     0     0     cutoff    0        22.00000   22.00000  0.00%     -    0s
+
+Explored 0 nodes (277 simplex iterations) in 0.64 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 1: 22 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.200000000000e+01, best bound 2.200000000000e+01, gap 0.0000%
+Elapsed time is 8.224695 seconds.
+系统总最优路径长度：Best objective
+运行时间
+    8.2248
+

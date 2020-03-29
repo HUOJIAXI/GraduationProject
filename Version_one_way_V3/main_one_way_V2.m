@@ -26,10 +26,10 @@ end
 % disp(D_reduit)
 % disp(Start_new)
 % disp(Goal_new)
-tic
- [PathStore,Path_num,dir_way]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+ [PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
 %  [PathStore,Path_num]=IP_solver_single_way_V2(D,Start_ori,Goal_ori,RobotNum,size_D);
-toc
+disp('运行时间')
+disp(runtime_indi)
 diary('off');
 
 disp(dir_way)

@@ -4,7 +4,8 @@ clear;
 clc;
 D = load('tsp_dist_broad.txt'); 
 RobotNum_total=15;
-test_para=10; %% 测试次数
+RobotNum_start=11;
+test_para=5; %% 测试次数
 
 nobs=[];
 obs=[];
@@ -36,7 +37,7 @@ moyen=zeros(1,RobotNum_total);
 [ini_dir_way] = initial();
 diary('res_keep_map.txt')
 disp(datestr(now));
-for i = 1:RobotNum_total
+for i = RobotNum_start:RobotNum_total
     
 %     if i > 1
 %     [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D);
@@ -63,11 +64,8 @@ for i = 1:RobotNum_total
             for k = 1:i
                 [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D_reduit);
             end
-        
-        
-            tic           
-             [err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
-            toc
+                    
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
 %                 disp(err)
             if err == 0
                 break
@@ -76,8 +74,8 @@ for i = 1:RobotNum_total
         end
 
 
-        run_time_global{i,1}(j)=toc;
-        disp(['运行时间: ',num2str(toc)])
+        run_time_global{i,1}(j)=run_time_indi;
+        disp(['运行时间: ',num2str(run_time_indi)])
     end
     
     moyen(i)=mean(run_time_global{i,1});
@@ -106,7 +104,7 @@ errorbar(rob,moyen,var_runtime,'-o');
 
 xlabel('机器人个数');ylabel('运行时间/s')
 
-axis([0,11,0,max(moyen)+2*max(var_runtime)])
+axis([0,RobotNum_total+1,0,max(moyen)+2*max(var_runtime)])
 
 diary('off')
 

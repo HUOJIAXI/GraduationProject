@@ -1,4 +1,5 @@
-function [err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_x_value)
+function [run_time,err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_x_value)
+yalmip('clear')
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
@@ -63,9 +64,10 @@ for i = 1:numrobot
         dir_way_value=[];
         dir_rob_value=[];
         x_value=[];
+        run_time=0;
         disp('二次检查：起点终点在同一个点')
-        same=[same i];
-        flag_same=1;
+%         same=[same i];
+%         flag_same=1;
         err = 1;
         return
     end
@@ -74,8 +76,8 @@ end
 if flag_same==1
     for i =1:numrobot
         if ~ismember(i,same)
-            temp_l=[temp_l l(i)];
-            temp_t=[temp_t t(i)];
+%             temp_l=[temp_l l(i)];
+%             temp_t=[temp_t t(i)];
             
             temp_ini=cat(3,temp_ini,ini_x_value(:,:,i));
         end
@@ -90,7 +92,6 @@ else
 end
 
 
-
 %% 约束1 确保路径从起点出发并在终点结束
 for i = 1:numrobot
     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0];
@@ -101,6 +102,8 @@ for i = 1:numrobot
 
     C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0]; 
 end
+
+
 %% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
 for k=1:numrobot
     for i = 1:n
@@ -160,7 +163,7 @@ for i = 1:m
 end
 end
 %% 约束5 单行线法则 （巷道方向框定）
-   
+
 for k = 1:num_way
 %     [i,j]=spread_sin(k,size_D);
         for rob = 1:numrobot
@@ -299,7 +302,10 @@ assign(x,ini_x_value);
 ops = sdpsettings('verbose',0,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
+tic
 result  = optimize(C,z,ops);
+toc
+run_time=toc;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
