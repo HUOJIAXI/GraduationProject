@@ -105,15 +105,41 @@ end
 
 
 %% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
-for k=1:numrobot
-    for i = 1:n
-        if i ~= l(k) && i~=t(k)
-            C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
-            C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
-            C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
-        end
-    end
+for i = 1:numrobot
+    
+    dead=sort(unique([l(i),t(i)]));
+
+    m1=squeeze(sum(x(:,:,i),1))';
+    m2=squeeze(sum(x(:,:,i),2));
+    dia=[];
+
+    temp=diag(x(:,:,i));
+    dia=cat(2,dia,temp(:));
+
+    % dia=dia';
+%     disp(size(m1))
+    % disp(size(m2))
+    % disp(size(dia))
+    m1(dead,:)=[];
+    m2(dead,:)=[];
+    dia(dead,:)=[];
+
+%     disp(size(m1,1))
+    c1= (m2-m1)==zeros(size(m1,1),size(m1,2));
+    c2= (m2-dia) <=ones(size(m1,1),size(m1,2));
+    c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
+
+    C = [C,c1,c2,c3];
 end
+% for k=1:numrobot
+%     for i = 1:n
+%         if i ~= l(k) && i~=t(k)
+%             C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
+%             C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
+%             C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
+%         end
+%     end
+% end
 % u = intvar(numrobot,n,'full');
 % for k=1:numrobot
 %     for i = 1:n
@@ -163,27 +189,19 @@ for i = 1:m
 end
 end
 %% 约束5 单行线法则 （巷道方向框定）
-
 for k = 1:num_way
 %     [i,j]=spread_sin(k,size_D);
         for rob = 1:numrobot
                  C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
         end  
 end
+      
+% rob_ran=[(1:numrobot),(1:num_way)];
+% C=[C, 0<=dir_rob(rob_ran)<=3]; 
 
-for k = 1:num_way
-%      C=[C, 0<=dir_way(k)<=3];
-     
-    for k_ro=1:numrobot
-         C=[C, 0<=dir_rob(k_ro,k)<=3];
-    end
+for k =1:num_way
+         C=[C, 0<=dir_rob(1:numrobot,k)<=3];
 end
-
-% for k =1:num_way
-%     for k_ro=1:numrobot
-%          C=[C, 0<=dir_rob(k_ro,k)<=3];
-%     end
-% end
 
 % C=[C, 0<=dir_way(:)<=3];
 % C=[C, 0<=dir_rob(:,:)<=3];
@@ -281,15 +299,15 @@ if flag_cross==1
     end
 end
   
-for k=1:numrobot
-    for i = 1:n
-        for j = 1:n
-            if i==j 
-                C = [C,x(i,j,k)==0];
-            end
-        end
-    end
-end
+% for k=1:numrobot
+%     for i = 1:n
+%         for j = 1:n
+%             if i==j 
+%                 C = [C,x(i,j,k)==0];
+%             end
+%         end
+%     end
+% end
 
 %% 求解IP模型
 

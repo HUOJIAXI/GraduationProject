@@ -4,8 +4,8 @@ clear;
 clc;
 D = load('tsp_dist_broad.txt'); 
 RobotNum_total=15;
-RobotNum_start=11;
-test_para=5; %% 测试次数
+RobotNum_start=5;
+test_para=1; %% 测试次数
 
 nobs=[];
 obs=[];

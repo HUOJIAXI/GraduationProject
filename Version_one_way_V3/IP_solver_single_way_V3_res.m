@@ -4,6 +4,7 @@
 % 引入单行道限制
 %% 待修改
 function [PATH,Path,value_dir_way,runtime_indi]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
+yalmip('clear')
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
@@ -66,6 +67,9 @@ C = [];
 %%
 % 静止不动时返回0
 same=[];
+temp_l=[];
+temp_t=[];
+temp_ini=[];
 flag_same=0;
 for i = 1:numrobot
     if l(i) == t(i)
@@ -97,25 +101,59 @@ else
 end
 
 %% 约束1 确保路径从起点出发并在终点结束
+% tic
+
 for i = 1:numrobot
-    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0];
+    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
 
-    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1];
-
-    C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0];
-
-    C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0]; 
+%     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1];
+% 
+%     C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0];
+% 
+%     C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0]; 
 end
+% toc
+% disp('约束1 确保路径从起点出发并在终点结束 建立完成')
 %% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
-for k=1:numrobot
-    for i = 1:n
-        if i ~= l(k) && i~=t(k)
-            C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
-            C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
-            C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
-        end
-    end
+% tic
+for i = 1:numrobot
+    
+    dead=sort(unique([l(i),t(i)]));
+
+    m1=squeeze(sum(x(:,:,i),1))';
+    m2=squeeze(sum(x(:,:,i),2));
+    dia=[];
+
+    temp=diag(x(:,:,i));
+    dia=cat(2,dia,temp(:));
+
+    % dia=dia';
+%     disp(size(m1))
+    % disp(size(m2))
+    % disp(size(dia))
+    m1(dead,:)=[];
+    m2(dead,:)=[];
+    dia(dead,:)=[];
+
+%     disp(size(m1,1))
+    c1= (m2-m1)==zeros(size(m1,1),size(m1,2));
+    c2= (m2-dia) <=ones(size(m1,1),size(m1,2));
+    c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
+
+    C = [C,c1,c2,c3];
 end
+
+% for k=1:numrobot
+%     for i = 1:n
+%         if i ~= l(k) && i~=t(k)
+%             C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0,sum(x(i,:,k))-x(i,i,k) <= 1, sum(x(:,i,k))-x(i,i,k) <= 1];
+% %             C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
+% %             C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
+%         end
+%     end
+% end
+% toc
+% disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
 % u = intvar(numrobot,n,'full');
 % for k=1:numrobot
 %     for i = 1:n
@@ -128,6 +166,7 @@ end
 % end
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
+% tic
 for k = 1:numrobot
 for i = 1:m
     [i_x,i_y]=spread_sin(i,size_D);
@@ -164,23 +203,38 @@ for i = 1:m
 
 end
 end
+
+% toc
+% 
+% disp('约束3 单行线法则 建立完成')
 %% 约束5 单行线法则 （巷道方向框定）
-   
-for k = 1:num_way
-%     [i,j]=spread_sin(k,size_D);
-        for rob = 1:numrobot
-                 C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
-        end  
+% tic
+a=max(dir_rob,[],1);
+% disp(size(a))
+% %     [i,j]=spread_sin(k,size_D);
+for k =1:num_way
+    for rob = 1:numrobot
+             C = [ C, a(k)-dir_rob(rob,k) ~=2 ];
+    end  
 end
+% %      
+% a=max(dir_rob,[],1)';
+% disp(size(a));
+% 
+% t=ones(1,size(dir_rob,1));
+% disp(size(t))
+% b=a(:,t)';
+% disp(size(b))
+% disp(size(dir_rob))
+% C=[C,(b-dir_rob)~=2];
 
-for k = 1:num_way
-%      C=[C, 0<=dir_way(k)<=3];
-     
-    for k_ro=1:numrobot
-         C=[C, 0<=dir_rob(k_ro,k)<=3];
-    end
+% rob_ran=[(1:numrobot),(1:num_way)];
+% C=[C, 0<=dir_rob(rob_ran)<=3]; 
+for k =1:num_way
+     C=[C, 0<=dir_rob(1:numrobot,k)<=3];
 end
-
+% toc
+% disp('约束4 巷道方向确认 建立完成')
 % for k =1:num_way
 %     for k_ro=1:numrobot
 %          C=[C, 0<=dir_rob(k_ro,k)<=3];
@@ -283,24 +337,25 @@ if flag_cross==1
     end
 end
   
-for k=1:numrobot
-    for i = 1:n
-        for j = 1:n
-            if i==j 
-                C = [C,x(i,j,k)==0];
-            end
-        end
-    end
-end
+% index=[(1:n),(1:n),(1:numrobot)];
+% for k=1:numrobot
+%     for i = 1:n
+%         for j = 1:n
+%             if i==j 
+%                 C = [C,x(i,j,k)==0];
+%             end
+%         end
+%     end
+% end
 
 %% 求解IP模型
 
 % 参数设置
 
-% [ini_dir_way] = initial();
+% % [ini_dir_way] = initial();
+% [ini_dir_way] = initial(n_D,m_D);
 % assign(dir_way,ini_dir_way);
 assign(x,ini_x_value);
-
 % ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
 %ops = sdpsettings('verbose',0,'solver','cplex');

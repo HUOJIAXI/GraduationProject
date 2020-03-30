@@ -8722,3 +8722,348 @@ Elapsed time is 96.805044 seconds.
 平均运行时间: 208.744
 [Warning: The video's width and height has been padded to be a multiple of two as required by the H.264
 codec.] 
+30-Mar-2020 10:29:20
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.968790 seconds.
+运行时间: 0.9709
+===================================
+平均运行时间: 0.9709
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/minus', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/minus.m', 33)" style="font-weight:bold"> - </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/minus.m',33,0)">line 33</a>)
+Dimension mismatch in nD addition
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 97)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',97,0)">line 97</a>)
+    C = [C, sum(x(l(i),:,i))' - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0];
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+30-Mar-2020 10:33:04
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.598978 seconds.
+运行时间: 0.59909
+===================================
+平均运行时间: 0.59909
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/minus', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/minus.m', 33)" style="font-weight:bold"> - </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/minus.m',33,0)">line 33</a>)
+Dimension mismatch in nD addition
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 97)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',97,0)">line 97</a>)
+    C = [C, sum(x(l(i),:,i))' - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0];
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+x=ones(2,3,4)
+
+x(:,:,1) =
+
+     1     1     1
+     1     1     1
+
+
+x(:,:,2) =
+
+     1     1     1
+     1     1     1
+
+
+x(:,:,3) =
+
+     1     1     1
+     1     1     1
+
+
+x(:,:,4) =
+
+     1     1     1
+     1     1     1
+
+sum(1,:,3)
+{Unrecognized function or variable 'sum'.
+} 
+Exception in thread "QueuedMatlabWorker": java.lang.NumberFormatException: For input string: "c 2"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at org.apache.lucene.index.SegmentInfos.generationFromSegmentsFileName(SegmentInfos.java:248)
+	at org.apache.lucene.index.SegmentInfos.getLastCommitGeneration(SegmentInfos.java:183)
+	at org.apache.lucene.index.SegmentInfos$FindSegmentsFile.run(SegmentInfos.java:746)
+	at org.apache.lucene.index.StandardDirectoryReader.open(StandardDirectoryReader.java:52)
+	at org.apache.lucene.index.DirectoryReader.open(DirectoryReader.java:66)
+	at org.apache.lucene.search.spell.SpellChecker.createSearcher(SpellChecker.java:679)
+	at org.apache.lucene.search.spell.SpellChecker.swapSearcher(SpellChecker.java:656)
+	at org.apache.lucene.search.spell.SpellChecker.setSpellIndex(SpellChecker.java:178)
+	at org.apache.lucene.search.spell.SpellChecker.<init>(SpellChecker.java:153)
+	at org.apache.lucene.search.spell.SpellChecker.<init>(SpellChecker.java:128)
+	at com.mathworks.search.spell.IndexBasedSpellCheckProvider.<init>(IndexBasedSpellCheckProvider.java:25)
+	at com.mathworks.search.lucene.LuceneSearchEngine.<init>(LuceneSearchEngine.java:44)
+	at com.mathworks.search.lucene.LuceneSearchEngine.<init>(LuceneSearchEngine.java:35)
+	at com.mathworks.helpsearch.DocSearchEngineFactory.createSearchEngine(DocSearchEngineFactory.java:26)
+	at com.mathworks.helpsearch.reference.SearchEngineReferenceStrategy.<init>(SearchEngineReferenceStrategy.java:23)
+	at com.mathworks.mlwidgets.help.DocCenterReferenceRetrievalStrategy.getInstance(DocCenterReferenceRetrievalStrategy.java:61)
+	at com.mathworks.mlwidgets.help.DocCenterReferenceRetrievalStrategy.getInstance(DocCenterReferenceRetrievalStrategy.java:44)
+	at com.mathworks.mlwidgets.help.DocCenterReferenceRetrievalStrategy.createDataRetriever(DocCenterReferenceRetrievalStrategy.java:79)
+	at com.mathworks.mlwidgets.help.functioncall.MFunctionCall.getReferenceData(MFunctionCall.java:534)
+	at com.mathworks.mlwidgets.help.functioncall.MFunctionCall.getSignatureString(MFunctionCall.java:504)
+	at com.mathworks.mlwidgets.help.functioncall.MFunctionCall.createSignatureString(MFunctionCall.java:245)
+	at com.mathworks.mde.functionhints.QueuedMatlabWorker$2.run(QueuedMatlabWorker.java:283)
+	at java.lang.Thread.run(Thread.java:748)
+sum(x(1,:,3))
+
+ans =
+
+     3
+
+m=[1:2]
+
+m =
+
+     1     2
+
+sum(x(m,:,m))
+
+ans(:,:,1) =
+
+     2     2     2
+
+
+ans(:,:,2) =
+
+     2     2     2
+
+x(m,m,m)
+
+ans(:,:,1) =
+
+     1     1
+     1     1
+
+
+ans(:,:,2) =
+
+     1     1
+     1     1
+
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+30-Mar-2020 11:08:50
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.580172 seconds.
+运行时间: 0.5803
+===================================
+平均运行时间: 0.5803
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 5.161345 seconds.
+运行时间: 5.1615
+===================================
+平均运行时间: 5.1615
+===================================
+执行机器人个数：3
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 10.447203 seconds.
+运行时间: 10.4473
+===================================
+平均运行时间: 10.4473
+===================================
+执行机器人个数：4
+执行次数：1
+起点终点审查通过
+二次检查：起点终点在同一个点
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 48.106595 seconds.
+Finish ! 
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 35.338378 seconds.
+运行时间: 35.3385
+===================================
+平均运行时间: 35.3385
+===================================
+执行机器人个数：5
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+
+Interrupt request received
+Elapsed time is 43.656810 seconds.
+Finish ! 
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 36)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',36,0)">line 36</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 113)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',113,0)">line 113</a>)
+            C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+30-Mar-2020 11:16:53
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.901530 seconds.
+运行时间: 0.90165
+===================================
+平均运行时间: 0.90165
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.331570 seconds.
+运行时间: 1.3317
+===================================
+平均运行时间: 1.3317
+===================================
+执行机器人个数：3
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.828114 seconds.
+运行时间: 1.8282
+===================================
+平均运行时间: 1.8282
+===================================
+执行机器人个数：4
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.300881 seconds.
+运行时间: 2.301
+===================================
+平均运行时间: 2.301
+===================================
+执行机器人个数：5
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m', 9)" style="font-weight:bold">sdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/clean.m',9,0)">line 9</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m', 15)" style="font-weight:bold">ndsdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m',15,0)">line 15</a>)
+    Y = clean(Y);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 39)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',39,0)">line 39</a>)
+X = clean(X);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 111)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',111,0)">line 111</a>)
+            C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+30-Mar-2020 11:18:05
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.791951 seconds.
+运行时间: 0.79207
+===================================
+平均运行时间: 0.79207
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.497914 seconds.
+运行时间: 1.498
+===================================
+平均运行时间: 1.498
+===================================
+执行机器人个数：3
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 1.781221 seconds.
+运行时间: 1.7813
+===================================
+平均运行时间: 1.7813
+===================================
+执行机器人个数：4
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.260889 seconds.
+运行时间: 2.261
+===================================
+平均运行时间: 2.261
+===================================
+执行机器人个数：5
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 2.761254 seconds.
+运行时间: 2.7614
+===================================
+平均运行时间: 2.7614
+===================================
+执行机器人个数：6
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/sdpvar.m', 54)" style="font-weight:bold">sdpvar</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/sdpvar.m',54,0)">line 54</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/clean', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m', 14)" style="font-weight:bold">ndsdpvar/clean</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/clean.m',14,0)">line 14</a>)
+    Y = sdpvar([],[],[],[],[],[],[],struct(Y));
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ndsdpvar/subsref', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m', 39)" style="font-weight:bold">ndsdpvar/subsref</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@ndsdpvar/subsref.m',39,0)">line 39</a>)
+X = clean(X);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 111)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',111,0)">line 111</a>)
+            C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
+起点终点审查通过
