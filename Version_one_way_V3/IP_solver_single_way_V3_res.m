@@ -105,12 +105,6 @@ end
 
 for i = 1:numrobot
     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
-
-%     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1];
-% 
-%     C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0];
-% 
-%     C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0]; 
 end
 % toc
 % disp('约束1 确保路径从起点出发并在终点结束 建立完成')
@@ -127,31 +121,16 @@ for i = 1:numrobot
     temp=diag(x(:,:,i));
     dia=cat(2,dia,temp(:));
 
-    % dia=dia';
-%     disp(size(m1))
-    % disp(size(m2))
-    % disp(size(dia))
     m1(dead,:)=[];
     m2(dead,:)=[];
     dia(dead,:)=[];
 
-%     disp(size(m1,1))
     c1= (m2-m1)==zeros(size(m1,1),size(m1,2));
     c2= (m2-dia) <=ones(size(m1,1),size(m1,2));
     c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
 
     C = [C,c1,c2,c3];
 end
-
-% for k=1:numrobot
-%     for i = 1:n
-%         if i ~= l(k) && i~=t(k)
-%             C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0,sum(x(i,:,k))-x(i,i,k) <= 1, sum(x(:,i,k))-x(i,i,k) <= 1];
-% %             C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
-% %             C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
-%         end
-%     end
-% end
 % toc
 % disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
 % u = intvar(numrobot,n,'full');
