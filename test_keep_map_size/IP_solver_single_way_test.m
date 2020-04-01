@@ -6,7 +6,7 @@ o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
 if numrobot <=16
-    timelimit=round(100*numrobot);
+    timelimit=round(15*numrobot);
 else
     timelimit=round(200*numrobot);
 end

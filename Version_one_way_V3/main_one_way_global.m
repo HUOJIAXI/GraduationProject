@@ -5,7 +5,7 @@ clc;
 D = load('tsp_dist_broad.txt'); 
 m = size(D,1);
 n = size(D,2);
-RobotNum=25; %22非上限若不考虑交汇点约束 30达到容量上限
+RobotNum=14; %22非上限若不考虑交汇点约束 30达到容量上限
 [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
 %RobotNum = size(Start,2);
 
@@ -43,9 +43,11 @@ exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 % plotdynamic(D,PathStore,Path_num,RobotNum,Start_ori,Goal_ori);
 %
 
-plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new)
+plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
-plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
+pause 5;
+
+% plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
 save('PathStore.mat')
 save('Path_num.mat')

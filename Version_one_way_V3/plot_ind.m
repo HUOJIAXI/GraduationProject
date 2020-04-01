@@ -1,5 +1,4 @@
-function plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new)
-mapdesigner(fliplr(D),2);
+function plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
 show=ceil(sqrt(RobotNum));
 
@@ -18,9 +17,12 @@ for i = 1:RobotNum
         plot((PathStore_new{i}(:,2)-1/2),(PathStore_new{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',5) ;
         
         plot((Goal_ori_y-1/2),(Goal_ori_x-1/2),'-ks','MarkerFaceColor','g','MarkerSize',5)
-        plot((start_ori_y-1/2),(start_ori_x-1/2),'-ks','MarkerFaceColor','y','MarkerSize',5)
-        hold off
+        plot((start_ori_y-1/2),(start_ori_x-1/2),'-ks','MarkerFaceColor','y','MarkerSize',5)        
        
         str=['robot=',num2str(i)];
         title(str);
 end
+
+mapdesigner(fliplr(D),2);
+title('绕行方向')
+arrowdesign(dir_way,D)

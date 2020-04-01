@@ -98,11 +98,15 @@ figure(2)
 
 rob=1:1:RobotNum_total;
 
-errorbar(rob,moyen,var_runtime,'-o');
+e=errorbar(rob,moyen,var_runtime,'-o');
+
+e.Color=[0.8500 0.3250 0.0980];
 
 xlabel('机器人个数');ylabel('运行时间/s')
 
 axis([0,RobotNum_total+1,0,max(moyen)+2*max(var_runtime)])
+
+title(['控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D)])
 
 diary('off')
 
