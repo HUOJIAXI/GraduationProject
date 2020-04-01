@@ -214,14 +214,7 @@ for k =1:num_way
 end
 % toc
 % disp('约束4 巷道方向确认 建立完成')
-% for k =1:num_way
-%     for k_ro=1:numrobot
-%          C=[C, 0<=dir_rob(k_ro,k)<=3];
-%     end
-% end
 
-% C=[C, 0<=dir_way(:)<=3];
-% C=[C, 0<=dir_rob(:,:)<=3];
 
 %% 交汇点限制
 % flag_cross=0;

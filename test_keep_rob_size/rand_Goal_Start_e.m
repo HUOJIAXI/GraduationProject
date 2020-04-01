@@ -1,4 +1,4 @@
-function [r_Goal,r_start]=rand_Goal_Start(D,numrobot)
+function [r_Goal,r_start]=rand_Goal_Start_e(D,numrobot)
 m=size(D,1);
 n=size(D,2);
 % a=floor(m/2);

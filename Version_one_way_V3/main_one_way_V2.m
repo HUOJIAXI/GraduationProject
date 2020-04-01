@@ -5,7 +5,7 @@ clc;
 D = load('tsp_dist_broad.txt'); 
 m = size(D,1);
 n = size(D,2);
-RobotNum=15; %22非上限若不考虑交汇点约束 30达到容量上限
+RobotNum=25; %22非上限若不考虑交汇点约束 30达到容量上限
 [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
 %RobotNum = size(Start,2);
 
@@ -41,22 +41,11 @@ disp(dir_way)
 exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 
 % plotdynamic(D,PathStore,Path_num,RobotNum,Start_ori,Goal_ori);
-% 
+%
+
+plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new)
+
 plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
-
-mapdesigner(fliplr(D),2);
-
-show=ceil(sqrt(RobotNum));
-
-for i = 1:RobotNum
-        mapdesigner_show(fliplr(D),i,show,0); % 最后一个参数控制行数 是否需要-1
-        axis equal
-        xlim([0 n])
-        ylim([0 m])
-        plot((PathStore_new{i}(:,2)-1/2),(PathStore_new{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) ;% 将所有机器人的路径显示在图中。
-        str=['robot=',num2str(i)];
-        title(str);
-end
 
 save('PathStore.mat')
 save('Path_num.mat')

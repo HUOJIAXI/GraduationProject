@@ -189,13 +189,16 @@ for i = 1:m
 end
 end
 %% 约束5 单行线法则 （巷道方向框定）
-for k = 1:num_way
-%     [i,j]=spread_sin(k,size_D);
-        for rob = 1:numrobot
-                 C = [ C, max(dir_rob(:,k))-dir_rob(rob,k) ~=2 ];
-        end  
+% tic
+a=max(dir_rob,[],1);
+% disp(size(a))
+% %     [i,j]=spread_sin(k,size_D);
+for k =1:num_way
+    for rob = 1:numrobot
+             C = [ C, a(k)-dir_rob(rob,k) ~=2 ];
+    end  
 end
-      
+% %    
 % rob_ran=[(1:numrobot),(1:num_way)];
 % C=[C, 0<=dir_rob(rob_ran)<=3]; 
 

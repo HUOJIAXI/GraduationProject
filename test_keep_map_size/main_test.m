@@ -4,8 +4,8 @@ clear;
 clc;
 D = load('tsp_dist_broad.txt'); 
 RobotNum_total=15;
-RobotNum_start=5;
-test_para=1; %% 测试次数
+RobotNum_start=1;
+test_para=5; %% 测试次数
 
 nobs=[];
 obs=[];
@@ -86,8 +86,6 @@ for i = RobotNum_start:RobotNum_total
     
 end
 
-plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
-
 var_runtime=zeros(RobotNum_total,1);
 
 for i = 1 :RobotNum_total
@@ -109,6 +107,9 @@ axis([0,RobotNum_total+1,0,max(moyen)+2*max(var_runtime)])
 diary('off')
 
 save('run_time_global.mat')
+
+
+plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
 
 % figure(2)
 % plot(run_time,'-o')

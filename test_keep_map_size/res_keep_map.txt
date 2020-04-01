@@ -9067,3 +9067,729 @@ evalin('caller', strcat(script, ';'));
 } 
 run('/Users/huojiaxi/Desktop/IP_MPP/Version_one_way_V3/main_one_way_V2.m')
 起点终点审查通过
+31-Mar-2020 22:11:06
+===================================
+执行机器人个数：5
+执行次数：1
+起点终点审查通过
+二次检查：起点终点在同一个点
+起点终点审查通过
+二次检查：起点终点在同一个点
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 7.702525 seconds.
+运行时间: 7.7027
+===================================
+平均运行时间: 7.7027
+===================================
+执行机器人个数：6
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/sdpvar.m', 54)" style="font-weight:bold">sdpvar</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/sdpvar.m',54,0)">line 54</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('binvar', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/binvar.m', 25)" style="font-weight:bold">binvar</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/binvar.m',25,0)">line 25</a>)
+    sys = sdpvar(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('constraint/or', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m', 37)" style="font-weight:bold"> | </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m',37,0)">line 37</a>)
+                y = binvar(1,1);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/model', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/model.m', 46)" style="font-weight:bold">sdpvar/model</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/model.m',46,0)">line 46</a>)
+    [F,properties,arguments] = feval(fcn,method,extstruct.var,extstruct.arg{1:end-1});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandrecursive', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandrecursive.m', 19)" style="font-weight:bold">expandrecursive</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandrecursive.m',19,0)">line 19</a>)
+    [properties,F_graph,arguments,fcn] = model(variable,method,options,allExtStruct(ext_index),w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel>expand', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 406)" style="font-weight:bold">expandmodel>expand</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',406,0)">line 406</a>)
+            [F_expand,failure,cause] =
+            expandrecursive(zi,F_expand,extendedvariables,monomtable,variabletype,where,level+1,options,method,[],'concave',allExtStruct,w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 281)" style="font-weight:bold">expandmodel</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',281,0)">line 281</a>)
+                [F_expand,failure,cause] =
+                expand(index_in_extended,variables,-sdpvar(Fconstraint),F_expand,extendedvariables,monomtable,variabletype,['constraint
+                #' num2str(constraint)],0,options,method,[],allExtStructs,w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compileinterfacedata', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m', 116)" style="font-weight:bold">compileinterfacedata</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m',116,0)">line 116</a>)
+    [F,failure,cause,operators] = expandmodel(F,h,options);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvesdp', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m', 242)" style="font-weight:bold">solvesdp</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m',242,0)">line 242</a>)
+[interfacedata,recoverdata,solver,diagnostic,F,Fremoved,ForiginalQuadratics] =
+compileinterfacedata(F,[],logdetStruct,h,options,0,solving_parametric);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('optimize', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m', 31)" style="font-weight:bold">optimize</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m',31,0)">line 31</a>)
+[varargout{1:nargout}] = solvesdp(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 327)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',327,0)">line 327</a>)
+result  = optimize(C,z,ops);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+31-Mar-2020 22:11:37
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.618128 seconds.
+运行时间: 0.6183
+===================================
+平均运行时间: 0.6183
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.325560 seconds.
+运行时间: 3.3257
+===================================
+平均运行时间: 3.3257
+===================================
+执行机器人个数：3
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('implies_internal', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/operators/implies_internal.m', 30)" style="font-weight:bold">implies_internal</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/operators/implies_internal.m',30,0)">line 30</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('constraint/or', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m', 38)" style="font-weight:bold"> | </a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/@constraint/or.m',38,0)">line 38</a>)
+                F = F + (implies_internal(y,Y));
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpvar/model', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/model.m', 46)" style="font-weight:bold">sdpvar/model</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/@sdpvar/model.m',46,0)">line 46</a>)
+    [F,properties,arguments] = feval(fcn,method,extstruct.var,extstruct.arg{1:end-1});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandrecursive', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandrecursive.m', 19)" style="font-weight:bold">expandrecursive</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandrecursive.m',19,0)">line 19</a>)
+    [properties,F_graph,arguments,fcn] = model(variable,method,options,allExtStruct(ext_index),w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel>expand', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 406)" style="font-weight:bold">expandmodel>expand</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',406,0)">line 406</a>)
+            [F_expand,failure,cause] =
+            expandrecursive(zi,F_expand,extendedvariables,monomtable,variabletype,where,level+1,options,method,[],'concave',allExtStruct,w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('expandmodel', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m', 281)" style="font-weight:bold">expandmodel</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/expandmodel.m',281,0)">line 281</a>)
+                [F_expand,failure,cause] =
+                expand(index_in_extended,variables,-sdpvar(Fconstraint),F_expand,extendedvariables,monomtable,variabletype,['constraint
+                #' num2str(constraint)],0,options,method,[],allExtStructs,w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compileinterfacedata', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m', 116)" style="font-weight:bold">compileinterfacedata</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/compileinterfacedata.m',116,0)">line 116</a>)
+    [F,failure,cause,operators] = expandmodel(F,h,options);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('solvesdp', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m', 242)" style="font-weight:bold">solvesdp</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/solvesdp.m',242,0)">line 242</a>)
+[interfacedata,recoverdata,solver,diagnostic,F,Fremoved,ForiginalQuadratics] =
+compileinterfacedata(F,[],logdetStruct,h,options,0,solving_parametric);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('optimize', '/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m', 31)" style="font-weight:bold">optimize</a> (<a href="matlab: opentoline('/Users/huojiaxi/Documents/MATLAB/SupportPackages/R2019b/toolbox/YALMIP-master/extras/optimize.m',31,0)">line 31</a>)
+[varargout{1:nargout}] = solvesdp(varargin{:});
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_solver_single_way_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m', 327)" style="font-weight:bold">IP_solver_single_way_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/IP_solver_single_way_test.m',327,0)">line 327</a>)
+result  = optimize(C,z,ops);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 68)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',68,0)">line 68</a>)
+             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+run('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m')
+31-Mar-2020 22:11:58
+===================================
+执行机器人个数：1
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.892872 seconds.
+运行时间: 0.89297
+===================================
+执行机器人个数：1
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.480975 seconds.
+运行时间: 0.48107
+===================================
+执行机器人个数：1
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.493565 seconds.
+运行时间: 0.49367
+===================================
+执行机器人个数：1
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.471766 seconds.
+运行时间: 0.47188
+===================================
+执行机器人个数：1
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 0.456889 seconds.
+运行时间: 0.45699
+===================================
+平均运行时间: 0.55931
+===================================
+执行机器人个数：2
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.154066 seconds.
+运行时间: 3.1542
+===================================
+执行机器人个数：2
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.150874 seconds.
+运行时间: 3.151
+===================================
+执行机器人个数：2
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.167808 seconds.
+运行时间: 3.1679
+===================================
+执行机器人个数：2
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.117663 seconds.
+运行时间: 3.1178
+===================================
+执行机器人个数：2
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 3.133792 seconds.
+运行时间: 3.1339
+===================================
+平均运行时间: 3.145
+===================================
+执行机器人个数：3
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 4.391692 seconds.
+运行时间: 4.3918
+===================================
+执行机器人个数：3
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 5.004222 seconds.
+运行时间: 5.0043
+===================================
+执行机器人个数：3
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 4.389112 seconds.
+运行时间: 4.3892
+===================================
+执行机器人个数：3
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 5.183729 seconds.
+运行时间: 5.1839
+===================================
+执行机器人个数：3
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 4.671441 seconds.
+运行时间: 4.6716
+===================================
+平均运行时间: 4.7282
+===================================
+执行机器人个数：4
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 6.494683 seconds.
+运行时间: 6.4948
+===================================
+执行机器人个数：4
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 5.945594 seconds.
+运行时间: 5.9457
+===================================
+执行机器人个数：4
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 6.394995 seconds.
+运行时间: 6.3952
+===================================
+执行机器人个数：4
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 6.193035 seconds.
+运行时间: 6.1932
+===================================
+执行机器人个数：4
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 5.891158 seconds.
+运行时间: 5.8913
+===================================
+平均运行时间: 6.184
+===================================
+执行机器人个数：5
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 9.102975 seconds.
+运行时间: 9.1031
+===================================
+执行机器人个数：5
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 10.216785 seconds.
+运行时间: 10.2169
+===================================
+执行机器人个数：5
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 8.834109 seconds.
+运行时间: 8.8342
+===================================
+执行机器人个数：5
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 9.458112 seconds.
+运行时间: 9.4582
+===================================
+执行机器人个数：5
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 8.729745 seconds.
+运行时间: 8.7299
+===================================
+平均运行时间: 9.2685
+===================================
+执行机器人个数：6
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 9.201066 seconds.
+运行时间: 9.2012
+===================================
+执行机器人个数：6
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 11.849532 seconds.
+运行时间: 11.8496
+===================================
+执行机器人个数：6
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 9.988425 seconds.
+运行时间: 9.9886
+===================================
+执行机器人个数：6
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 11.467740 seconds.
+运行时间: 11.4679
+===================================
+执行机器人个数：6
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 11.109593 seconds.
+运行时间: 11.1097
+===================================
+平均运行时间: 10.7234
+===================================
+执行机器人个数：7
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 13.185888 seconds.
+运行时间: 13.186
+===================================
+执行机器人个数：7
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 11.232341 seconds.
+运行时间: 11.2325
+===================================
+执行机器人个数：7
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 13.546701 seconds.
+运行时间: 13.5468
+===================================
+执行机器人个数：7
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 12.207424 seconds.
+运行时间: 12.2075
+===================================
+执行机器人个数：7
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 13.273365 seconds.
+运行时间: 13.2735
+===================================
+平均运行时间: 12.6893
+===================================
+执行机器人个数：8
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 19.723368 seconds.
+运行时间: 19.7235
+===================================
+执行机器人个数：8
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 17.172776 seconds.
+运行时间: 17.1729
+===================================
+执行机器人个数：8
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 13.420294 seconds.
+运行时间: 13.4204
+===================================
+执行机器人个数：8
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 12.770572 seconds.
+运行时间: 12.7707
+===================================
+执行机器人个数：8
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 14.208037 seconds.
+运行时间: 14.2081
+===================================
+平均运行时间: 15.4591
+===================================
+执行机器人个数：9
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 35.775568 seconds.
+运行时间: 35.7757
+===================================
+执行机器人个数：9
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 29.229672 seconds.
+运行时间: 29.2298
+===================================
+执行机器人个数：9
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 20.994187 seconds.
+运行时间: 20.9943
+===================================
+执行机器人个数：9
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 23.767138 seconds.
+运行时间: 23.7673
+===================================
+执行机器人个数：9
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 25.870447 seconds.
+运行时间: 25.8706
+===================================
+平均运行时间: 27.1275
+===================================
+执行机器人个数：10
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 46.577653 seconds.
+运行时间: 46.5778
+===================================
+执行机器人个数：10
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 50.535935 seconds.
+运行时间: 50.536
+===================================
+执行机器人个数：10
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.307054 seconds.
+运行时间: 34.3072
+===================================
+执行机器人个数：10
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 41.759842 seconds.
+运行时间: 41.76
+===================================
+执行机器人个数：10
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 26.544246 seconds.
+运行时间: 26.5444
+===================================
+平均运行时间: 39.9451
+===================================
+执行机器人个数：11
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 38.444256 seconds.
+运行时间: 38.4443
+===================================
+执行机器人个数：11
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 26.593762 seconds.
+运行时间: 26.5939
+===================================
+执行机器人个数：11
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 45.421058 seconds.
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 72.424325 seconds.
+运行时间: 72.4244
+===================================
+执行机器人个数：11
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 30.003859 seconds.
+运行时间: 30.004
+===================================
+执行机器人个数：11
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.406165 seconds.
+运行时间: 34.4063
+===================================
+平均运行时间: 40.3746
+===================================
+执行机器人个数：12
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 56.670083 seconds.
+运行时间: 56.6702
+===================================
+执行机器人个数：12
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 40.253773 seconds.
+运行时间: 40.2539
+===================================
+执行机器人个数：12
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 34.320581 seconds.
+运行时间: 34.3207
+===================================
+执行机器人个数：12
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 75.353774 seconds.
+运行时间: 75.3539
+===================================
+执行机器人个数：12
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 49.824204 seconds.
+运行时间: 49.8243
+===================================
+平均运行时间: 51.2846
+===================================
+执行机器人个数：13
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 57.703090 seconds.
+运行时间: 57.7032
+===================================
+执行机器人个数：13
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 95.621515 seconds.
+运行时间: 95.6216
+===================================
+执行机器人个数：13
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 66.286713 seconds.
+运行时间: 66.2868
+===================================
+执行机器人个数：13
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 86.885222 seconds.
+运行时间: 86.8853
+===================================
+执行机器人个数：13
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 81.836111 seconds.
+运行时间: 81.8362
+===================================
+平均运行时间: 77.6666
+===================================
+执行机器人个数：14
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 69.954618 seconds.
+运行时间: 69.9547
+===================================
+执行机器人个数：14
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 38.655614 seconds.
+运行时间: 38.6557
+===================================
+执行机器人个数：14
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 89.218071 seconds.
+运行时间: 89.2182
+===================================
+执行机器人个数：14
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 60.001295 seconds.
+运行时间: 60.0014
+===================================
+执行机器人个数：14
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 59.852105 seconds.
+运行时间: 59.8522
+===================================
+平均运行时间: 63.5365
+===================================
+执行机器人个数：15
+执行次数：1
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+
+Interrupt request received
+Elapsed time is 385.951253 seconds.
+Finish ! 
+运行时间: 385.9514
+===================================
+执行机器人个数：15
+执行次数：2
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 89.875471 seconds.
+运行时间: 89.8756
+===================================
+执行机器人个数：15
+执行次数：3
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 136.834868 seconds.
+运行时间: 136.835
+===================================
+执行机器人个数：15
+执行次数：4
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+Elapsed time is 127.414640 seconds.
+运行时间: 127.4148
+===================================
+执行机器人个数：15
+执行次数：5
+起点终点审查通过
+二次检查：不存在起点终点在同一个点的情况
+
+Interrupt request received
+Elapsed time is 346.671337 seconds.
+Finish ! 
+运行时间: 346.6714
+===================================
+平均运行时间: 217.3496
+[Warning: The video's width and height has been padded to be a multiple of two as required by the H.264
+codec.] 
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('VideoWriter/writeVideo', '/Applications/MATLAB_R2019b.app/toolbox/matlab/audiovideo/VideoWriter.m', 368)" style="font-weight:bold">VideoWriter/writeVideo</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/audiovideo/VideoWriter.m',368,0)">line 368</a>)
+Frame must be 434 by 332
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plotdynamic_tes', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/plotdynamic_tes.m', 226)" style="font-weight:bold">plotdynamic_tes</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/plotdynamic_tes.m',226,0)">line 226</a>)
+    writeVideo(video,getframe(ax))
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_test', '/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m', 89)" style="font-weight:bold">main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/test_keep_map_size/main_test.m',89,0)">line 89</a>)
+plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+var_runtime=zeros(RobotNum_total,1);
+
+for i = 1 :RobotNum_total
+    
+    moyen(i)=mean(run_time_global{i,1});
+    var_runtime(i)= std(run_time_global{i,1});
+end
+
+figure(2)
+
+rob=1:1:RobotNum_total;
+
+errorbar(rob,moyen,var_runtime,'-o');
+
+xlabel('机器人个数');ylabel('运行时间/s')
+
+axis([0,RobotNum_total+1,0,max(moyen)+2*max(var_runtime)])
+
+diary('off')
