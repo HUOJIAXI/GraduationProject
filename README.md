@@ -2,7 +2,9 @@
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/ONE_WAY/simulation_fortest25.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/ONE_WAY/simulation_fortest25_ops.gif)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/ONE_WAY/simulation_fortest25_ind.jpg)
 
 ## 2. 动态启发式分割方法（16机器人，13*13仓库环境）
 
@@ -12,15 +14,15 @@
 ## 优化测试1: 控制环境大小，增加机器人数量，对每个机器人个数求解10次测试集中随机选取的起点终点对，作出误差条，yalmip求解器在运行前需要清空存储变量，降低求解时间，在调用清空方法之后，线性度更好
 13*17
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/run_time_global_15_17*13_ops.jpg)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/test_15_13*17_del.jpg)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/test_15_13*17.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/run_time_global_15_17*13_ops_mem.jpg)
 
 13*9
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/13*9errorbar.jpg)
+
+## 优化测试2：控制机器人个数（为了节省测试时间，目前定为6个机器人），将拓扑图不断扩大，从3X3扩展到15X15，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_keep_size_rob_6.jpg)
 
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
 
