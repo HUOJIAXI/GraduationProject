@@ -14,11 +14,7 @@
 ## 优化测试1: 控制环境大小，增加机器人数量，对每个机器人个数求解10次测试集中随机选取的起点终点对，作出误差条，yalmip求解器在运行前需要清空存储变量，降低求解时间，在调用清空方法之后，线性度更好
 13*17
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/run_time_global_15_17*13_ops_mem.jpg)
-
-13*9
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/13*9errorbar.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/17*13errorbar.jpg)
 
 ## 优化测试2：控制机器人个数（为了节省测试时间，目前定为6个机器人），将拓扑图不断扩大，从3X3扩展到15X15，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
 
