@@ -21,8 +21,9 @@ for i = 1:RobotNum
        
         str=['robot=',num2str(i)];
         title(str);
+        hold off
 end
 
-mapdesigner(fliplr(D),2);
+mapdesigner_global(fliplr(D),2);
 title('绕行方向')
 arrowdesign(dir_way,D)

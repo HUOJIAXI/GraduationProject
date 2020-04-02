@@ -5,7 +5,7 @@ clc;
 D = load('tsp_dist_broad.txt'); 
 RobotNum_total=15;
 RobotNum_start=1;
-test_para=5; %% 测试次数
+test_para=10; %% 测试次数
 
 nobs=[];
 obs=[];
@@ -106,14 +106,14 @@ xlabel('机器人个数');ylabel('运行时间/s')
 
 axis([0,RobotNum_total+1,0,max(moyen)+2*max(var_runtime)])
 
-title(['控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D)])
+title(['控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
 
 diary('off')
 
-save('run_time_global.mat')
+save('run_time_global_10.mat')
 
 
-plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
+% plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum_total,Start_ori(test_choix),Goal_ori(test_choix),r_start_ori(test_choix),r_Goal_ori(test_choix),ini_dir_way);
 
 % figure(2)
 % plot(run_time,'-o')
