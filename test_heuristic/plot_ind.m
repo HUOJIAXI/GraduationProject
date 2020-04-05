@@ -14,10 +14,10 @@ for i = 1:RobotNum
         PathStore_new{i}=cat(1,[start_ori_x,start_ori_y],PathStore_new{i});
         PathStore_new{i}=cat(1,PathStore_new{i},[Goal_ori_x,Goal_ori_y]);
         
-        plot((PathStore_new{i}(:,2)-1/2),(PathStore_new{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',5) ;
+        plot((PathStore_new{i}(:,2)-1/2),(PathStore_new{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',4) ;
         
-        plot((Goal_ori_y-1/2),(Goal_ori_x-1/2),'-ks','MarkerFaceColor','g','MarkerSize',5)
-        plot((start_ori_y-1/2),(start_ori_x-1/2),'-ks','MarkerFaceColor','y','MarkerSize',5)        
+        plot((Goal_ori_y-1/2),(Goal_ori_x-1/2),'-ks','MarkerFaceColor','g','MarkerSize',4)
+        plot((start_ori_y-1/2),(start_ori_x-1/2),'-ks','MarkerFaceColor','y','MarkerSize',4)        
        
         str=['robot=',num2str(i)];
         title(str);

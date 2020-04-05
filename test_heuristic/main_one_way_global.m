@@ -61,5 +61,4 @@ plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
 % plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
-save('PathStore.mat')
 save('Path_num.mat')
