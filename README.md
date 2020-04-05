@@ -1,4 +1,8 @@
 # GraduationProject 项目日志 
+## 得益于启发式初始解算法，在13*17规模下的最大求解机器人个数已经达到30个，并且仍然可以继续提高
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/30_heu.jpg)
+
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
 
