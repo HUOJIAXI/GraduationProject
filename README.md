@@ -3,6 +3,10 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/30_heu.jpg)
 
+绕行方向
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/dir_30.jpg)
+
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
 
