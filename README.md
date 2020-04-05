@@ -15,7 +15,7 @@
 
 对每组测试集进行十次测试后可以得到更加平衡的解：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/test_10_keep_map.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/heu_start_15_10.jpg)
 
 13*17
 
@@ -563,5 +563,12 @@ Author: HUO JIAXI
 Author: HUO JIAXI
 
 本版本将初始化解启发式方法进行了改进，启发式方法在一定概率上能够在小扰动情况下起效，可以降低求解时间。另外能够在系统中增加机器人的情况下起效。能够降低求解时间。并且通过测试，发现在扩大环境的情况下，使用启发式方法能够在大环境中降低大约200s的求解时间。
+
+## Version ops heuristic start oneway
+Author: HUO JIAXI
+
+本版本为单行线法则的优化版本，主要针对启发性初始解的设计。由于之前的对于单行线路线方向的启发式解无法良好使用，因此我基于初始的绕行单行线路线，设计了对边占用x变量的启发式解。经过大规模的测试（10000组），启发式初始解设计方法能够正常求解出启发式初始解。
+
+在调用启发式初始解之后，求解器能够从必为可行解出发，进行节点的检索，最终找到最优解，求解时间能够降低很多，对于机器人密集的情况下优化效果尤为明显，能够根据需要，控制最大求解时间，来取得与最优解不同接近程度的可行解，或是最终得到最优解。
 
 
