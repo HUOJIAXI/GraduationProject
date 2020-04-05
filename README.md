@@ -1,7 +1,7 @@
 # GraduationProject 项目日志 
 ## 得益于启发式初始解算法，在13*17规模下的最大求解机器人个数已经达到30个，并且仍然可以继续提高
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/30_heu.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/30_heu.jpg)
 
 绕行方向
 
