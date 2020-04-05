@@ -1,4 +1,9 @@
-function [run_time,err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_test(D,l,t,numrobot,size_D,ini_dir_way,ini_x_value)
+
+%% Version: 14/03/2020
+% Author:HUO JIAXI
+% 引入单行道限制
+%% 待修改
+function [PATH,Path,value_dir_way,runtime_indi]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
 yalmip('clear')
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
@@ -6,9 +11,9 @@ o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
 if numrobot <=16
-    timelimit=round(10*numrobot);
+    timelimit=round(20*numrobot);
 else
-    timelimit=round(200*numrobot);
+    timelimit=round(100*numrobot);
 end
 
 m_D=size(D,1);
@@ -19,15 +24,25 @@ d = transfer(D);
 m = size(d,1); 
 n = size(d,2); 
 % 决策变量
+nobs=[];
+obs=[];
+for i = 1:m_D
+    for j = 1:n_D
+        if D(i,j) == 1
+            obs=[obs j+(i-1)*n_D]; % 障碍物所在位置
+%             [obs_x,obs_y]=spread(obs,m);
+        else
+            nobs=[nobs j+(i-1)*n_D];
+        end
+    end
+end
 
 x = binvar(n,n,numrobot,'full'); % n*n维的决策变量
-
 % u = intvar(numrobot,n,'full');
 % dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
 if flag_cross==1
     dir_way=intvar(1,num_way,'full');
 end
-
 dir_rob=intvar(numrobot,num_way,'full');
 
 
@@ -51,25 +66,42 @@ C = [];
 %%后期作为参数在调用中赋值
 %%
 % 静止不动时返回0
+same=[];
+temp_l=[];
+temp_t=[];
+temp_ini=[];
+flag_same=0;
 for i = 1:numrobot
     if l(i) == t(i)
         [N,B]=spread_sin(t,n);
-        PATH{numrobot,1} = [N,B];
-        Path{numrobot,1}(1) = l(i);
-        dir_way_value=[];
-        dir_rob_value=[];
-        x_value=[];
-        run_time=0;
+        PATH{i,1} = [N,B];
+        Path{i,1}(1) = l(i);
         disp('二次检查：起点终点在同一个点')
-%         same=[same i];
-%         flag_same=1;
-        err = 1;
-        return
+        same=[same i];
+        flag_same=1;
     end
 end
 
+if flag_same==1
+    for i =1:numrobot
+        if ~ismember(i,same)
+            temp_l=[temp_l l(i)];
+            temp_t=[temp_t t(i)];
+            
+            temp_ini=cat(3,temp_ini,ini_x_value(:,:,i));
+        end
+    end
+    
+    l=temp_l;
+    t=temp_t;
+    ini_x_value=temp_ini;
+    numrobot=numrobot-length(same); 
+else
+    disp('二次检查：不存在起点终点在同一个点的情况')
+end
 
 %% 约束1 确保路径从起点出发并在终点结束
+% tic
 
 for i = 1:numrobot
     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
@@ -277,7 +309,7 @@ if flag_cross==1
     end
 end
   
-  
+% index=[(1:n),(1:n),(1:numrobot)];
 % for k=1:numrobot
 %     for i = 1:n
 %         for j = 1:n
@@ -291,24 +323,26 @@ end
 %% 求解IP模型
 
 % 参数设置
-% assign(dir_way,ini_dir_way);
-% assign(dir_rob,ini_dir_rob);
-assign(x,ini_x_value);
-% assign(u,ini_u_value);
 
-ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
+% % [ini_dir_way] = initial();
+% [ini_dir_way] = initial(n_D,m_D);
+% assign(dir_way,ini_dir_way);
+assign(x,ini_x_value);
+% ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 tic
 result  = optimize(C,z,ops);
 toc
-run_time=toc;
+
+runtime_indi=toc;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
-%     text=' 系统总最优路径长度：';
-%     disp([text,num2str(value(z))]);
-%     disp('系统总最优路径长度：Best objective');
+%    text=' 系统总最优路径长度：';
+%    disp([text,num2str(value(z))]);
+    disp('系统总最优路径长度：Best objective');
 else
     disp('Finish ! ');
 %     disp(value(dir_rob))
@@ -320,27 +354,11 @@ if flag_cross == 0
     end
 end
     
-dir_way_value=value(dir_way);
-dir_rob_value=value(dir_rob);
-
-x_value = value(x);
-% u_value = value(u);
-
-% x_add=zeros(n,n);
-% x_value=cat(3,x_value,x_add);
-% 
-% u_add=zeros(1,n);
-% u_value=cat(1,u_value,u_add);
-% 
-% dir_rob_add=zeros(1,num_way);
-% dir_rob_value=cat(1,dir_rob_value,dir_rob_add);
-
-
+value_dir_way=value(dir_way);
 %disp(value(dir))
-
 o=value(x);
+
 %% 邻接矩阵转换，路径绘制
-    
 
 for i = 1:numrobot
     o_single{i,1} =  squeeze(o(:,:,i)) ; 
@@ -349,18 +367,7 @@ end
 for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
-    try
-        Path{i,1}=solvermatrix(o_sin,l(i),t(i));
-    catch
-        err =1;
-        PATH=[];
-        Path=[];
-        dir_way_value=[];
-        dir_rob_value=[];
-        x_value=[];
-        break
-    end
-    err=0;
+    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
     m = size(D,2);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix

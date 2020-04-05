@@ -34,9 +34,9 @@ run_time_global=cell(RobotNum_total,1);
 
 moyen=zeros(1,RobotNum_total);
 
-[ini_dir_way] = initial();
 diary('res_keep_map.txt')
 disp(datestr(now));
+
 for i = RobotNum_start:RobotNum_total
     
 %     if i > 1
@@ -56,16 +56,19 @@ for i = RobotNum_start:RobotNum_total
             
             test_choix=randperm(test_size,i);
             [Start_test,Goal_test,start_sp,goal_sp,D_reduit] = reduit(r_start_ori(test_choix),r_Goal_ori(test_choix),D);
-
             size_D=size(D_reduit,2);
 
             ini_x_value=[];
-
+            
+            [ini_Path_num,ini_PathStore]=initial_x_way(D_reduit,i,Start_test,Goal_test);
+            
             for k = 1:i
-                [ini_x_value]=initial_guess(ini_x_value,Start_test(i),Goal_test(i),D_reduit);
+               [ini_x_value]=initial_guess_heuristic(ini_Path_num{k},ini_x_value,D_reduit);
             end
+            
+            disp('已完成初始解调用')
                     
-             [run_time_indi,err,PathStore,Path_num,ini_dir_way,ini_dir_rob,ini_x_value]=IP_solver_single_way_test(D_reduit,Start_test,Goal_test,i,size_D,ini_dir_way,ini_x_value);
+             [err,PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_test,Goal_test,i,size_D,ini_x_value);
 %                 disp(err)
             if err == 0
                 break
@@ -74,8 +77,8 @@ for i = RobotNum_start:RobotNum_total
         end
 
 
-        run_time_global{i,1}(j)=run_time_indi;
-        disp(['运行时间: ',num2str(run_time_indi)])
+        run_time_global{i,1}(j)=runtime_indi;
+        disp(['运行时间: ',num2str(runtime_indi)])
     end
     
     moyen(i)=mean(run_time_global{i,1});
