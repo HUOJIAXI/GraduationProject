@@ -25,10 +25,6 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/test_keep_map_size/heu_start_15_10.jpg)
 
-13*17
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/17*13errorbar.jpg)
-
 ## 优化测试2：控制机器人个数（为了同时确保提高测试的普遍性和可行性，将机器人个数定为10），将拓扑图不断扩大，从9X9扩展到19X19，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/keep_rob_1919.jpg)
