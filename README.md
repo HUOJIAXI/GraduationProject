@@ -29,9 +29,9 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/17*13errorbar.jpg)
 
-## 优化测试2：控制机器人个数（为了节省测试时间，目前定为6个机器人），将拓扑图不断扩大，从3X3扩展到15X15，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
+## 优化测试2：控制机器人个数（为了同时确保提高测试的普遍性和可行性，将机器人个数定为10），将拓扑图不断扩大，从9X9扩展到19X19，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/res_keep_size_rob_6.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/keep_rob_1919.jpg)
 
 ## 测试项目1: 控制环境为7x7，障碍物个数为9，通过测试中生成的随机起点终点作为测试集，在每次测试时选取其中的一部分（从一个机器人到20个机器人，则由第一个，直到最后二十个机器人的前二十个），最后得出求解时间的曲线：
 
