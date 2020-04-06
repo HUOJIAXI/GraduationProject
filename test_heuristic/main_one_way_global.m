@@ -1,12 +1,11 @@
 %% 约束点条件不必要考虑，由于通过节点占用推出的机器人行驶方向已经框定了机器人不会同时进入一个交汇点（否则无法离开节点，这和约束1相违背，因此不会出现这个情况）
-
 while 1
     clear;
     clc;
     D = load('tsp_dist_broad.txt'); 
     m = size(D,1);
     n = size(D,2);
-    RobotNum=36; %22非上限若不考虑交汇点约束 30达到容量上限
+    RobotNum=10; %22非上限若不考虑交汇点约束 30达到容量上限
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
     %RobotNum = size(Start,2);
 
@@ -26,7 +25,7 @@ while 1
         break
     end
 end
-
+disp(['机器人个数：' num2str(RobotNum)])
 disp('已完成启发式初始解设定')
 
 ini_x_value=[];
@@ -44,7 +43,7 @@ disp('运行时间')
 disp(runtime_indi)
 diary('off');
 
-disp(dir_way)
+% disp(dir_way)
 
 [PathStore,Path_num] = rebuild_path(RobotNum,Start,Goal,Start_new,Goal_new,PathStore,Path_num);
 

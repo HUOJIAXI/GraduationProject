@@ -21,6 +21,7 @@ ini_x_value=[];
 for i = 1:RobotNum
     [ini_x_value]=initial_guess(ini_x_value,Start_new(i),Goal_new(i),D_reduit);
 end
+disp('初始解选取成功')
 % D_reduit(m,:)=[];
 % 
 % disp(D_reduit)

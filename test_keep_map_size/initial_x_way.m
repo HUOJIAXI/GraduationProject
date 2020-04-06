@@ -46,10 +46,10 @@ for i = 1:RobotNum
 %% 若在边缘地带
             if temp_x==1||temp_x==size_m ||temp_y==1||temp_y==size_n
                 
-                if temp_x==1&&temp_y==1||(temp_x==size_m&&temp_y==1)
+                if (temp_x==1&&temp_y==1)||(temp_x==size_m&&temp_y==1)
                     PathStore{i}=[PathStore{i}, PathStore{i}(count)+1];
                     count=count+1;
-                elseif (temp_x==1&&temp_y==size_m)||(temp_x==size_m&&temp_y==size_n)
+                elseif (temp_x==1&&temp_y==size_n)||(temp_x==size_m&&temp_y==size_n)
                     PathStore{i}=[PathStore{i}, PathStore{i}(count)-1];
                     count=count+1;
                 else

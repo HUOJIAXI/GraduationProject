@@ -100,6 +100,7 @@ else
     disp('二次检查：不存在起点终点在同一个点的情况')
 end
 
+disp('正在进行约束建立')
 %% 约束1 确保路径从起点出发并在终点结束
 % tic
 
@@ -107,7 +108,7 @@ for i = 1:numrobot
     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
 end
 % toc
-% disp('约束1 确保路径从起点出发并在终点结束 建立完成')
+disp('约束1 确保路径从起点出发并在终点结束 建立完成')
 %% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
 % tic
 for i = 1:numrobot
@@ -132,7 +133,7 @@ for i = 1:numrobot
     C = [C,c1,c2,c3];
 end
 % toc
-% disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
+disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
 % u = intvar(numrobot,n,'full');
 % for k=1:numrobot
 %     for i = 1:n
@@ -185,7 +186,7 @@ end
 
 % toc
 % 
-% disp('约束3 单行线法则 建立完成')
+disp('约束3 单行线法则 建立完成')
 %% 约束5 单行线法则 （巷道方向框定）
 % tic
 a=max(dir_rob,[],1);
@@ -213,7 +214,7 @@ for k =1:num_way
      C=[C, 0<=dir_rob(1:numrobot,k)<=3];
 end
 % toc
-% disp('约束4 巷道方向确认 建立完成')
+disp('约束4 巷道方向确认 建立完成')
 
 
 %% 交汇点限制
@@ -327,6 +328,7 @@ end
 % % [ini_dir_way] = initial();
 % [ini_dir_way] = initial(n_D,m_D);
 % assign(dir_way,ini_dir_way);
+disp('启动求解器')
 assign(x,ini_x_value);
 % ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
 ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
