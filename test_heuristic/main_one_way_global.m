@@ -5,7 +5,7 @@ while 1
     D = load('tsp_dist_broad.txt'); 
     m = size(D,1);
     n = size(D,2);
-    RobotNum=10; %22非上限若不考虑交汇点约束 30达到容量上限
+    RobotNum=16; %22非上限若不考虑交汇点约束 30达到容量上限
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
     %RobotNum = size(Start,2);
 

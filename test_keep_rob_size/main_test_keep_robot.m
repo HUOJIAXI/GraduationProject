@@ -14,7 +14,7 @@ run_time=zeros(1,(size_max-1)/2);
 
 run_time_global=cell((size_max-1)/2-3,1);
 
-moyen=zeros(1,(size_max-1)-3/2);
+moyen=zeros(1,(size_max-1)/2-3);
 
 for size_D_index = 19 : size_max
     
@@ -105,4 +105,4 @@ axis([0,(size_max-1)/2-3+1,0,max(moyen)+2*max(var_runtime)])
 xticklabels({'0','9X9','11X11','13X13','15X15','17X17','19X19'})
 
 
-save('run_time.mat')
+save('run_time_sup.mat')

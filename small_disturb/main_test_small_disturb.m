@@ -17,11 +17,16 @@ diary('res.txt')
 disp(datestr(now));
 
 disp('===================================');
-
+[ini_Path_num,ini_PathStore]=initial_x_way(D_reduit,RobotNum,Start_new,Goal_new);
+disp('已完成初始解设定')
+ini_x_value=[];
+for i = 1:RobotNum
+    [ini_x_value]=initial_guess_heuristic(ini_Path_num{i},ini_x_value,D);
+end
 
 tic
 
-    [PathStore_1,Path_num_1,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_dir_way);    % 将上一次求解所得ini_dir_way作为原始解输入
+    [PathStore_1,Path_num_1,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_x_value);    % 将上一次求解所得ini_dir_way作为原始解输入
 
 toc
 

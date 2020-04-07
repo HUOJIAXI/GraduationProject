@@ -103,14 +103,18 @@ end
 disp('正在进行约束建立')
 %% 约束1 确保路径从起点出发并在终点结束
 % tic
-
+h = waitbar(0,'请等待路径连续性建立');
 for i = 1:numrobot
     C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
+    per = i / numrobot;
+    waitbar(per, h ,sprintf('请等待路径连续性建立 %2.0f%%',per*100))
 end
+close(h)
 % toc
 disp('约束1 确保路径从起点出发并在终点结束 建立完成')
 %% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
 % tic
+h = waitbar(0,'请等待顶点限制建立');
 for i = 1:numrobot
     
     dead=sort(unique([l(i),t(i)]));
@@ -131,7 +135,11 @@ for i = 1:numrobot
     c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
 
     C = [C,c1,c2,c3];
+    per = i / numrobot;
+    waitbar(per, h ,sprintf('请等待顶点限制建立 %2.0f%%',per*100))
 end
+
+close(h)
 % toc
 disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
 % u = intvar(numrobot,n,'full');
@@ -147,6 +155,8 @@ disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 �
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
 % tic
+h = waitbar(0,'请等待巷道方向建立');
+
 for k = 1:numrobot
 for i = 1:m
     [i_x,i_y]=spread_sin(i,size_D);
@@ -180,15 +190,17 @@ for i = 1:m
 %             end
         end
     end
-
 end
+    per = k / numrobot;
+    waitbar(per, h ,sprintf('请等待巷道方向建立 %2.0f%%',per*100))
 end
-
+close(h)
 % toc
 % 
 disp('约束3 单行线法则 建立完成')
 %% 约束5 单行线法则 （巷道方向框定）
 % tic
+h = waitbar(0,'请等待巷道方向确认');
 a=max(dir_rob,[],1);
 % disp(size(a))
 % %     [i,j]=spread_sin(k,size_D);
@@ -196,7 +208,10 @@ for k =1:num_way
     for rob = 1:numrobot
              C = [ C, a(k)-dir_rob(rob,k) ~=2 ];
     end  
+    per = k / num_way;
+    waitbar(per, h ,sprintf('请等待巷道方向确认%2.0f%%',per*100))
 end
+close(h)
 % %      
 % a=max(dir_rob,[],1)';
 % disp(size(a));
