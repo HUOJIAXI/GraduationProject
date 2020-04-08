@@ -3,7 +3,7 @@
 % Author:HUO JIAXI
 % 引入单行道限制
 %% 待修改
-function [PATH,Path,value_dir_way,runtime_indi]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
+function [err,PATH,Path,value_dir_way,runtime_indi]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
 yalmip('clear')
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
@@ -11,7 +11,7 @@ o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
 if numrobot <=16
-    timelimit=round(20*numrobot);
+    timelimit=round(5*numrobot);
 else
     timelimit=round(100*numrobot);
 end
@@ -79,6 +79,10 @@ for i = 1:numrobot
         disp('二次检查：起点终点在同一个点')
         same=[same i];
         flag_same=1;
+        value_dir_way=0;
+        runtime_indi=0;
+        err=1;
+        return
     end
 end
 
@@ -98,6 +102,7 @@ if flag_same==1
     numrobot=numrobot-length(same); 
 else
     disp('二次检查：不存在起点终点在同一个点的情况')
+    err=0;
 end
 
 disp('正在进行约束建立')
@@ -361,7 +366,7 @@ if result.problem== 0
 %    disp([text,num2str(value(z))]);
     disp('系统总最优路径长度：Best objective');
 else
-    disp('Finish ! ');
+    disp('系统总最优路径长度：Best objective ');
 %     disp(value(dir_rob))
 end
 

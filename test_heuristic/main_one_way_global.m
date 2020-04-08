@@ -5,7 +5,7 @@ while 1
     D = load('tsp_dist_broad.txt'); 
     m = size(D,1);
     n = size(D,2);
-    RobotNum=16; %22非上限若不考虑交汇点约束 30达到容量上限
+    RobotNum=9; %22非上限若不考虑交汇点约束 30达到容量上限
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
     %RobotNum = size(Start,2);
 
@@ -22,26 +22,26 @@ while 1
         continue
     else
         [ini_Path_num,ini_PathStore]=initial_x_way(D_reduit,RobotNum,Start_new,Goal_new);
-        break
     end
-end
-disp(['机器人个数：' num2str(RobotNum)])
-disp('已完成启发式初始解设定')
+    
+    disp(['机器人个数：' num2str(RobotNum)])
+    disp('已完成启发式初始解设定')
 
-ini_x_value=[];
-for i = 1:RobotNum
-    [ini_x_value]=initial_guess_heuristic(ini_Path_num{i},ini_x_value,D_reduit);
+    ini_x_value=[];
+    for i = 1:RobotNum
+        [ini_x_value]=initial_guess_heuristic(ini_Path_num{i},ini_x_value,D_reduit);
+    end
+     [err,PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
+     if err == 1
+         continue
+     end
+    disp('运行时间')
+    disp(runtime_indi)
+    diary('off');
+     if err == 0
+         break
+     end
 end
-% D_reduit(m,:)=[];
-% 
-% disp(D_reduit)
-% disp(Start_new)
-% disp(Goal_new)
- [PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_new,Goal_new,RobotNum_new,size_D,ini_x_value);
-%  [PathStore,Path_num]=IP_solver_single_way_V2(D,Start_ori,Goal_ori,RobotNum,size_D);
-disp('运行时间')
-disp(runtime_indi)
-diary('off');
 
 % disp(dir_way)
 
