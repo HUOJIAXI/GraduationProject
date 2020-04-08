@@ -7,6 +7,10 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/dir_36.jpg)
 
+## 作为对比组，我们按照传统的IP模型对多机器人环境进行了建模，对与障碍物之间的冲突、机器人之间的直接冲突以及机器人之间的交叉冲突提高了约束的解决方案，通过该传统方法得到的解是没有冲突的在该环境下的最优解。求解时间比单行线优化模型会长很多，对于9机器人下的9*13的拓扑环境，需要600多秒的时间求解。
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_tradition/tradition_9jpg)
+
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
 
