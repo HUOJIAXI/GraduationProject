@@ -3,6 +3,8 @@ function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal)
 MM = size(D,2);
 NN = size(D,1);
 
+m_len=length(Path_num);
+
 m=size(D,2);
 
 axis equal;
@@ -79,6 +81,26 @@ for i = 1:RobotNum
             end
             if x_in==0 && y_in<=0
                 Path_dir(i,j)=3;
+            end
+            
+            if x_in==0 && y_in==0
+                if j <=m_len*11
+                    x_in_end=PathStore{i,1}(j+11,1)-PathStore{i,1}(j,1);
+                    y_in_end=PathStore{i,1}(j+11,2)-PathStore{i,1}(j,2);
+                    if x_in_end>0 && y_in_end==0
+                        Path_dir(i,j)=2;
+                    end
+                    if y_in_end>0 && x_in_end==0
+                        Path_dir(i,j)=1;
+                    end
+                    if y_in_end==0 && x_in_end<0
+                        Path_dir(i,j)=4;
+                    end
+                    if x_in_end==0 && y_in_end<0
+                        Path_dir(i,j)=3;
+                    end
+
+                end
             end
             
             if j == MAX-1
