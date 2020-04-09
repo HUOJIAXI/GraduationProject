@@ -94,11 +94,11 @@ close(h)
 
 %% 约束6 机器人之间没有直接冲突
 h = waitbar(0,'机器人之间没有直接冲突');
-for rob=1:numrobot
+for rob=1:numrobot-1
     for rob_col=rob+1:numrobot
         for t =1:T
+%             C=[C,abs((state_rob(rob,1,t)-state_rob(rob_col,1,t)))+abs((state_rob(rob,2,t)-state_rob(rob_col,2,t)))~=0];
             C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=0];
-%             C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=[1,1]];
         end
     end
    per = rob / numrobot;
@@ -108,10 +108,16 @@ close(h)
 
 %% 约束6 机器人之间没有交叉冲突
 h = waitbar(0,'机器人之间没有交叉冲突');
-for rob=1:numrobot
+for rob=1:numrobot-1
     for rob_col=rob+1:numrobot
         for t =1:T-1
-            C=[C,(state_rob(rob,:,t+1)+state_rob(rob,:,t)-(state_rob(rob_col,:,t+1)+state_rob(rob_col,:,t)))~=0];
+%             C=[C,abs(state_rob(rob,1,t+1)+state_rob(rob,1,t)-(state_rob(rob_col,1,t+1)+state_rob(rob_col,1,t)))+abs(state_rob(rob,2,t+1)+state_rob(rob,2,t)-(state_rob(rob_col,2,t+1)+state_rob(rob_col,2,t)))~=0];
+            state_rob_1=state_rob(rob,:,t+1);
+            state_rob_2=state_rob(rob,:,t);
+            state_rob_col_1=state_rob(rob_col,:,t+1);
+            state_rob_col_2=state_rob(rob_col,:,t);
+            
+            C=[C,(state_rob_1+state_rob_2-(state_rob_col_1+state_rob_col_2))~=0];
 %             C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=[1,1]];
         end
     end

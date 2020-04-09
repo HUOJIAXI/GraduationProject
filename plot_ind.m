@@ -11,8 +11,8 @@ for i = 1:RobotNum
         [start_ori_x,start_ori_y]=spread_sin(Start_ori(i),n);
         [Goal_ori_x,Goal_ori_y]=spread_sin(Goal_ori(i),n);
     
-%         PathStore_new{i}=cat(1,[start_ori_x,start_ori_y],PathStore_new{i});
-%         PathStore_new{i}=cat(1,PathStore_new{i},[Goal_ori_x,Goal_ori_y]);
+        PathStore_new{i}=cat(1,[start_ori_x,start_ori_y],PathStore_new{i});
+        PathStore_new{i}=cat(1,PathStore_new{i},[Goal_ori_x,Goal_ori_y]);
         
         plot((PathStore_new{i}(:,2)-1/2),(PathStore_new{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',4) ;
         

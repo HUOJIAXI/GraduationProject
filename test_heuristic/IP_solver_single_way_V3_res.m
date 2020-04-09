@@ -354,11 +354,11 @@ assign(x,ini_x_value);
 ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
-tic
 result  = optimize(C,z,ops);
-toc
 
-runtime_indi=toc;
+% disp(result)
+save dat result
+runtime_indi=result.solvertime;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))

@@ -11,7 +11,7 @@ o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
 if numrobot <=16
-    timelimit=round(20*numrobot);
+    timelimit=round(5*numrobot);
 else
     timelimit=round(100*numrobot);
 end
@@ -77,8 +77,12 @@ for i = 1:numrobot
         PATH{i,1} = [N,B];
         Path{i,1}(1) = l(i);
         disp('二次检查：起点终点在同一个点')
+        value_dir_way=0;
+        runtime_indi=0;
         same=[same i];
         flag_same=1;
+        err=1;
+        return
     end
 end
 
@@ -332,11 +336,10 @@ assign(x,ini_x_value);
 ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
-tic
 result  = optimize(C,z,ops);
-toc
 
-runtime_indi=toc;
+
+runtime_indi=result.solvertime;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
