@@ -1,4 +1,4 @@
-function [r_Goal,r_start,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot,lenob)
+function [r_Goal,r_start,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot)
 % r_start:实际起点终点
 % r_start_ori:偏移后起点终点
 m=size(D,1);

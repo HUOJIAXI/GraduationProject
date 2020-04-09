@@ -108,7 +108,7 @@ for loop=1:10000
     axis equal;
     xlim([0 MM])
     ylim([0 NN])
-    mapdesigner(fliplr(D),2);
+    mapdesigner(fliplr(D),1);
     
 %     arrowdesign(dir_way,D)
     

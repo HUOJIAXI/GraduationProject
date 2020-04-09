@@ -3,10 +3,19 @@ while 1
     clear;
     clc;
     D = load('tsp_dist_broad.txt'); 
+    for_test_tradition=0;
+    if for_test_tradition==1
+        load('13*17.mat')
+%         temp=r_start_ori;
+%         r_start_ori=r_Goal_ori;
+%         r_Goal_ori=temp;
+    end
     m = size(D,1);
     n = size(D,2);
     RobotNum=9;   
-    [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
+    if for_test_tradition==0
+        [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
+    end
     %RobotNum = size(Start,2);
 
     [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
@@ -50,12 +59,20 @@ end
 
 [PathStore_new,Path_num_new]=broaden(PathStore,D,RobotNum,r_start_ori,r_Goal_ori);
 
+sum_dist=0;
+
+for rob=1:RobotNum
+    sum_dist=sum_dist+size(PathStore_new{rob,1},1);
+end
+
+disp(['总路径长度：',num2str(sum_dist)]);
+
 exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 
 % plotdynamic(D,PathStore,Path_num,RobotNum,Start_ori,Goal_ori);
 %
 
-plot_ind(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
+plot_ind_heu(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
 % pause(5);
 

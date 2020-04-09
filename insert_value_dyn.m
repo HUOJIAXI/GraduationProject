@@ -50,8 +50,9 @@ for i = 1:RobotNum
         end
         
         if PathStore{i,1}(j,2) == PathStore{i,1}(j+1,2) && PathStore{i,1}(j,1) == PathStore{i,1}(j+1,1)
-           
+           for k =1:10
             PathStore_inserted{i,1}=[PathStore_inserted{i,1};PathStore{i,1}(j,:)];
+           end
             
         end
         

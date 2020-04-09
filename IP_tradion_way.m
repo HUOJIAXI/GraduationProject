@@ -132,11 +132,10 @@ C=[C,state_rob>0,state_rob(:,1,:)<=size_D_m,state_rob(:,2,:)<=size_D_n];
 
 ops = sdpsettings('verbose',1,'solver','gurobi');
 % 求解
-tic
 result  = optimize(C,fun_obj,ops);
-toc
 
-runtime_indi=toc;
+save dat result
+runtime_indi=result.solvertime;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
