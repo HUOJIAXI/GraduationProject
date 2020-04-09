@@ -13,7 +13,7 @@
 
 ## 而对于单行道优化模型下的13*17的环境，传统方法的求解时间会达到6000多秒以上。而通过对比结果，我们可以发现，在相同的起点终点下，单行线优化模型的最短路径总长度为133，传统方法的最优路径为109，单行线优化模型的最短路径会比传统方法略差，但是求解时间仅需要7秒，效率比传统方法会高很多。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_tradition/simulation_tradition_way.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_tradition/simulation_tradition_way.gif)
 
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
