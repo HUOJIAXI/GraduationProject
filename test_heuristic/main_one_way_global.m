@@ -3,9 +3,9 @@ while 1
     clear;
     clc;
     D = load('tsp_dist_broad.txt'); 
-    for_test_tradition=1; % 指示是否需要引用传统方法中使用的起点和终点组 1 是 2 否
+    for_test_tradition=1; % 指示是否需要引用传统方法中使用的起点和终点组 1 是 0 否
     if for_test_tradition==1
-        load('13*17.mat')
+        load('9_9_13.mat')
 %         temp=r_start_ori;
 %         r_start_ori=r_Goal_ori;
 %         r_Goal_ori=temp;

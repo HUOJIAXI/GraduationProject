@@ -47,10 +47,6 @@ for rob=1:numrobot
     Path_num{rob,1}=[Path_num{rob,1}, Path_new{rob,1}(:,2)+(Path_new{rob,1}(:,1)-1)*size_D];
 end
 
-% [Path_new,Path_num] = rebuild_path(numrobot,Start,Goal,Start_new,Goal_new,Path_new,Path_num);
-
-% [PathStore_new,Path_num_new]=broaden(Path_new,D,numrobot,r_start_ori,r_Goal_ori);
-
 exam(Path_num,r_start_ori,r_Goal_ori,numrobot);
 
 % plot_ind_tig(D,numrobot,size_D_n,size_D_m,r_start,r_Goal,path_rob)
@@ -59,7 +55,7 @@ exam(Path_num,r_start_ori,r_Goal_ori,numrobot);
 
 plot_ind(D,numrobot,size_D_n,size_D_m,Start_ori,Goal_ori,Path_new)
 
-plotdynamic_tes(D,Path_new,Path_num,numrobot,Start_ori,Goal_ori);
+% plotdynamic_tes(D,Path_new,Path_num,numrobot,Start_ori,Goal_ori);
 
 save('9_9_13.mat')
 

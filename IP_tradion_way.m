@@ -19,7 +19,8 @@ u_rob=intvar(numrobot,2,T,'full'); %机器人在t时刻的前进状态，三维�
 fun_obj=0;
 for rob=1:numrobot
     for t =1:MAXINT
-        fun_obj=fun_obj+t*((state_rob(rob,1,t)-r_Goal_x(rob))*(state_rob(rob,1,t)-r_Goal_x(rob))+(state_rob(rob,2,t)-r_Goal_y(rob))*(state_rob(rob,2,t)-r_Goal_y(rob)));
+%         fun_obj=fun_obj+t*((state_rob(rob,1,t)-r_Goal_x(rob))*(state_rob(rob,1,t)-r_Goal_x(rob))+(state_rob(rob,2,t)-r_Goal_y(rob))*(state_rob(rob,2,t)-r_Goal_y(rob)));
+        fun_obj=fun_obj+t*(abs(state_rob(rob,1,t)-r_Goal_x(rob))+abs(state_rob(rob,2,t)-r_Goal_y(rob)));
     end
 end
 
@@ -94,41 +95,48 @@ close(h)
 
 %% 约束6 机器人之间没有直接冲突
 h = waitbar(0,'机器人之间没有直接冲突');
-for rob=1:numrobot-1
-    for rob_col=rob+1:numrobot
-        for t =1:T
-%             C=[C,abs((state_rob(rob,1,t)-state_rob(rob_col,1,t)))+abs((state_rob(rob,2,t)-state_rob(rob_col,2,t)))~=0];
-            C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=0];
+for t =1:T
+    for rob=1:numrobot-1
+        for rob_col=rob+1:numrobot
+
+    %             C=[C,abs((state_rob(rob,1,t)-state_rob(rob_col,1,t)))+abs((state_rob(rob,2,t)-state_rob(rob_col,2,t)))~=0];
+               state_rob_1=state_rob(rob,:,t);
+               state_rob_col_1=state_rob(rob_col,:,t);
+               C=[C,(state_rob_1-state_rob_col_1)~=0];
         end
     end
-   per = rob / numrobot;
+   per = t / T;
    waitbar(per, h ,sprintf('机器人之间没有直接冲突 %2.0f%%',per*100))
 end
 close(h)
 
 %% 约束6 机器人之间没有交叉冲突
 h = waitbar(0,'机器人之间没有交叉冲突');
-for rob=1:numrobot-1
-    for rob_col=rob+1:numrobot
-        for t =1:T-1
-%             C=[C,abs(state_rob(rob,1,t+1)+state_rob(rob,1,t)-(state_rob(rob_col,1,t+1)+state_rob(rob_col,1,t)))+abs(state_rob(rob,2,t+1)+state_rob(rob,2,t)-(state_rob(rob_col,2,t+1)+state_rob(rob_col,2,t)))~=0];
-            state_rob_1=state_rob(rob,:,t+1);
-            state_rob_2=state_rob(rob,:,t);
-            state_rob_col_1=state_rob(rob_col,:,t+1);
-            state_rob_col_2=state_rob(rob_col,:,t);
+for t =1:T-1
+    for rob=1:numrobot-1
+        for rob_col=rob+1:numrobot
             
-            C=[C,(state_rob_1+state_rob_2-(state_rob_col_1+state_rob_col_2))~=0];
-%             C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=[1,1]];
+    %             C=[C,abs(state_rob(rob,1,t+1)+state_rob(rob,1,t)-(state_rob(rob_col,1,t+1)+state_rob(rob_col,1,t)))+abs(state_rob(rob,2,t+1)+state_rob(rob,2,t)-(state_rob(rob_col,2,t+1)+state_rob(rob_col,2,t)))~=0];
+                state_rob_1=state_rob(rob,:,t+1);
+                state_rob_2=state_rob(rob,:,t);
+                state_rob_col_1=state_rob(rob_col,:,t+1);
+                state_rob_col_2=state_rob(rob_col,:,t);
+    %             
+                C=[C,(state_rob_1+state_rob_2-(state_rob_col_1+state_rob_col_2))~=0];
+    %             C=[C,(state_rob(rob,:,t)-state_rob(rob_col,:,t))~=[1,1]];
+    %               C=[C,(state_rob(rob,:,t+1)+state_rob(rob,:,t)-(state_rob(rob_col,:,t+1)+state_rob(rob_col,:,t)))~=0];
+
         end
     end
-   per = rob / numrobot;
-   waitbar(per, h ,sprintf('机器人之间没有交叉冲突 %2.0f%%',per*100))
+       per = t / (T-1);
+       waitbar(per, h ,sprintf('机器人之间没有交叉冲突 %2.0f%%',per*100))
 end
+    
 close(h)
 
 
 %% 约束7 机器人位置必须在范围内
-C=[C,state_rob>0,state_rob(:,1,:)<=size_D_m,state_rob(:,2,:)<=size_D_n];
+C=[C,state_rob(:,1,:)>0,state_rob(:,2,:)>0,state_rob(:,1,:)<=size_D_m,state_rob(:,2,:)<=size_D_n];
 
 ops = sdpsettings('verbose',1,'solver','gurobi');
 % 求解
