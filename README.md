@@ -15,6 +15,10 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_tradition/simulation_tradition_way.gif)
 
+## 对传统IP模型的目标函数进行了改进，将直线距离改为折现距离（abs(y1-y2)+abs(x1-x2)），求解时间会缩短，但是求解时间仍然较长，在13*17的环境下九机器人求解，需要381秒，而对于相同的环境，优化单行道模型仅需要7秒。对于最优路径，传统方法求解所得为92，而优化单行线法则下为115。相较而言，优化单行道法则的性价比更高
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_tradition/simulation_fortest_trad_ops.gif)
+
 ## 连续性路径演示：(机器人最终进入货架)
 ## 1. 单行道方法（25机器人，13*17仓库环境）
 
