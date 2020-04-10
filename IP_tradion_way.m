@@ -136,7 +136,10 @@ close(h)
 
 
 %% 约束7 机器人位置必须在范围内
-C=[C,state_rob(:,1,:)>0,state_rob(:,2,:)>0,state_rob(:,1,:)<=size_D_m,state_rob(:,2,:)<=size_D_n];
+C=[C,squeeze(state_rob(:,1,:))>=1];
+C=[C,squeeze(state_rob(:,2,:))>=1];
+C=[C,squeeze(state_rob(:,1,:))<=size_D_m];
+C=[C,squeeze(state_rob(:,2,:))<=size_D_n];
 
 ops = sdpsettings('verbose',1,'solver','gurobi');
 % 求解
