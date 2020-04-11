@@ -2,6 +2,7 @@
 % 此函数用作解决冲突重新规划路径用，算法类似IP_solver.m
 
 function [RE,PATH,Path]=Modify_path(temp,l,t,numrobot)
+yalmip('clear');
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));
@@ -46,15 +47,35 @@ for i = 1:n
     end
 end
 
+dead=sort(unique([l,t]));
+
+m1=squeeze(sum(x(:,:),1))';
+m2=squeeze(sum(x(:,:),2));
+dia=[];
+
+temp=diag(x(:,:));
+dia=cat(2,dia,temp(:));
+
+m1(dead,:)=[];
+m2(dead,:)=[];
+dia(dead,:)=[];
+
+c1= (m2-m1)==zeros(size(m1,1),size(m1,2));
+c2= (m2-dia) <=ones(size(m1,1),size(m1,2));
+c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
+
+C = [C,c1,c2,c3];
+    
+
 %% 约束3 避免出现子循环
 
-for i = 1:n
-    for j = 1:n
-        if i~=j && i ~=l && i ~=t && j ~=l && j ~=t
-            C = [C,u(i)-u(j) + (n-3)*x(i,j)<=n-4];
-        end
-    end
-end
+% for i = 1:n
+%     for j = 1:n
+%         if i~=j && i ~=l && i ~=t && j ~=l && j ~=t
+%             C = [C,u(i)-u(j) + (n-3)*x(i,j)<=n-4];
+%         end
+%     end
+% end
 %% 求解IP模型
 
 % 参数设置

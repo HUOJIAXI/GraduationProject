@@ -1,6 +1,6 @@
 function [PathStore,Path_num] = ori_path_am_sin(Start,Goal,numrobot,D)
 
-sizeD=size(D,1);
+sizeD=size(D,2);
 
 for i = 1:numrobot
     [Goal_x,Goal_y] = spread_sin(Goal,sizeD);

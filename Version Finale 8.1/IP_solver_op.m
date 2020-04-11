@@ -5,6 +5,7 @@
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
 function [RE,PATH,Path]=IP_solver_op(D,l,t,numrobot)
+clear('yalmip');
 sizeD=size(D,1);
 d = transfer(D);
 n = size(d,1); 

@@ -7,11 +7,12 @@
 clear;
 clc;
 D = load('tsp_map.txt'); 
+% D = load('tsp_dist_broad.txt'); 
 m = size(D,1);
 n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
 numrobot=16;
-[r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
+[r_Goal,r_start,Start,Goal]=rand_Goal_Start_op_ori(D,numrobot);
 % [Goal,Start]=rand_Goal_Start(D,numrobot);
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
@@ -32,6 +33,7 @@ for i = 1:length(Start)
     [X,Y]=spread(Start,n);
     [X_F,Y_F]=spread(Goal,n);
     %for j = 1:length(X)
+%     disp(D)
     if D(X(i),Y(i))==1
         flag = 1;
         COLI_START=[COLI_START;i];
@@ -56,7 +58,7 @@ end
 RobotNum = length(Start);
 %% 求解
  tic
- [PathStore,Path_num]=MASPP_IP_div(D,RobotNum,Start,Goal,encarde,control);
+ [PathStore,Path_num]=MASPP_IP_div_ori(D,RobotNum,Start,Goal,encarde,control);
  toc
  
 %% 仿真视频存储

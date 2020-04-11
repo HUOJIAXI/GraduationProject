@@ -1,7 +1,7 @@
 function [PathStore,Path_num] = ori_path_am(Start,Goal,numrobot,D)
 PathStore=cell(numrobot,1);
 Path_num=cell(numrobot,1);
-sizeD=size(D,1);
+sizeD=size(D,2);
 
 for i = 1:numrobot
     [Goal_x,Goal_y] = spread_sin(Goal(i),sizeD);

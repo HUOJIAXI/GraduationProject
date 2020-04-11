@@ -5,6 +5,7 @@
 % 输入机器人i的起点l和终点t X行 Y列
 %% 待修改
 function [PATH,Path]=IP_solver(D,l,t,numrobot)
+yalmip('clear')
 %D = load('tsp_map.txt'); % 后期用temp矩阵代替
 %%
 %mapdesigner(fliplr(D));

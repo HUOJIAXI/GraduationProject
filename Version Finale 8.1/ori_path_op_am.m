@@ -5,7 +5,7 @@ function [ PathStore_MAJ_res,Path_num_MAJ_res] = ori_path_op_am(D_ori,D,X_start,
     Goal_op = Goal_op_y+(Goal_op_x-1)*(2*encarde+1);
     temp_D=D(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde);
     D_reduit=D_ori(X_start+encarde-encarde:X_start+encarde+encarde,Y_start+encarde-encarde:Y_start+encarde+encarde);
-    SD_temp=size(temp_D,1);
+    SD_temp=size(temp_D,2);
     central=SD_temp*encarde+encarde+1;
     [RE,PATH,~]=Modify_path(temp_D,central,Goal_op,i);
     
