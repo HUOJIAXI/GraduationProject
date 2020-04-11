@@ -109,7 +109,7 @@ for loop=1:10000
     ylim([0 NN])
     mapdesigner(fliplr(D),1);
     
-%     arrowdesign(dir_way,D)
+    arrowdesign(dir_way,D)
     
     hold on;
 %     axis([0 13 0 13]); 
