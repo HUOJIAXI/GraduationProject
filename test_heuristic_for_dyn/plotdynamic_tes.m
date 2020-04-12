@@ -22,7 +22,7 @@ temp=0.3;
 
 [PathStore]=biais_goal(PathStore,RobotNum,Start,Goal,m);
 
-[PathStore]=insert_value(PathStore,RobotNum);
+[PathStore]=insert_value_dyn(PathStore,RobotNum);
 
 for i = 1:RobotNum
     
@@ -61,6 +61,7 @@ for i=1:RobotNum
     
 end
 
+m_len=size(PathStore{1},1);
 
 %% 辨别方向
 for i = 1:RobotNum
@@ -78,6 +79,26 @@ for i = 1:RobotNum
             end
             if x_in==0 && y_in<=0
                 Path_dir(i,j)=3;
+            end
+            
+            if x_in==0 && y_in==0
+                if j <=m_len-11
+                    x_in_end=PathStore{i,1}(j+11,1)-PathStore{i,1}(j,1);
+                    y_in_end=PathStore{i,1}(j+11,2)-PathStore{i,1}(j,2);
+                    if x_in_end>0 && y_in_end==0
+                        Path_dir(i,j)=2;
+                    end
+                    if y_in_end>0 && x_in_end==0
+                        Path_dir(i,j)=1;
+                    end
+                    if y_in_end==0 && x_in_end<0
+                        Path_dir(i,j)=4;
+                    end
+                    if x_in_end==0 && y_in_end<0
+                        Path_dir(i,j)=3;
+                    end
+
+                end
             end
             
             if j == MAX-1

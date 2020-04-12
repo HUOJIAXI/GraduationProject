@@ -68,25 +68,29 @@ end
 [goal_x,goal_y]=spread(r_Goal,n);
 
 for i = 1: numrobot
-    if mod(start_x(i)+1,3)==0
-        start_x(i)=start_x(i)-1;
-        r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
-        continue
-    elseif mod(start_x(i),3)==0
-        start_y(i)=start_y(i)-1;
-        r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
-        continue
-    end
-    
-end
-
-for i = 1:numrobot
-    if mod(goal_x(i)+1,3)==0
-        r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1-1)*n;
-        continue
-    elseif mod(goal_x(i),3)==0
-        r_Goal_ori(i)=goal_y(i)+1+(goal_x(i)-1)*n;
-        continue
-    end
+    start_y(i)=start_y(i)-1;
+    r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
+    goal_y(i)=goal_y(i)-1;
+    r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1-1)*n;
+%     if mod(start_x(i)+1,3)==0
+%         start_x(i)=start_x(i)-1;
+%         r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
+%         continue
+%     elseif mod(start_x(i),3)==0
+%         start_y(i)=start_y(i)-1;
+%         r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
+%         continue
+%     end
+%     
+% end
+% 
+% for i = 1:numrobot
+%     if mod(goal_x(i)+1,3)==0
+%         r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1-1)*n;
+%         continue
+%     elseif mod(goal_x(i),3)==0
+%         r_Goal_ori(i)=goal_y(i)+1+(goal_x(i)-1)*n;
+%         continue
+%     end
 end
 

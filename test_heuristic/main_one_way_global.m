@@ -3,7 +3,7 @@ while 1
     clear;
     clc;
     D = load('tsp_dist_broad.txt'); 
-    for_test_tradition=1; % 指示是否需要引用传统方法中使用的起点和终点组 1 是 0 否
+    for_test_tradition=0; % 指示是否需要引用传统方法中使用的起点和终点组 1 是 0 否
     if for_test_tradition==1
         load('9_9_13.mat')
 %         temp=r_start_ori;
@@ -12,7 +12,8 @@ while 1
     end
     m = size(D,1);
     n = size(D,2);
-    RobotNum=9;   
+    RobotNum=16;   
+    
     if for_test_tradition==0
         [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
     end
@@ -68,6 +69,8 @@ end
 disp(['总路径长度：',num2str(sum_dist)]);
 
 exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
+
+[PathStore_apres,PathStore_apres_sep]=traitement_arrete(Path_num_new,D,RobotNum);
 
 % plotdynamic(D,PathStore,Path_num,RobotNum,Start_ori,Goal_ori);
 %

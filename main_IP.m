@@ -5,12 +5,13 @@ clc;
 
 yalmip('clear') % Yalmip接口清空内存
 
-numrobot=9;
+numrobot=16;
 
 % D = load('distmap.txt'); 
-D = load('tsp_dist_broad.txt'); 
-[Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot);
+D = load('tsp_map.txt'); 
+% [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot);
 
+load('Path_num_dyn.mat')
 % [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
 size_D=size(D,2);
 

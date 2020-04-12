@@ -1,9 +1,7 @@
-function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal)
+function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal,~,~)
 %AllRobotState = zeros(size(D,1),size(D,2));
 MM = size(D,2);
 NN = size(D,1);
-
-m_len=length(Path_num);
 
 m=size(D,2);
 
@@ -23,9 +21,8 @@ temp=0.3;
 %%
 
 [PathStore]=biais_goal(PathStore,RobotNum,Start,Goal,m);
-% disp(PathStore{2})
+
 [PathStore]=insert_value_dyn(PathStore,RobotNum);
-% disp(PathStore{2})
 
 for i = 1:RobotNum
     
@@ -64,6 +61,7 @@ for i=1:RobotNum
     
 end
 
+m_len=size(PathStore{1},1);
 
 %% 辨别方向
 for i = 1:RobotNum
@@ -84,7 +82,7 @@ for i = 1:RobotNum
             end
             
             if x_in==0 && y_in==0
-                if j <=m_len*11
+                if j <=m_len-11
                     x_in_end=PathStore{i,1}(j+11,1)-PathStore{i,1}(j,1);
                     y_in_end=PathStore{i,1}(j+11,2)-PathStore{i,1}(j,2);
                     if x_in_end>0 && y_in_end==0

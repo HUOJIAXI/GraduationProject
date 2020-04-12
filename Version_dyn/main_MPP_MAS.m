@@ -12,6 +12,11 @@ n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
 numrobot=16;
 [r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
+% load('Path_num_dyn.mat')
+% Start=r_start_ori;
+% Goal=r_Goal_ori;
+% r_Goal=Goal_ori;
+% r_start=Start_ori;
 % [Goal,Start]=rand_Goal_Start(D,numrobot);
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
@@ -98,15 +103,30 @@ if print == 1
     end
 end
 
-D_after=D;
-for i = 1:RobotNum
-    D_after(PathStore{i}(:,1),PathStore{i}(:,2))=1;
+% D_after=D;
+% for i = 1:RobotNum
+%     D_after(PathStore{i}(:,1),PathStore{i}(:,2))=1;
+% end
+% 
+% D_mes=D_after-D;
+% 
+% path_go=find(D_mes==1);
+% dis_total=length(path_go);
+
+dis_total=0;
+
+for i=1:RobotNum
+    test=Path_num{i}-Goal(i);
+    final=find(test==0);
+    PathStore{i,1}(final+1:end,:)=[];
 end
 
-D_mes=D_after-D;
-
-path_go=find(D_mes==1);
-dis_total=length(path_go);
+for i=1:RobotNum
+    path_temp=PathStore{i,1};
+%     path_temp=unique(path_temp,'stable');
+    dis_total=dis_total+size(path_temp,1);
+end
+    
 disp('系统总路程（不包括重复经过的点）')
 disp(dis_total)
 

@@ -5,7 +5,7 @@ while 1
     D = load('tsp_map.txt'); 
     m = size(D,1);
     n = size(D,2);
-    RobotNum=9;   
+    RobotNum=16;   
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
     %RobotNum = size(Start,2);
 
@@ -61,8 +61,11 @@ exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 
 plot_ind_heu(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
+[PathStore_apres,PathStore_apres_sep]=traitement_arrete(Path_num_new,D,RobotNum);
+
 % pause(5);
 
 % plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
+% plotdynamic_tes(D,PathStore_apres_sep,PathStore_apres,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
 save('Path_num.mat')
