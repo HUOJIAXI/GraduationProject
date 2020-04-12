@@ -1,4 +1,42 @@
 # GraduationProject 项目日志 
+## 经过测试，对于13*13环境下，16个机器人的环境，对于设计的三种方法（动态算法、传统IP模型，改进优化单行线法则）对于相同的起点终点分别进行了测试，测试结果如下：
+
+## 1. 测试时间：
+动态算法：236秒 
+
+传统IP模型：1954秒  
+
+改进优化单行线法则：48秒
+
+## 2. 测试效果：
+动态算法：存在死锁，并且会出现无法解决的冲突，只能够解决一部分的冲突，总路径不具备最优性，并且对环境的适应性不高。总路径长度：287
+
+传统IP模型：能够解决所有的冲突，并且能够达到该环境下的最优总路径，但是求解时间太长。最优路径：132
+
+改进优化单行线法则：能够解决所有的冲突，求解时间很短，是三种算法中最短的。但是无法达到该环境下的最优解。最优路径：171
+
+## 3. 结论：
+动态算法的求解时间可以接受，但是算法的稳定性不高，并且求解所得路径太长，由于死锁的存在，总路径不具备最优性。
+
+传统IP模型的稳定性很高，对环境有极高的适应性，并且能够得到最优的路径，在相同的环境下，路径长度是三个算法中最短的，但是求解时间过长，性价比比较低。
+
+改进优化单行线法则的求解速度很快，并且稳定性很高，适应性比较高，但是只能保证在单行线法则的要求下的最优总路径长度。
+
+## 4. 可视化测试：
+
+1. 改进优化单行线法则：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest_heu.gif)
+
+2. 传统IP模型：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest.gif)
+
+3. 动态算法：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest_dyn.gif)
+
+
 ## 得益于启发式初始解算法，在13*17规模下的最大求解机器人个数已经达到36个，并且仍然可以继续提高
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/36_heu.jpg)
