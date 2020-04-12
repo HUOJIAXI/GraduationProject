@@ -26,15 +26,15 @@
 
 1. 改进优化单行线法则：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest_heu.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest_heu.gif)
 
 2. 传统IP模型：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest.gif)
 
 3. 动态算法：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_fortest_dyn.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest_dyn.gif)
 
 
 ## 得益于启发式初始解算法，在13*17规模下的最大求解机器人个数已经达到36个，并且仍然可以继续提高
