@@ -1,5 +1,4 @@
 function [Path_new,sum_dist]=treatment_arrive(Path,RobotNum,Goal,D)
-
 size_n=size(D,2);
 
 Path_num=cell(RobotNum,1);

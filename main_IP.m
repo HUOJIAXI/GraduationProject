@@ -5,7 +5,7 @@ clc;
 
 yalmip('clear') % Yalmip接口清空内存
 
-numrobot=16;
+numrobot=1;
 
 % D = load('distmap.txt'); 
 D = load('tsp_map.txt'); 
