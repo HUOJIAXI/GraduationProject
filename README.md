@@ -36,6 +36,10 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest_dyn.gif)
 
+## 5. 对运行时间和最优比分别进行测试：
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/最优路径测试_4_14.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/运行时间测试_4_14.jpg)
 
 ## 得益于启发式初始解算法，在13*17规模下的最大求解机器人个数已经达到36个，并且仍然可以继续提高
 
