@@ -126,9 +126,10 @@ for loop=1:10000
     pause(0.01);
     cla;
     axis equal;
+    mapdesigner(fliplr(D),1);
     xlim([0 MM])
     ylim([0 NN])
-    mapdesigner(fliplr(D),1);
+
     
     arrowdesign(dir_way,D)
     
