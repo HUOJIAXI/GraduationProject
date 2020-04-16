@@ -7,9 +7,9 @@ D=load('tsp_map.txt');
 m=size(D,1);
 n=size(D,2);
 
-RobotNum_test=1;
+RobotNum_test=15;
 RobotNum_start=1;
-test_para=10;
+test_para=15;
 disp('选取测试集')
 
 nobs=[];
@@ -54,12 +54,14 @@ disp(datestr(now));
 
 for i = RobotNum_start:RobotNum_test
     for j = 1:test_para
+        
         disp('===================================');
         disp(['执行机器人个数：',num2str(i)])
         disp(['执行次数：',num2str(j)])
         
         err_gen=1;
-        while err_gen==1            
+        while err_gen==1        
+            
             test_choix=randperm(test_size,i);
             disp('===================================');
             disp('动态算法测试开始')
@@ -72,6 +74,7 @@ for i = RobotNum_start:RobotNum_test
                  [PathStore_dyn,Path_num_dyn]=MASPP_IP_div(D,i,Start_test,Goal_test,encarde,control);
                  toc
              catch
+                 yalmip('clear')
                  err_gen=1;
                  continue
              end
@@ -101,6 +104,7 @@ for i = RobotNum_start:RobotNum_test
              [err,PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_test,Goal_test,i,size_D,ini_x_value);
 %                 disp(err)
             if err == 1
+                yalmip('clear')
                 err_gen=1;
                 continue
             end
@@ -118,6 +122,7 @@ for i = RobotNum_start:RobotNum_test
             try
                 [path_rob,runtime_indi]=IP_tradion_way(D,i,r_Goal_ori(test_choix),r_start_ori(test_choix));
             catch
+                 yalmip('clear')
                  err_gen=1;
                  continue
             end
@@ -140,7 +145,7 @@ moyen_dyn=zeros(RobotNum_test-RobotNum_start+1,1);
 moyen_oneway=zeros(RobotNum_test-RobotNum_start+1,1);
 moyen_tra=zeros(RobotNum_test-RobotNum_start+1,1);
 
-for i = 1 :RobotNum_test
+for i = RobotNum_start :RobotNum_test
     
     moyen_dyn(i)=mean(run_time_dyn{i,1});
     var_time_dyn(i)= std(run_time_dyn{i,1});
@@ -153,7 +158,7 @@ for i = 1 :RobotNum_test
     
 end
 
-save('test_result_sup.mat')
+save('test_result_15.mat')
 
 figure(1)
 
@@ -173,7 +178,7 @@ hold on;
 
 e3=errorbar(rob,moyen_tra,var_time_tra,'-o');
 
-e3.Color=[0.4660 0.6740 0.1880];
+e3.Color=[0.6350 0.0780 0.1840];
 
 axis([0,RobotNum_test+1,min(moyen_tra)-2*max(var_time_tra),max(moyen_tra)+2*max(var_time_tra)])
 
@@ -185,6 +190,7 @@ legend('动态算法','改进单行线模型','传统IP模型')
 hold off;
 
 plot_dis(RobotNum_test,RobotNum_start,dis_dyn,dis_oneway,dis_tra,m_D,n_D,test_para)
+plot_dis_reel(RobotNum_test,RobotNum_start,dis_dyn,dis_oneway,dis_tra,m_D,n_D,test_para)
 
 
 

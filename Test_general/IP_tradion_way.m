@@ -63,6 +63,8 @@ for rob=1:numrobot
        C=[C, abs(u_rob(rob,1,t))+abs(u_rob(rob,2,t)) <=1];
        C=[C,u_rob(rob,1,t)>=-1];
        C=[C,u_rob(rob,1,t)<=1];
+       C=[C,u_rob(rob,2,t)>=-1];
+       C=[C,u_rob(rob,2,t)<=1];
     end
     
    per = rob / numrobot;
