@@ -61,7 +61,7 @@ end
 RobotNum = length(Start);
 %% 求解
  tic
- [PathStore,Path_num]=MASPP_IP_div(D,RobotNum,Start,Goal,encarde,control);
+ [PathStore,Path_num]=MASPP_IP_div_op(D,RobotNum,Start,Goal,encarde,control);
  toc
  
 %% 仿真视频存储
@@ -73,16 +73,7 @@ else
 end
 
 %% 原始环境
-mapdesigner(fliplr(D),2);
-
-show=ceil(sqrt(RobotNum));
-
-for i = 1:RobotNum
-        mapdesigner_show(fliplr(D),i,show,0);
-        plot((PathStore{i}(:,2)-1/2),(PathStore{i}(:,1)-1/2),'-ks','MarkerFaceColor','r','MarkerSize',10) ;% 将所有机器人的路径显示在图中。
-        str=['robot=',num2str(i)];
-        title(str);
-end
+plot_ind(D,RobotNum,n,m,r_start,r_Goal,PathStore)
 
 %% 打印各个机器人的行走顺序
 if print == 1
@@ -126,6 +117,8 @@ for i=1:RobotNum
 %     path_temp=unique(path_temp,'stable');
     dis_total=dis_total+size(path_temp,1);
 end
+
+save('Path_num_test.mat');
     
 disp('系统总路程（不包括重复经过的点）')
 disp(dis_total)
