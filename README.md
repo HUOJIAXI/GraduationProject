@@ -1,5 +1,12 @@
 # GraduationProject 项目日志 
+## 在论文的编写过程中，发现动态算法的冲突解除算法的时序逻辑出现了问题，经过修改，已经修改成功，并且得到了正确的无碰撞的结果
 ## 经过测试，对于13*13环境下，16个机器人的环境，对于设计的三种方法（动态算法、传统IP模型，改进优化单行线法则）对于相同的起点终点分别进行了测试，测试结果如下：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16_dyn.gif)
+
+## 我们采用了新的测试项目：平均最优路径测试
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/平均机器人最优路径_2.jpg)
 
 ## 1. 测试时间：
 动态算法：236秒 
