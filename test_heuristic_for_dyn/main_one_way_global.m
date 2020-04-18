@@ -7,6 +7,11 @@ while 1
     n = size(D,2);
     RobotNum=16;   
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
+%     load('Path_num_test.mat')
+%     r_start_ori=Start;
+%     r_Goal_ori=Goal;
+%     Goal_ori=r_Goal;
+%     Start_ori=r_start;
     %RobotNum = size(Start,2);
 
     [Start_new,Goal_new,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);

@@ -10,7 +10,7 @@ D = load('tsp_map.txt');
 m = size(D,1);
 n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
-numrobot=16;
+numrobot=9;
 [r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
 % load('Path_num_dyn.mat')
 % Start=r_start_ori;
@@ -21,8 +21,8 @@ numrobot=16;
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
 % Goal = [121,74,135,96,131,45,35,141,111,100,133,94,46,143,31,59]; % 135
-encarde=2; %启发式算法参数2 3
-control=15; % 路径整理调整参数
+encarde=3; %启发式算法参数2 3
+% control=15; % 路径整理调整参数
 print=0; %是否需要单项打印各个机器人的路径
 flag_dir=1; % 是否启用货架躲避
 % Start = [16,133,9,8,49,1,7];
@@ -61,7 +61,7 @@ end
 RobotNum = length(Start);
 %% 求解
  tic
- [PathStore,Path_num]=MASPP_IP_div_op(D,RobotNum,Start,Goal,encarde,control);
+ [PathStore,Path_num]=MASPP_IP_div_op(D,RobotNum,Start,Goal,encarde);
  toc
  
 %% 仿真视频存储
@@ -118,7 +118,7 @@ for i=1:RobotNum
     dis_total=dis_total+size(path_temp,1);
 end
 
-save('Path_num_test.mat');
+save('Path_num_test_h3.mat');
     
 disp('系统总路程（不包括重复经过的点）')
 disp(dis_total)

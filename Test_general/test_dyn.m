@@ -1,15 +1,14 @@
-%% 主测试：对动态算法，传统IP模型，优化单行线法则进行测试
-
 clc;
 clear;
 
 D=load('tsp_map.txt');
+load('test_result_15.mat')
 m=size(D,1);
 n=size(D,2);
 
 RobotNum_test=10;
 RobotNum_start=1;
-test_para=10;
+test_para=5;
 disp('选取测试集')
 
 nobs=[];
@@ -32,21 +31,13 @@ end
 
 test_size=length(obs);
 
-[Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,test_size);
+% [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,test_size);
 
 disp('测试集生成')
 
 run_time_dyn=cell(RobotNum_test-RobotNum_start+1,1);
 
-run_time_tra=cell(RobotNum_test-RobotNum_start+1,1);
-
-run_time_oneway=cell(RobotNum_test-RobotNum_start+1,1);
-
 dis_dyn=cell(RobotNum_test-RobotNum_start+1,1);
-
-dis_oneway=cell(RobotNum_test-RobotNum_start+1,1);
-
-dis_tra=cell(RobotNum_test-RobotNum_start+1,1);
 
 disp('测试开始')
 
@@ -63,47 +54,13 @@ for i = RobotNum_start:RobotNum_test
         while err_gen==1        
             
             test_choix=randperm(test_size,i);
-           
-             
             disp('===================================');
-            disp('单行线法则模型测试开始')
-
-            [Start_test,Goal_test,D_reduit] = reduit(r_start_ori(test_choix),r_Goal_ori(test_choix),D);
-            size_D=size(D_reduit,2);
-
-%              ini_x_value=[];
-% 
-%             [ini_Path_num,ini_PathStore]=initial_x_way(D_reduit,i,Start_test,Goal_test);
-% 
-%             for k = 1:i
-%                [ini_x_value]=initial_guess_heuristic(ini_Path_num{k},ini_x_value,D_reduit);
-%             end
-% 
-%             disp('已完成初始解调用')
-            ini_x_value=[];
-
-             [err,PathStore,Path_num,dir_way,runtime_indi]=IP_solver_single_way_V3_res(D_reduit,Start_test,Goal_test,i,size_D,ini_x_value);
-%                 disp(err)
-            if err == 1
-                yalmip('clear')
-                err_gen=1;
-                continue
-            end
-            
-            [PathStore_oneway,Path_num_oneway]=broaden(PathStore,D,i,r_start_ori(test_choix),r_Goal_ori(test_choix));
-            
-            [dis_total,Path_new_oneway]=dis_cal(i,r_Goal_ori(test_choix),Path_num_oneway,PathStore_oneway);
-            
-            run_time_oneway{i,1}(j)=runtime_indi;
-            dis_oneway{i,1}(j)=dis_total;
-            
-             disp('===================================');
             disp('动态算法测试开始')
              try
                  Start_test=r_start_ori(test_choix);
                  Goal_test=r_Goal_ori(test_choix);
                  tic
-                 encarde=2;
+                 encarde=3;
                  [PathStore_dyn,Path_num_dyn]=MASPP_IP_div_op(D,i,Start_test,Goal_test,encarde);
                  toc
              catch
@@ -116,49 +73,25 @@ for i = RobotNum_start:RobotNum_test
              
             run_time_dyn{i,1}(j)=toc;
             dis_dyn{i,1}(j)=dis_total;
-            
-            
-            disp('===================================');
-            disp('传统IP模型测试开始')
-            
-            try
-                [path_rob,runtime_indi]=IP_tradion_way(D,i,r_Goal_ori(test_choix),r_start_ori(test_choix));
-            catch
-                 yalmip('clear')
-                 err_gen=1;
-                 continue
-            end
-            
-            [Path_new,sum_dist]=treatment_arrive(path_rob,i,r_Goal_ori(test_choix),D);
-            
-            run_time_tra{i,1}(j)=runtime_indi;
-            dis_tra{i,1}(j)=sum_dist;
-            disp('三项测试已完成')
+             
+            disp('动态测试已完成')
             err_gen=0;
         end
     end
 end
-save('test.mat')
+
 var_time_dyn=zeros(RobotNum_test-RobotNum_start+1,1);
-var_time_oneway=zeros(RobotNum_test-RobotNum_start+1,1);
-var_time_tra=zeros(RobotNum_test-RobotNum_start+1,1);
 
 moyen_dyn=zeros(RobotNum_test-RobotNum_start+1,1);
-moyen_oneway=zeros(RobotNum_test-RobotNum_start+1,1);
-moyen_tra=zeros(RobotNum_test-RobotNum_start+1,1);
 
 for i = RobotNum_start :RobotNum_test
     
     moyen_dyn(i)=mean(run_time_dyn{i,1});
     var_time_dyn(i)= std(run_time_dyn{i,1});
-    
-    moyen_oneway(i)=mean(run_time_oneway{i,1});
-    var_time_oneway(i)= std(run_time_oneway{i,1});
 
-    moyen_tra(i)=mean(run_time_tra{i,1});
-    var_time_tra(i)= std(run_time_tra{i,1});
-    
 end
+
+save('test_result_dyn.mat')
 
 figure(1)
 
@@ -191,15 +124,3 @@ hold off;
 
 plot_dis(RobotNum_test,RobotNum_start,dis_dyn,dis_oneway,dis_tra,m_D,n_D,test_para)
 plot_dis_reel(RobotNum_test,RobotNum_start,dis_dyn,dis_oneway,dis_tra,m_D,n_D,test_para)
-
-
-
-
-
-
-
-
-
-
-
-

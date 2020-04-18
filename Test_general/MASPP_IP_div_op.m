@@ -38,6 +38,7 @@ for i=1:RobotNum
     
 end
 
+if RobotNum~=1
 %%
 res=1;
 %path_temp = [];
@@ -506,6 +507,7 @@ if flag_fin ~= 1
 
         end
 
+end
 end
 
 save('Path_num_test_2.mat');
