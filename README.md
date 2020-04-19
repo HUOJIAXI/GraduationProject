@@ -4,6 +4,12 @@
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16_dyn.gif)
 
+## 在修改了动态算法之后，重新进行了测试，发现动态算法的性能会比之前好很多
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/最优路径测试_10_0419.jpg)
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/最优比测试.jpg)
+
 ## 我们采用了新的测试项目：平均最优路径测试
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/平均机器人最优路径_2.jpg)
