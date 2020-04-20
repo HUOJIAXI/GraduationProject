@@ -1,5 +1,6 @@
 # GraduationProject 项目日志 
 ## 在论文的编写过程中，发现动态算法的冲突解除算法的时序逻辑出现了问题，经过修改，已经修改成功，并且得到了正确的无碰撞的结果
+## 修改了等待处理，防止在高密度情况下卡死的状况
 ## 经过测试，对于13*13环境下，16个机器人的环境，对于设计的三种方法（动态算法、传统IP模型，改进优化单行线法则）对于相同的起点终点分别进行了测试，测试结果如下：
 
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/simulation_16_dyn.gif)
@@ -98,10 +99,7 @@
 
 ## 优化测试3:控制机器人的个数以及环境大小，随机对机器人群中的某一台机器人的起点或终点进行十次扰动，在启发式初始解启用的情况下，运行时间会出现一定程度的浮动，但是扰动后模型的求解时间会比扰动前的求解时间短：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/small_disturb_10_11_11.jpg)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/small_disturb_10_9_9.jpg)
-
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/small_disturb_11.jpg)
 
 ## 测试项目3: 随机对机器人群中的一个进行扰动，比如起点或终点偏移一个单位，通过由扰动前所得到的初始解，可以降低求解的难度，降低求解时间，因此系统对小扰动的容忍度很高，时间浮动在5s以内。
 
