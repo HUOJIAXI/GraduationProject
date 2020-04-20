@@ -29,13 +29,11 @@ for i = 1:RobotNum_total
     [ini_x_value]=initial_guess_heuristic(ini_Path_num{i},ini_x_value,D);
 end
 
-tic
 
-    [PathStore_1,Path_num_1,ini_dir_way,ini_dir_rob,~]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_x_value);    % 将上一次求解所得ini_dir_way作为原始解输入
+    [runtime,PathStore_1,Path_num_1,ini_dir_way,ini_dir_rob,~]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_x_value);    % 将上一次求解所得ini_dir_way作为原始解输入
 
-toc
 
-run_time(1)=toc;
+run_time(1)=runtime;
 
 figure(1)
 plot_ind(D,RobotNum_total,n,m,Start_test,Goal_test,PathStore_1,ini_dir_way)
@@ -70,12 +68,10 @@ for num_test_ind=1:num_test
         [ini_x_value]=initial_guess_heuristic(ini_Path_num{i},ini_x_value,D);
     end
 
-    tic
-     [PathStore_2,Path_num_2,ini_dir_way,~,ini_x_value]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_x_value);
+     [runtime,PathStore_2,Path_num_2,ini_dir_way,~,ini_x_value]=IP_solver_single_way_ini_test_rob_disturb(D,Start_test,Goal_test,RobotNum_total,size_D,ini_x_value);
     %  [PathStore_2,Path_num_2,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value]=IP_solver_single_way_test(D,Start_test,Goal_test,RobotNum_total,size_D,ini_dir_way,ini_dir_rob,ini_x_value,ini_u_value);
-    toc
 
-    run_time_test(num_test_ind)=toc;
+    run_time_test(num_test_ind)=runtime;
 
     % figure(3)
     % plot_ind(D,RobotNum_total,n,m,Start_test,Goal_test,PathStore_2,ini_dir_way)

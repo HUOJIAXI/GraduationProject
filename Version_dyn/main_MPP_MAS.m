@@ -11,12 +11,12 @@ m = size(D,1);
 n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
 numrobot=9;
-[r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
-% load('Path_num_dyn.mat')
-% Start=r_start_ori;
-% Goal=r_Goal_ori;
-% r_Goal=Goal_ori;
-% r_start=Start_ori;
+% [r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
+load('Path_num_dyn.mat')
+Start=r_start_ori;
+Goal=r_Goal_ori;
+r_Goal=Goal_ori;
+r_start=Start_ori;
 % [Goal,Start]=rand_Goal_Start(D,numrobot);
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113

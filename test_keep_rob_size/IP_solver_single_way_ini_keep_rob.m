@@ -3,7 +3,7 @@
 % Author:HUO JIAXI
 % 引入单行道限制
 %% 待修改
-function [run_time,err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_ini_keep_rob(D,l,t,numrobot,size_D,ini_x_value)
+function [runtime_indi,err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_ini_keep_rob(D,l,t,numrobot,size_D,ini_x_value)
 
 yalmip('clear')
 PATH=cell(numrobot,1);

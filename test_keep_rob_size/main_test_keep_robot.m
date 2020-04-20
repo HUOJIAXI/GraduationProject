@@ -5,7 +5,7 @@ disp('控制机器人个数，改变环境大小')
 
 disp(datestr(now));
 
-size_max=21;
+size_max=19;
 RobotNum_total=10;
 % test_size=2;
 run_fois=5;
@@ -16,15 +16,37 @@ run_time_global=cell((size_max-1)/2-3,1);
 
 moyen=zeros(1,(size_max-1)/2-3);
 
-for size_D_index = 19 : size_max
+
+for size_D_index = 9 : size_max
     
     if mod(size_D_index,2)==1 && size_D_index >= 9
         
         [D]=construct_D(size_D_index);
+
+        m=size(D,1);
+        n=size(D,2);
+        % a=floor(m/2);
+        % b=floor(n/2);
+        %rng shuffle
+
+        nobs=[];
+        obs=[];
+        for i = 1:m
+            for j = 1:n
+                if D(i,j) == 1
+                    obs=[obs j+(i-1)*n];
+        %             [obs_x,obs_y]=spread(obs,m);
+                else
+                    nobs=[nobs j+(i-1)*n];
+                end
+            end
+        end
+
+        count_obs=length(obs);
        
         size_D=size(D,1);
         
-            [Goal_ori,Start_ori]=rand_Goal_Start_e(D,round(sqrt(size_D)/2)*RobotNum_total);
+            [Goal_ori,Start_ori]=rand_Goal_Start_e(D,min(count_obs,round(sqrt(size_D)/2)*RobotNum_total));
         
         for j =1:run_fois
              disp('===================================');
@@ -35,7 +57,7 @@ for size_D_index = 19 : size_max
                  if size_D_index==3
                       test_choix=randperm(8,RobotNum_total);
                  else
-                      test_choix=randperm(round(sqrt(size_D)/2)*RobotNum_total,RobotNum_total);
+                      test_choix=randperm(min(count_obs,round(sqrt(size_D)/2)*RobotNum_total),RobotNum_total);
                  end
                 
                 Start_test=Start_ori(test_choix);
@@ -76,7 +98,7 @@ for size_D_index = 19 : size_max
         
         moyen((size_D_index-1)/2-3)=mean(run_time_global{(size_D_index-1)/2-3,1});
         disp('===================================');
-        disp(['平均运行时间: ',num2str(moyen((size_D_index-1)/2))])
+        disp(['平均运行时间: ',num2str(moyen((size_D_index-1)/2-3))])
     end
 
 end

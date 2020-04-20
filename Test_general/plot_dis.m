@@ -56,9 +56,9 @@ var_dis_dyn_max=max(var_dis_dyn);
 
 axis([0,RobotNum_test+1,min(moyen_min_dyn,moyen_min_oneway)-2*max(var_dis_dyn_max,var_dis_oneway_max),max(moyen_max_dyn,moyen_max_oneway)+2*max(var_dis_dyn_max,var_dis_oneway_max)])
 
-title(['最优路径测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
-xlabel('机器人个数');ylabel('最优比')
+title(['最优损失比测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
+xlabel('机器人个数');ylabel('最优损失比')
 
-legend('动态算法','改进单行线模型')
+legend('动态算法DSIP','改进单行线模型OWIP')
 
 hold off;

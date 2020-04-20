@@ -54,7 +54,7 @@ while flag==1
             col_index=find(col==0); 
             if ~isempty(col_index)
 %                 disp(col_index)
-                flag=1;
+               
 %                 index_set=find(PathStore_apres{rob}==col_index(1));
 %                 disp(index_set)
 %                 index=index_set(1);
@@ -62,6 +62,10 @@ while flag==1
 %                 disp(rob)
 %                 disp(rob_col)
                 index=col_index(1);
+                if ~ismember(PathStore_apres{rob_col}(index),croise)
+                    continue
+                end
+                flag=1;
 %                 disp(index)
                 temp=PathStore_apres{rob_col}(index:end);
                 PathStore_apres{rob_col}(index:end)=[];

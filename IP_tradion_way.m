@@ -61,10 +61,10 @@ h = waitbar(0,'对于每次转移，x和y只能选取一个前进一个单位');
 for rob=1:numrobot
     for t = 1:MAXINT
        C=[C, abs(u_rob(rob,1,t))+abs(u_rob(rob,2,t)) <=1];
-       C=[C,u_rob(rob,1,t)>=-1];
-       C=[C,u_rob(rob,1,t)<=1];
-       C=[C,u_rob(rob,2,t)>=-1];
-       C=[C,u_rob(rob,2,t)<=1];
+        C=[C,u_rob(rob,1,t)>=-1];
+        C=[C,u_rob(rob,1,t)<=1];
+        C=[C,u_rob(rob,2,t)>=-1];
+        C=[C,u_rob(rob,2,t)<=1];
     end
     
    per = rob / numrobot;

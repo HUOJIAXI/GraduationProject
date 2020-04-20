@@ -4,15 +4,16 @@ while 1
     clc;
     D = load('tsp_dist_broad.txt'); 
     for_test_tradition=0; % 指示是否需要引用传统方法中使用的起点和终点组 1 是 0 否
+    flag_pause=1;
     if for_test_tradition==1
-        load('9_9_13.mat')
+        load('13*17.mat')
 %         temp=r_start_ori;
 %         r_start_ori=r_Goal_ori;
 %         r_Goal_ori=temp;
     end
     m = size(D,1);
     n = size(D,2);
-    RobotNum=16;   
+    RobotNum=9;   
     
     if for_test_tradition==0
         [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);
@@ -81,4 +82,4 @@ plot_ind_heu(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 
 % plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
-save('Path_num.mat')
+save('Path_num_21.mat')
