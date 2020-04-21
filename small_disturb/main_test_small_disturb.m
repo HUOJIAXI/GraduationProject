@@ -75,7 +75,7 @@ diary('off');
 
 % plotdynamic(D,PathStore,Path_num,RobotNum_total,Start_ori,Goal_ori);
 
-save('run_time.mat')
+save('run_time9.mat')
 
 figure(3)
 plot(run_time,'-o')

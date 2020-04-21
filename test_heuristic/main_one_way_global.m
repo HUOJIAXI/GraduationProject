@@ -13,7 +13,7 @@ while 1
     end
     m = size(D,1);
     n = size(D,2);
-    RobotNum=9;   
+    RobotNum=36;   
     
     if for_test_tradition==0
         [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum,3);

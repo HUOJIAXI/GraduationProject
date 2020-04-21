@@ -118,7 +118,7 @@ rob=1:1:(size_max-1)/2-3;
 
 errorbar(rob,moyen,var_runtime,'-o');
 
-xlabel('环境规模');ylabel('运行时间/s')
+xlabel('环境规模');ylabel('求解时间/s')
 
 title(['控制机器人个数，改变环境大小，测试机器人个数' num2str(RobotNum_total)])
 

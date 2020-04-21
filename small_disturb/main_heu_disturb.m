@@ -1,7 +1,7 @@
 clear;
 clc;
 
-size_D_index=11;
+size_D_index=9;
 [D]=construct_D(size_D_index);
 size_D=size(D,1);
 RobotNum_total=10;
@@ -89,7 +89,7 @@ var_runtime(2)= std(run_time_test);
     
 % plotdynamic(D,PathStore,Path_num,RobotNum_total,Start_ori,Goal_ori);
 
-save('run_time.mat')
+save('run_time9.mat')
 
 figure(3)
 plot(run_time,'-o')
@@ -99,6 +99,8 @@ e=errorbar(2,run_time(2),var_runtime(2),'-o');
 xlim([0.5,2.5])
 ylim([min(run_time(1)-var_runtime(2),run_time(2)-var_runtime(2)-var_runtime(2)),max(run_time(1)+var_runtime(2),run_time(2)+var_runtime(2)+var_runtime(2))])
 title(['控制环境大小 对起点终点进行扰动 测试环境大小' num2str(size_D_index) 'X' num2str(size_D_index) ' 每测试集测试次数' num2str(num_test) ' 测试机器人个数' num2str(RobotNum_total)])
+xlabel('1：扰动前 2: 扰动后')
+ylabel('求解时间/s')
 hold off
 % hold on
 % p = polyfit((1:2),run_time,1);

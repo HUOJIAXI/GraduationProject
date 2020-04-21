@@ -16,7 +16,7 @@ for Dx=1:N
         end
       if Dx==Dy
           D(Dx,Dy)=0;
-      elseif (G(x1,y1)==1) || (G(xinf,yinf)==1);
+      elseif (G(x1,y1)==1) || (G(xinf,yinf)==1)
             D(Dx,Dy)=inf;
       else
             if (mod(Dx,n) ==1)
