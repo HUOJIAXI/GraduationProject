@@ -95,7 +95,7 @@
 
 ## 优化测试2：控制机器人个数（为了同时确保提高测试的普遍性和可行性，将机器人个数定为10），将拓扑图不断扩大，从9X9扩展到19X19，并且每个环境规模从从测试集中取10组进行测试，得出每个环境规模的平均求解时间，作出误差图如下。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/keep_rob_1919.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/solve_time_15_10.jpg)
 
 ## 优化测试3:控制机器人的个数以及环境大小，随机对机器人群中的某一台机器人的起点或终点进行十次扰动，在启发式初始解启用的情况下，运行时间会出现一定程度的浮动，但是扰动后模型的求解时间会比扰动前的求解时间短：
 
@@ -103,9 +103,7 @@
 
 ## 测试项目3: 随机对机器人群中的一个进行扰动，比如起点或终点偏移一个单位，通过由扰动前所得到的初始解，可以降低求解的难度，降低求解时间，因此系统对小扰动的容忍度很高，时间浮动在5s以内。
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/disturb_test1.jpg)
-
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_test/disturb_test2.jpg)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/ForPre/small_disturb_11.jpg)
 
 ## 测试项目4：系统可能会由于一台机器人故障而减少一台机器人，测试结果求解时间会大大降低。
 
