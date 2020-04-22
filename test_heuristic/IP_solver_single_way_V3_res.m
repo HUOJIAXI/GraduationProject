@@ -396,7 +396,15 @@ end
 for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
-    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    try
+        Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    catch
+        err =1;
+        PATH=[];
+        Path=[];
+        break
+    end
+    err=0;
     m = size(D,2);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix
