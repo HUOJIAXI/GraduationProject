@@ -6,10 +6,10 @@ D = load('tsp_map.txt');
 m=size(D,1);
 n=size(D,2);
 
-RobotNum_test=16;
-RobotNum_start=13;
+RobotNum_test=15;
+RobotNum_start=1;
 test_para=10;
-flag_pre=0;
+flag_pre=1;
 disp('选取测试集')
 
 nobs=[];
@@ -139,12 +139,12 @@ if flag_pre==1
 
     hold on;
 
-    axis([0,RobotNum_test+1,min(moyen_oneway,moyen_oneway_heu)-2*max(var_time_oneway),max(moyen_oneway,moyen_oneway_heu)+2*max(var_time_oneway_heu)])
-
-    title(['OWIP启发式算法求解时间测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
+%     axis([0,RobotNum_test+1,min(moyen_oneway,moyen_oneway_heu)-2*max(var_time_oneway),max(moyen_oneway,moyen_oneway_heu)+2*max(var_time_oneway_heu)])
+    xlim([0,RobotNum_test+1])
+    title(['OWIP启发式算法求解时间测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m) 'X' num2str(n) ' 每测试集测试次数' num2str(test_para)])
     xlabel('机器人个数');ylabel('求解时间/s')
 
-    legend('启发初始解下OWIP','OWIP')
+    legend('启发初始解下OWIP','未调用启发初始解的OWIP')
 
     hold off;
 end

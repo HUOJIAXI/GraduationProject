@@ -6,8 +6,8 @@ while 1
     m = size(D,1);
     n = size(D,2);
     RobotNum=16;   
-    [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
-%     load('Path_num_test.mat')
+%     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
+    load('Path_num.mat')
 %     r_start_ori=Start;
 %     r_Goal_ori=Goal;
 %     Goal_ori=r_Goal;
