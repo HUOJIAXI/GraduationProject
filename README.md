@@ -40,15 +40,15 @@
 
 1. 改进优化单行线法则：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest_heu.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_presentation/simulation_16_OWIP_1.gif)
 
 2. 传统IP模型：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_presentation/simulation_16_TIP.gif)
 
 3. 动态算法：
 
-![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/For_result/simulation_fortest_dyn.gif)
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/res_presentation/simulation_16_DSIP.gif)
 
 ## 5. 对运行时间和最优比分别进行测试：
 ![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/最优路径测试_4_14.jpg)
