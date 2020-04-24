@@ -9,7 +9,7 @@ n=size(D,2);
 
 RobotNum_test=10;
 RobotNum_start=1;
-test_para=10;
+% test_para=20;
 disp('选取测试集')
 
 nobs=[];
@@ -32,7 +32,9 @@ end
 
 test_size=length(obs);
 
-[Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,test_size);
+% [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,test_size);
+load('10_19_04.mat')
+test_para=20;
 
 disp('测试集生成')
 
@@ -138,7 +140,7 @@ for i = RobotNum_start:RobotNum_test
         end
     end
 end
-save('test.mat')
+save('test_20.mat')
 var_time_dyn=zeros(RobotNum_test-RobotNum_start+1,1);
 var_time_oneway=zeros(RobotNum_test-RobotNum_start+1,1);
 var_time_tra=zeros(RobotNum_test-RobotNum_start+1,1);

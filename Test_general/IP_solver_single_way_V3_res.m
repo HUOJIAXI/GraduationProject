@@ -10,11 +10,11 @@ Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
 
-if numrobot <=16
-    timelimit=round(5*numrobot);
-else
-    timelimit=round(100*numrobot);
-end
+% if numrobot <=16
+%     timelimit=round(5*numrobot);
+% else
+%     timelimit=round(100*numrobot);
+% end
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -356,7 +356,7 @@ end
 disp('启动求解器')
 % assign(x,ini_x_value);
 % ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
-ops = sdpsettings('verbose',1,'solver','gurobi','usex0',0,'gurobi.TimeLimit',timelimit);
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',0);
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
 result  = optimize(C,z,ops);
@@ -396,7 +396,15 @@ end
 for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
-    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    try
+        Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    catch
+        err =1;
+        PATH=[];
+        Path=[];
+        break
+    end
+    err=0;
     m = size(D,2);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix
