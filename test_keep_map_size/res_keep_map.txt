@@ -57527,4 +57527,10 @@ In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sdpv
 In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('IP_tradion_way', '/Users/huojiaxi/Desktop/IP_MPP/Test_general/IP_tradion_way.m', 63)" style="font-weight:bold">IP_tradion_way</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Test_general/IP_tradion_way.m',63,0)">line 63</a>)
        C=[C, abs(u_rob(rob,1,t))+abs(u_rob(rob,2,t)) <=1];
 
-In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_test', '/Users/huojiaxi/Desktop/IP_MPP/Test_general
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('Main_test', '/Users/huojiaxi/Desktop/IP_MPP/Test_general/Main_test.m', 126)" style="font-weight:bold">Main_test</a> (<a href="matlab: opentoline('/Users/huojiaxi/Desktop/IP_MPP/Test_general/Main_test.m',126,0)">line 126</a>)
+                [path_rob,runtime_indi]=IP_tradion_way(D,i,r_Goal_ori(test_choix),r_start_ori(test_choix));
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('run', '/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m', 91)" style="font-weight:bold">run</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2019b.app/toolbox/matlab/lang/run.m',91,0)">line 91</a>)
+evalin('caller', strcat(script, ';'));
+} 
+save('2404.mat')

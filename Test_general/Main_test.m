@@ -53,6 +53,7 @@ dis_tra=cell(RobotNum_test-RobotNum_start+1,1);
 disp('测试开始')
 
 disp(datestr(now));
+disp(test_para)
 
 for i = RobotNum_start:RobotNum_test
     for j = 1:test_para

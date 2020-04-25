@@ -30,34 +30,34 @@ C=[]; %约束集合
 
 % 状态转移
 %% 约束1 保证起点位置
-h = waitbar(0,'保证起点位置');
+% h = waitbar(0,'保证起点位置');
 for rob =1:numrobot
     C=[C,squeeze(state_rob(rob,:,1))-[r_start_x(rob),r_start_y(rob)]==0];
     
-    per = rob / numrobot;
-    waitbar(per, h ,sprintf('请等待路径连续性建立 %2.0f%%',per*100))
+%     per = rob / numrobot;
+%     waitbar(per, h ,sprintf('请等待路径连续性建立 %2.0f%%',per*100))
     
 end
 
-close(h)
+% close(h)
 
 %% 约束2 保证终点位置 （已在目标函数中约束）
 
 %% 约束3 机器人需按照转移函数前进
-h = waitbar(0,'机器人需按照转移函数前进');
+% h = waitbar(0,'机器人需按照转移函数前进');
 for t = 1:T-1
     for rob=1:numrobot
         C=[C,state_rob(rob,:,t+1)==state_rob(rob,:,t)+u_rob(rob,:,t)];
 %         C= [C, state_rob(rob,:,t+1)'-(A*state_rob(rob,:,t)'+B*u_rob(rob,:,t)')==0];
     end
-   per = t/(T-1);
-   waitbar(per, h ,sprintf('机器人需按照转移函数前进 %2.0f%%',per*100))
+%    per = t/(T-1);
+%    waitbar(per, h ,sprintf('机器人需按照转移函数前进 %2.0f%%',per*100))
 end
-close(h)
+% close(h)
 
 %% 约束4 对于每次转移，x和y只能选取一个前进一个单位
 % C=[C, sum(u_rob,2)<=ones(numrobot,1,MAXINT)]; % 循环向量化，对行求和
-h = waitbar(0,'对于每次转移，x和y只能选取一个前进一个单位');
+% h = waitbar(0,'对于每次转移，x和y只能选取一个前进一个单位');
 for rob=1:numrobot
     for t = 1:MAXINT
        C=[C, abs(u_rob(rob,1,t))+abs(u_rob(rob,2,t)) <=1];
@@ -67,10 +67,10 @@ for rob=1:numrobot
        C=[C,u_rob(rob,2,t)<=1];
     end
     
-   per = rob / numrobot;
-   waitbar(per, h ,sprintf('对于每次转移，x和y只能选取一个前进一个单位 %2.0f%%',per*100))
+%    per = rob / numrobot;
+%    waitbar(per, h ,sprintf('对于每次转移，x和y只能选取一个前进一个单位 %2.0f%%',per*100))
 end
-close(h)
+% close(h)
 % 
 % %% 约束4 机器人的起点终点需在规定区域
 % %起点
@@ -81,7 +81,7 @@ close(h)
 % end
 
 %% 约束5 机器人不可与障碍物碰撞
-h = waitbar(0,'机器人不可与障碍物碰撞');
+% h = waitbar(0,'机器人不可与障碍物碰撞');
 for t = 1:T
     for rob=1:numrobot
         rob_s=state_rob(rob,2,t)+(state_rob(rob,1,t)-1)*size_D_n;
@@ -89,14 +89,14 @@ for t = 1:T
             C=[C,(obs(count_obs)-rob_s)~=0];
         end
     end
-    per = t / T;
-   waitbar(per, h ,sprintf('机器人不可与障碍物碰撞%2.0f%%',per*100))
+%     per = t / T;
+%    waitbar(per, h ,sprintf('机器人不可与障碍物碰撞%2.0f%%',per*100))
    
 end     %有多重循环 可能造成内存分配时间长
-close(h)
+% close(h)
 
 %% 约束6 机器人之间没有直接冲突
-h = waitbar(0,'机器人之间没有直接冲突');
+% h = waitbar(0,'机器人之间没有直接冲突');
 for t =1:T
     for rob=1:numrobot-1
         for rob_col=rob+1:numrobot
@@ -107,13 +107,13 @@ for t =1:T
                C=[C,(state_rob_1-state_rob_col_1)~=0];
         end
     end
-   per = t / T;
-   waitbar(per, h ,sprintf('机器人之间没有直接冲突 %2.0f%%',per*100))
+%    per = t / T;
+%    waitbar(per, h ,sprintf('机器人之间没有直接冲突 %2.0f%%',per*100))
 end
-close(h)
+% close(h)
 
 %% 约束6 机器人之间没有交叉冲突
-h = waitbar(0,'机器人之间没有交叉冲突');
+% h = waitbar(0,'机器人之间没有交叉冲突');
 for t =1:T-1
     for rob=1:numrobot-1
         for rob_col=rob+1:numrobot
@@ -130,11 +130,11 @@ for t =1:T-1
 
         end
     end
-       per = t / (T-1);
-       waitbar(per, h ,sprintf('机器人之间没有交叉冲突 %2.0f%%',per*100))
+%        per = t / (T-1);
+%        waitbar(per, h ,sprintf('机器人之间没有交叉冲突 %2.0f%%',per*100))
 end
     
-close(h)
+% close(h)
 
 
 %% 约束7 机器人位置必须在范围内
