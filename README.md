@@ -1,4 +1,17 @@
 # GraduationProject 项目日志 
+## 扩大测试结果
+求解时间：
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/30_求解时间.jpg)
+
+平均最优路径
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/30_最优路径.jpg)
+
+最优损失比
+
+![images](https://github.com/HUOJIAXI/GraduationProject/blob/master/Test_general/30_损失比.jpg)
+
 ## 在论文的编写过程中，发现动态算法的冲突解除算法的时序逻辑出现了问题，经过修改，已经修改成功，并且得到了正确的无碰撞的结果
 ## 修改了等待处理，防止在高密度情况下卡死的状况
 ## 经过测试，对于13*13环境下，16个机器人的环境，对于设计的三种方法（动态算法、传统IP模型，改进优化单行线法则）对于相同的起点终点分别进行了测试，测试结果如下：
