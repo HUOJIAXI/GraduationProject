@@ -138,7 +138,7 @@ hold on;
 
 axis([0,RobotNum_test+1,min(moyen_oneway,moyen_oneway_heu)-2*max(var_time_oneway),max(moyen_oneway,moyen_oneway_heu)+2*max(var_time_oneway_heu)])
 
-title(['OWIP启发式算法求解时间测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
+title(['OWIP算法求解时间测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
 xlabel('机器人个数');ylabel('求解时间/s')
 
 legend('启发初始解下OWIP','OWIP')
