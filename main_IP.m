@@ -5,13 +5,20 @@ clc;
 
 yalmip('clear') % Yalmip接口清空内存
 
-numrobot=4;
-
+% 
+flag_test=1;
 % D = load('distmap.txt'); 
-D = load('tsp_map.txt'); 
-% [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot);
-
-load('9_13_17.mat')
+if flag_test==1
+    numrobot=4;
+    D = load('tsp_map.txt'); 
+    [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot);
+else
+    load('Path_num_test_h3.mat')
+    r_Goal_ori=Start;
+    r_start_ori=Goal;
+    Start_ori=r_Goal;
+    Goal_ori=r_start;
+end
 % [Start,Goal,start_sp,goal_sp,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
 size_D=size(D,2);
 
@@ -58,7 +65,7 @@ plot_ind(D,numrobot,size_D_n,size_D_m,Start_ori,Goal_ori,Path_new)
 
 % plotdynamic_tes(D,Path_new,Path_num,numrobot,Start_ori,Goal_ori);
 
-save('9_13_13.mat')
+save('test_final.mat')
 
 
 

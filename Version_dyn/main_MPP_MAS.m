@@ -11,12 +11,16 @@ m = size(D,1);
 n=size(D,2);
 % 判断是否存在起始点在障碍物处的情况
 numrobot=9;
-[r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
-% load('16_res_fortest.mat')
-% Start=r_start_ori;
-% Goal=r_Goal_ori;
-% r_Goal=Goal_ori;
-% r_start=Start_ori;
+flag_re=0;
+if flag_re==1
+    [r_Goal,r_start,Start,Goal]=rand_Goal_Start_op(D,numrobot);
+else
+    load('Path_num_test_h3.mat')
+    Start=r_start_ori;
+    Goal=r_Goal_ori;
+    r_Goal=Goal_ori;
+    r_start=Start_ori;
+end
 % [Goal,Start]=rand_Goal_Start(D,numrobot);
 disp('起点终点选取完成')
 % Start = [16,135,18,4,42,40,8,111,103,64,150,1,12,121,20,157]; % 113
@@ -65,12 +69,12 @@ RobotNum = length(Start);
  toc
  
 %% 仿真视频存储
-if flag_dir==1
-%     plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal,r_Goal,r_start);
-    plotdynamic_tes(D,PathStore,Path_num,RobotNum,r_start,r_Goal,Goal)
-else
-    plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
-end
+% if flag_dir==1
+% %     plotdynamic_show_conti(D,PathStore,Path_num,RobotNum,Start,Goal,r_Goal,r_start);
+%     plotdynamic_tes(D,PathStore,Path_num,RobotNum,r_start,r_Goal,Goal)
+% else
+%     plotdynamic(D,PathStore,Path_num,RobotNum,Start,Goal);
+% end
 
 %% 原始环境
 plot_ind(D,RobotNum,n,m,r_start,r_Goal,PathStore)
@@ -120,6 +124,6 @@ end
 
 save('Path_num_test_h3.mat');
     
-disp('系统总路程：')
+disp('总路径长度：')
 disp(dis_total)
 

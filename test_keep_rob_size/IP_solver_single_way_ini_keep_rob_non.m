@@ -3,18 +3,13 @@
 % Author:HUO JIAXI
 % 引入单行道限制
 %% 待修改
-function [err,PATH,Path,value_dir_way,runtime_indi]=IP_solver_single_way_V3_res(D,l,t,numrobot,size_D,ini_x_value)
+function [runtime_indi,err,PATH,Path,dir_way_value,dir_rob_value,x_value]=IP_solver_single_way_ini_keep_rob_non(D,l,t,numrobot,size_D,ini_x_value)
+
 yalmip('clear')
 PATH=cell(numrobot,1);
 Path=cell(numrobot,1);
 o_single=cell(numrobot,1);
 flag_cross=0; % 是否考虑交汇点约束 1：考虑 0：不考虑
-
-if numrobot <=16
-    timelimit=round(5*numrobot);
-else
-    timelimit=round(100*numrobot);
-end
 
 m_D=size(D,1);
 n_D=size(D,2);
@@ -24,25 +19,15 @@ d = transfer(D);
 m = size(d,1); 
 n = size(d,2); 
 % 决策变量
-nobs=[];
-obs=[];
-for i = 1:m_D
-    for j = 1:n_D
-        if D(i,j) == 1
-            obs=[obs j+(i-1)*n_D]; % 障碍物所在位置
-%             [obs_x,obs_y]=spread(obs,m);
-        else
-            nobs=[nobs j+(i-1)*n_D];
-        end
-    end
-end
 
 x = binvar(n,n,numrobot,'full'); % n*n维的决策变量
+
 % u = intvar(numrobot,n,'full');
 % dir = intvar(numrobot,n,n,'full'); % a 表示每个机器人的方向
 if flag_cross==1
     dir_way=intvar(1,num_way,'full');
 end
+
 dir_rob=intvar(numrobot,num_way,'full');
 
 
@@ -52,7 +37,7 @@ dir_rob=intvar(numrobot,num_way,'full');
 
 z=0;
 for i = 1:numrobot
-    z = z+sum(sum(d.*squeeze(x(:,:,i))));
+    z = z+sum(sum(d.*x(:,:,i)));
 end
 % 
 % for i = 1:numrobot
@@ -67,21 +52,23 @@ C = [];
 %%
 % 静止不动时返回0
 same=[];
+flag_same=0;
 temp_l=[];
 temp_t=[];
 temp_ini=[];
-flag_same=0;
 for i = 1:numrobot
     if l(i) == t(i)
         [N,B]=spread_sin(t,n);
-        PATH{i,1} = [N,B];
-        Path{i,1}(1) = l(i);
+        PATH{numrobot,1} = [N,B];
+        Path{numrobot,1}(1) = l(i);
+        dir_way_value=[];
+        dir_rob_value=[];
+        x_value=[];
+        run_time=0;
         disp('二次检查：起点终点在同一个点')
-        same=[same i];
-        flag_same=1;
-        value_dir_way=0;
-        runtime_indi=0;
-        err=1;
+%         same=[same i];
+%         flag_same=1;
+        err = 1;
         return
     end
 end
@@ -89,8 +76,8 @@ end
 if flag_same==1
     for i =1:numrobot
         if ~ismember(i,same)
-            temp_l=[temp_l l(i)];
-            temp_t=[temp_t t(i)];
+%             temp_l=[temp_l l(i)];
+%             temp_t=[temp_t t(i)];
             
             temp_ini=cat(3,temp_ini,ini_x_value(:,:,i));
         end
@@ -102,30 +89,24 @@ if flag_same==1
     numrobot=numrobot-length(same); 
 else
     disp('二次检查：不存在起点终点在同一个点的情况')
-    err=0;
 end
 
-disp('正在进行约束建立')
+
 %% 约束1 确保路径从起点出发并在终点结束
-% tic
-h = waitbar(0,'请等待路径连续性建立');
 for i = 1:numrobot
-    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0,sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0];
-    per = i / numrobot;
-    waitbar(per, h ,sprintf('请等待路径连续性建立 %2.0f%%',per*100))
-end
-close(h)
-% toc
-disp('约束1 确保路径从起点出发并在终点结束 建立完成')
-%% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
-% tic
-h = waitbar(0,'请等待顶点限制建立');
-for i = 1:numrobot
-%               向量化前代码：由于是全图约束 k为机器人，i为1:n，子循环的出现不满足最优，会被去除
-%             C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
-%             C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
-%             C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
+    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) - sum(x(:,t(i),i)) + x(t(i),t(i),i)== 0];
 
+    C = [C, sum(x(l(i),:,i)) - x(l(i),l(i),i) == 1];
+
+    C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) - sum(x(t(i),:,i)) + x(t(i),t(i),i) == 0];
+
+    C = [C, sum(x(:,l(i),i)) - x(l(i),l(i),i) == 0]; 
+end
+
+
+%% 约束2 确保出入边条件，每个顶点在路径中仅出现一次 约束3 避免出现子循环
+for i = 1:numrobot
+    
     dead=sort(unique([l(i),t(i)]));
 
     m1=squeeze(sum(x(:,:,i),1))';
@@ -135,23 +116,30 @@ for i = 1:numrobot
     temp=diag(x(:,:,i));
     dia=cat(2,dia,temp(:));
 
+    % dia=dia';
+%     disp(size(m1))
+    % disp(size(m2))
+    % disp(size(dia))
     m1(dead,:)=[];
     m2(dead,:)=[];
     dia(dead,:)=[];
 
+%     disp(size(m1,1))
     c1= (m2-m1)==zeros(size(m1,1),size(m1,2));
     c2= (m2-dia) <=ones(size(m1,1),size(m1,2));
     c3= (m1-dia) <=ones(size(m1,1),size(m1,2));
 
     C = [C,c1,c2,c3];
-    per = i / numrobot;
-    waitbar(per, h ,sprintf('请等待顶点限制建立 %2.0f%%',per*100))
 end
-
-close(h)
-% toc
-disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 建立完成')
-
+% for k=1:numrobot
+%     for i = 1:n
+%         if i ~= l(k) && i~=t(k)
+%             C = [C, sum(x(i,:,k))-x(i,i,k)- sum(x(:,i,k))+x(i,i,k) == 0];
+%             C = [C, sum(x(i,:,k))-x(i,i,k) <= 1];
+%             C = [C, sum(x(:,i,k))-x(i,i,k) <= 1];
+%         end
+%     end
+% end
 % u = intvar(numrobot,n,'full');
 % for k=1:numrobot
 %     for i = 1:n
@@ -164,9 +152,6 @@ disp('约束2 确保出入边条件，每个顶点在路径中仅出现一次 �
 % end
 
 %% 约束4 单行线法则（交叉点不可只出不进或只进不出）
-% tic
-h = waitbar(0,'请等待巷道方向建立');
-
 for k = 1:numrobot
 for i = 1:m
     [i_x,i_y]=spread_sin(i,size_D);
@@ -200,17 +185,11 @@ for i = 1:m
 %             end
         end
     end
+
 end
-    per = k / numrobot;
-    waitbar(per, h ,sprintf('请等待巷道方向建立 %2.0f%%',per*100))
 end
-close(h)
-% toc
-% 
-disp('约束3 单行线法则 建立完成')
 %% 约束5 单行线法则 （巷道方向框定）
 % tic
-h = waitbar(0,'请等待巷道方向确认');
 a=max(dir_rob,[],1);
 % disp(size(a))
 % %     [i,j]=spread_sin(k,size_D);
@@ -218,29 +197,17 @@ for k =1:num_way
     for rob = 1:numrobot
              C = [ C, a(k)-dir_rob(rob,k) ~=2 ];
     end  
-    per = k / num_way;
-    waitbar(per, h ,sprintf('请等待巷道方向确认%2.0f%%',per*100))
 end
-close(h)
-% %      
-% a=max(dir_rob,[],1)';
-% disp(size(a));
-% 
-% t=ones(1,size(dir_rob,1));
-% disp(size(t))
-% b=a(:,t)';
-% disp(size(b))
-% disp(size(dir_rob))
-% C=[C,(b-dir_rob)~=2];
-
+% %    
 % rob_ran=[(1:numrobot),(1:num_way)];
 % C=[C, 0<=dir_rob(rob_ran)<=3]; 
-for k =1:num_way
-     C=[C, 0<=dir_rob(1:numrobot,k)<=3];
-end
-% toc
-disp('约束4 巷道方向确认 建立完成')
 
+for k =1:num_way
+         C=[C, 0<=dir_rob(1:numrobot,k)<=3];
+end
+
+% C=[C, 0<=dir_way(:)<=3];
+% C=[C, 0<=dir_rob(:,:)<=3];
 
 %% 交汇点限制
 % flag_cross=0;
@@ -335,7 +302,6 @@ if flag_cross==1
     end
 end
   
-% index=[(1:n),(1:n),(1:numrobot)];
 % for k=1:numrobot
 %     for i = 1:n
 %         for j = 1:n
@@ -349,31 +315,26 @@ end
 %% 求解IP模型
 
 % 参数设置
-
-% % [ini_dir_way] = initial();
-% [ini_dir_way] = initial(n_D,m_D);
 % assign(dir_way,ini_dir_way);
-disp('启动求解器')
+% assign(dir_rob,ini_dir_rob);
 assign(x,ini_x_value);
-% ops = sdpsettings('verbose',1,'solver','gurobi','usex0',1,'gurobi.TimeLimit',timelimit);%verbose计算冗余量，值越大显示越详细
-ops = sdpsettings('verbose',1,'solver','gurobi','usex0',0,'gurobi.TimeLimit',timelimit);
+% assign(u,ini_u_value);
+
+ops = sdpsettings('verbose',1,'solver','gurobi','usex0',0);%verbose计算冗余量，值越大显示越详细
 %ops = sdpsettings('verbose',0,'solver','cplex');
 % 求解
-result  = optimize(C,z,ops);
-% x_value=value(x);
 
-% disp(result)
-save dat result
-% save dat x_value
+result  = optimize(C,z,ops);
+
 runtime_indi=result.solvertime;
 if result.problem== 0
 %    value(z)
 %     disp(value(dir_rob))
-%    text=' 系统总最优路径长度：';
-%    disp([text,num2str(value(z))]);
-    disp('系统总最优路径长度：Best objective');
+%     text=' 系统总最优路径长度：';
+%     disp([text,num2str(value(z))]);
+%     disp('系统总最优路径长度：Best objective');
 else
-    disp('系统总最优路径长度：Best objective ');
+    disp('Finish ! ');
 %     disp(value(dir_rob))
 end
 
@@ -383,11 +344,27 @@ if flag_cross == 0
     end
 end
     
-value_dir_way=value(dir_way);
-%disp(value(dir))
-o=value(x);
+dir_way_value=value(dir_way);
+dir_rob_value=value(dir_rob);
 
+x_value = value(x);
+% u_value = value(u);
+
+% x_add=zeros(n,n);
+% x_value=cat(3,x_value,x_add);
+% 
+% u_add=zeros(1,n);
+% u_value=cat(1,u_value,u_add);
+% 
+% dir_rob_add=zeros(1,num_way);
+% dir_rob_value=cat(1,dir_rob_value,dir_rob_add);
+
+
+%disp(value(dir))
+
+o=value(x);
 %% 邻接矩阵转换，路径绘制
+    
 
 for i = 1:numrobot
     o_single{i,1} =  squeeze(o(:,:,i)) ; 
@@ -396,7 +373,18 @@ end
 for i = 1:numrobot
     o_sin=o_single{i,1};
 %    disp(o_sin)
-    Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    try
+        Path{i,1}=solvermatrix(o_sin,l(i),t(i));
+    catch
+        err =1;
+        PATH=[];
+        Path=[];
+        dir_way_value=[];
+        dir_rob_value=[];
+        x_value=[];
+        break
+    end
+    err=0;
     m = size(D,2);
     [X,Y]=spread(Path{i,1},m);
     PATH{i,1}=cat(1,X,Y)'; % 路径存入PATH matrix

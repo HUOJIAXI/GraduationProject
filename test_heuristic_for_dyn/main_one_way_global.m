@@ -5,14 +5,19 @@ while 1
     D = load('tsp_map.txt'); 
     m = size(D,1);
     n = size(D,2);
-    RobotNum=9;   
-    [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
-%     load('Path_num.mat')
-%     r_start_ori=Start;
-%     r_Goal_ori=Goal;
-%     Goal_ori=r_Goal;
-%     Start_ori=r_start;
+    flag_test=0;
+    if flag_test==1
+        RobotNum=9;   
+
+        [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,RobotNum);
+    else
+    load('Path_num_test_h3.mat')
+    r_start_ori=Start;
+    r_Goal_ori=Goal;
+    Goal_ori=r_Goal;
+    Start_ori=r_start;
     %RobotNum = size(Start,2);
+    end
 
     [Start_new,Goal_new,D_reduit] = reduit(r_start_ori,r_Goal_ori,D);
     % disp(D_reduit)
@@ -57,7 +62,7 @@ for rob=1:RobotNum
     sum_dist=sum_dist+size(PathStore_new{rob,1},1);
 end
 
-disp(['总路径长度：',num2str(sum_dist)]);
+disp(['系统总路径：',num2str(sum_dist)]);
 
 exam(Path_num_new,r_start_ori,r_Goal_ori,RobotNum);
 
@@ -73,4 +78,4 @@ plot_ind_heu(D,RobotNum,n,m,Start_ori,Goal_ori,PathStore_new,dir_way)
 % plotdynamic_tes(D,PathStore_new,Path_num_new,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 % plotdynamic_tes(D,PathStore_apres_sep,PathStore_apres,RobotNum,Start_ori,Goal_ori,r_start_ori,r_Goal_ori,dir_way);
 
-save('Path_num_fortest.mat')
+save('Path_num_fortest_finalpre.mat')

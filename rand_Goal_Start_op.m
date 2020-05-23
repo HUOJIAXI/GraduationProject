@@ -82,9 +82,9 @@ end
 [goal_x,goal_y]=spread(r_Goal,n);
 
 for i = 1: numrobot
-     start_x(i)=start_x(i)-1;
+     start_y(i)=start_y(i)-1;
      r_start_ori(i)=start_y(i)+(start_x(i)-1)*n;
-     goal_x(i)=goal_x(i)-1;
+     goal_y(i)=goal_y(i)-1;
      r_Goal_ori(i)=goal_y(i)+(goal_x(i)-1)*n;
      
 %     if mod(start_y(i)/2,2)==1

@@ -17,12 +17,12 @@ for i = 1:m
         end
     end
 end
-r_start = randperm(length(obs),numrobot);
-r_Goal = randperm(length(obs),numrobot);
+r_start = randperm(length(nobs),numrobot);
+r_Goal = randperm(length(nobs),numrobot);
 
 for i = 1:numrobot
-    r_start(i)=obs(r_start(i));
-    r_Goal(i)=obs(r_Goal(i));
+    r_start(i)=nobs(r_start(i));
+    r_Goal(i)=nobs(r_Goal(i));
 end
 
 
@@ -47,29 +47,27 @@ while flag==1
 %        len_ori~=len || || || len_start_ori~=len_start || len_Goal_ori ~=len_Goal
         flag = 1;
         num_flag_error=num_flag_error+1;
-        r_start = randperm(length(obs),numrobot);
-        r_Goal = randperm(length(obs),numrobot);
+        r_start = randperm(length(nobs),numrobot);
+        r_Goal = randperm(length(nobs),numrobot);
 
         for i = 1:numrobot
-            r_start(i)=obs(r_start(i));
-            r_Goal(i)=obs(r_Goal(i));
+            r_start(i)=nobs(r_start(i));
+            r_Goal(i)=nobs(r_Goal(i));
         end
         continue
     end
     
-    flag = 0;
-    
-    
+    flag = 0; 
 end
 
-[start_x,start_y]=spread(r_start,n);
-[goal_x,goal_y]=spread(r_Goal,n);
-
-for i = 1: numrobot
-    start_x(i)=start_x(i)-1;
-    r_start(i)=start_y(i)+(start_x(i)-1)*n;
-    goal_x(i)=goal_x(i)-1;
-    r_Goal(i)=goal_y(i)+(goal_x(i)-1)*n;
+% [start_x,start_y]=spread(r_start,n);
+% [goal_x,goal_y]=spread(r_Goal,n);
+% 
+% for i = 1: numrobot
+%     start_x(i)=start_x(i)-1;
+%     r_start(i)=start_y(i)+(start_x(i)-1)*n;
+%     goal_x(i)=goal_x(i)-1;
+%     r_Goal(i)=goal_y(i)+(goal_x(i)-1)*n;
     
 %     if mod(start_y(i)/2,2)==1
 %         start_y(i)=start_y(i)-1;
