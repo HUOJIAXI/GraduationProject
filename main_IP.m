@@ -9,7 +9,7 @@ yalmip('clear') % Yalmip接口清空内存
 flag_test=1;
 % D = load('distmap.txt'); 
 if flag_test==1
-    numrobot=4;
+    numrobot=9;
     D = load('tsp_map.txt'); 
     [Goal_ori,Start_ori,r_start_ori,r_Goal_ori]=rand_Goal_Start_op(D,numrobot);
 else
@@ -65,7 +65,7 @@ plot_ind(D,numrobot,size_D_n,size_D_m,Start_ori,Goal_ori,Path_new)
 
 % plotdynamic_tes(D,Path_new,Path_num,numrobot,Start_ori,Goal_ori);
 
-save('test_final.mat')
+save('test_final_2.mat')
 
 
 

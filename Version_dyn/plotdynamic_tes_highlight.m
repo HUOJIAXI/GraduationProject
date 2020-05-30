@@ -1,7 +1,9 @@
-function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal,~,~)
+function plotdynamic_tes_highlight(D,PathStore,Path_num,RobotNum,Start,Goal,Goal_ori)
 %AllRobotState = zeros(size(D,1),size(D,2));
 MM = size(D,2);
 NN = size(D,1);
+
+m_len=length(Path_num);
 
 m=size(D,2);
 
@@ -19,10 +21,11 @@ MAX=0;
 temp=0.3;
 
 %%
-
-[PathStore]=biais_goal(PathStore,RobotNum,Start,Goal,m);
-
+[PathStore]=biais_goal(PathStore,Path_num,RobotNum,Start,Goal,Goal_ori,m);
+% [PathStore]=biais_goal(PathStore,Path_num,RobotNum,Start,Goal,r_Start,r_Goal,m);
+% disp(PathStore{2})
 [PathStore]=insert_value_dyn(PathStore,RobotNum);
+% disp(PathStore{2})
 
 for i = 1:RobotNum
     
@@ -61,7 +64,6 @@ for i=1:RobotNum
     
 end
 
-m_len=size(PathStore{1},1);
 
 %% 辨别方向
 for i = 1:RobotNum
@@ -82,7 +84,7 @@ for i = 1:RobotNum
             end
             
             if x_in==0 && y_in==0
-                if j <=m_len-11
+                if j <=m_len*11
                     x_in_end=PathStore{i,1}(j+11,1)-PathStore{i,1}(j,1);
                     y_in_end=PathStore{i,1}(j+11,2)-PathStore{i,1}(j,2);
                     if x_in_end>0 && y_in_end==0
@@ -141,8 +143,8 @@ for loop=1:10000
            if PathStore{i,1}(loop,1)==X_F(i) && PathStore{i,1}(loop,2)==Y_F(i)
                axis([0,MM,0,NN])
                 axis equal
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点    
-                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点 
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,num2str(i),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -169,7 +171,7 @@ for loop=1:10000
                 axis([0,MM,0,NN])   
                 axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)
-                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,num2str(i),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -195,8 +197,12 @@ for loop=1:10000
                else
                 axis([0,MM,0,NN])
                 axis equal
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
-                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
+               if i==15||i==13
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
+               else
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
+               end
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,num2str(i),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -222,8 +228,12 @@ for loop=1:10000
            else
               axis([0,MM,0,NN])
                axis equal
+               if i==15||i==13
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
+               else
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
-                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
+               end
+                
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -243,7 +253,7 @@ for loop=1:10000
                     yy = y-temp;            
                 end
             line([x,xx],[y,yy],'color','k','linestyle','-','lineWidth',5);
-            
+            text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255]')
            end
         end
     end

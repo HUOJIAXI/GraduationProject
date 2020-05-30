@@ -1,4 +1,4 @@
-function plotdynamic_tes(D,PathStore,Path_num,RobotNum,Start,Goal,~,~)
+function plotdynamic_tes_highlight(D,PathStore,Path_num,RobotNum,Start,Goal,~,~,dir_way)
 %AllRobotState = zeros(size(D,1),size(D,2));
 MM = size(D,2);
 NN = size(D,1);
@@ -130,7 +130,7 @@ for loop=1:10000
     ylim([0 NN])
     mapdesigner(fliplr(D),1);
     
-%     arrowdesign(dir_way,D)
+    arrowdesign(dir_way,D)
     
     hold on;
 %     axis([0 13 0 13]); 
@@ -195,7 +195,11 @@ for loop=1:10000
                else
                 axis([0,MM,0,NN])
                 axis equal
-                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
+                if i==14||i==15
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
+                else
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
+                end
                 text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
@@ -222,7 +226,11 @@ for loop=1:10000
            else
               axis([0,MM,0,NN])
                axis equal
+               if i==14||i==15
+                plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
+               else
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
+               end
                 text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])

@@ -142,6 +142,7 @@ for loop=1:10000
                axis([0,MM,0,NN])
                 axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','g','MarkerFaceColor','g','MarkerSize',10)  %一般情况下机器人不会中途经过终点    
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -168,6 +169,7 @@ for loop=1:10000
                 axis([0,MM,0,NN])   
                 axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','y','MarkerFaceColor','y','MarkerSize',10)
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -194,6 +196,7 @@ for loop=1:10000
                 axis([0,MM,0,NN])
                 axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)   %中途经过起点
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
@@ -220,6 +223,7 @@ for loop=1:10000
               axis([0,MM,0,NN])
                axis equal
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
+                text(PathStore{i,1}(loop,2)-1/3,PathStore{i,1}(loop,1)-1/3,cellstr(num2str(i)),'Color',[253/255 120/255 5/255])
                 xlim([0 MM])
                 ylim([0 NN])
                 x=PathStore{i,1}(loop,2)-1/2;
