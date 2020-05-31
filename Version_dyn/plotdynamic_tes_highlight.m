@@ -197,7 +197,7 @@ for loop=1:10000
                else
                 axis([0,MM,0,NN])
                 axis equal
-               if i==15||i==13
+               if i==2||i==3
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
                else
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)
@@ -228,7 +228,7 @@ for loop=1:10000
            else
               axis([0,MM,0,NN])
                axis equal
-               if i==15||i==13
+               if i==2||i==3
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','b','MarkerFaceColor','b','MarkerSize',10)
                else
                 plot(PathStore{i,1}(loop,2)-1/2,PathStore{i,1}(loop,1)-1/2,'o','MarkerEdgeColor','r','MarkerFaceColor','r','MarkerSize',10)

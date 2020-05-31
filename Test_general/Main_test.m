@@ -188,7 +188,7 @@ axis([0,RobotNum_test+1,min(moyen_tra)-2*max(var_time_tra),max(moyen_tra)+2*max(
 title(['求解时间测试：控制环境大小，改变机器人个数，测试环境大小' num2str(m_D) 'X' num2str(n_D) ' 每测试集测试次数' num2str(test_para)])
 xlabel('机器人个数');ylabel('求解时间/s')
 
-legend('动态算法DSIP','改进单行线模型OWIP','传统IP模型DIP')
+legend('动态算法DSIP','改进单行线模型OWIP','传统IP模型TIP')
 
 hold off;
 
